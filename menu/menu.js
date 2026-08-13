@@ -57,7 +57,6 @@ class MobileNavbar {
 
     }
 
-
     init() {
 
         if (this.mobileMenu) {

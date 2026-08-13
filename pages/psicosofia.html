@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Psicosofia | Casa dos MBTIs</title>
+    <title>Psicosofia - Casa dos MBTIs</title>
     <link rel="stylesheet" href="../menu/menu.css">
     <link rel="stylesheet" href="../css/psicosofia.css">
 </head>
@@ -15,7 +15,7 @@
     <main>
         <section class="psicosofia">
 
-            <h1>🧠 Psicosofia</h1>
+            <h1>Psicosofia</h1>
 
             <p>
                 A <strong>Psicosofia</strong> é uma área dedicada ao estudo e à reflexão
@@ -37,7 +37,7 @@
             </p>
 
             <div class="aviso-desenvolvimento">
-                <h2>🚧 Em desenvolvimento</h2>
+                <h2>🚧 Em desenvolvimento, se acalme, hein.</h2>
 
                 <p>
                     A página de Psicosofia <strong>ainda está em desenvolvimento</strong>.
@@ -49,39 +49,19 @@
                 </p>
 
                 <p>
-                    Novos textos, conceitos e materiais serão adicionados futuramente. ✨
+                    Novos textos, conceitos e materiais serão adicionados futuramente. A comunidade ajudará nisso.
                 </p>
             </div>
 
             <p class="frase-final">
-                🧠 Em breve, mais conteúdos sobre mente, personalidade e a complexidade
-                do ser humano.
+                Em breve, mais conteúdos. 
             </p>
 
         </section>
     </main>
 
-    <script>
-        fetch('../menu/menu.html')
-            .then(response => response.text())
-            .then(data => {
-                document.querySelector('#menu').innerHTML = data;
-
-                const paginaAtual = window.location.pathname.split('/').pop();
-                const links = document.querySelectorAll('.item-menu a');
-
-                links.forEach(link => {
-                    const href = link.getAttribute('href');
-
-                    if (href === paginaAtual) {
-                        link.parentElement.classList.add('ativo');
-                    }
-                });
-            })
-            .catch(error => {
-                console.error('Erro ao carregar o menu:', error);
-            });
-    </script>
+   
+    <script src="../menu/menu.js"></script>
 
 </body>
 </html>
