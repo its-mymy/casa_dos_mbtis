@@ -1,0 +1,287 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at 15% 20%, rgba(139, 92, 246, 0.12), transparent 30%), radial-gradient(circle at 85% 80%, rgba(168, 85, 247, 0.10), transparent 30%), #080812;
+    color: #f1eaff;
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image: linear-gradient(rgba(139, 92, 246, 0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.035) 1px, transparent 1px);
+    background-size: 45px 45px;
+    z-index: -1;
+}
+
+.eneagrama-container {
+    width: min(1100px, 90%);
+    margin: 0 auto;
+    padding: 90px 0 70px;
+}
+
+.eneagrama-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.eneagrama-header h1 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    letter-spacing: 3px;
+    color: #ffffff;
+    margin-bottom: 15px;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.8), 0 0 25px rgba(139, 92, 246, 0.4);
+}
+
+.eneagrama-header h1 span {
+    color: #a855f7;
+}
+
+.eneagrama-header p {
+    max-width: 700px;
+    margin: auto;
+    color: #b8a8d9;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.tech-line {
+    width: 180px;
+    height: 2px;
+    margin: 25px auto;
+    background: linear-gradient(90deg, transparent, #8b5cf6, #a855f7, #8b5cf6, transparent);
+    box-shadow: 0 0 8px #8b5cf6, 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+.eneagrama-card {
+    position: relative;
+    background: linear-gradient(145deg, rgba(25, 16, 40, 0.95), rgba(8, 8, 18, 0.95));
+    border: 1px solid rgba(139, 92, 246, 0.25);
+    border-radius: 14px;
+    padding: 35px;
+    margin-bottom: 30px;
+    box-shadow: 0 0 25px rgba(139, 92, 246, 0.06), inset 0 0 25px rgba(139, 92, 246, 0.025);
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.eneagrama-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 70px;
+    height: 3px;
+    background: linear-gradient(90deg, #6d28d9, #a855f7);
+    box-shadow: 0 0 12px #7c3aed;
+}
+
+.eneagrama-card::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 80px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #a855f7);
+    box-shadow: 0 0 10px #a855f7;
+}
+
+.eneagrama-card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(168, 85, 247, 0.5);
+    box-shadow: 0 0 30px rgba(139, 92, 246, 0.12), inset 0 0 30px rgba(139, 92, 246, 0.04);
+}
+
+.eneagrama-card h2 {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.4rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+}
+
+.eneagrama-card h2 span {
+    color: #a855f7;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.6);
+}
+
+.eneagrama-card p {
+    color: #b9afc9;
+    line-height: 1.9;
+    font-size: 0.98rem;
+    margin-bottom: 15px;
+}
+
+.eneagrama-card strong {
+    color: #eee5ff;
+}
+
+.tipos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 25px;
+}
+
+.tipo-card {
+    position: relative;
+    padding: 25px;
+    background: rgba(12, 8, 22, 0.9);
+    border: 1px solid rgba(139, 92, 246, 0.18);
+    border-radius: 10px;
+    transition: 0.3s ease;
+    overflow: hidden;
+}
+
+.tipo-card:hover {
+    transform: translateY(-5px);
+    border-color: #a855f7;
+    box-shadow: 0 0 18px rgba(168, 85, 247, 0.18);
+}
+
+.tipo-card .numero {
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.8rem;
+    color: #a855f7;
+    text-shadow: 0 0 10px rgba(168, 85, 247, 0.7);
+    margin-bottom: 10px;
+}
+
+.tipo-card h3 {
+    color: #ffffff;
+    font-size: 1.05rem;
+    margin-bottom: 10px;
+}
+
+.tipo-card p {
+    color: #968ca6;
+    font-size: 0.87rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.funcionamento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 25px;
+}
+
+.funcionamento-item {
+    padding: 25px;
+    border-left: 2px solid #8b5cf6;
+    background: linear-gradient(90deg, rgba(139, 92, 246, 0.08), transparent);
+    border-radius: 5px;
+}
+
+.funcionamento-item h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #a855f7;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.funcionamento-item p {
+    font-size: 0.88rem;
+    margin: 0;
+    line-height: 1.7;
+}
+
+.aviso-eneagrama {
+    position: relative;
+    margin-top: 45px;
+    padding: 25px 30px;
+    border: 1px solid rgba(168, 85, 247, 0.45);
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(50, 20, 90, 0.25), rgba(80, 20, 120, 0.08));
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.08);
+}
+
+.aviso-eneagrama h3 {
+    font-family: 'Orbitron', sans-serif;
+    color: #c084fc;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.aviso-eneagrama p {
+    color: #aaa1b8;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.destaque {
+    color: #a855f7;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.4);
+}
+
+.destaque-roxo {
+    color: #c084fc;
+    font-weight: 600;
+    text-shadow: 0 0 8px rgba(192, 132, 252, 0.4);
+}
+
+@media (max-width: 900px) {
+    .tipos-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .funcionamento {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 600px) {
+    .eneagrama-container {
+        width: 92%;
+        padding-top: 60px;
+    }
+
+    .eneagrama-header {
+        margin-bottom: 40px;
+    }
+
+    .eneagrama-header h1 {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+
+    .eneagrama-header p {
+        font-size: 0.9rem;
+    }
+
+    .eneagrama-card {
+        padding: 25px 20px;
+    }
+
+    .eneagrama-card h2 {
+        font-size: 1.15rem;
+    }
+
+    .tipos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tipo-card {
+        padding: 22px;
+    }
+
+    .aviso-eneagrama {
+        padding: 20px;
+    }
+}

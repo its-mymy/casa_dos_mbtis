@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.08), transparent 30%),
+        radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.06), transparent 30%),
+        #080808;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    width: 100%;
+    min-height: 100vh;
+    padding: 80px 30px 80px 120px;
+}
+
+.psicosofia {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+.psicosofia h1 {
+    margin-bottom: 30px;
+    font-size: 42px;
+    font-weight: 700;
+    color: #a855f7;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.7), 0 0 20px rgba(168, 85, 247, 0.4);
+}
+
+.psicosofia p {
+    margin-bottom: 20px;
+    font-size: 17px;
+    line-height: 1.8;
+    color: #d8d8e8;
+}
+
+.psicosofia strong {
+    color: #c084fc;
+}
+
+.aviso-desenvolvimento {
+    margin-top: 45px;
+    padding: 30px;
+    border: 1px solid #7c3aed;
+    border-radius: 14px;
+    background: rgba(124, 58, 237, 0.08);
+    box-shadow: 0 0 15px rgba(124, 58, 237, 0.15), inset 0 0 20px rgba(124, 58, 237, 0.03);
+}
+
+.aviso-desenvolvimento h2 {
+    margin-bottom: 20px;
+    font-size: 25px;
+    color: #c084fc;
+    text-shadow: 0 0 10px rgba(192, 132, 252, 0.5);
+}
+
+.aviso-desenvolvimento p {
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.frase-final {
+    margin-top: 40px;
+    text-align: center;
+    font-style: italic;
+    color: #a78bfa !important;
+    text-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
+}
+
+@media (max-width: 999px) {
+    main {
+        padding: 80px 20px 50px 20px;
+    }
+
+    .psicosofia {
+        padding: 25px 15px;
+    }
+
+    .psicosofia h1 {
+        font-size: 32px;
+    }
+
+    .psicosofia p {
+        font-size: 16px;
+    }
+
+    .aviso-desenvolvimento {
+        padding: 22px;
+    }
+}
+
+@media (max-width: 600px) {
+    main {
+        padding: 70px 15px 40px 15px;
+    }
+
+    .psicosofia {
+        padding: 15px 5px;
+    }
+
+    .psicosofia h1 {
+        font-size: 28px;
+    }
+
+    .psicosofia p {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+
+    .aviso-desenvolvimento h2 {
+        font-size: 21px;
+    }
+}
