@@ -115,9 +115,7 @@
 
 
     .nav-logo {
-
         font-size: 16px;
-
         letter-spacing: 2px;
 
     }
@@ -154,7 +152,6 @@
 
     .nav-list.active {
         transform: translateX(0);
-
     }
 
 }
@@ -175,7 +172,7 @@
 
 @media (max-width: 480px) {
     .nav-list {
-        width: 80%;
+        width: 100%;
     }
     .nav-logo {
         font-size: 14px;
