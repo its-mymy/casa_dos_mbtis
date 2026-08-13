@@ -1,0 +1,357 @@
+.pagina-funcoes {
+    width: 100%;
+    min-height: 100vh;
+    padding: 60px 40px 80px 120px;
+    box-sizing: border-box;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(126, 34, 206, 0.16), transparent 30%),
+        radial-gradient(circle at 85% 75%, rgba(37, 99, 235, 0.13), transparent 30%),
+        #050505;
+    color: #ffffff;
+}
+
+.cabecalho-funcoes {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 40px;
+    text-align: center;
+}
+
+.cabecalho-funcoes h1 {
+    margin: 0 0 15px;
+    color: #b65cff;
+    font-size: clamp(34px, 6vw, 55px);
+    font-weight: 300;
+    line-height: 1.1;
+    text-shadow: 0 0 6px #8b2cff, 0 0 16px #8b2cff, 0 0 35px rgba(139, 44, 255, 0.5);
+}
+
+.cabecalho-funcoes p {
+    max-width: 700px;
+    margin: 0 auto;
+    color: #999999;
+    font-size: clamp(14px, 2vw, 18px);
+    line-height: 1.8;
+    letter-spacing: 1px;
+}
+
+.introducao-funcoes,
+.lista-funcoes,
+.stack-funcoes {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto 30px;
+    padding: 35px;
+    box-sizing: border-box;
+    background: rgba(5, 5, 5, 0.96);
+    border: 1px solid rgba(139, 92, 246, 0.28);
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(90, 40, 180, 0.08), inset 0 0 30px rgba(90, 40, 180, 0.03);
+}
+
+.introducao-funcoes h2,
+.lista-funcoes h2,
+.stack-funcoes h2 {
+    margin: 0 0 25px;
+    color: #b866ff;
+    font-size: clamp(23px, 4vw, 30px);
+    font-weight: 400;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(168, 85, 247, 0.6), 0 0 20px rgba(168, 85, 247, 0.25);
+}
+
+.introducao-funcoes p,
+.stack-funcoes p {
+    color: #c4c4c4;
+    font-size: 16px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+.introducao-funcoes strong {
+    color: #c084fc;
+}
+
+.aviso-funcoes {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    margin-top: 30px;
+    padding: 20px 25px;
+    background: rgba(126, 34, 206, 0.06);
+    border-left: 3px solid #a855f7;
+    border-radius: 10px;
+}
+
+.aviso-funcoes span {
+    flex-shrink: 0;
+    color: #c084fc;
+    font-size: 28px;
+    text-shadow: 0 0 8px #a855f7, 0 0 18px #7c3aed;
+}
+
+.aviso-funcoes p {
+    margin: 0;
+}
+
+.texto-central {
+    max-width: 700px;
+    margin: -10px auto 30px;
+    color: #888888;
+    line-height: 1.7;
+    text-align: center !important;
+}
+
+.funcoes-grid {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.funcao-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    min-width: 0;
+    padding: 23px;
+    box-sizing: border-box;
+    background: #090909;
+    border: 1px solid var(--cor);
+    border-radius: 16px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.funcao-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 10px var(--cor), 0 0 25px var(--brilho);
+}
+
+.sigla {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    background: var(--fundo);
+    border: 1px solid var(--cor);
+    color: var(--cor);
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 0 10px var(--cor);
+    box-shadow: 0 0 10px var(--brilho), inset 0 0 10px var(--fundo);
+}
+
+.funcao-conteudo {
+    min-width: 0;
+}
+
+.funcao-conteudo h3 {
+    margin: 2px 0 5px;
+    color: var(--cor);
+    font-size: 19px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-shadow: 0 0 8px var(--brilho);
+}
+
+.categoria {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #777777;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+.funcao-conteudo p {
+    margin: 0;
+    color: #bdbdbd;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.ni {
+    --cor: #a855f7;
+    --brilho: rgba(168, 85, 247, 0.55);
+    --fundo: rgba(168, 85, 247, 0.10);
+}
+
+.ne {
+    --cor: #8b5cf6;
+    --brilho: rgba(139, 92, 246, 0.55);
+    --fundo: rgba(139, 92, 246, 0.10);
+}
+
+.si {
+    --cor: #6366f1;
+    --brilho: rgba(99, 102, 241, 0.55);
+    --fundo: rgba(99, 102, 241, 0.10);
+}
+
+.se {
+    --cor: #3b82f6;
+    --brilho: rgba(59, 130, 246, 0.55);
+    --fundo: rgba(59, 130, 246, 0.10);
+}
+
+.ti {
+    --cor: #38bdf8;
+    --brilho: rgba(56, 189, 248, 0.55);
+    --fundo: rgba(56, 189, 248, 0.10);
+}
+
+.te {
+    --cor: #22d3ee;
+    --brilho: rgba(34, 211, 238, 0.55);
+    --fundo: rgba(34, 211, 238, 0.10);
+}
+
+.fi {
+    --cor: #e879f9;
+    --brilho: rgba(232, 121, 249, 0.55);
+    --fundo: rgba(232, 121, 249, 0.10);
+}
+
+.fe {
+    --cor: #c084fc;
+    --brilho: rgba(192, 132, 252, 0.55);
+    --fundo: rgba(192, 132, 252, 0.10);
+}
+
+.stack-funcoes > p:first-of-type {
+    max-width: 750px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.stack-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.stack-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 7px;
+    padding: 20px 10px;
+    background: #050505;
+    border: 1px solid var(--cor);
+    border-radius: 12px;
+    box-shadow: 0 0 10px var(--brilho);
+}
+
+.stack-card strong {
+    color: var(--cor);
+    font-size: 24px;
+    text-shadow: 0 0 10px var(--cor);
+}
+
+.stack-card span {
+    color: #888888;
+    font-size: 12px;
+}
+
+.ne-stack {
+    --cor: #8b5cf6;
+    --brilho: rgba(139, 92, 246, 0.25);
+}
+
+.ti-stack {
+    --cor: #38bdf8;
+    --brilho: rgba(56, 189, 248, 0.25);
+}
+
+.fe-stack {
+    --cor: #c084fc;
+    --brilho: rgba(192, 132, 252, 0.25);
+}
+
+.si-stack {
+    --cor: #6366f1;
+    --brilho: rgba(99, 102, 241, 0.25);
+}
+
+.final-funcoes {
+    margin: 30px 0 0 !important;
+    color: #777777 !important;
+    font-size: 14px !important;
+    font-style: italic;
+    text-align: center !important;
+}
+
+@media (max-width: 768px) {
+
+    .pagina-funcoes {
+        padding: 35px 20px 60px 90px;
+    }
+
+    .introducao-funcoes,
+    .lista-funcoes,
+    .stack-funcoes {
+        padding: 25px 20px;
+    }
+
+    .funcoes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .stack-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .funcao-card {
+        padding: 20px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .pagina-funcoes {
+        padding: 30px 15px 50px 15px;
+    }
+
+    .introducao-funcoes,
+    .lista-funcoes,
+    .stack-funcoes {
+        padding: 20px 15px;
+        border-radius: 15px;
+    }
+
+    .funcao-card {
+        gap: 14px;
+        padding: 18px;
+    }
+
+    .sigla {
+        width: 48px;
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .funcao-conteudo h3 {
+        font-size: 17px;
+    }
+
+    .funcao-conteudo p {
+        font-size: 13px;
+    }
+
+    .aviso-funcoes {
+        align-items: flex-start;
+        gap: 12px;
+        padding: 15px;
+    }
+
+    .stack-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}

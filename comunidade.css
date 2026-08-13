@@ -1,0 +1,75 @@
+body {
+    background-color: #000;
+    color: #fff;
+}
+
+.historia-comunidade {
+    max-width: 900px;
+    margin: 80px auto;
+    padding: 40px 30px;
+    text-align: center;
+}
+
+.historia-comunidade h1 {
+    color: #9b59ff;
+    font-size: 42px;
+    margin-bottom: 50px;
+}
+
+.historia-comunidade h2 {
+    color: #b87cff;
+    font-size: 28px;
+    margin-top: 60px;
+    margin-bottom: 25px;
+}
+
+
+.historia-comunidade p {
+    color: #e0e0e0;
+    font-size: 17px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.historia-comunidade strong {
+    color: #b87cff;
+}
+
+.historia-comunidade blockquote {
+    margin: 35px auto;
+    padding: 20px 30px;
+    max-width: 700px;
+    border-left: 4px solid #9b59ff;
+    color: #c99cff;
+    font-size: 22px;
+    font-style: italic;
+    background-color: #0d0d0d;
+}
+
+
+@media (max-width: 768px) {
+
+    .historia-comunidade {
+        margin: 40px auto;
+        padding: 30px 20px;
+    }
+
+    .historia-comunidade h1 {
+        font-size: 32px;
+    }
+
+    .historia-comunidade h2 {
+        font-size: 24px;
+    }
+
+    .historia-comunidade p {
+        font-size: 16px;
+        line-height: 1.7;
+    }
+
+    .historia-comunidade blockquote {
+        font-size: 18px;
+        padding: 15px 20px;
+    }
+
+}
