@@ -1,4 +1,4 @@
-fetch("../menu/menu.html")
+fetch("menu/menu.html")
     .then(response => {
         console.log("Resposta do menu:", response);
 
