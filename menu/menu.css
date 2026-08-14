@@ -172,7 +172,7 @@
 
 @media (max-width: 480px) {
     .nav-list {
-        width: 100%;
+        width: 80%;
     }
     .nav-logo {
         font-size: 14px;
