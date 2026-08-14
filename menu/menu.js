@@ -1,4 +1,12 @@
-fetch("menu/menu.html")
+const dentroDePages = window.location.pathname
+    .toLowerCase()
+    .includes("/pages/");
+
+const caminhoMenu = dentroDePages
+    ? "../menu/menu.html"
+    : "menu/menu.html";
+
+fetch(caminhoMenu)
     .then(response => {
         console.log("Resposta do menu:", response);
 
@@ -8,21 +16,38 @@ fetch("menu/menu.html")
 
         return response.text();
     })
-
     .then(data => {
         console.log("Menu carregado!");
+
         document.querySelector("#menu").innerHTML = data;
-        const mobileNavbar = new MobileNavbar( ".mobile-menu", ".nav-list", ".nav-list li");
+
+        const menuLinks = document.querySelectorAll("#menu a");
+
+        menuLinks.forEach(link => {
+            const href = link.getAttribute("href");
+
+            if (dentroDePages) {
+                if (href === "index.html") {
+                    link.href = "../index.html";
+                } else if (href.startsWith("pages/")) {
+                    link.href = "../" + href;
+                }
+            }
+        });
+
+        const mobileNavbar = new MobileNavbar(
+            ".mobile-menu",
+            ".nav-list",
+            ".nav-list li"
+        );
+
         mobileNavbar.init();
     })
-
     .catch(error => {
         console.error("ERRO:", error);
     });
 
-
 class MobileNavbar {
-
     constructor(mobileMenu, navList, navLinks) {
         this.mobileMenu = document.querySelector(mobileMenu);
         this.navList = document.querySelector(navList);
@@ -31,41 +56,28 @@ class MobileNavbar {
         this.handleClick = this.handleClick.bind(this);
     }
 
-
     animateLinks() {
-        this.navLinks.forEach((link) => {
+        this.navLinks.forEach(link => {
             link.style.animation = "";
             link.style.animation = "navLinkFade 0.5s ease forwards 0.3s";
         });
-
     }
-
 
     handleClick() {
         this.navList.classList.toggle(this.activeClass);
         this.mobileMenu.classList.toggle(this.activeClass);
         this.animateLinks();
-
     }
 
-
     addClickEvent() {
-        this.mobileMenu.addEventListener(
-            "click",
-            this.handleClick
-        );
-
+        this.mobileMenu.addEventListener("click", this.handleClick);
     }
 
     init() {
-
         if (this.mobileMenu) {
             this.addClickEvent();
-
         }
 
         return this;
-
     }
-
 }
