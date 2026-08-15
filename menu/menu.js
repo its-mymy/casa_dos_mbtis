@@ -1,10 +1,21 @@
-const dentroDePages = window.location.pathname
-    .toLowerCase()
-    .includes("/pages/");
+const caminhoAtual = window.location.pathname.toLowerCase();
+const dentroDePages = caminhoAtual.includes("/pages/");
 
-const caminhoMenu = dentroDePages
-    ? "../menu/menu.html"
-    : "menu/menu.html";
+let caminhoMenu = "menu/menu.html";
+let caminhoRaiz = "";
+
+if (dentroDePages) {
+    const partes = window.location.pathname.split("/").filter(Boolean);
+    const indicePages = partes.findIndex(parte => parte.toLowerCase() === "pages");
+
+    if (indicePages !== -1) {
+        const pastasDepoisDePages = partes.length - indicePages - 2;
+        const niveis = pastasDepoisDePages + 1;
+
+        caminhoRaiz = "../".repeat(niveis);
+        caminhoMenu = caminhoRaiz + "menu/menu.html";
+    }
+}
 
 fetch(caminhoMenu)
     .then(response => {
@@ -26,11 +37,13 @@ fetch(caminhoMenu)
         menuLinks.forEach(link => {
             const href = link.getAttribute("href");
 
+            if (!href) return;
+
             if (dentroDePages) {
                 if (href === "index.html") {
-                    link.href = "../index.html";
+                    link.href = caminhoRaiz + "index.html";
                 } else if (href.startsWith("pages/")) {
-                    link.href = "../" + href;
+                    link.href = caminhoRaiz + href;
                 }
             }
         });
