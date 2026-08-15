@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teste MBTI | Casa dos MBTIs</title>
+<link rel="stylesheet" href="teste-mbti.css">
+</head>
+<body>
+
+<button id="theme-toggle" class="theme-toggle" aria-label="Alternar tema">☀️</button>
+
+<header class="topo">
+<h1>TESTE DE PERSONALIDADE</h1>
+<p>Descubra seu tipo através das funções cognitivas</p>
+</header>
+
+<main class="container">
+
+<section id="intro" class="card intro">
+<div class="intro-cat">ฅ^•ﻌ•^ฅ</div>
+<h2>Teste MBTI</h2>
+<p>Responda às afirmações pensando em como você normalmente funciona, e não em como gostaria de funcionar.</p>
+
+<div class="escala-info">
+<div><span>Discordo totalmente</span><strong>-2</strong></div>
+<div><span>Discordo</span><strong>-1</strong></div>
+<div><span>Neutro</span><strong>0</strong></div>
+<div><span>Concordo</span><strong>+1</strong></div>
+<div><span>Concordo totalmente</span><strong>+2</strong></div>
+</div>
+
+<p class="aviso">O resultado é calculado através das funções cognitivas Ne, Ni, Se, Si, Te, Ti, Fe e Fi.</p>
+
+<button id="start-btn" class="primary-btn">COMEÇAR TESTE</button>
+</section>
+
+<section id="quiz" class="quiz hidden">
+<div class="quiz-top">
+<div>
+<span id="question-number">1 / 90</span>
+<h2 id="question-title">PERGUNTA 1</h2>
+</div>
+
+<div class="progress-wrapper">
+<div id="progress-bar"></div>
+</div>
+</div>
+
+<div class="question-card">
+<p id="question-text"></p>
+
+<div class="answers">
+<label class="answer">
+<input type="radio" name="answer" value="-2">
+<span>Discordo totalmente</span>
+</label>
+
+<label class="answer">
+<input type="radio" name="answer" value="-1">
+<span>Discordo</span>
+</label>
+
+<label class="answer">
+<input type="radio" name="answer" value="0">
+<span>Neutro</span>
+</label>
+
+<label class="answer">
+<input type="radio" name="answer" value="1">
+<span>Concordo</span>
+</label>
+
+<label class="answer">
+<input type="radio" name="answer" value="2">
+<span>Concordo totalmente</span>
+</label>
+</div>
+
+<div class="navigation">
+<button id="prev-btn" class="secondary-btn">← ANTERIOR</button>
+<button id="next-btn" class="primary-btn">PRÓXIMA →</button>
+</div>
+</div>
+</section>
+
+<section id="result" class="result hidden">
+
+<div class="celebration">
+<span>✦</span>
+<span>✧</span>
+<span>✨</span>
+<span>✦</span>
+<span>✧</span>
+<span>✨</span>
+<span>✦</span>
+</div>
+
+<div class="result-header">
+
+<div class="tada">TAAARAM! 🎉</div>
+
+<div class="result-type-animation" id="animated-type">—</div>
+
+<div class="result-cat">ฅ^•ﻌ•^ฅ</div>
+
+<span>SEU RESULTADO</span>
+
+<h2 id="main-type">—</h2>
+
+<p id="result-description"></p>
+
+<div class="cat-message">
+ฅ^•ﻌ•^ฅ ehe
+<br>
+<small>Lembrando que a melhor forma de descobrir seu tipo é lendo e estudando as funções cognitivas.</small>
+</div>
+
+</div>
+
+<div class="models">
+
+<div class="model-card">
+<span>MODELO BASEADO EM EIXO</span>
+<strong id="axis-type">—</strong>
+<p>Preferências nos eixos das funções cognitivas.</p>
+</div>
+
+<div class="model-card">
+<span>MODELO DE MYERS</span>
+<strong id="myers-type">—</strong>
+<p>Ênfase na orientação das funções e nas funções extrovertidas.</p>
+</div>
+
+<div class="model-card">
+<span>INDICADOR MYERS-BRIGGS</span>
+<strong id="indicator-type">—</strong>
+<p>Correlação teórica entre as oito funções e as preferências do tipo.</p>
+</div>
+
+</div>
+
+<div class="functions-card">
+<h3>FUNÇÕES COGNITIVAS</h3>
+<div id="function-results"></div>
+</div>
+
+<div class="consensus-card">
+<h3>CONVERGÊNCIA DOS MODELOS</h3>
+<p id="consensus-text"></p>
+</div>
+
+<button id="restart-btn" class="primary-btn">FAZER NOVAMENTE</button>
+
+</section>
+
+</main>
+
+<footer>
+<p>CASA DOS MBTIS 🏠🧠</p>
+</footer>
+
+<script src="teste-mbti.js"></script>
+</body>
+</html>
