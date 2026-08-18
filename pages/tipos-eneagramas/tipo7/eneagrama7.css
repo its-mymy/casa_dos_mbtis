@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&family=Orbitron:wght@400;500;600;700;800&family=Quicksand:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap');
 
 * {
     margin: 0;
@@ -13,7 +13,7 @@ html {
 body {
     background: #000;
     color: #fff;
-    font-family: 'Space Mono', monospace;
+    font-family: 'Nunito', sans-serif;
     overflow-x: hidden;
 }
 
@@ -35,46 +35,44 @@ body {
 
 .holograma {
     width: 100%;
-    height: 280px;
+    height: 320px;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
 
 .holograma::before,
 .holograma::after {
     content: "";
     position: absolute;
-    border: 1px solid rgba(181, 108, 255, 0.18);
+    border: 1px solid rgba(181, 108, 255, 0.14);
     border-radius: 50%;
     pointer-events: none;
 }
 
 .holograma::before {
-    width: 230px;
-    height: 230px;
-    animation: orbita 8s linear infinite;
+    width: 260px;
+    height: 260px;
+    animation: orbita 10s linear infinite;
 }
 
 .holograma::after {
-    width: 270px;
-    height: 270px;
-    border-color: rgba(181, 108, 255, 0.08);
-    animation: orbita 12s linear infinite reverse;
+    width: 310px;
+    height: 310px;
+    border-color: rgba(181, 108, 255, 0.07);
+    animation: orbita 14s linear infinite reverse;
 }
 
 .holograma span {
     font-family: 'Quicksand', sans-serif;
-    font-size: clamp(5rem, 14vw, 10rem);
+    font-size: clamp(7rem, 17vw, 12rem);
     font-weight: 600;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     color: transparent;
-    -webkit-text-stroke: 1.5px #b56cff;
-    text-shadow:
-        0 0 8px rgba(181, 108, 255, 0.3),
-        0 0 20px rgba(181, 108, 255, 0.12);
+    -webkit-text-stroke: 2px #b56cff;
+    text-shadow: 0 0 10px rgba(181, 108, 255, 0.2);
     opacity: 0.9;
     animation: holograma 4s infinite ease-in-out;
     position: relative;
@@ -88,24 +86,27 @@ body {
 }
 
 .conteudo h1 {
-    color: #b56cff;
+    color: #fff;
     font-family: 'Quicksand', sans-serif;
-    font-size: clamp(1.6rem, 4vw, 2.6rem);
+    font-size: clamp(2rem, 4vw, 3rem);
     font-weight: 600;
-    margin-bottom: 30px;
+    line-height: 1.3;
+    margin-bottom: 32px;
     text-align: center;
-    text-shadow: 0 0 12px rgba(181, 108, 255, 0.2);
 }
 
 .conteudo p {
-    color: #d6d6d6;
-    font-size: 1rem;
+    color: #e2e2e2;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1.08rem;
+    font-weight: 400;
     line-height: 1.9;
-    margin-bottom: 22px;
+    margin-bottom: 24px;
 }
 
 .conteudo strong {
-    color: #b56cff;
+    color: #e2e2e2;
+    font-family: 'Nunito', sans-serif;
     font-weight: 700;
 }
 
@@ -116,32 +117,30 @@ body {
     background: linear-gradient(
         90deg,
         transparent,
-        rgba(181, 108, 255, 0.5),
+        rgba(181, 108, 255, 0.35),
         transparent
     );
-    box-shadow: 0 0 8px rgba(181, 108, 255, 0.15);
 }
 
 .subtipo-7w8 .holograma span {
     -webkit-text-stroke-color: #9b59ff;
-    text-shadow:
-        0 0 8px rgba(155, 89, 255, 0.3),
-        0 0 20px rgba(155, 89, 255, 0.12);
+    text-shadow: 0 0 10px rgba(155, 89, 255, 0.2);
 }
 
 .subtipo-7w8 .conteudo h1 {
-    color: #9b59ff;
+    color: #fff;
 }
 
 .subtipo-7w8 .conteudo strong {
-    color: #9b59ff;
+    color: #e2e2e2;
 }
 
 @keyframes holograma {
     0%, 100% {
         transform: translateY(0);
-        opacity: 0.8;
+        opacity: 0.82;
     }
+
     50% {
         transform: translateY(-8px);
         opacity: 1;
@@ -152,6 +151,7 @@ body {
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
@@ -163,43 +163,52 @@ body {
     }
 
     .holograma {
-        height: 210px;
-        margin-bottom: 20px;
+        height: 250px;
+        margin-bottom: 25px;
     }
 
     .holograma span {
         font-family: 'Quicksand', sans-serif;
-        font-size: 4rem;
+        font-size: 5.8rem;
         font-weight: 600;
-        letter-spacing: 1px;
-        -webkit-text-stroke: 1px #b56cff;
+        letter-spacing: 2px;
+        -webkit-text-stroke: 1.5px #b56cff;
     }
 
     .holograma::before {
-        width: 160px;
-        height: 160px;
+        width: 200px;
+        height: 200px;
     }
 
     .holograma::after {
-        width: 190px;
-        height: 190px;
+        width: 235px;
+        height: 235px;
     }
 
     .conteudo h1 {
-        font-size: 1.5rem;
+        font-size: 1.9rem;
         line-height: 1.4;
-        margin-bottom: 22px;
+        margin-bottom: 25px;
     }
 
     .conteudo p {
-        font-size: 0.9rem;
+        color: #e2e2e2;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.98rem;
+        font-weight: 400;
         line-height: 1.8;
-        margin-bottom: 18px;
+        margin-bottom: 20px;
+    }
+
+    .conteudo strong {
+        color: #e2e2e2;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
     }
 
     .divisor {
         width: 85%;
-        margin: 70px auto;
+        margin: 75px auto;
     }
 }
 
@@ -209,35 +218,132 @@ body {
     }
 
     .holograma {
-        height: 180px;
+        height: 210px;
     }
 
     .holograma span {
         font-family: 'Quicksand', sans-serif;
-        font-size: 3.3rem;
+        font-size: 4.8rem;
         font-weight: 600;
+        letter-spacing: 1px;
+        -webkit-text-stroke: 1.2px #b56cff;
     }
 
     .holograma::before {
-        width: 130px;
-        height: 130px;
+        width: 165px;
+        height: 165px;
     }
 
     .holograma::after {
-        width: 155px;
-        height: 155px;
+        width: 195px;
+        height: 195px;
     }
 
     .conteudo h1 {
-        font-size: 1.3rem;
+        font-size: 1.65rem;
+        margin-bottom: 22px;
     }
 
     .conteudo p {
-        font-size: 0.85rem;
-        line-height: 1.75;
+        color: #e2e2e2;
+        font-family: 'Nunito', sans-serif;
+        font-size: 0.92rem;
+        font-weight: 400;
+        line-height: 1.8;
+        margin-bottom: 18px;
+    }
+
+    .conteudo strong {
+        color: #e2e2e2;
+        font-family: 'Nunito', sans-serif;
+        font-weight: 700;
     }
 
     .divisor {
-        margin: 55px auto;
+        margin: 60px auto;
+    }
+}
+#tema-toggle {
+    position: fixed;
+    top: 105px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border: 1px solid rgba(181, 108, 255, 0.45);
+    border-radius: 50%;
+    background: rgba(10, 10, 10, 0.9);
+    color: #b56cff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    cursor: pointer;
+    z-index: 99999;
+    transition: 0.3s ease;
+    backdrop-filter: blur(8px);
+}
+
+#tema-toggle:hover {
+    transform: scale(1.08);
+    border-color: #b56cff;
+    box-shadow: 0 0 15px rgba(181, 108, 255, 0.25);
+}
+
+#tema-icone {
+    line-height: 1;
+    pointer-events: none;
+}
+
+body.tema-claro {
+    background: #f5f5f7;
+    color: #181818;
+}
+
+body.tema-claro .conteudo h1 {
+    color: #181818;
+}
+
+body.tema-claro .conteudo p,
+body.tema-claro .conteudo strong {
+    color: #333;
+}
+
+body.tema-claro .divisor {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(130, 70, 190, 0.35),
+        transparent
+    );
+}
+
+body.tema-claro #tema-toggle {
+    background: rgba(255, 255, 255, 0.95);
+    color: #8b4dcc;
+    border-color: rgba(139, 77, 204, 0.4);
+}
+
+body.tema-claro .holograma::before,
+body.tema-claro .holograma::after {
+    border-color: rgba(139, 77, 204, 0.15);
+}
+
+@media (max-width: 768px) {
+    #tema-toggle {
+        top: 105px;
+        right: 20px;
+        width: 44px;
+        height: 44px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #tema-toggle {
+        top: 100px;
+        right: 15px;
+        width: 42px;
+        height: 42px;
+        font-size: 1rem;
     }
 }

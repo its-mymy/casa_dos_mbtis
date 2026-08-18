@@ -13,6 +13,9 @@
 <body>
 
     <div id="menu"></div>
+    <button id="tema-toggle" aria-label="Alternar tema">
+    <span id="tema-icone">☀</span>
+</button>
 
     <main class="pagina-7">
 
@@ -251,6 +254,26 @@
     </main>
 
           <script src="../../../menu/menu.js"></script>
+          <script>
+const temaToggle = document.getElementById('tema-toggle');
+const temaIcone = document.getElementById('tema-icone');
+
+const temaSalvo = localStorage.getItem('tema');
+
+if (temaSalvo === 'claro') {
+    document.body.classList.add('tema-claro');
+    temaIcone.textContent = '☾';
+}
+
+temaToggle.addEventListener('click', () => {
+    document.body.classList.toggle('tema-claro');
+
+    const claro = document.body.classList.contains('tema-claro');
+
+    temaIcone.textContent = claro ? '☾' : '☀';
+    localStorage.setItem('tema', claro ? 'claro' : 'escuro');
+});
+</script>
 
 </body>
 </html>
