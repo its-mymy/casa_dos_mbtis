@@ -12,7 +12,7 @@ html {
 
 body {
     background: #030303;
-    color: #eeeeee;
+    color: #eee;
     font-family: 'Roboto', sans-serif;
     overflow-x: hidden;
 }
@@ -23,8 +23,8 @@ body::before {
     inset: 0;
     pointer-events: none;
     background:
-        linear-gradient(rgba(0, 190, 255, .025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 190, 255, .025) 1px, transparent 1px);
+        linear-gradient(rgba(255, 220, 0, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 220, 0, .025) 1px, transparent 1px);
     background-size: 45px 45px;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .9), transparent 85%);
     z-index: -1;
@@ -35,7 +35,7 @@ body::before {
     min-height: 100vh;
 }
 
-.hero-type7 {
+.hero-type6 {
     position: relative;
     min-height: 760px;
     padding: 90px 8%;
@@ -43,15 +43,15 @@ body::before {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     overflow: hidden;
-    border-bottom: 1px solid rgba(0, 210, 255, .25);
+    border-bottom: 1px solid rgba(255, 220, 0, .25);
 }
 
 .hero-background {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 15% 20%, rgba(0, 210, 255, .11), transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(0, 100, 220, .10), transparent 35%);
+        radial-gradient(circle at 15% 20%, rgba(255, 220, 0, .11), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(255, 170, 0, .10), transparent 35%);
     pointer-events: none;
 }
 
@@ -65,8 +65,8 @@ body::before {
     display: inline-block;
     font-size: .72rem;
     letter-spacing: 3px;
-    color: #54dcff;
-    border-left: 2px solid #00cfff;
+    color: #ffe96a;
+    border-left: 2px solid #ffd600;
     padding-left: 14px;
     margin-bottom: 28px;
     text-transform: uppercase;
@@ -77,16 +77,16 @@ body::before {
     font-weight: 800;
     line-height: .8;
     letter-spacing: -10px;
-    color: #ffffff;
+    color: #fff;
     text-shadow:
-        0 0 10px rgba(0, 210, 255, .6),
-        0 0 35px rgba(0, 140, 255, .4);
+        0 0 10px rgba(255, 220, 0, .6),
+        0 0 35px rgba(255, 180, 0, .4);
 }
 
 .hero-content h2 {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 500;
-    color: #17cfff;
+    color: #ffd900;
     letter-spacing: 8px;
     margin-top: 28px;
     text-transform: uppercase;
@@ -105,8 +105,8 @@ body::before {
     width: 100px;
     height: 1px;
     margin: 30px 0 18px;
-    background: linear-gradient(90deg, #00d9ff, transparent);
-    box-shadow: 0 0 10px rgba(0, 210, 255, .8);
+    background: linear-gradient(90deg, #ffe000, transparent);
+    box-shadow: 0 0 10px rgba(255, 220, 0, .8);
 }
 
 .hero-small {
@@ -129,54 +129,54 @@ body::before {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 210, 255, .15), transparent 68%);
+    background: radial-gradient(circle, rgba(255, 220, 0, .15), transparent 68%);
     filter: blur(12px);
 }
 
-.seven-circle {
+.six-circle {
     position: relative;
     width: min(360px, 65vw);
     height: min(360px, 65vw);
-    border: 1px solid rgba(0, 210, 255, .30);
+    border: 1px solid rgba(255, 220, 0, .30);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow:
-        0 0 25px rgba(0, 210, 255, .10),
-        inset 0 0 40px rgba(0, 210, 255, .07);
-    animation: floatSeven 4s ease-in-out infinite;
+        0 0 25px rgba(255, 220, 0, .10),
+        inset 0 0 40px rgba(255, 220, 0, .07);
+    animation: floatSix 4s ease-in-out infinite;
 }
 
-.seven-circle::before {
+.six-circle::before {
     content: "";
     position: absolute;
     inset: 25px;
-    border: 1px solid rgba(0, 210, 255, .18);
+    border: 1px solid rgba(255, 220, 0, .18);
     border-radius: 50%;
 }
 
-.seven-circle::after {
+.six-circle::after {
     content: "";
     position: absolute;
     inset: 55px;
-    border: 1px solid rgba(0, 170, 255, .14);
+    border: 1px solid rgba(255, 190, 0, .14);
     border-radius: 50%;
 }
 
-.seven-circle span {
+.six-circle span {
     font-size: clamp(8rem, 15vw, 13rem);
     font-weight: 800;
-    color: #caf6ff;
+    color: #fff7bd;
     text-shadow:
-        0 0 10px #00d9ff,
-        0 0 30px rgba(0, 210, 255, .8),
-        0 0 70px rgba(0, 110, 255, .3);
+        0 0 10px #ffe000,
+        0 0 30px rgba(255, 220, 0, .8),
+        0 0 70px rgba(255, 160, 0, .3);
 }
 
 .orbit {
     position: absolute;
-    border: 1px solid rgba(0, 210, 255, .18);
+    border: 1px solid rgba(255, 220, 0, .18);
     border-radius: 50%;
     animation: orbitRotate linear infinite;
 }
@@ -196,7 +196,7 @@ body::before {
 .orbit-three {
     width: 410px;
     height: 410px;
-    border-color: rgba(0, 130, 255, .12);
+    border-color: rgba(255, 180, 0, .12);
     animation-duration: 15s;
 }
 
@@ -215,7 +215,7 @@ body::before {
     display: inline-block;
     font-size: .62rem;
     letter-spacing: 3px;
-    color: #35d8ff;
+    color: #ffe044;
     margin-bottom: 15px;
 }
 
@@ -227,7 +227,7 @@ body::before {
 }
 
 .intro-header h2 em {
-    color: #18cfff;
+    color: #ffd900;
     font-style: normal;
 }
 
@@ -239,7 +239,7 @@ body::before {
 }
 
 .intro-header strong {
-    color: #c9f5ff;
+    color: #fff6bb;
 }
 
 .subtype-section {
@@ -250,7 +250,7 @@ body::before {
     grid-template-columns: 100px 1fr;
     gap: 45px;
     padding: 85px 0;
-    border-top: 1px solid rgba(0, 210, 255, .14);
+    border-top: 1px solid rgba(255, 220, 0, .14);
 }
 
 .subtype-section::before {
@@ -260,13 +260,12 @@ body::before {
     top: 0;
     width: 1px;
     height: 100%;
-    background:
-        linear-gradient(
-            to bottom,
-            transparent,
-            rgba(0, 210, 255, .55),
-            transparent
-        );
+    background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(255, 220, 0, .55),
+        transparent
+    );
 }
 
 .subtype-section::after {
@@ -277,18 +276,18 @@ body::before {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #00d9ff;
+    background: #ffe000;
     box-shadow:
-        0 0 10px #00d9ff,
-        0 0 25px rgba(0, 210, 255, .7);
+        0 0 10px #ffe000,
+        0 0 25px rgba(255, 220, 0, .7);
 }
 
 .subtype-number {
     font-size: 2.8rem;
     font-weight: 700;
-    color: rgba(0, 210, 255, .38);
+    color: rgba(255, 220, 0, .38);
     padding-left: 25px;
-    text-shadow: 0 0 15px rgba(0, 210, 255, .25);
+    text-shadow: 0 0 15px rgba(255, 210, 0, .25);
 }
 
 .subtype-content {
@@ -299,24 +298,24 @@ body::before {
     display: inline-block;
     font-size: .63rem;
     letter-spacing: 3px;
-    color: #1dd5ff;
+    color: #ffdf2f;
     margin-bottom: 13px;
-    text-shadow: 0 0 12px rgba(0, 210, 255, .4);
+    text-shadow: 0 0 12px rgba(255, 220, 0, .4);
 }
 
 .subtype-content h2 {
     font-size: clamp(3.5rem, 7vw, 6rem);
     font-weight: 800;
     line-height: .9;
-    color: #effcff;
-    text-shadow: 0 0 15px rgba(0, 210, 255, .18);
+    color: #fffef0;
+    text-shadow: 0 0 15px rgba(255, 220, 0, .18);
     margin-bottom: 5px;
 }
 
 .subtype-content h3 {
     font-size: clamp(1.4rem, 3vw, 2rem);
     font-weight: 400;
-    color: #18d0ff;
+    color: #ffd900;
     margin-bottom: 40px;
 }
 
@@ -337,25 +336,23 @@ body::before {
 }
 
 .subtype-content strong {
-    color: #c8f4ff;
+    color: #fff5b5;
 }
 
-.subtype-7w6 {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 210, 255, .04),
-            transparent 60%
-        );
+.subtype-6w5 {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 220, 0, .04),
+        transparent 60%
+    );
 }
 
-.subtype-7w8 {
-    background:
-        linear-gradient(
-            90deg,
-            rgba(0, 120, 255, .03),
-            transparent 60%
-        );
+.subtype-6w7 {
+    background: linear-gradient(
+        90deg,
+        rgba(255, 170, 0, .03),
+        transparent 60%
+    );
 }
 
 .comparison-section {
@@ -368,7 +365,7 @@ body::before {
     display: inline-block;
     font-size: .63rem;
     letter-spacing: 3px;
-    color: #20d4ff;
+    color: #ffdf32;
     margin-bottom: 12px;
 }
 
@@ -382,7 +379,7 @@ body::before {
 
 .comparison-section h2 em {
     font-style: normal;
-    color: #18cdfd;
+    color: #ffd900;
 }
 
 .comparison-grid {
@@ -394,13 +391,12 @@ body::before {
 .comparison-card {
     position: relative;
     padding: 35px;
-    border: 1px solid rgba(0, 210, 255, .18);
-    background:
-        linear-gradient(
-            145deg,
-            rgba(0, 190, 255, .04),
-            rgba(5, 5, 5, .8)
-        );
+    border: 1px solid rgba(255, 220, 0, .18);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 210, 0, .04),
+        rgba(5, 5, 5, .8)
+    );
     transition: .35s ease;
 }
 
@@ -411,26 +407,25 @@ body::before {
     left: 0;
     width: 100%;
     height: 2px;
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            #00d9ff,
-            transparent
-        );
+    background: linear-gradient(
+        90deg,
+        transparent,
+        #ffe000,
+        transparent
+    );
 }
 
 .comparison-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(0, 210, 255, .5);
-    box-shadow: 0 0 30px rgba(0, 160, 255, .09);
+    border-color: rgba(255, 220, 0, .5);
+    box-shadow: 0 0 30px rgba(255, 190, 0, .09);
 }
 
 .comparison-card > span {
     font-size: 3rem;
     font-weight: 800;
-    color: #17cdfd;
-    text-shadow: 0 0 15px rgba(0, 210, 255, .45);
+    color: #ffd900;
+    text-shadow: 0 0 15px rgba(255, 220, 0, .45);
 }
 
 .comparison-card h3 {
@@ -449,13 +444,12 @@ body::before {
 .comparison-line {
     width: 100%;
     height: 1px;
-    background:
-        linear-gradient(
-            90deg,
-            transparent,
-            rgba(0, 210, 255, .55),
-            transparent
-        );
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 220, 0, .55),
+        transparent
+    );
     margin: 60px 0 35px;
 }
 
@@ -469,18 +463,18 @@ body::before {
 }
 
 .comparison-text strong {
-    color: #1bd2ff;
+    color: #ffdf2f;
 }
 
 .comparison-text em {
-    color: #c8f6ff;
+    color: #fff5b8;
 }
 
 .closing-section {
     position: relative;
     padding: 140px 8%;
     text-align: center;
-    border-top: 1px solid rgba(0, 210, 255, .15);
+    border-top: 1px solid rgba(255, 220, 0, .15);
     overflow: hidden;
 }
 
@@ -492,12 +486,11 @@ body::before {
     width: 600px;
     height: 300px;
     transform: translate(-50%, -50%);
-    background:
-        radial-gradient(
-            ellipse,
-            rgba(0, 210, 255, .09),
-            transparent 70%
-        );
+    background: radial-gradient(
+        ellipse,
+        rgba(255, 220, 0, .09),
+        transparent 70%
+    );
     pointer-events: none;
 }
 
@@ -505,8 +498,8 @@ body::before {
     position: relative;
     font-size: 1rem;
     letter-spacing: 7px;
-    color: #17d2ff;
-    text-shadow: 0 0 15px rgba(0, 210, 255, .55);
+    color: #ffde32;
+    text-shadow: 0 0 15px rgba(255, 220, 0, .55);
     margin-bottom: 30px;
 }
 
@@ -515,7 +508,7 @@ body::before {
     display: inline-block;
     font-size: .65rem;
     letter-spacing: 4px;
-    color: #21d4ff;
+    color: #ffe044;
     margin-bottom: 20px;
 }
 
@@ -530,7 +523,7 @@ body::before {
 }
 
 .closing-section h2 em {
-    color: #18d0ff;
+    color: #ffd900;
     font-style: normal;
 }
 
@@ -543,7 +536,7 @@ body::before {
     line-height: 2;
 }
 
-@keyframes floatSeven {
+@keyframes floatSix {
     0%, 100% {
         transform: translateY(0);
     }
@@ -564,7 +557,7 @@ body::before {
 }
 
 @media (max-width: 1000px) {
-    .hero-type7 {
+    .hero-type6 {
         grid-template-columns: 1fr;
         min-height: auto;
         padding-top: 110px;
@@ -578,7 +571,7 @@ body::before {
 
     .type-tag {
         border-left: none;
-        border-bottom: 1px solid #00cfff;
+        border-bottom: 1px solid #ffd600;
         padding: 0 0 8px;
     }
 
@@ -605,7 +598,7 @@ body::before {
 }
 
 @media (max-width: 700px) {
-    .hero-type7 {
+    .hero-type6 {
         padding-left: 5%;
         padding-right: 5%;
     }
@@ -628,12 +621,12 @@ body::before {
         min-height: 380px;
     }
 
-    .seven-circle {
+    .six-circle {
         width: 280px;
         height: 280px;
     }
 
-    .seven-circle span {
+    .six-circle span {
         font-size: 8rem;
     }
 
@@ -722,12 +715,12 @@ body::before {
         min-height: 320px;
     }
 
-    .seven-circle {
+    .six-circle {
         width: 230px;
         height: 230px;
     }
 
-    .seven-circle span {
+    .six-circle span {
         font-size: 6.5rem;
     }
 
