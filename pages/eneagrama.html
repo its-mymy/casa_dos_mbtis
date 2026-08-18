@@ -1,121 +1,409 @@
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eneagrama-Casa dos MBTIs</title>
-    <link rel="stylesheet" href="../css/eneagrama.css">
+    <title>Eneagrama | Casa dos MBTIs</title>
+    <link rel="stylesheet" href="../css/funcao.css">
     <link rel="stylesheet" href="../menu/menu.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../css/eneagrama.css">
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  
 </head>
 
-<body> 
+<body>
     <div id="menu"></div>
-<main class="eneagrama-container">
+    <main class="eneagrama-page">
+        <section class="hero-eneagrama">
 
-    <header class="eneagrama-header">
-        <h1>ENE<span>AGRAMA</span></h1>
-        <div class="tech-line"></div>
-        <p>Um sistema de estudo da personalidade que busca compreender padrões de pensamento, emoção, motivação e comportamento.</p>
-    </header>
+            <div class="hero-symbol">
 
-    <section class="eneagrama-card">
-        <h2><span>//</span> O que é o Eneagrama?</h2>
-        <p>O Eneagrama é um sistema de tipologia que descreve <strong>nove padrões principais de personalidade</strong>. Cada tipo possui diferentes formas de perceber o mundo, lidar com emoções, tomar decisões e reagir às situações.</p>
-        <p>Diferente de simplesmente classificar comportamentos, o Eneagrama busca observar principalmente as <strong>motivações, medos, desejos e padrões internos</strong> que influenciam uma pessoa.</p>
-    </section>
+                <div class="symbol-glow"></div>
 
-    <section class="eneagrama-card">
-        <h2><span>//</span> Como funciona?</h2>
-        <p>O sistema é dividido em <strong>9 tipos</strong>. Cada tipo representa um padrão diferente de personalidade. Uma pessoa pode se identificar mais fortemente com um deles, mas isso não significa que todos os comportamentos dela serão iguais aos descritos pelo tipo.</p>
+                <svg class="enneagram-svg" viewBox="0 0 600 600" aria-label="Símbolo do Eneagrama">
+                    <g class="enneagram-rotating">
+                        <circle
+                            cx="300"
+                            cy="300"
+                            r="205"
+                            class="enneagram-circle"
+                        />
 
-        <div class="funcionamento">
+                        <!-- TRIÂNGULO -->
+                        <path
+                            d="M300 95 L478 403 L122 403 Z"
+                            class="enneagram-line"
+                        />
 
-            <div class="funcionamento-item">
-                <h3>01 — MOTIVAÇÃO</h3>
-                <p>O que impulsiona a pessoa e influencia suas escolhas.</p>
+                        <!-- HEXÁGONO -->
+                        <path
+                            d="M300 95
+                               L478 195
+                               L420 505
+                               L180 505
+                               L122 195
+                               Z"
+                            class="enneagram-line"
+                        />
+
+                        <!-- LIGAÇÕES CENTRAIS -->
+                        <path
+                            d="M478 195
+                               L180 505
+                               L420 505
+                               L122 195
+                               L478 403
+                               L122 403"
+                            class="enneagram-line"
+                        />
+
+                        <!-- NÚMEROS -->
+                        <g class="enneagram-numbers">
+                            <text x="300" y="55">9</text>
+                            <text x="475" y="110">1</text>
+                            <text x="545" y="235">2</text>
+                            <text x="535" y="410">3</text>
+                            <text x="425" y="550">4</text>
+                            <text x="175" y="550">5</text>
+                            <text x="65" y="410">6</text>
+                            <text x="55" y="235">7</text>
+                            <text x="125" y="110">8</text>
+
+                        </g>
+
+                    </g>
+
+                </svg>
+
             </div>
 
-            <div class="funcionamento-item">
-                <h3>02 — MEDO</h3>
-                <p>Aquilo que a pessoa tende a evitar ou considera ameaçador em nível psicológico.</p>
+            <div class="hero-text">
+
+                <span class="section-tag">ENEAGRAMA</span>
+
+                <h1>
+                    Nove formas de
+                    <span>estar no mundo.</span>
+                </h1>
+
+                <p class="hero-description">
+                    O Eneagrama é um sistema de tipologia que descreve
+                    <strong>nove padrões principais de personalidade.</strong>
+                    Cada tipo possui diferentes formas de perceber o mundo,
+                    lidar com emoções, tomar decisões e reagir às situações.
+                </p>
+
+                <p class="hero-description">
+                    Diferente de simplesmente classificar comportamentos,
+                    o Eneagrama busca observar principalmente as
+                    <strong>motivações, medos, desejos e padrões internos</strong>
+                    que influenciam uma pessoa.
+                </p>
+
+                <div class="hero-line"></div>
+
+                <span class="hero-small">
+                    explore os nove tipos ↓
+                </span>
+
             </div>
 
-            <div class="funcionamento-item">
-                <h3>03 — PADRÕES</h3>
-                <p>Formas recorrentes de pensar, sentir e agir diante das situações.</p>
+        </section>
+
+        <section class="intro-section">
+
+            <div class="intro-heading">
+
+                <span class="section-tag">OS NOVE TIPOS</span>
+
+                <h2>
+                    Personalidade é apenas
+                    <em>uma parte da história.</em>
+                </h2>
+
+                <p>
+                    Cada tipo do Eneagrama representa um padrão diferente
+                    de motivação e percepção. Conheça cada um deles e
+                    descubra o que existe por trás de seus comportamentos.
+                </p>
+
             </div>
 
-        </div>
-    </section>
 
-    <section class="eneagrama-card">
-        <h2><span>//</span> Os 9 tipos</h2>
+            <!-- CARDS -->
+            <div class="types-grid">
 
-        <div class="tipos-grid">
+                <!-- TIPO 1 -->
+                <a href="tipos-eneagramas/tipo1/" class="type-card type-1">
+                    <div class="card-top">
+                        <span class="type-number">01</span>
 
-            <div class="tipo-card">
-                <div class="numero">01</div>
-                <h3>O Reformador</h3>
-                <p>Busca coerência, melhoria, ética e correção.</p>
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">1</span>
+
+                        <h3>O Reformador</h3>
+
+                        <p>
+                            Busca fazer as coisas da maneira certa,
+                            guiado por princípios e pelo desejo de melhorar.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 2 -->
+                <a href="tipos-eneagramas/tipo2/" class="type-card type-2">
+                    <div class="card-top">
+                        <span class="type-number">02</span>
+
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">2</span>
+
+                        <h3>O Prestativo</h3>
+
+                        <p>
+                            Encontra valor em cuidar dos outros,
+                            oferecendo apoio, atenção e afeto.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 3 -->
+                <a href="tipos-eneagramas/tipo3/" class="type-card type-3">
+
+                    <div class="card-top">
+                        <span class="type-number">03</span>
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">3</span>
+
+                        <h3>O Realizador</h3>
+
+                        <p>
+                            Orientado para resultados, reconhecimento
+                            e para transformar objetivos em conquistas.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 4 -->
+                <a href="tipos-eneagramas/tipo4/" class="type-card type-4">
+
+                    <div class="card-top">
+                        <span class="type-number">04</span>
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">4</span>
+
+                        <h3>O Individualista</h3>
+
+                        <p>
+                            Valoriza identidade, autenticidade e
+                            experiências emocionais profundas.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 5 -->
+                <a href="tipos-eneagramas/tipo5/eneagrama5.html" class="type-card type-5">
+
+                    <div class="card-top">
+                        <span class="type-number">05</span>
+
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">5</span>
+
+                        <h3>O Investigador</h3>
+
+                        <p>
+                            Busca compreender profundamente o mundo
+                            através de conhecimento, observação e análise.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 6 -->
+                <a href="tipo6.html" class="type-card type-6">
+
+                    <div class="card-top">
+                        <span class="type-number">06</span>
+
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">6</span>
+
+                        <h3>O Leal</h3>
+
+                        <p>
+                            Procura segurança, confiança e estabilidade,
+                            avaliando riscos antes de agir.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 7 -->
+                <a href="tipos-eneagramas/tipo7/eneagrama7.html" class="type-card type-7">
+
+                    <div class="card-top">
+                        <span class="type-number">07</span>
+
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">7</span>
+
+                        <h3>O Entusiasta</h3>
+
+                        <p>
+                            Busca liberdade, experiências e possibilidades,
+                            evitando sentir-se preso ou limitado.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 8 -->
+                <a href="tipo8.html" class="type-card type-8">
+
+                    <div class="card-top">
+                        <span class="type-number">08</span>
+
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">8</span>
+
+                        <h3>O Desafiador</h3>
+
+                        <p>
+                            Valoriza autonomia, força e independência,
+                            enfrentando diretamente aquilo que considera injusto.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
+
+                <!-- TIPO 9 -->
+                <a href="tipo9.html" class="type-card type-9">
+
+                    <div class="card-top">
+                        <span class="type-number">09</span>
+
+                        <span class="card-arrow">↗</span>
+                    </div>
+
+                    <div class="type-center">
+                        <span class="type-symbol">9</span>
+
+                        <h3>O Pacificador</h3>
+
+                        <p>
+                            Procura harmonia, estabilidade e tranquilidade,
+                            tentando compreender diferentes perspectivas.
+                        </p>
+                    </div>
+
+                    <span class="card-link">
+                        conhecer tipo
+                    </span>
+
+                </a>
+
             </div>
 
-            <div class="tipo-card">
-                <div class="numero">02</div>
-                <h3>O Prestativo</h3>
-                <p>Valoriza conexão, ajuda e reconhecimento afetivo.</p>
+        </section>
+
+
+        <!-- FINAL -->
+        <section class="closing-section">
+
+            <div class="closing-symbol">
+                ◌
             </div>
 
-            <div class="tipo-card">
-                <div class="numero">03</div>
-                <h3>O Realizador</h3>
-                <p>Orientado para resultados, competência e realização.</p>
-            </div>
+            <span class="section-tag">EXPLORE</span>
 
-            <div class="tipo-card">
-                <div class="numero">04</div>
-                <h3>O Individualista</h3>
-                <p>Busca identidade, autenticidade e significado pessoal.</p>
-            </div>
+            <h2>
+                Qual padrão aparece
+                <em>por trás de você?</em>
+            </h2>
 
-            <div class="tipo-card">
-                <div class="numero">05</div>
-                <h3>O Investigador</h3>
-                <p>Busca conhecimento, compreensão e autonomia.</p>
-            </div>
+            <p>
+                O Eneagrama não existe para colocar pessoas em caixas.
+                Ele serve como uma ferramenta para observar padrões,
+                motivações e formas diferentes de enxergar a própria experiência.
+            </p>
 
-            <div class="tipo-card">
-                <div class="numero">06</div>
-                <h3>O Leal</h3>
-                <p>Valoriza segurança, confiança e preparação.</p>
-            </div>
+        </section>
 
-            <div class="tipo-card">
-                <div class="numero">07</div>
-                <h3>O Entusiasta</h3>
-                <p>Busca liberdade, possibilidades e experiências.</p>
-            </div>
+    </main>
 
-            <div class="tipo-card">
-                <div class="numero">08</div>
-                <h3>O Desafiador</h3>
-                <p>Valoriza autonomia, força e controle sobre a própria vida.</p>
-            </div>
-
-            <div class="tipo-card">
-                <div class="numero">09</div>
-                <h3>O Pacificador</h3>
-                <p>Busca harmonia, estabilidade e redução de conflitos.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <section class="aviso-eneagrama">
-        <h3>⚠ SISTEMA EM DESENVOLVIMENTO</h3>
-        <p>Esta é apenas uma introdução básica ao Eneagrama. A seção ainda será desenvolvida com conteúdos mais completos sobre os nove tipos, asas, instintos, níveis de desenvolvimento, mecanismos de defesa e outras estruturas do sistema.</p>
-    </section>
-
-</main>
+    <script src="js/eneagrama.js"></script>
     <script src="../menu/menu.js"></script>
- 
+
 </body>
 </html>
