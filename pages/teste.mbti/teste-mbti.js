@@ -28,7 +28,7 @@ const questions = [
 
     // TI 
 
-    { q: "Em uma discussão, eu: (A) busco a verdade LÓGICA, mesmo que isso signifique discordar de todo mundo OU (B) busco um consenso que funcione para todos.", w: { Ti: 3, Te: 0, Ne: 0, Ni: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Em uma discussão, eu busco a verdade LÓGICA, mesmo que isso signifique discordar de todo mundo OU pelo menos busco um consenso que funcione para todos.", w: { Ti: 3, Te: 0, Ne: 0, Ni: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
     { q: "Gosto de usar a lógica para resolver problemas, mas não preciso ficar analisando tudo até o último detalhe.", w: { Ti: 3, Te: 1, Ne: 0, Se: 1, Ni: 0, Si: 0, Fi: 0, Fe: 0 } }, 
     { q: "Uso minha capacidade analítica para explorar possibilidades e encontrar soluções criativas para problemas.", w: { Ti: 3, Te: 0, Ne: 0, Se: 0, Ni: 0, Si: 0, Fi: 0, Fe: 0 } }, 
     { q: "Minhas decisões são baseadas principalmente na análise lógica, não em emoções ou na opinião dos outros.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
