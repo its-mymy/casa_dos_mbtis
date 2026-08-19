@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parcerias da Casa dos MBTIs — conecte sua comunidade à nossa.">
+    <title>Parcerias | Casa dos MBTIs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/parcerias.css">
+    <link rel="stylesheet" href="../menu/menu.css">
+</head>
+
+<body>
+    <div id="menu"></div>
+
+    <main>
+        <section class="hero" id="parcerias">
+            <div class="hero-content">
+                <p class="eyebrow">
+                    <span></span>
+                    CASA DOS MBTIs • PARCERIAS
+                </p>
+
+                <h1>
+                    Dê um
+                    <strong>impulso</strong>
+                    <br>
+                    à sua comunidade.
+                </h1>
+
+                <p class="hero-text">
+                    Parcerias são sobre colocar comunidades diferentes
+                    no mesmo universo. Vamos conectar pessoas,
+                    divulgar projetos e crescer juntos.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#contato" class="btn btn-primary">
+                        Quero uma parceria
+                        <span>→</span>
+                    </a>
+
+                    <a href="#como-funciona" class="btn btn-ghost">
+                        Como funciona
+                    </a>
+                </div>
+
+                <div class="hero-stats">
+                    <div>
+                        <b>01</b>
+                        <span>Conexão</span>
+                    </div>
+
+                    <div>
+                        <b>02</b>
+                        <span>Divulgação</span>
+                    </div>
+
+                    <div>
+                        <b>03</b>
+                        <span>Crescimento</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-art">
+                <div class="space-orbit orbit-a"></div>
+                <div class="space-orbit orbit-b"></div>
+
+                <div class="planet planet-big"></div>
+                <div class="planet planet-small"></div>
+
+                <div class="rocket-wrap">
+                    <div class="rocket">
+                        <div class="rocket-window"></div>
+                        <div class="rocket-fin fin-left"></div>
+                        <div class="rocket-fin fin-right"></div>
+                        <div class="rocket-flame"></div>
+                    </div>
+
+                    <span class="rocket-label">
+                        IMPULSO<br>
+                        PARA A COMUNIDADE
+                    </span>
+                </div>
+
+                <!-- PERSONAGEM -->
+                <img
+                    class="character"
+                    src="../img/YU.png"
+                    alt="Personagem da Casa dos MBTIs"
+                    width="1100"
+                    height="1100"
+                    fetchpriority="high"
+                    decoding="async"
+                >
+            </div>
+        </section>
+
+        <!-- COMO FUNCIONA -->
+        <section class="intro-section" id="como-funciona">
+            <div class="section-heading">
+                <p class="eyebrow">
+                    <span></span>
+                    UM UNIVERSO, VÁRIAS COMUNIDADES
+                </p>
+
+                <h2>
+                    Parceria boa é aquela
+                    <br>
+                    <em>que todo mundo ganha.</em>
+                </h2>
+            </div>
+
+            <div class="benefit-grid">
+                <article class="benefit-card">
+                    <div class="card-number">01</div>
+
+                    <div class="card-icon"></div>
+
+                    <h3>Divulgação</h3>
+
+                    <p>
+                        Apresente sua comunidade para pessoas
+                        interessadas em personalidade,
+                        tipologia e assuntos relacionados.
+                    </p>
+                </article>
+
+                <article class="benefit-card featured">
+                    <div class="card-number">02</div>
+
+                    <div class="card-icon">↗</div>
+
+                    <h3>Conexão</h3>
+
+                    <p>
+                        Crie uma ponte entre comunidades
+                        e projetos diferentes.
+                    </p>
+                </article>
+
+                <article class="benefit-card">
+                    <div class="card-number">03</div>
+
+                    <div class="card-icon">∞</div>
+
+                    <h3>Crescimento</h3>
+
+                    <p>
+                        Fortaleça seu projeto com uma parceria
+                        que faça sentido para os dois lados.
+                    </p>
+                </article>
+            </div>
+        </section>
+
+        <section class="cta-section" id="contato">
+            <div>
+                <p class="eyebrow">
+                    <span></span>
+                    PRONTO PARA DECOLAR?
+                </p>
+
+                <h2>
+                    Vamos colocar sua comunidade
+                    <br>
+                    no mesmo universo.
+                </h2>
+
+                <p>
+                    Entre em contato e conte um pouco
+                    sobre sua comunidade ou projeto.
+                </p>
+            </div>
+
+            <a href="mailto:contato@casadosmbtis.com.br" class="btn btn-light">
+                Falar sobre parceria
+                <span>↗</span>
+            </a>
+        </section>
+    </main>
+
+    <script>
+        const themeToggle = document.getElementById("themeToggle");
+
+        if (themeToggle) {
+            const savedTheme = localStorage.getItem("cmbti-theme");
+
+            if (savedTheme === "light") {
+                document.body.classList.add("light");
+            }
+
+            themeToggle.addEventListener("click", () => {
+                document.body.classList.toggle("light");
+
+                const isLight = document.body.classList.contains("light");
+
+                localStorage.setItem(
+                    "cmbti-theme",
+                    isLight ? "light" : "dark"
+                );
+            });
+        }
+    </script>
+
+     <script src="../menu/menu.js"></script>
+</body>
+
+</html>
