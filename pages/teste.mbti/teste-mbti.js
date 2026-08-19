@@ -31,8 +31,8 @@ const questions = [
     { q: "Em uma discussão, eu busco a verdade LÓGICA, mesmo que isso signifique discordar de todo mundo OU pelo menos busco um consenso que funcione para todos.", w: { Ti: 3, Te: 0, Ne: 0, Ni: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
     { q: "Gosto de usar a lógica para resolver problemas, mas não preciso ficar analisando tudo até o último detalhe.", w: { Ti: 3, Te: 1, Ne: 0, Se: 1, Ni: 0, Si: 0, Fi: 0, Fe: 0 } }, 
     { q: "Uso minha capacidade analítica para explorar possibilidades e encontrar soluções criativas para problemas.", w: { Ti: 3, Te: 0, Ne: 0, Se: 0, Ni: 0, Si: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Minhas decisões são baseadas principalmente na análise lógica, não em emoções ou na opinião dos outros.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
-    { q: "Preciso entender a lógica interna das coisas antes de aceitá-las como verdade. Não confio em algo só porque 'é assim que sempre foi feito'.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
+    { q: "Minhas decisões são baseadas principalmente na análise lógica, não em emoções ou na opinião dos outros. Ponho a lógica em primeiro lugar, mesmo que a pessoa não goste.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
+    { q: "Preciso entender a lógica interna das coisas antes de aceitá-las como verdade. Não confio em algo só porque 'é assim que sempre foi feito'. Prefiro eu mesmo analisar e ver como funciona para ter certeza", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Fico frustrado quando as pessoas usam argumentos emocionais ou apelos à autoridade em vez de lógica.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Prefiro entender o 'porquê' das coisas do que simplesmente saber 'como' fazer.", w: { Ti: 3, Te: 0, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Sou atraído por quebra-cabeças, enigmas e problemas que exigem raciocínio lógico.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
@@ -41,14 +41,14 @@ const questions = [
 
     // TE 
 
-    { q: "Sinto que perco tempo quando fico divagando em ideias que não têm aplicação prática.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 3, Si: 1, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Sinto que perco tempo quando fico divagando em ideias que não vou pôr em pratica.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 3, Si: 1, Se: 0, Fi: 0, Fe: 0 } }, 
     { q: "Sou naturalmente orientado a resultados e gosto de sentir que estou fazendo algo que realmente leva a algum resultado.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
     { q: "Tenho facilidade para organizar pessoas e recursos para alcançar metas claras.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Fico frustrado quando percebo que algo poderia ser feito de forma mais eficiente, mas ninguém tenta melhorar.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Fico frustrado quando percebo que algo poderia ser feito de forma mais eficiente, mas ninguém tenta melhorar. Isso pode me deixar impaciente.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
     { q: "Ao tomar uma decisão, costumo considerar fatos, dados e informações que possam ajudar a escolher a melhor opção.", w: { Te: 3, Ti: 1, Se: 0, Si: 1, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
     { q: "Gosto de criar sistemas, processos e estruturas que tornem o trabalho mais eficiente.", w: { Te: 3, Ti: 1, Se: 0, Si: 1, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
     { q: "Sou bom em dividir tarefas e organizar o que precisa ser feito para que um objetivo seja alcançado.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Fico impaciente quando uma discussão fica apenas na teoria e ninguém pensa em como colocar a ideia em prática.", w: { Te: 3, Ti: 0, Se: 1, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Fico impaciente quando uma discussão fica apenas na teoria e ninguém pensa em como colocar a ideia logo em prática.", w: { Te: 3, Ti: 0, Se: 1, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
     { q: "Consigo ser bastante organizado e eficiente, mas não sinto necessidade de estar o tempo todo produzindo ou organizando coisas.", w: { Te: 3, Ti: 0, Ni: 0, Si: 1, Se: 0, Ne: 0, Fi: 0, Fe: 0 } }, 
     { q: "Uso minha capacidade de organização e planejamento para colocar em prática aquilo que considero importante.", w: { Te: 3, Ti: 0, Ni: 1, Si: 1, Se: 0, Ne: 0, Fi: 0, Fe: 0 } }, 
 
@@ -98,12 +98,12 @@ const questions = [
     { q: "Me sinto desconfortável quando há uma desarmonia NO GRUPO.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 3 } }, 
     { q: "Consigo perceber rapidamente o que os outros estão sentindo, mesmo antes deles mesmos colocarem em palavras.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
     { q: "Sou bom em criar uma boa primeira impressão e causar impacto positivo nas pessoas.", w: { Fe: 3, Fi: 0, Se: 1, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Se eu tiver que escolher entre: (A) dizer a verdade direta e seca ou (B) suavizar para amenizar o impacto e me adaptar para não deixar o clima muito pesado, escolho B.", w: { Fi: 1, Fe: 3, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Se eu tiver que escolher entre: dizer a verdade direta e seca ou suavizar para amenizar o impacto e me adaptar para não deixar o clima muito pesado, escolho suavizar e amenizar o impacto no clima.", w: { Fi: 1, Fe: 3, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
     { q: "Sinto que fiz a coisa certa quando consigo manter as pessoas importantes para mim bem e satisfeitas com a situação.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Te: 0, Ti: 0 } }, 
-    { q: "Sinto mais satisfação quando percebo que as pessoas ao meu redor estão bem e o ambiente entre nós está harmonioso.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Te: 0, Ti: 0 } }, 
-    { q: "Minhas decisões são fortemente influenciadas por como elas vão afetar as pessoas ao meu redor.", w: { Fe: 3, Fi: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Consigo perceber facilmente o que as pessoas estão sentindo e costumo levar isso em consideração na forma como ajo com elas.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Quando percebo que alguém está desconfortável em uma situação, tenho vontade de mudar minha forma de agir ou falar para deixar o ambiente mais agradável.", w: { Fe: 3, Fi: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } } 
+    { q: "Me sinto bem e satisfeito quando percebo que as pessoas ao meu redor estão bem e o ambiente entre nós está harmonioso.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Te: 0, Ti: 0 } }, 
+    { q: "Minhas decisões podem ser influenciadas se vai afetar as pessoas ao meu redor.", w: { Fe: 3, Fi: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Consigo perceber facilmente o que as pessoas estão sentindo, então costumo levar isso em consideração na forma de como ajo com elas.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Quando percebo que alguém está desconfortável em uma situação, tenho vontade de mudar minha forma de agir ou falar para deixar o ambiente mais de boas.", w: { Fe: 3, Fi: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } } 
 
 ];
 
