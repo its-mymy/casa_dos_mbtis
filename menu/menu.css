@@ -11,9 +11,15 @@ body {
     overflow-x: hidden;
 }
 
+body {
+    padding-top: 70px;
+}
+
 .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 100%;
     height: 70px;
     display: flex;
     align-items: center;
@@ -22,11 +28,8 @@ body {
     background: #111111;
     border-bottom: 1px solid #292929;
     font-family: Arial, Helvetica, sans-serif;
-    position: relative;
-    z-index: 1000;
+    z-index: 9999;
 }
-
-/* LOGO */
 
 .nav-logo {
     color: #9b59ff;
@@ -40,8 +43,6 @@ body {
 .nav-logo:hover {
     color: #c084ff;
 }
-
-/* LISTA DO MENU */
 
 .nav-list {
     list-style: none;
@@ -67,8 +68,6 @@ body {
     color: #9b59ff;
 }
 
-/* LINHA EMBAIXO DOS LINKS */
-
 .nav-list a::after {
     content: "";
     position: absolute;
@@ -84,8 +83,6 @@ body {
     width: 100%;
 }
 
-/* ÍCONE HAMBÚRGUER */
-
 .mobile-menu {
     display: none;
     cursor: pointer;
@@ -99,8 +96,6 @@ body {
     transition: 0.3s;
 }
 
-/* ANIMAÇÃO DOS LINKS */
-
 @keyframes navLinkFade {
     from {
         opacity: 0;
@@ -112,76 +107,6 @@ body {
         transform: translateX(0);
     }
 }
-
-/* RESPONSIVIDADE */
-
-@media (max-width: 768px) {
-
-    .navbar {
-        height: 65px;
-        padding: 0 20px;
-    }
-
-    .nav-logo {
-        font-size: 16px;
-        letter-spacing: 2px;
-    }
-
-    /* MENU MOBILE */
-
-    .nav-list {
-        position: absolute;
-        top: 65px;
-        right: 0;
-        width: 70%;
-        height: calc(100vh - 65px);
-        background: #111111;
-        border-left: 1px solid #292929;
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-evenly;
-
-        visibility: hidden;
-        opacity: 0;
-
-        transition:
-            opacity 0.3s ease,
-            visibility 0.3s ease;
-    }
-
-    /* MENU ABERTO */
-
-    .nav-list.active {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    /* LINKS */
-
-    .nav-list li {
-        margin: 0;
-        opacity: 0;
-    }
-
-    .nav-list.active li {
-        opacity: 1;
-        animation: navLinkFade 0.5s ease forwards 0.3s;
-    }
-
-    .nav-list a {
-        font-size: 17px;
-    }
-
-    /* HAMBÚRGUER */
-
-    .mobile-menu {
-        display: block;
-    }
-}
-
-/* MENU HAMBÚRGUER */
 
 .mobile-menu.active .line1 {
     transform: rotate(-45deg) translate(-7px, 6px);
@@ -195,12 +120,97 @@ body {
     transform: rotate(45deg) translate(-6px, -6px);
 }
 
-/* TELAS PEQUENAS */
+@media (max-width: 768px) {
+    body {
+        padding-top: 65px;
+    }
 
-@media (max-width: 480px) {
+    .navbar {
+        height: 65px;
+        padding: 0 20px;
+    }
+
+    .nav-logo {
+        font-size: 16px;
+        letter-spacing: 2px;
+    }
+
+    .mobile-menu {
+        display: block;
+        position: relative;
+        z-index: 10001;
+    }
 
     .nav-list {
+        position: fixed;
+        top: 65px;
+        right: 0;
+        width: 70%;
+        height: calc(100vh - 65px);
+        background: #111111;
+        border-left: 1px solid #292929;
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+
+        gap: 45px;
+        padding: 45px 20px;
+
+        overflow-y: auto;
+        overflow-x: hidden;
+
+        visibility: hidden;
+        opacity: 0;
+
+        transition:
+            opacity 0.3s ease,
+            visibility 0.3s ease;
+
+        z-index: 10000;
+    }
+
+    .nav-list.active {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .nav-list li {
+        width: 100%;
+        text-align: center;
+        opacity: 0;
+        flex-shrink: 0;
+    }
+
+    .nav-list.active li {
+        opacity: 1;
+        animation: navLinkFade 0.5s ease forwards;
+    }
+
+    .nav-list a {
+        font-size: 17px;
+    }
+
+    .nav-list::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .nav-list::-webkit-scrollbar-track {
+        background: #111111;
+    }
+
+    .nav-list::-webkit-scrollbar-thumb {
+        background: #333333;
+        border-radius: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-list {
         width: 80%;
+        gap: 40px;
+        padding: 40px 15px;
     }
 
     .nav-logo {

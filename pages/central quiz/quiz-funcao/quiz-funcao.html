@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Central de Quiz — Funções Cognitivas</title>
+
+    <link rel="stylesheet" href="quiz-funcao.css">
+</head>
+
+<body>
+
+    <div class="pagina">
+
+        <header class="cabecalho">
+
+            <a href="../index.html" class="voltar">← Voltar</a>
+
+            <button id="tema" class="botao-tema" aria-label="Alternar tema">
+                ☀️
+            </button>
+
+            <div class="titulo">
+
+                <div class="emoji-quiz">🤓</div>
+
+                <span class="categoria">
+                    CENTRAL DE QUIZ
+                </span>
+
+                <h1>Funções Cognitivas</h1>
+
+                <p>
+                    Teste seus conhecimentos sobre funções, stacks, loops e grip.
+                </p>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            <section class="aviso">
+
+                <div class="aviso-icone">
+                    🧠
+                </div>
+
+                <div>
+                    <strong>Primeira versão do quiz</strong>
+
+                    <p>
+                        Este quiz ainda será aprimorado com novas perguntas,
+                        níveis e conteúdos. Por enquanto, divirta-se testando
+                        seus conhecimentos sobre funções cognitivas!
+                    </p>
+                </div>
+
+            </section>
+
+            <section id="quiz-area" class="quiz-area">
+
+                <div class="quiz-topo">
+
+                    <span id="questao-numero">
+                        Questão 1 de 10
+                    </span>
+
+                    <span id="pontuacao">
+                        0 acertos
+                    </span>
+
+                </div>
+
+                <div class="barra">
+                    <div id="progresso"></div>
+                </div>
+
+                <div class="questao-card">
+
+                    <h2 id="pergunta">
+                        Carregando pergunta...
+                    </h2>
+
+                    <div id="alternativas" class="alternativas"></div>
+
+                    <div id="explicacao" class="explicacao"></div>
+
+                </div>
+
+                <button
+                    id="proxima"
+                    class="btn-proxima"
+                    disabled
+                >
+                    Próxima questão →
+                </button>
+
+            </section>
+
+            <section id="resultado" class="resultado hidden">
+
+                <div id="confetes"></div>
+
+                <div class="resultado-icone">
+                    🤓
+                </div>
+
+                <span class="resultado-label">
+                    RESULTADO FINAL
+                </span>
+
+                <h2 id="mensagem-resultado">
+                    Mestre do Quiz!
+                </h2>
+
+                <div id="porcentagem" class="porcentagem">
+                    100%
+                </div>
+
+                <p id="resultado-texto">
+                    Você acertou 10 de 10 questões.
+                </p>
+
+                <div class="resultado-estatisticas">
+
+                    <div>
+                        <strong id="acertos-final">10</strong>
+                        <span>Acertos</span>
+                    </div>
+
+                    <div>
+                        <strong id="erros-final">0</strong>
+                        <span>Erros</span>
+                    </div>
+
+                    <div>
+                        <strong id="total-final">10</strong>
+                        <span>Questões</span>
+                    </div>
+
+                </div>
+
+                <div class="resultado-botoes">
+
+                    <button id="refazer" class="btn-refazer">
+                        Fazer novamente
+                    </button>
+
+                    <button id="voltar-central" class="btn-secundario">
+                        Voltar para a central
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="quiz-funcao.js"></script>
+
+</body>
+</html>
