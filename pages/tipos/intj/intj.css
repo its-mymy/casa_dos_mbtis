@@ -80,70 +80,25 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
 
 .inferior{box-shadow:inset 0 0 25px rgba(159,35,255,.02)}
 
-.content-section{width:min(1100px,84%);margin:0 auto;padding:100px 0 130px}
+.member-blog-card{position:relative;width:min(900px,90%);margin:35px auto 5px;padding:20px 25px;border:1px solid rgba(175,53,255,.25);background:linear-gradient(100deg,rgba(30,8,42,.7),rgba(5,5,5,.85));overflow:hidden;transition:.3s ease}
 
-.content-header{display:flex;align-items:flex-start;justify-content:space-between;gap:40px;padding-bottom:35px;margin-bottom:50px;border-bottom:1px solid rgba(167,47,255,.18)}
+.member-blog-card::before{content:"";position:absolute;left:0;top:0;width:3px;height:100%;background:#a936ff;box-shadow:0 0 12px #a936ff,0 0 25px rgba(169,54,255,.5)}
 
-.content-header span{font-size:.62rem;letter-spacing:3px;color:#a54dca;margin-top:10px}
+.member-blog-card::after{content:"";position:absolute;right:-80px;top:-100px;width:220px;height:220px;background:radial-gradient(circle,rgba(153,31,255,.12),transparent 70%);pointer-events:none}
 
-.content-header h2{font-family:'Orbitron',sans-serif;font-size:clamp(1.8rem,4vw,3.3rem);font-weight:500;color:#fafafa;text-align:right}
+.member-blog-card:hover{border-color:rgba(190,83,255,.5);box-shadow:0 0 25px rgba(130,20,255,.12)}
 
-.text-content{max-width:860px;margin-left:auto}
+.blog-card-content{position:relative;z-index:2}
 
-.text-content p{position:relative;font-size:.92rem;line-height:2;color:#a2a2a2;margin-bottom:30px;padding-left:28px}
+.blog-card-tag{font-size:.55rem;letter-spacing:2px;color:#b54cff}
 
-.text-content p::before{content:"";position:absolute;left:0;top:11px;width:6px;height:6px;border-radius:50%;background:#a52cff;box-shadow:0 0 10px #a52cff}
+.blog-card-content h3{font-family:'Orbitron',sans-serif;font-size:1rem;font-weight:500;color:#f5f5f5;margin:8px 0}
 
-.text-content p:first-child{color:#d0d0d0}
+.blog-card-content p{font-size:.68rem;line-height:1.7;color:#858585;max-width:700px;margin-bottom:14px}
 
-@keyframes holoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.blog-card-button{display:inline-block;font-family:'Orbitron',sans-serif;font-size:.58rem;letter-spacing:1.5px;color:#c05cff;text-decoration:none;border:1px solid rgba(181,76,255,.35);padding:8px 13px;transition:.3s ease}
 
-@keyframes pulseLight{0%,100%{opacity:.55;transform:translateX(-50%) scale(.88)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
-
-@keyframes holoRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-
-@keyframes holoImage{0%,100%{opacity:.58;transform:translateX(0)}45%{opacity:.72;transform:translateX(1px)}50%{opacity:.42;transform:translateX(-2px)}70%{opacity:.65;transform:translateX(0)}}
-
-@keyframes scan{0%{transform:translateY(-10%)}100%{transform:translateY(10%)}}
-
-@keyframes brainPulse{0%,100%{opacity:.5;filter:drop-shadow(0 0 3px rgba(173,43,255,.55))}50%{opacity:1;filter:drop-shadow(0 0 9px rgba(173,43,255,.95))}}
-
-@media(max-width:1000px){
-    .hero-intj{grid-template-columns:1fr;min-height:auto;padding-top:100px;padding-bottom:60px}
-    .hero-content{text-align:center;margin:0 auto}
-    .type-tag{border-left:none;border-bottom:1px solid #a52cff;padding:0 0 8px}
-    .hero-content h1{letter-spacing:-5px}
-    .hero-content h2{letter-spacing:5px}
-    .hologram-wrapper{min-height:470px;margin-top:10px}
-    .brain-system{left:50%;transform:translateX(-50%) rotate(-5deg);bottom:0}
-    .functions-grid{grid-template-columns:repeat(2,1fr)}
-    .content-header{flex-direction:column}
-    .content-header h2{text-align:left}
-    .text-content{margin-left:0}
-}
-
-@media(max-width:620px){
-    .hero-intj{padding-left:5%;padding-right:5%}
-    .hero-content h1{font-size:5.8rem}
-    .hero-content h2{font-size:1.2rem;letter-spacing:3px}
-    .hero-description{font-size:.75rem}
-    .hologram{width:360px;height:360px}
-    .brain-system{width:210px;height:150px}
-    .functions-section{padding-left:5%;padding-right:5%}
-    .functions-grid{grid-template-columns:1fr 1fr;gap:8px}
-    .function-card{min-height:190px;padding:18px 14px}
-    .function-card strong{font-size:2.8rem}
-    .function-card h3{font-size:.73rem}
-    .function-card p{font-size:.6rem}
-    .content-section{width:90%;padding-top:75px}
-    .text-content p{font-size:.82rem;line-height:1.9;padding-left:22px}
-}
-
-@media(max-width:430px){
-    .functions-grid{grid-template-columns:1fr}
-    .function-card{min-height:auto}
-    .hologram{width:310px;height:310px}
-}
+.blog-card-button:hover{color:#fff;border-color:#b54cff;background:rgba(169,54,255,.1);box-shadow:0 0 15px rgba(169,54,255,.2)}
 
 .functions-details{width:min(1100px,84%);margin:0 auto;padding:110px 0 100px}
 
@@ -213,10 +168,34 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
 
 .cycle-description p{font-size:.78rem;line-height:1.9;color:#777}
 
+@keyframes holoFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+@keyframes pulseLight{0%,100%{opacity:.55;transform:translateX(-50%) scale(.88)}50%{opacity:1;transform:translateX(-50%) scale(1.08)}}
+
+@keyframes holoRing{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+
+@keyframes holoImage{0%,100%{opacity:.58;transform:translateX(0)}45%{opacity:.72;transform:translateX(1px)}50%{opacity:.42;transform:translateX(-2px)}70%{opacity:.65;transform:translateX(0)}}
+
+@keyframes scan{0%{transform:translateY(-10%)}100%{transform:translateY(10%)}}
+
+@keyframes brainPulse{0%,100%{opacity:.5;filter:drop-shadow(0 0 3px rgba(173,43,255,.55))}50%{opacity:1;filter:drop-shadow(0 0 9px rgba(173,43,255,.95))}}
+
+@media(max-width:1000px){
+    .hero-intj{grid-template-columns:1fr;min-height:auto;padding-top:100px;padding-bottom:60px}
+    .hero-content{text-align:center;margin:0 auto}
+    .type-tag{border-left:none;border-bottom:1px solid #a52cff;padding:0 0 8px}
+    .hero-content h1{letter-spacing:-5px}
+    .hero-content h2{letter-spacing:5px}
+    .hologram-wrapper{min-height:470px;margin-top:10px}
+    .brain-system{left:50%;transform:translateX(-50%) rotate(-5deg);bottom:0}
+    .functions-grid{grid-template-columns:repeat(2,1fr)}
+    .details-header{flex-direction:column}
+    .details-header h2{text-align:left}
+}
+
 @media(max-width:800px){
     .functions-details{width:88%;padding-top:80px}
-    .details-header{flex-direction:column;gap:20px}
-    .details-header h2{text-align:left}
+    .details-header{gap:20px}
     .function-detail{grid-template-columns:65px 1fr;gap:25px;padding:50px 0}
     .detail-number{font-size:2rem;padding-left:15px}
     .detail-info h3{font-size:1.4rem}
@@ -225,15 +204,39 @@ body::before{content:"";position:fixed;inset:0;pointer-events:none;background:li
     .cognitive-cycle{gap:12px;margin-top:70px}
 }
 
-@media(max-width:500px){
+@media(max-width:620px){
+    .member-blog-card{width:90%;padding:18px 20px}
+    .blog-card-content h3{font-size:.85rem}
+    .blog-card-content p{font-size:.62rem}
+    .hero-intj{padding-left:5%;padding-right:5%}
+    .hero-content h1{font-size:5.8rem}
+    .hero-content h2{font-size:1.2rem;letter-spacing:3px}
+    .hero-description{font-size:.75rem}
+    .hologram{width:360px;height:360px}
+    .brain-system{width:210px;height:150px}
+    .functions-section{padding-left:5%;padding-right:5%}
+    .functions-grid{grid-template-columns:1fr 1fr;gap:8px}
+    .function-card{min-height:190px;padding:18px 14px}
+    .function-card strong{font-size:2.8rem}
+    .function-card h3{font-size:.73rem}
+    .function-card p{font-size:.6rem}
     .functions-details{width:90%}
+    .detail-info p{font-size:.75rem;line-height:1.9;margin-bottom:20px}
+}
+
+@media(max-width:500px){
     .function-detail{grid-template-columns:1fr;gap:15px;padding:40px 0 45px 15px}
     .detail-number{font-size:1.5rem;padding-left:0}
     .detail-info h3{font-size:1.15rem;margin-bottom:20px}
-    .detail-info p{font-size:.75rem;line-height:1.9;margin-bottom:20px}
     .detail-function{font-size:.55rem;letter-spacing:2px}
     .function-detail::after{top:40px}
     .cognitive-cycle{gap:8px;padding:20px 8px}
     .cognitive-cycle span{font-size:.85rem}
     .cycle-description p{font-size:.68rem}
+}
+
+@media(max-width:430px){
+    .functions-grid{grid-template-columns:1fr}
+    .function-card{min-height:auto}
+    .hologram{width:310px;height:310px}
 }
