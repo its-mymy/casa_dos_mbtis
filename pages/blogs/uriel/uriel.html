@@ -24,7 +24,7 @@
 <a href="#artigos">Artigos</a>
 </nav>
 
-<button class="menu-btn" id="menuBtn">☰</button>
+<button class="menu-btn" id="menuBtn" aria-label="Abrir menu">☰</button>
 
 </header>
 
@@ -362,7 +362,6 @@ Pensar → Entender → Explorar → Documentar
 </footer>
 
 <script>
-
 const menuBtn = document.getElementById("menuBtn");
 const nav = document.getElementById("nav");
 
@@ -375,7 +374,6 @@ link.addEventListener("click", () => {
 nav.classList.remove("active");
 });
 });
-
 </script>
 
 </body>
