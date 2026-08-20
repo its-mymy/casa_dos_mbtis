@@ -27,6 +27,7 @@ body {
   font-family: "Segoe UI", Arial, Helvetica, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
+  width: 100%;
 }
 
 a {
@@ -40,21 +41,11 @@ body::before {
   inset: 0;
   z-index: -3;
   background:
-    linear-gradient(
-      rgba(255, 255, 255, 0.018) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0.018) 1px,
-      transparent 1px
-    );
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
   background-size: 50px 50px;
-  mask-image: linear-gradient(
-    to bottom,
-    black,
-    transparent 85%
-  );
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+  -webkit-mask-image: linear-gradient(to bottom, black, transparent 85%);
 }
 
 body::after {
@@ -65,12 +56,7 @@ body::after {
   top: -250px;
   right: -220px;
   border-radius: 50%;
-  background:
-    radial-gradient(
-      circle,
-      rgba(117, 100, 143, 0.08),
-      transparent 70%
-    );
+  background: radial-gradient(circle, rgba(117, 100, 143, 0.08), transparent 70%);
   filter: blur(35px);
   z-index: -2;
   pointer-events: none;
@@ -88,6 +74,7 @@ body::after {
   padding: 0 8%;
   background: rgba(7, 7, 10, 0.82);
   backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
   border-bottom: 1px solid rgba(117, 100, 143, 0.12);
   z-index: 1000;
 }
@@ -96,6 +83,7 @@ body::after {
   font-size: 20px;
   font-weight: 700;
   letter-spacing: 6px;
+  white-space: nowrap;
 }
 
 .logo span {
@@ -104,6 +92,7 @@ body::after {
 
 .nav {
   display: flex;
+  align-items: center;
   gap: 32px;
 }
 
@@ -113,6 +102,7 @@ body::after {
   font-size: 11px;
   letter-spacing: 1px;
   transition: 0.3s ease;
+  white-space: nowrap;
 }
 
 .nav a:hover {
@@ -142,9 +132,11 @@ body::after {
   color: var(--purple-light);
   font-size: 25px;
   cursor: pointer;
+  padding: 5px;
 }
 
 .hero {
+  width: 100%;
   min-height: 100vh;
   display: flex;
   align-items: center;
@@ -163,18 +155,14 @@ body::after {
   left: 35%;
   top: 20%;
   transform: translateX(-50%);
-  background:
-    radial-gradient(
-      circle,
-      rgba(117, 100, 143, 0.055),
-      transparent 68%
-    );
+  background: radial-gradient(circle, rgba(117, 100, 143, 0.055), transparent 68%);
   filter: blur(30px);
   pointer-events: none;
 }
 
 .hero-content {
   max-width: 700px;
+  width: 100%;
   position: relative;
   z-index: 2;
 }
@@ -239,17 +227,12 @@ body::after {
 }
 
 .hero-card {
+  width: 290px;
   min-width: 290px;
   padding: 38px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(17, 17, 23, 0.95),
-      rgba(9, 9, 13, 0.95)
-    );
+  background: linear-gradient(145deg, rgba(17, 17, 23, 0.95), rgba(9, 9, 13, 0.95));
   border: 1px solid rgba(117, 100, 143, 0.2);
-  box-shadow:
-    0 20px 60px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
   position: relative;
   overflow: hidden;
 }
@@ -286,6 +269,7 @@ body::after {
   margin-top: 12px;
   font-family: monospace;
   font-size: 11px;
+  word-break: break-word;
 }
 
 .line {
@@ -304,15 +288,11 @@ body::after {
 .section {
   position: relative;
   padding: 125px 10%;
+  width: 100%;
 }
 
 .dark-section {
-  background:
-    linear-gradient(
-      180deg,
-      #09090d,
-      #0b0b10
-    );
+  background: linear-gradient(180deg, #09090d, #0b0b10);
   border-top: 1px solid rgba(117, 100, 143, 0.08);
   border-bottom: 1px solid rgba(117, 100, 143, 0.08);
 }
@@ -528,17 +508,49 @@ footer span {
   color: white;
 }
 
+@media (max-width: 1000px) {
+  .hero {
+    gap: 45px;
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+
+  .section {
+    padding-left: 7%;
+    padding-right: 7%;
+  }
+
+  .about-grid {
+    gap: 40px;
+  }
+
+  .topic-grid,
+  .articles {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .hero-card {
+    width: 270px;
+    min-width: 270px;
+  }
+}
+
 @media (max-width: 850px) {
+  .header {
+    padding: 0 7%;
+  }
 
   .nav {
     position: absolute;
     top: 72px;
     left: 0;
     width: 100%;
-    padding: 28px;
+    padding: 28px 7%;
     background: rgba(7, 7, 10, 0.98);
     backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
     flex-direction: column;
+    align-items: flex-start;
     gap: 20px;
     display: none;
     border-bottom: 1px solid rgba(117, 100, 143, 0.15);
@@ -553,13 +565,22 @@ footer span {
   }
 
   .hero {
+    min-height: auto;
     flex-direction: column;
     align-items: flex-start;
+    justify-content: center;
     padding-top: 130px;
+    padding-bottom: 90px;
+    gap: 50px;
+  }
+
+  .hero-content {
+    max-width: 100%;
   }
 
   .hero-card {
     width: 100%;
+    min-width: 0;
   }
 
   .about-grid {
@@ -572,23 +593,47 @@ footer span {
   }
 }
 
-@media (max-width: 500px) {
-
+@media (max-width: 600px) {
   .header {
-    padding: 0 7%;
+    height: 64px;
+    padding: 0 6%;
   }
 
-  .section {
-    padding: 90px 7%;
+  .logo {
+    font-size: 17px;
+    letter-spacing: 5px;
+  }
+
+  .nav {
+    top: 64px;
+    padding: 25px 6%;
+  }
+
+  .menu-btn {
+    font-size: 23px;
   }
 
   .hero {
-    padding: 120px 7% 80px;
+    padding: 110px 6% 70px;
+    gap: 40px;
+  }
+
+  .small-title {
+    font-size: 8px;
+    letter-spacing: 3px;
+    margin-bottom: 20px;
   }
 
   .hero h1 {
-    font-size: 57px;
+    font-size: clamp(48px, 15vw, 70px);
     letter-spacing: -4px;
+    margin-bottom: 25px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+    line-height: 1.7;
+    margin-bottom: 28px;
   }
 
   .hero-buttons {
@@ -597,15 +642,47 @@ footer span {
   }
 
   .btn {
+    width: 100%;
     text-align: center;
+    padding: 13px 16px;
   }
 
   .hero-card {
-    min-width: 0;
+    padding: 28px;
+  }
+
+  .hero-card strong {
+    font-size: 42px;
+  }
+
+  .typing {
+    font-size: 10px;
+  }
+
+  .section {
+    padding: 85px 6%;
+  }
+
+  .section-title {
+    gap: 12px;
+    margin-bottom: 45px;
   }
 
   .section-title h2 {
-    font-size: 35px;
+    font-size: 32px;
+  }
+
+  .section-title p {
+    font-size: 8px;
+    letter-spacing: 3px;
+  }
+
+  .about-text {
+    font-size: 14px;
+  }
+
+  .quote {
+    padding: 28px;
   }
 
   .quote p {
@@ -613,12 +690,60 @@ footer span {
   }
 
   .shakespeare-quote {
-    padding: 35px 22px;
-    margin-top: 60px;
+    padding: 30px 20px;
+    margin-top: 55px;
   }
 
   .shakespeare-quote p {
-    font-size: 17px;
+    font-size: 16px;
     line-height: 1.7;
+  }
+
+  .shakespeare-quote span {
+    font-size: 8px;
+    letter-spacing: 2px;
+  }
+
+  .topic-card,
+  .article {
+    padding: 26px;
+    min-height: auto;
+  }
+
+  .topic-card h3,
+  .article h3 {
+    font-size: 19px;
+  }
+
+  .topic-card p,
+  .article p {
+    font-size: 12px;
+  }
+
+  footer {
+    padding: 50px 6%;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero h1 {
+    font-size: 45px;
+    letter-spacing: -3px;
+  }
+
+  .hero-card {
+    padding: 24px;
+  }
+
+  .hero-card strong {
+    font-size: 36px;
+  }
+
+  .section-title h2 {
+    font-size: 28px;
+  }
+
+  .shakespeare-quote p {
+    font-size: 15px;
   }
 }
