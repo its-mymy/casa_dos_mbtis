@@ -135,7 +135,7 @@ const coresGrupos = {
 
 
 /* =========================================================
-   AJUSTE DO NICK
+   NICK
 ========================================================= */
 
 function ajustarTamanhoNick() {
@@ -189,7 +189,7 @@ function atualizarCard() {
 
 
 /* =========================================================
-   SALVAMENTO AUTOMÁTICO DA URL
+   SALVAR URL AUTOMATICAMENTE
 ========================================================= */
 
 function agendarSalvarURL() {
@@ -325,7 +325,7 @@ corFundo.addEventListener("input", () => {
 
 
 /* =========================================================
-   TEMAS COM IMAGEM
+   TEMAS
 ========================================================= */
 
 function aplicarTema(nomeTema, salvar = true) {
@@ -431,21 +431,15 @@ function pegarDadosCompactos() {
         dados.h = temaAtual;
     }
 
-    if (
-        colorPicker.value.toLowerCase() !== "#8c52e8"
-    ) {
+    if (colorPicker.value.toLowerCase() !== "#8c52e8") {
         dados.p = colorPicker.value;
     }
 
-    if (
-        corTopo.value.toLowerCase() !== "#8c52e8"
-    ) {
+    if (corTopo.value.toLowerCase() !== "#8c52e8") {
         dados.q = corTopo.value;
     }
 
-    if (
-        corFundo.value.toLowerCase() !== "#d9ccd9"
-    ) {
+    if (corFundo.value.toLowerCase() !== "#d9ccd9") {
         dados.u = corFundo.value;
     }
 
@@ -481,9 +475,7 @@ function expandirDados(dados) {
 
 function codificarDados(dados) {
     if (typeof LZString === "undefined") {
-        throw new Error(
-            "LZString não foi carregado."
-        );
+        throw new Error("LZString não foi carregado.");
     }
 
     return LZString.compressToEncodedURIComponent(
@@ -493,16 +485,12 @@ function codificarDados(dados) {
 
 function decodificarDados(codigo) {
     if (typeof LZString === "undefined") {
-        throw new Error(
-            "LZString não foi carregado."
-        );
+        throw new Error("LZString não foi carregado.");
     }
 
     try {
         const texto =
-            LZString.decompressFromEncodedURIComponent(
-                codigo
-            );
+            LZString.decompressFromEncodedURIComponent(codigo);
 
         if (!texto) {
             return null;
@@ -511,7 +499,6 @@ function decodificarDados(codigo) {
         const dados = JSON.parse(texto);
 
         return expandirDados(dados);
-
     } catch (erro) {
         console.warn(
             "Não foi possível carregar o card:",
@@ -537,7 +524,6 @@ function salvarNaURL() {
             "",
             `${window.location.pathname}#${codigo}`
         );
-
     } catch (erro) {
         console.error(
             "Erro ao salvar o card:",
@@ -629,7 +615,7 @@ function mostrarToast(mensagem) {
 
 
 /* =========================================================
-   CARREGAR DADOS DA URL
+   CARREGAR CARD DA URL
 ========================================================= */
 
 async function carregarDaURL() {
@@ -638,20 +624,9 @@ async function carregarDaURL() {
     if (!dados) {
         atualizarCard();
 
-        aplicarCorTexto(
-            "#8c52e8",
-            false
-        );
-
-        aplicarCorTopo(
-            "#8c52e8",
-            false
-        );
-
-        aplicarTema(
-            "azul",
-            false
-        );
+        aplicarCorTexto("#8c52e8", false);
+        aplicarCorTopo("#8c52e8", false);
+        aplicarTema("azul", false);
 
         atualizarTipoFundoVisual();
 
@@ -683,7 +658,6 @@ async function carregarDaURL() {
                 : "azul",
             false
         );
-
     } else {
         aplicarCorFundo(
             dados.corFundo || "#d9ccd9",
@@ -713,7 +687,6 @@ botaoCopiarLink.addEventListener(
             mostrarToast(
                 "🔗 Link curto do card copiado!"
             );
-
         } catch (erro) {
             console.error(erro);
 
@@ -739,39 +712,17 @@ botaoBaixarCard.addEventListener(
             "Gerando card...";
 
         try {
-            /* -----------------------------------------
-               VERIFICA HTML2CANVAS
-            ----------------------------------------- */
-
-            if (
-                typeof html2canvas !==
-                "function"
-            ) {
+            if (typeof html2canvas !== "function") {
                 throw new Error(
                     "html2canvas não foi carregado."
                 );
             }
 
-
-            /* -----------------------------------------
-               ESPERA FONTES
-            ----------------------------------------- */
-
             if (document.fonts) {
                 await document.fonts.ready;
             }
 
-
-            /* -----------------------------------------
-               ESPERA IMAGENS
-            ----------------------------------------- */
-
             await prepararImagensDoCard();
-
-
-            /* -----------------------------------------
-               ESPERA RENDERIZAÇÃO
-            ----------------------------------------- */
 
             await new Promise((resolve) => {
                 requestAnimationFrame(() => {
@@ -779,116 +730,74 @@ botaoBaixarCard.addEventListener(
                 });
             });
 
+            const largura = card.clientWidth;
+            const altura = card.clientHeight;
 
-            /* -----------------------------------------
-               TAMANHO ATUAL DO CARD
-            ----------------------------------------- */
-
-            const largura =
-                card.clientWidth;
-
-            const altura =
-                card.clientHeight;
-
-            if (
-                !largura ||
-                !altura
-            ) {
+            if (!largura || !altura) {
                 throw new Error(
                     "Não foi possível identificar o tamanho do card."
                 );
             }
 
-
-            /* -----------------------------------------
-               ESCALA
-            ----------------------------------------- */
-
             const emCelular =
                 window.innerWidth <= 700;
 
             const escala =
-                emCelular
-                    ? 3
-                    : 4;
+                emCelular ? 3 : 4;
 
+            const canvas = await html2canvas(
+                card,
+                {
+                    width: largura,
+                    height: altura,
+                    scale: escala,
 
-            /* -----------------------------------------
-               CAPTURA
-            ----------------------------------------- */
+                    useCORS: true,
+                    allowTaint: false,
 
-            const canvas =
-                await html2canvas(
-                    card,
-                    {
-                        width: largura,
-                        height: altura,
+                    backgroundColor: null,
 
-                        scale: escala,
+                    logging: false,
+                    imageTimeout: 30000,
 
-                        useCORS: true,
-                        allowTaint: false,
+                    removeContainer: true,
 
-                        backgroundColor: null,
+                    foreignObjectRendering: false,
 
-                        logging: false,
+                    scrollX: 0,
+                    scrollY: 0,
 
-                        imageTimeout: 30000,
-
-                        removeContainer: true,
-
-                        foreignObjectRendering: false,
-
-                        scrollX: 0,
-                        scrollY: 0,
-
-                        onclone: (
-                            documento
-                        ) => {
-                            const cardClone =
-                                documento.getElementById(
-                                    "cardGerado"
-                                );
-
-                            if (
-                                !cardClone
-                            ) {
-                                return;
-                            }
-
-                            cardClone.style.transform =
-                                "none";
-
-                            cardClone.style.filter =
-                                "none";
-
-                            cardClone.style.boxShadow =
-                                "none";
-
-                            const elementos =
-                                cardClone.querySelectorAll(
-                                    "*"
-                                );
-
-                            elementos.forEach(
-                                (
-                                    elemento
-                                ) => {
-                                    elemento.style.animation =
-                                        "none";
-
-                                    elemento.style.transition =
-                                        "none";
-                                }
+                    onclone: (documento) => {
+                        const cardClone =
+                            documento.getElementById(
+                                "cardGerado"
                             );
+
+                        if (!cardClone) {
+                            return;
                         }
+
+                        cardClone.style.transform =
+                            "none";
+
+                        cardClone.style.filter =
+                            "none";
+
+                        cardClone.style.boxShadow =
+                            "none";
+
+                        cardClone
+                            .querySelectorAll("*")
+                            .forEach((elemento) => {
+                                elemento.style.animation =
+                                    "none";
+
+                                elemento.style.transition =
+                                    "none";
+                            });
                     }
-                );
-
-
-            /* -----------------------------------------
-               VALIDA CANVAS
-            ----------------------------------------- */
+                }
+            );
 
             if (
                 !canvas ||
@@ -900,22 +809,15 @@ botaoBaixarCard.addEventListener(
                 );
             }
 
-
-            /* -----------------------------------------
-               CRIA PNG
-            ----------------------------------------- */
-
-            const blob =
-                await new Promise(
-                    (resolve) => {
-                        canvas.toBlob(
-                            resolve,
-                            "image/png",
-                            1
-                        );
-                    }
-                );
-
+            const blob = await new Promise(
+                (resolve) => {
+                    canvas.toBlob(
+                        resolve,
+                        "image/png",
+                        1
+                    );
+                }
+            );
 
             if (!blob) {
                 throw new Error(
@@ -923,20 +825,8 @@ botaoBaixarCard.addEventListener(
                 );
             }
 
-
-            /* -----------------------------------------
-               URL TEMPORÁRIA
-            ----------------------------------------- */
-
             arquivoURL =
-                URL.createObjectURL(
-                    blob
-                );
-
-
-            /* -----------------------------------------
-               NOME DO ARQUIVO
-            ----------------------------------------- */
+                URL.createObjectURL(blob);
 
             const nick =
                 campos.nick.value.trim() ||
@@ -966,18 +856,11 @@ botaoBaixarCard.addEventListener(
                 const link =
                     document.createElement("a");
 
-                link.href =
-                    arquivoURL;
+                link.href = arquivoURL;
+                link.download = nomeFinal;
+                link.style.display = "none";
 
-                link.download =
-                    nomeFinal;
-
-                link.style.display =
-                    "none";
-
-                document.body.appendChild(
-                    link
-                );
+                document.body.appendChild(link);
 
                 link.click();
 
@@ -987,26 +870,52 @@ botaoBaixarCard.addEventListener(
                     "✨ Card baixado em alta resolução!"
                 );
 
-                setTimeout(
-                    () => {
-                        if (arquivoURL) {
-                            URL.revokeObjectURL(
-                                arquivoURL
-                            );
+                setTimeout(() => {
+                    if (arquivoURL) {
+                        URL.revokeObjectURL(
+                            arquivoURL
+                        );
 
-                            arquivoURL = null;
-                        }
-                    },
-                    2000
-                );
+                        arquivoURL = null;
+                    }
+                }, 2000);
 
                 return;
             }
 
 
             /* =================================================
-               CELULAR
-               TENTATIVA 1 — COMPARTILHAR ARQUIVO
+               CELULAR — PRIMEIRO TENTA DOWNLOAD
+            ================================================= */
+
+            const linkDownload =
+                document.createElement("a");
+
+            linkDownload.href = arquivoURL;
+            linkDownload.download = nomeFinal;
+            linkDownload.setAttribute(
+                "download",
+                nomeFinal
+            );
+
+            linkDownload.style.display = "none";
+
+            document.body.appendChild(
+                linkDownload
+            );
+
+            linkDownload.click();
+
+            linkDownload.remove();
+
+            await new Promise((resolve) => {
+                setTimeout(resolve, 800);
+            });
+
+
+            /* =================================================
+               CELULAR — SEGUNDA TENTATIVA
+               COMPARTILHAMENTO
             ================================================= */
 
             if (
@@ -1019,36 +928,27 @@ botaoBaixarCard.addEventListener(
                             [blob],
                             nomeFinal,
                             {
-                                type:
-                                    "image/png"
+                                type: "image/png"
                             }
                         );
 
                     const podeCompartilhar =
                         navigator.canShare({
-                            files: [
-                                arquivo
-                            ]
+                            files: [arquivo]
                         });
 
-                    if (
-                        podeCompartilhar
-                    ) {
-                        await navigator.share({
-                            files: [
-                                arquivo
-                            ],
+                    if (podeCompartilhar) {
+                        mostrarToast(
+                            "📱 O navegador bloqueou o download automático. Escolha salvar a imagem."
+                        );
 
+                        await navigator.share({
+                            files: [arquivo],
                             title:
                                 "Meu card da Casa dos MBTIs",
-
                             text:
                                 "Meu card da Casa dos MBTIs 🏠🧠"
                         });
-
-                        mostrarToast(
-                            "✨ Imagem pronta para salvar!"
-                        );
 
                         URL.revokeObjectURL(
                             arquivoURL
@@ -1058,10 +958,9 @@ botaoBaixarCard.addEventListener(
 
                         return;
                     }
-
                 } catch (erro) {
                     console.warn(
-                        "Compartilhamento não disponível:",
+                        "Compartilhamento cancelado ou indisponível:",
                         erro
                     );
                 }
@@ -1069,9 +968,14 @@ botaoBaixarCard.addEventListener(
 
 
             /* =================================================
-               CELULAR
-               TENTATIVA 2 — ABRIR A IMAGEM
+               CELULAR — ÚLTIMO FALLBACK
+               ABRIR A IMAGEM
             ================================================= */
+
+            const imagemBase64 =
+                canvas.toDataURL(
+                    "image/png"
+                );
 
             const novaAba =
                 window.open(
@@ -1080,11 +984,6 @@ botaoBaixarCard.addEventListener(
                 );
 
             if (novaAba) {
-                const imagemBase64 =
-                    canvas.toDataURL(
-                        "image/png"
-                    );
-
                 novaAba.document.open();
 
                 novaAba.document.write(`
@@ -1100,7 +999,7 @@ botaoBaixarCard.addEventListener(
                         >
 
                         <title>
-                            Meu Card - Casa dos MBTIs
+                            Casa dos MBTIs
                         </title>
 
                         <style>
@@ -1112,6 +1011,7 @@ botaoBaixarCard.addEventListener(
                             body {
                                 width: 100%;
                                 min-height: 100%;
+
                                 margin: 0;
                                 padding: 0;
 
@@ -1127,8 +1027,8 @@ botaoBaixarCard.addEventListener(
                                 align-items: center;
 
                                 padding:
-                                    18px
-                                    12px
+                                    16px
+                                    10px
                                     30px;
 
                                 font-family:
@@ -1143,30 +1043,20 @@ botaoBaixarCard.addEventListener(
                                 max-width: 900px;
                                 height: auto;
 
-                                border-radius: 12px;
+                                user-select: none;
+                                -webkit-user-select: none;
                             }
 
-                            .instrucao {
-                                max-width: 500px;
+                            p {
+                                margin-top: 16px;
 
-                                margin-top: 18px;
+                                color: #fff;
 
-                                color: #ffffff;
+                                text-align: center;
 
-                                font-size: 15px;
+                                font-size: 14px;
+
                                 line-height: 1.5;
-
-                                text-align: center;
-                            }
-
-                            .nome {
-                                margin-top: 6px;
-
-                                color: #a98aff;
-
-                                font-size: 12px;
-
-                                text-align: center;
                             }
                         </style>
                     </head>
@@ -1178,14 +1068,10 @@ botaoBaixarCard.addEventListener(
                             alt="Card da Casa dos MBTIs"
                         >
 
-                        <div class="instrucao">
+                        <p>
                             Toque e segure a imagem
                             para salvar na galeria 📱✨
-                        </div>
-
-                        <div class="nome">
-                            Casa dos MBTIs 🏠🧠
-                        </div>
+                        </p>
 
                     </body>
 
@@ -1195,7 +1081,7 @@ botaoBaixarCard.addEventListener(
                 novaAba.document.close();
 
                 mostrarToast(
-                    "✨ Imagem aberta! Toque e segure para salvar."
+                    "✨ Se o download não iniciar, toque e segure a imagem para salvar."
                 );
 
                 URL.revokeObjectURL(
@@ -1207,53 +1093,8 @@ botaoBaixarCard.addEventListener(
                 return;
             }
 
-
-            /* =================================================
-               CELULAR
-               TENTATIVA 3 — DOWNLOAD NATIVO
-            ================================================= */
-
-            const link =
-                document.createElement("a");
-
-            link.href =
-                arquivoURL;
-
-            link.download =
-                nomeFinal;
-
-            link.target =
-                "_blank";
-
-            link.rel =
-                "noopener";
-
-            link.style.display =
-                "none";
-
-            document.body.appendChild(
-                link
-            );
-
-            link.click();
-
-            link.remove();
-
-            mostrarToast(
-                "✨ Imagem pronta para salvar!"
-            );
-
-            setTimeout(
-                () => {
-                    if (arquivoURL) {
-                        URL.revokeObjectURL(
-                            arquivoURL
-                        );
-
-                        arquivoURL = null;
-                    }
-                },
-                5000
+            throw new Error(
+                "O navegador bloqueou o download e a abertura da imagem."
             );
 
         } catch (erro) {
