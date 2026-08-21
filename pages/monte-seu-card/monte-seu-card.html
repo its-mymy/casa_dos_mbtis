@@ -4,11 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monte seu Card | Casa dos MBTIs</title>
+    <title>Monte sua Identidade | Casa dos MBTIs</title>
+
     <link rel="stylesheet" href="monte-seu-card.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 </head>
@@ -28,18 +32,28 @@
             </div>
 
             <div class="titulo-area">
-                <span class="eyebrow">IDENTIDADE</span>
-                <h1>Monte seu Card</h1>
-                <p>Crie sua identidade MBTI, escolha suas cores e veja seu card nascer em tempo real.</p>
+                <span class="eyebrow">IDENTIDADE DA COMUNIDADE</span>
+                <h1>Monte sua identidade</h1>
+                <p>Crie seu card da Casa dos MBTIs com seu nick, tipologias, grupo e estética favorita.</p>
             </div>
         </header>
+
+        <div class="aviso-inicial">
+            <span class="aviso-icone">✦</span>
+
+            <div>
+                <strong>Faça sua identidade da comunidade!</strong>
+                <p>Preencha suas informações, escolha um fundo e monte um card que tenha a sua cara.</p>
+            </div>
+        </div>
 
         <section class="builder">
             <aside class="painel-form">
                 <div class="secao-titulo">
                     <div class="numero">01</div>
+
                     <div>
-                        <h2>Suas informações</h2>
+                        <h2>Sua identidade</h2>
                         <p>Preencha seu perfil</p>
                     </div>
                 </div>
@@ -52,6 +66,7 @@
                 <div class="grid-2">
                     <div class="campo">
                         <label for="mbti">MBTI</label>
+
                         <select id="mbti">
                             <option value="">Selecione</option>
                             <option>INTJ</option>
@@ -77,6 +92,17 @@
                         <label for="eneagrama">ENEAGRAMA</label>
                         <input type="text" id="eneagrama" placeholder="7w6" maxlength="10">
                     </div>
+                </div>
+
+                <div class="campo">
+                    <label for="grupo">GRUPO DA COMUNIDADE</label>
+
+                    <select id="grupo">
+                        <option value="Analistas">Analistas</option>
+                        <option value="Sentinelas">Sentinelas</option>
+                        <option value="Exploradores">Exploradores</option>
+                        <option value="Diplomatas">Diplomatas</option>
+                    </select>
                 </div>
 
                 <div class="grid-2">
@@ -116,7 +142,7 @@
 
                     <div class="campo">
                         <label for="bigfive">BIG FIVE</label>
-                        <input type="text" id="bigfive" placeholder="SCUEI" maxlength="15">
+                        <input type="text" id="bigfive" placeholder="SCOEI" maxlength="15">
                     </div>
                 </div>
 
@@ -124,6 +150,7 @@
 
                 <div class="secao-titulo">
                     <div class="numero">02</div>
+
                     <div>
                         <h2>Personalize o fundo</h2>
                         <p>Escolha imagem ou cor</p>
@@ -242,19 +269,19 @@
                         </label>
 
                         <div class="fundo-cor-info">
-                            <span>Escolha qualquer cor para o fundo do card.</span>
+                            <span>Escolha qualquer cor para o fundo.</span>
                             <strong id="valorCorFundo">#D9CCD9</strong>
                         </div>
                     </div>
 
                     <div class="fundos-prontos">
-                        <button class="fundo-opcao ativa" type="button" data-color="#d9ccd9" title="Lilás"></button>
-                        <button class="fundo-opcao" type="button" data-color="#f3d8e7" title="Rosa"></button>
-                        <button class="fundo-opcao" type="button" data-color="#d7e5f5" title="Azul claro"></button>
-                        <button class="fundo-opcao" type="button" data-color="#dcebd8" title="Verde claro"></button>
-                        <button class="fundo-opcao" type="button" data-color="#f5e5b8" title="Amarelo"></button>
-                        <button class="fundo-opcao" type="button" data-color="#242036" title="Roxo escuro"></button>
-                        <button class="fundo-opcao" type="button" data-color="#15151c" title="Preto"></button>
+                        <button class="fundo-opcao ativa" type="button" data-color="#d9ccd9"></button>
+                        <button class="fundo-opcao" type="button" data-color="#f3d8e7"></button>
+                        <button class="fundo-opcao" type="button" data-color="#d7e5f5"></button>
+                        <button class="fundo-opcao" type="button" data-color="#dcebd8"></button>
+                        <button class="fundo-opcao" type="button" data-color="#f5e5b8"></button>
+                        <button class="fundo-opcao" type="button" data-color="#242036"></button>
+                        <button class="fundo-opcao" type="button" data-color="#15151c"></button>
                     </div>
                 </div>
 
@@ -262,14 +289,14 @@
                     <label>COR DAS LETRAS</label>
 
                     <div class="paleta-cores">
-                        <button class="cor-opcao ativa" type="button" data-color="#8c52e8" title="Roxo"></button>
-                        <button class="cor-opcao" type="button" data-color="#f0bd35" title="Amarelo"></button>
-                        <button class="cor-opcao" type="button" data-color="#4d82e8" title="Azul"></button>
-                        <button class="cor-opcao" type="button" data-color="#5c9b68" title="Verde"></button>
-                        <button class="cor-opcao" type="button" data-color="#8d334b" title="Vinho"></button>
-                        <button class="cor-opcao" type="button" data-color="#273c7a" title="Azul escuro"></button>
+                        <button class="cor-opcao ativa" type="button" data-color="#8c52e8"></button>
+                        <button class="cor-opcao" type="button" data-color="#f0bd35"></button>
+                        <button class="cor-opcao" type="button" data-color="#4d82e8"></button>
+                        <button class="cor-opcao" type="button" data-color="#5c9b68"></button>
+                        <button class="cor-opcao" type="button" data-color="#d45487"></button>
+                        <button class="cor-opcao" type="button" data-color="#273c7a"></button>
 
-                        <label class="cor-personalizada" title="Escolher outra cor">
+                        <label class="cor-personalizada" title="Escolher qualquer cor">
                             <input type="color" id="cor" value="#8c52e8">
                             <span>+</span>
                         </label>
@@ -278,13 +305,34 @@
                     <span id="valorCor">#8C52E8</span>
                 </div>
 
+                <div class="campo">
+                    <label>COR DO TOPO</label>
+
+                    <div class="paleta-cores">
+                        <button class="cor-topo-opcao ativa" type="button" data-color="#8c52e8"></button>
+                        <button class="cor-topo-opcao" type="button" data-color="#f0bd35"></button>
+                        <button class="cor-topo-opcao" type="button" data-color="#4d82e8"></button>
+                        <button class="cor-topo-opcao" type="button" data-color="#5c9b68"></button>
+                        <button class="cor-topo-opcao" type="button" data-color="#d45487"></button>
+                        <button class="cor-topo-opcao" type="button" data-color="#ffffff"></button>
+
+                        <label class="cor-personalizada" title="Escolher qualquer cor">
+                            <input type="color" id="corTopo" value="#8c52e8">
+                            <span>+</span>
+                        </label>
+                    </div>
+
+                    <span id="valorCorTopo">#8C52E8</span>
+                </div>
+
                 <div class="linha-divisoria"></div>
 
                 <div class="secao-titulo pequeno">
                     <div class="numero">03</div>
+
                     <div>
                         <h2>Seu card</h2>
-                        <p>Salve ou compartilhe</p>
+                        <p>Salve ou copie o link</p>
                     </div>
                 </div>
 
@@ -293,17 +341,14 @@
                         ↓ Baixar como imagem
                     </button>
 
-                    <button class="btn" id="compartilharCard" type="button">
-                        ↗ Compartilhar
-                    </button>
-
                     <button class="btn" id="copiarLink" type="button">
                         🔗 Copiar link do card
                     </button>
                 </div>
 
                 <p class="aviso">
-                    ✦ Nenhum dado é salvo em banco de dados. Seu card existe apenas na página / no link.
+                    ✦ Nenhum dado é salvo em banco de dados.
+                    Seu card existe apenas na página ou no link.
                 </p>
             </aside>
 
@@ -317,7 +362,6 @@
                     <div id="cardGerado" class="card-gerado">
                         <div class="card-overlay"></div>
 
-                        <div class="carinha carinha-1">૮ ˶ᵔ ᵕ ᵔ˶ ა</div>
                         <div class="carinha carinha-2">♡</div>
 
                         <div class="decor decor-1">✦</div>
@@ -326,15 +370,17 @@
 
                         <div class="card-conteudo">
                             <div class="card-topo">
-                                <div class="card-marca">
-                                    <div class="marca-casa">
-                                        <span>🏠 CASA DOS</span>
-                                        <strong>MBTIs</strong>
-                                    </div>
+                                <div class="marca-casa">
+                                    <span>CASA DOS</span>
+                                    <strong>MBTIs</strong>
                                 </div>
 
-                                <div class="card-id">ID CARD</div>
+                                <div class="card-id">
+                                    ID CARD
+                                </div>
                             </div>
+
+                            <div class="linha-identidade"></div>
 
                             <div class="card-corpo">
                                 <div class="avatar-area">
@@ -343,14 +389,19 @@
                                         <small>SUA FOTO</small>
                                     </div>
 
-                                    <div class="avatar-tag">
-                                        CASA DOS MBTIs
+                                    <div class="grupo-card">
+                                        <span>GRUPO</span>
+
+                                        <div class="grupo-valor">
+                                            <i id="grupoBolinha"></i>
+                                            <strong id="cardGrupo">Analistas</strong>
+                                        </div>
                                     </div>
                                 </div>
 
                                 <div class="informacoes-card">
                                     <div class="nome-card">
-                                        <span>NAME:</span>
+                                        <span>NAME</span>
                                         <strong id="cardNick">Seu Nick</strong>
                                     </div>
 
@@ -407,13 +458,14 @@
 
                             <div class="card-footer">
                                 <span>ESTA É MINHA IDENTIDADE.</span>
+                                <span>🏠 CASADOSMBTIS</span>
                             </div>
                         </div>
                     </div>
                 </div>
 
                 <p class="preview-info">
-                    Digite, escolha uma imagem ou uma cor e veja tudo mudar instantaneamente.
+                    Digite suas informações e veja sua identidade nascer em tempo real.
                 </p>
             </section>
         </section>

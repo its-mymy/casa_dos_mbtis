@@ -2,6 +2,7 @@ const campos = {
     nick: document.getElementById("nick"),
     mbti: document.getElementById("mbti"),
     eneagrama: document.getElementById("eneagrama"),
+    grupo: document.getElementById("grupo"),
     subtipo: document.getElementById("subtipo"),
     stacking: document.getElementById("stacking"),
     temperamento: document.getElementById("temperamento"),
@@ -15,6 +16,7 @@ const elementosCard = {
     nick: document.getElementById("cardNick"),
     mbti: document.getElementById("cardMbti"),
     eneagrama: document.getElementById("cardEneagrama"),
+    grupo: document.getElementById("cardGrupo"),
     subtipo: document.getElementById("cardSubtipo"),
     stacking: document.getElementById("cardStacking"),
     temperamento: document.getElementById("cardTemperamento"),
@@ -25,12 +27,18 @@ const elementosCard = {
 };
 
 const card = document.getElementById("cardGerado");
+const grupoBolinha = document.getElementById("grupoBolinha");
+
 const colorPicker = document.getElementById("cor");
+const corTopo = document.getElementById("corTopo");
 const corFundo = document.getElementById("corFundo");
+
 const valorCor = document.getElementById("valorCor");
+const valorCorTopo = document.getElementById("valorCorTopo");
 const valorCorFundo = document.getElementById("valorCorFundo");
 
 const botoesCor = document.querySelectorAll(".cor-opcao");
+const botoesCorTopo = document.querySelectorAll(".cor-topo-opcao");
 const botoesFundo = document.querySelectorAll(".fundo-opcao");
 const botoesTema = document.querySelectorAll(".tema");
 const botoesTipoFundo = document.querySelectorAll(".tipo-fundo-btn");
@@ -46,6 +54,7 @@ const valoresPadrao = {
     nick: "Seu Nick",
     mbti: "ENTP",
     eneagrama: "7w6",
+    grupo: "Analistas",
     subtipo: "sp7",
     stacking: "sp/so",
     temperamento: "Sanguíneo",
@@ -112,6 +121,48 @@ const temas = {
     }
 };
 
+const coresGrupos = {
+    Analistas: "#8c52e8",
+    Sentinelas: "#4d82e8",
+    Exploradores: "#f0bd35",
+    Diplomatas: "#5c9b68"
+};
+
+function ajustarTamanhoNick() {
+    const nick = elementosCard.nick;
+    const valor = campos.nick.value.trim();
+    const tamanho = valor.length;
+
+    if (!valor) {
+        nick.style.fontSize = "";
+        return;
+    }
+
+    if (tamanho <= 5) {
+        nick.style.fontSize = "clamp(32px, 4.5vw, 55px)";
+    } else if (tamanho <= 9) {
+        nick.style.fontSize = "clamp(27px, 3.8vw, 47px)";
+    } else if (tamanho <= 14) {
+        nick.style.fontSize = "clamp(23px, 3.2vw, 40px)";
+    } else if (tamanho <= 20) {
+        nick.style.fontSize = "clamp(20px, 2.8vw, 35px)";
+    } else {
+        nick.style.fontSize = "clamp(17px, 2.4vw, 30px)";
+    }
+}
+
+function atualizarGrupoCard() {
+    if (!campos.grupo || !elementosCard.grupo || !grupoBolinha) {
+        return;
+    }
+
+    const grupo = campos.grupo.value || valoresPadrao.grupo;
+
+    elementosCard.grupo.textContent = grupo;
+    grupoBolinha.style.background =
+        coresGrupos[grupo] || coresGrupos.Analistas;
+}
+
 function atualizarCard() {
     Object.keys(campos).forEach((chave) => {
         const valor = campos[chave].value.trim();
@@ -119,6 +170,9 @@ function atualizarCard() {
         elementosCard[chave].textContent =
             valor || valoresPadrao[chave];
     });
+
+    ajustarTamanhoNick();
+    atualizarGrupoCard();
 }
 
 function agendarSalvarURL() {
@@ -130,6 +184,10 @@ function agendarSalvarURL() {
 }
 
 Object.values(campos).forEach((campo) => {
+    if (!campo) {
+        return;
+    }
+
     campo.addEventListener("input", () => {
         atualizarCard();
         agendarSalvarURL();
@@ -141,6 +199,15 @@ Object.values(campos).forEach((campo) => {
     });
 });
 
+function atualizarBotoesCor(botoes, cor) {
+    botoes.forEach((botao) => {
+        botao.classList.toggle(
+            "ativa",
+            botao.dataset.color.toLowerCase() === cor.toLowerCase()
+        );
+    });
+}
+
 function aplicarCorTexto(cor, salvar = true) {
     if (!cor) {
         return;
@@ -148,22 +215,37 @@ function aplicarCorTexto(cor, salvar = true) {
 
     card.style.setProperty("--card-primary", cor);
 
-    try {
+    if (colorPicker) {
         colorPicker.value = cor;
-    } catch (erro) {
-        console.warn("Não foi possível atualizar o seletor de cor.");
     }
 
     if (valorCor) {
         valorCor.textContent = cor.toUpperCase();
     }
 
-    botoesCor.forEach((botao) => {
-        botao.classList.toggle(
-            "ativa",
-            botao.dataset.color.toLowerCase() === cor.toLowerCase()
-        );
-    });
+    atualizarBotoesCor(botoesCor, cor);
+
+    if (salvar) {
+        salvarNaURL();
+    }
+}
+
+function aplicarCorTopo(cor, salvar = true) {
+    if (!cor) {
+        return;
+    }
+
+    card.style.setProperty("--card-top", cor);
+
+    if (corTopo) {
+        corTopo.value = cor;
+    }
+
+    if (valorCorTopo) {
+        valorCorTopo.textContent = cor.toUpperCase();
+    }
+
+    atualizarBotoesCor(botoesCorTopo, cor);
 
     if (salvar) {
         salvarNaURL();
@@ -176,9 +258,23 @@ botoesCor.forEach((botao) => {
     });
 });
 
-colorPicker.addEventListener("input", () => {
-    aplicarCorTexto(colorPicker.value);
+botoesCorTopo.forEach((botao) => {
+    botao.addEventListener("click", () => {
+        aplicarCorTopo(botao.dataset.color);
+    });
 });
+
+if (colorPicker) {
+    colorPicker.addEventListener("input", () => {
+        aplicarCorTexto(colorPicker.value);
+    });
+}
+
+if (corTopo) {
+    corTopo.addEventListener("input", () => {
+        aplicarCorTopo(corTopo.value);
+    });
+}
 
 function aplicarCorFundo(cor, salvar = true) {
     if (!cor) {
@@ -191,10 +287,8 @@ function aplicarCorFundo(cor, salvar = true) {
     card.style.backgroundColor = cor;
     card.style.setProperty("--card-background", cor);
 
-    try {
+    if (corFundo) {
         corFundo.value = cor;
-    } catch (erro) {
-        console.warn("Não foi possível atualizar o seletor do fundo.");
     }
 
     if (valorCorFundo) {
@@ -221,9 +315,11 @@ botoesFundo.forEach((botao) => {
     });
 });
 
-corFundo.addEventListener("input", () => {
-    aplicarCorFundo(corFundo.value);
-});
+if (corFundo) {
+    corFundo.addEventListener("input", () => {
+        aplicarCorFundo(corFundo.value);
+    });
+}
 
 function aplicarTema(nomeTema, salvar = true) {
     const tema = temas[nomeTema];
@@ -239,7 +335,7 @@ function aplicarTema(nomeTema, salvar = true) {
     card.style.backgroundColor = "transparent";
     card.style.backgroundImage = `url("${tema.imagem}")`;
     card.style.backgroundSize = "cover";
-    card.style.backgroundPosition = "center";
+    card.style.backgroundPosition = "center center";
     card.style.backgroundRepeat = "no-repeat";
 
     botoesTema.forEach((botao) => {
@@ -285,7 +381,13 @@ botoesTipoFundo.forEach((botao) => {
 
         if (tipo === "imagem") {
             tipoFundo = "imagem";
-            aplicarTema(temaAtual);
+
+            aplicarTema(
+                temas[temaAtual]
+                    ? temaAtual
+                    : "azul"
+            );
+
             return;
         }
 
@@ -301,6 +403,7 @@ function pegarDados() {
         nick: campos.nick.value.trim(),
         mbti: campos.mbti.value.trim(),
         eneagrama: campos.eneagrama.value.trim(),
+        grupo: campos.grupo.value.trim(),
         subtipo: campos.subtipo.value.trim(),
         stacking: campos.stacking.value.trim(),
         temperamento: campos.temperamento.value.trim(),
@@ -311,6 +414,7 @@ function pegarDados() {
         tipoFundo,
         tema: temaAtual,
         cor: colorPicker.value,
+        corTopo: corTopo.value,
         corFundo: corFundo.value
     };
 }
@@ -320,9 +424,9 @@ function codificarDados(dados) {
         throw new Error("LZString não foi carregado.");
     }
 
-    const texto = JSON.stringify(dados);
-
-    return LZString.compressToEncodedURIComponent(texto);
+    return LZString.compressToEncodedURIComponent(
+        JSON.stringify(dados)
+    );
 }
 
 function decodificarDados(codigo) {
@@ -369,7 +473,8 @@ function salvarNaURL() {
 }
 
 function carregarDadosDaURL() {
-    const codigo = window.location.hash.substring(1);
+    const codigo =
+        window.location.hash.substring(1);
 
     if (!codigo) {
         return null;
@@ -424,7 +529,12 @@ async function prepararImagensDoCard() {
 }
 
 function mostrarToast(mensagem) {
-    const toast = document.getElementById("toast");
+    const toast =
+        document.getElementById("toast");
+
+    if (!toast) {
+        return;
+    }
 
     toast.textContent = mensagem;
     toast.classList.add("mostrar");
@@ -439,34 +549,52 @@ async function carregarDaURL() {
 
     if (!dados) {
         atualizarCard();
-        aplicarCorTexto("#8c52e8", false);
-        aplicarTema("azul", false);
+
+        aplicarCorTexto(
+            "#8c52e8",
+            false
+        );
+
+        aplicarCorTopo(
+            "#8c52e8",
+            false
+        );
+
+        aplicarTema(
+            "azul",
+            false
+        );
+
         atualizarTipoFundoVisual();
+
         return;
     }
 
     preencherCampos(dados);
 
-    tipoFundo = dados.tipoFundo || "imagem";
-    temaAtual = dados.tema || "azul";
+    tipoFundo =
+        dados.tipoFundo || "imagem";
+
+    temaAtual =
+        dados.tema || "azul";
 
     aplicarCorTexto(
         dados.cor || "#8c52e8",
         false
     );
 
+    aplicarCorTopo(
+        dados.corTopo || "#8c52e8",
+        false
+    );
+
     if (tipoFundo === "imagem") {
-        if (temas[temaAtual]) {
-            aplicarTema(
-                temaAtual,
-                false
-            );
-        } else {
-            aplicarTema(
-                "azul",
-                false
-            );
-        }
+        aplicarTema(
+            temas[temaAtual]
+                ? temaAtual
+                : "azul",
+            false
+        );
     } else {
         aplicarCorFundo(
             dados.corFundo || "#d9ccd9",
@@ -480,189 +608,195 @@ async function carregarDaURL() {
 
 document
     .getElementById("copiarLink")
-    .addEventListener("click", async () => {
-        salvarNaURL();
+    .addEventListener(
+        "click",
+        async () => {
+            salvarNaURL();
 
-        try {
-            await navigator.clipboard.writeText(
-                window.location.href
-            );
-
-            mostrarToast(
-                "🔗 Link do card copiado!"
-            );
-        } catch (erro) {
-            mostrarToast(
-                "Não foi possível copiar o link."
-            );
-        }
-    });
-
-document
-    .getElementById("compartilharCard")
-    .addEventListener("click", async () => {
-        salvarNaURL();
-
-        const nick =
-            campos.nick.value.trim() ||
-            "meu card";
-
-        if (navigator.share) {
-            try {
-                await navigator.share({
-                    title:
-                        `Card de ${nick} | Casa dos MBTIs`,
-                    text:
-                        "Olha meu card da Casa dos MBTIs 🏠🧠",
-                    url:
-                        window.location.href
-                });
-            } catch (erro) {
-                return;
-            }
-        } else {
             try {
                 await navigator.clipboard.writeText(
                     window.location.href
                 );
 
                 mostrarToast(
-                    "🔗 Link copiado!"
+                    "🔗 Link do card copiado!"
                 );
             } catch (erro) {
+                console.error(erro);
+
                 mostrarToast(
-                    "Copie o link da barra do navegador."
+                    "Não foi possível copiar o link."
                 );
             }
         }
-    });
+    );
 
 document
     .getElementById("baixarCard")
-    .addEventListener("click", async () => {
-        const botao =
-            document.getElementById("baixarCard");
-
-        botao.disabled = true;
-        botao.textContent =
-            "Gerando card...";
-
-        try {
-            if (typeof html2canvas !== "function") {
-                throw new Error(
-                    "html2canvas não foi carregado."
+    .addEventListener(
+        "click",
+        async () => {
+            const botao =
+                document.getElementById(
+                    "baixarCard"
                 );
-            }
 
-            await document.fonts.ready;
-            await prepararImagensDoCard();
+            botao.disabled = true;
+            botao.textContent =
+                "Gerando card...";
 
-            await new Promise((resolve) => {
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(resolve);
-                });
-            });
+            try {
+                if (
+                    typeof html2canvas !==
+                    "function"
+                ) {
+                    throw new Error(
+                        "html2canvas não foi carregado."
+                    );
+                }
 
-            const canvas =
-                await html2canvas(
-                    card,
-                    {
-                        scale: 2,
-                        useCORS: true,
-                        allowTaint: false,
-                        backgroundColor: null,
-                        logging: false,
-                        imageTimeout: 20000,
-                        removeContainer: true,
-                        onclone: (documento) => {
-                            const cardClone =
-                                documento.getElementById(
-                                    "cardGerado"
+                await document.fonts.ready;
+                await prepararImagensDoCard();
+
+                await new Promise(
+                    (resolve) => {
+                        requestAnimationFrame(
+                            () => {
+                                requestAnimationFrame(
+                                    resolve
                                 );
-
-                            if (!cardClone) {
-                                return;
                             }
-
-                            cardClone.style.transform =
-                                "none";
-
-                            cardClone.style.filter =
-                                "none";
-
-                            cardClone.style.boxShadow =
-                                "none";
-
-                            const elementos =
-                                cardClone.querySelectorAll(
-                                    "*"
-                                );
-
-                            elementos.forEach(
-                                (elemento) => {
-                                    elemento.style.animation =
-                                        "none";
-
-                                    elemento.style.transition =
-                                        "none";
-                                }
-                            );
-                        }
+                        );
                     }
                 );
 
-            const link =
-                document.createElement("a");
+                const largura =
+                    card.offsetWidth;
 
-            const nick =
-                campos.nick.value.trim() ||
-                "meu-card";
+                const altura =
+                    card.offsetHeight;
 
-            const nomeArquivo =
-                nick
-                    .replace(
-                        /[^a-zA-Z0-9À-ÿ\s-_]/g,
-                        ""
-                    )
-                    .trim()
-                    .replace(
-                        /\s+/g,
-                        "-"
+                const escala = 3;
+
+                const canvas =
+                    await html2canvas(
+                        card,
+                        {
+                            scale: escala,
+                            width: largura,
+                            height: altura,
+                            useCORS: true,
+                            allowTaint: false,
+                            backgroundColor: null,
+                            logging: false,
+                            imageTimeout: 20000,
+                            removeContainer: true,
+                            scrollX: 0,
+                            scrollY: 0,
+                            windowWidth:
+                                document.documentElement.clientWidth,
+                            windowHeight:
+                                document.documentElement.clientHeight,
+
+                            onclone:
+                                (
+                                    documento
+                                ) => {
+                                    const cardClone =
+                                        documento.getElementById(
+                                            "cardGerado"
+                                        );
+
+                                    if (
+                                        !cardClone
+                                    ) {
+                                        return;
+                                    }
+
+                                    cardClone.style.transform =
+                                        "none";
+
+                                    cardClone.style.filter =
+                                        "none";
+
+                                    cardClone.style.boxShadow =
+                                        "none";
+
+                                    const elementos =
+                                        cardClone.querySelectorAll(
+                                            "*"
+                                        );
+
+                                    elementos.forEach(
+                                        (
+                                            elemento
+                                        ) => {
+                                            elemento.style.animation =
+                                                "none";
+
+                                            elemento.style.transition =
+                                                "none";
+                                        }
+                                    );
+                                }
+                        }
                     );
 
-            link.download =
-                `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
+                const link =
+                    document.createElement(
+                        "a"
+                    );
 
-            link.href =
-                canvas.toDataURL(
-                    "image/png"
+                const nick =
+                    campos.nick.value.trim() ||
+                    "meu-card";
+
+                const nomeArquivo =
+                    nick
+                        .replace(
+                            /[^a-zA-Z0-9À-ÿ\s-_]/g,
+                            ""
+                        )
+                        .trim()
+                        .replace(
+                            /\s+/g,
+                            "-"
+                        );
+
+                link.download =
+                    `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
+
+                link.href =
+                    canvas.toDataURL(
+                        "image/png"
+                    );
+
+                document.body.appendChild(
+                    link
                 );
 
-            document.body.appendChild(
-                link
-            );
+                link.click();
+                link.remove();
 
-            link.click();
-            link.remove();
+                mostrarToast(
+                    "✨ Card baixado em alta resolução!"
+                );
+            } catch (erro) {
+                console.error(
+                    "ERRO AO GERAR O CARD:",
+                    erro
+                );
 
-            mostrarToast(
-                "✨ Card baixado!"
-            );
-        } catch (erro) {
-            console.error(
-                "ERRO AO GERAR O CARD:",
-                erro
-            );
+                mostrarToast(
+                    "😿 Não consegui gerar a imagem."
+                );
+            } finally {
+                botao.disabled = false;
 
-            mostrarToast(
-                "😿 Não consegui gerar a imagem."
-            );
-        } finally {
-            botao.disabled = false;
-
-            botao.textContent =
-                "↓ Baixar como imagem";
+                botao.textContent =
+                    "↓ Baixar como imagem";
+            }
         }
-    });
+    );
 
 carregarDaURL();
