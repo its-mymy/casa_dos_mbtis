@@ -258,6 +258,8 @@ body {
     font-size: 11px;
     font-weight: 600;
     transition: .2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .tipo-fundo-btn:hover {
@@ -284,17 +286,21 @@ body {
 .temas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 9px;
+    gap: 10px;
     margin-bottom: 20px;
 }
 
 .tema {
-    padding: 0;
+    width: 100%;
+    min-width: 0;
+    padding: 2px;
     border: 0;
     background: transparent;
     cursor: pointer;
     color: #9f96aa;
     font-family: inherit;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .tema img {
@@ -307,6 +313,16 @@ body {
     opacity: .72;
     transition: .2s ease;
     box-shadow: 0 4px 15px rgba(0, 0, 0, .18);
+    pointer-events: none;
+}
+
+.tema span {
+    display: block;
+    margin-top: 5px;
+    color: #898092;
+    font-size: 9px;
+    font-weight: 600;
+    pointer-events: none;
 }
 
 .tema:hover img {
@@ -320,14 +336,6 @@ body {
     box-shadow:
         0 0 0 2px rgba(143, 101, 214, .15),
         0 8px 22px rgba(99, 68, 220, .18);
-}
-
-.tema span {
-    display: block;
-    margin-top: 5px;
-    color: #898092;
-    font-size: 9px;
-    font-weight: 600;
 }
 
 .cor-fundo-controle {
@@ -411,6 +419,8 @@ body {
     border-radius: 50%;
     cursor: pointer;
     transition: .2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .fundo-opcao:hover {
@@ -531,6 +541,8 @@ body {
     font-family: inherit;
     font-weight: 600;
     transition: .2s ease;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .btn:hover {
@@ -1045,6 +1057,20 @@ body {
 
     .temas {
         grid-template-columns: repeat(4, 1fr);
+        gap: 11px 9px;
+    }
+
+    .tema {
+        padding: 3px;
+    }
+
+    .tema img {
+        border-radius: 12px;
+    }
+
+    .tema span {
+        font-size: 9px;
+        margin-top: 5px;
     }
 
     .preview-topo {
@@ -1258,6 +1284,23 @@ body {
 
     .temas {
         grid-template-columns: repeat(3, 1fr);
+        gap: 12px 10px;
+    }
+
+    .tema {
+        padding: 3px;
+        min-height: 0;
+    }
+
+    .tema img {
+        width: 100%;
+        aspect-ratio: 1 / 1;
+        border-radius: 11px;
+    }
+
+    .tema span {
+        font-size: 8px;
+        margin-top: 5px;
     }
 
     .tipo-fundo {
