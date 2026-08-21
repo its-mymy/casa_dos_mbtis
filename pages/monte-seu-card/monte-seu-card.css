@@ -694,7 +694,6 @@ body::before {
     --card-primary: #8c52e8;
     --card-top: #8c52e8;
     --card-background: #d9ccd9;
-
     position: relative;
     width: min(100%, 900px);
     aspect-ratio: 1.58 / 1;
@@ -1223,10 +1222,21 @@ body::before {
     }
 
     .builder {
+        display: flex;
+        flex-direction: column;
         gap: 24px;
     }
 
+    .preview-area {
+        width: 100%;
+        order: 1;
+    }
+
     .painel-form {
+        width: 100%;
+        order: 2;
+        position: relative;
+        top: 0;
         padding: 19px;
         border-radius: 22px;
     }
@@ -1240,91 +1250,163 @@ body::before {
         gap: 11px 9px;
     }
 
+    .tipo-fundo {
+        gap: 7px;
+    }
+
+    .tipo-fundo-btn {
+        min-height: 40px;
+        font-size: 10px;
+    }
+
+    .paleta-cores {
+        gap: 7px;
+    }
+
+    .cor-opcao,
+    .cor-topo-opcao,
+    .cor-personalizada {
+        width: 31px;
+        height: 31px;
+    }
+
+    .cor-personalizada input {
+        width: 40px;
+        height: 40px;
+    }
+
+    .cor-personalizada span {
+        font-size: 18px;
+    }
+
+    #valorCor,
+    #valorCorTopo,
+    #valorCorFundo {
+        font-size: 9px;
+    }
+
+    .acoes {
+        gap: 8px;
+    }
+
+    .btn {
+        min-height: 44px;
+        font-size: 12px;
+    }
+
+    .preview-topo {
+        margin-bottom: 10px;
+    }
+
+    .preview-topo span {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .preview-topo small {
+        font-size: 9px;
+    }
+
     .card-wrapper {
         width: 100%;
+        overflow: visible;
     }
 
     .card-gerado {
         width: 100%;
+        max-width: none;
+        aspect-ratio: 1.58 / 1;
         border-radius: 18px;
         border-width: 2px;
     }
 
+    .card-gerado::after {
+        inset: 7px;
+        border-width: 1px;
+        border-radius: 12px;
+    }
+
     .card-conteudo {
-        padding: 5.5%;
+        padding: 5.2%;
     }
 
     .card-topo {
-        gap: 7px;
+        gap: 6px;
     }
 
     .marca-casa {
-        gap: 4px;
+        gap: 3px;
+        min-width: 0;
     }
 
     .marca-casa span,
     .marca-casa strong {
-        font-size: clamp(11px, 3vw, 18px);
+        font-size: clamp(10px, 3vw, 17px);
         -webkit-text-stroke: .7px #000;
     }
 
     .card-id {
-        font-size: clamp(16px, 5.5vw, 32px);
+        font-size: clamp(14px, 5vw, 29px);
         -webkit-text-stroke: .7px #000;
     }
 
     .linha-identidade {
         height: 2px;
-        margin-top: 7px;
+        margin-top: 6px;
     }
 
     .card-corpo {
-        grid-template-columns: 24% minmax(0, 1fr);
+        display: grid;
+        grid-template-columns: 23% minmax(0, 1fr);
         gap: 5%;
-        margin-top: 5%;
+        align-items: center;
+        margin-top: 4.5%;
     }
 
     .avatar-area {
+        min-width: 0;
         align-items: center;
     }
 
     .avatar-placeholder {
         width: 100%;
+        max-width: 100%;
         border-width: 2px;
-        border-radius: 10px;
-        background: rgba(255, 255, 255, .1);
+        border-radius: 9px;
+        background: rgba(255, 255, 255, .09);
     }
 
     .avatar-placeholder span {
-        font-size: clamp(24px, 7vw, 44px);
-        -webkit-text-stroke: 1px #000;
+        font-size: clamp(22px, 6.5vw, 40px);
+        -webkit-text-stroke: .9px #000;
     }
 
     .avatar-placeholder small {
-        margin-top: 3px;
-        font-size: 6px;
-        letter-spacing: 1px;
-        -webkit-text-stroke: .5px #000;
+        margin-top: 2px;
+        font-size: 5px;
+        letter-spacing: .6px;
+        -webkit-text-stroke: .4px #000;
     }
 
     .grupo-card {
         width: 100%;
         max-width: none;
-        margin-top: 6px;
-        padding: 3px 6px 4px;
+        margin-top: 5px;
+        padding: 3px 5px;
         border-width: 1px;
-        border-radius: 6px;
-        background: rgba(255, 255, 255, .24);
+        border-radius: 5px;
+        background: rgba(255, 255, 255, .20);
     }
 
     .grupo-card > span {
-        font-size: 4px;
-        margin-bottom: 1px;
-        -webkit-text-stroke: .4px #000;
+        margin-bottom: 0;
+        font-size: 3.5px;
+        letter-spacing: .2px;
+        -webkit-text-stroke: .35px #000;
     }
 
     .grupo-valor {
-        gap: 3px;
+        gap: 2px;
     }
 
     .grupo-valor i {
@@ -1334,54 +1416,63 @@ body::before {
     }
 
     .grupo-valor strong {
-        font-size: clamp(6px, 2vw, 9px);
-        -webkit-text-stroke: .45px #000;
+        font-size: clamp(5px, 1.9vw, 8px);
+        -webkit-text-stroke: .35px #000;
+    }
+
+    .informacoes-card {
+        min-width: 0;
+        width: 100%;
     }
 
     .nome-card {
-        gap: 5px;
-        padding: 4px 7px;
-        border-radius: 7px;
-        background: rgba(255, 255, 255, .24);
+        min-width: 0;
+        gap: 4px;
+        padding: 3px 6px;
+        border-radius: 6px;
+        background: rgba(255, 255, 255, .20);
     }
 
     .nome-card span {
-        font-size: clamp(6px, 1.8vw, 9px);
-        -webkit-text-stroke: .5px #000;
+        font-size: clamp(5px, 1.7vw, 8px);
+        -webkit-text-stroke: .4px #000;
     }
 
     .nome-card strong {
-        font-size: clamp(15px, 5vw, 28px);
-        -webkit-text-stroke: .8px #000;
+        min-width: 0;
+        font-size: clamp(14px, 4.6vw, 25px);
+        -webkit-text-stroke: .7px #000;
     }
 
     .linha-card {
         height: 2px;
-        margin: 5px 0 8px;
+        margin: 4px 0 6px;
     }
 
     .infos-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 4px 5px;
+        gap: 3px 4px;
     }
 
     .info {
+        min-width: 0;
         min-height: 0;
-        padding: 3px 5px 4px;
-        border-radius: 6px;
-        background: rgba(255, 255, 255, .22);
+        padding: 3px 4px;
+        border-radius: 5px;
+        background: rgba(255, 255, 255, .18);
     }
 
     .info span {
         margin-bottom: 1px;
-        font-size: clamp(4.5px, 1.6vw, 7px);
+        font-size: clamp(4px, 1.5vw, 6px);
         letter-spacing: 0;
-        -webkit-text-stroke: .4px #000;
+        -webkit-text-stroke: .35px #000;
     }
 
     .info strong {
-        font-size: clamp(8px, 2.8vw, 14px);
-        -webkit-text-stroke: .5px #000;
+        min-width: 0;
+        font-size: clamp(7px, 2.5vw, 12px);
+        -webkit-text-stroke: .45px #000;
     }
 
     .big-five {
@@ -1391,13 +1482,13 @@ body::before {
     .carinha-2 {
         right: 3%;
         bottom: 7%;
-        font-size: clamp(11px, 3.5vw, 19px);
-        -webkit-text-stroke: .6px #000;
+        font-size: clamp(10px, 3.2vw, 17px);
+        -webkit-text-stroke: .5px #000;
     }
 
     .decor {
-        font-size: clamp(11px, 3vw, 19px);
-        -webkit-text-stroke: .6px #000;
+        font-size: clamp(10px, 2.8vw, 17px);
+        -webkit-text-stroke: .5px #000;
     }
 
     .decor-1 {
@@ -1419,9 +1510,14 @@ body::before {
         left: 5%;
         right: 5%;
         bottom: 3%;
-        font-size: clamp(4.5px, 1.5vw, 7px);
-        letter-spacing: .3px;
-        -webkit-text-stroke: .5px #000;
+        font-size: clamp(4px, 1.4vw, 6px);
+        letter-spacing: .2px;
+        -webkit-text-stroke: .4px #000;
+    }
+
+    .preview-info {
+        margin-top: 10px;
+        font-size: 10px;
     }
 }
 
@@ -1447,6 +1543,26 @@ body::before {
         font-size: 12px;
     }
 
+    .aviso-inicial {
+        gap: 10px;
+        padding: 13px;
+    }
+
+    .aviso-icone {
+        width: 34px;
+        height: 34px;
+        border-radius: 11px;
+        font-size: 17px;
+    }
+
+    .aviso-inicial strong {
+        font-size: 13px;
+    }
+
+    .aviso-inicial p {
+        font-size: 10px;
+    }
+
     .painel-form {
         padding: 16px;
     }
@@ -1457,11 +1573,18 @@ body::before {
 
     .temas {
         grid-template-columns: repeat(3, 1fr);
+        gap: 10px 8px;
     }
 
-    .tipo-fundo-btn {
-        min-height: 38px;
-        font-size: 10px;
+    .paleta-cores {
+        gap: 6px;
+    }
+
+    .cor-opcao,
+    .cor-topo-opcao,
+    .cor-personalizada {
+        width: 29px;
+        height: 29px;
     }
 
     .card-gerado {
@@ -1470,22 +1593,69 @@ body::before {
 
     .marca-casa span,
     .marca-casa strong {
-        font-size: clamp(8px, 2.9vw, 14px);
+        font-size: clamp(8px, 2.8vw, 14px);
     }
 
     .card-id {
-        font-size: clamp(12px, 5vw, 24px);
+        font-size: clamp(11px, 4.7vw, 22px);
+    }
+
+    .card-corpo {
+        grid-template-columns: 22% minmax(0, 1fr);
+        gap: 5%;
+        margin-top: 4%;
+    }
+
+    .avatar-placeholder span {
+        font-size: clamp(18px, 6vw, 30px);
+    }
+
+    .grupo-card {
+        padding: 2px 4px;
+    }
+
+    .grupo-card > span {
+        font-size: 3px;
+    }
+
+    .grupo-valor strong {
+        font-size: clamp(4.5px, 1.7vw, 7px);
+    }
+
+    .grupo-valor i {
+        width: 5px;
+        height: 5px;
+    }
+
+    .nome-card {
+        padding: 3px 5px;
     }
 
     .nome-card strong {
-        font-size: clamp(12px, 4.8vw, 23px);
+        font-size: clamp(11px, 4.5vw, 21px);
+    }
+
+    .infos-grid {
+        gap: 3px;
+    }
+
+    .info {
+        padding: 2px 4px 3px;
     }
 
     .info span {
-        font-size: clamp(4px, 1.7vw, 6px);
+        font-size: clamp(3.5px, 1.5vw, 5px);
     }
 
     .info strong {
-        font-size: clamp(7px, 2.5vw, 11px);
+        font-size: clamp(6px, 2.4vw, 10px);
+    }
+
+    .linha-card {
+        margin: 3px 0 5px;
+    }
+
+    .card-footer {
+        font-size: clamp(3.5px, 1.3vw, 5.5px);
     }
 }
