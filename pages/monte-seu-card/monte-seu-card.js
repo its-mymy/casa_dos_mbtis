@@ -189,7 +189,7 @@ function atualizarCard() {
 
 
 /* =========================================================
-   SALVAR URL AUTOMATICAMENTE
+   SALVAMENTO AUTOMÁTICO
 ========================================================= */
 
 function agendarSalvarURL() {
@@ -232,7 +232,6 @@ function aplicarCorTexto(cor, salvar = true) {
     }
 
     card.style.setProperty("--card-primary", cor);
-
     colorPicker.value = cor;
     valorCor.textContent = cor.toUpperCase();
 
@@ -249,7 +248,6 @@ function aplicarCorTopo(cor, salvar = true) {
     }
 
     card.style.setProperty("--card-top", cor);
-
     corTopo.value = cor;
     valorCorTopo.textContent = cor.toUpperCase();
 
@@ -431,15 +429,21 @@ function pegarDadosCompactos() {
         dados.h = temaAtual;
     }
 
-    if (colorPicker.value.toLowerCase() !== "#8c52e8") {
+    if (
+        colorPicker.value.toLowerCase() !== "#8c52e8"
+    ) {
         dados.p = colorPicker.value;
     }
 
-    if (corTopo.value.toLowerCase() !== "#8c52e8") {
+    if (
+        corTopo.value.toLowerCase() !== "#8c52e8"
+    ) {
         dados.q = corTopo.value;
     }
 
-    if (corFundo.value.toLowerCase() !== "#d9ccd9") {
+    if (
+        corFundo.value.toLowerCase() !== "#d9ccd9"
+    ) {
         dados.u = corFundo.value;
     }
 
@@ -475,7 +479,9 @@ function expandirDados(dados) {
 
 function codificarDados(dados) {
     if (typeof LZString === "undefined") {
-        throw new Error("LZString não foi carregado.");
+        throw new Error(
+            "LZString não foi carregado."
+        );
     }
 
     return LZString.compressToEncodedURIComponent(
@@ -485,12 +491,16 @@ function codificarDados(dados) {
 
 function decodificarDados(codigo) {
     if (typeof LZString === "undefined") {
-        throw new Error("LZString não foi carregado.");
+        throw new Error(
+            "LZString não foi carregado."
+        );
     }
 
     try {
         const texto =
-            LZString.decompressFromEncodedURIComponent(codigo);
+            LZString.decompressFromEncodedURIComponent(
+                codigo
+            );
 
         if (!texto) {
             return null;
@@ -499,6 +509,7 @@ function decodificarDados(codigo) {
         const dados = JSON.parse(texto);
 
         return expandirDados(dados);
+
     } catch (erro) {
         console.warn(
             "Não foi possível carregar o card:",
@@ -524,6 +535,7 @@ function salvarNaURL() {
             "",
             `${window.location.pathname}#${codigo}`
         );
+
     } catch (erro) {
         console.error(
             "Erro ao salvar o card:",
@@ -615,7 +627,7 @@ function mostrarToast(mensagem) {
 
 
 /* =========================================================
-   CARREGAR CARD DA URL
+   CARREGAR DADOS DA URL
 ========================================================= */
 
 async function carregarDaURL() {
@@ -635,11 +647,8 @@ async function carregarDaURL() {
 
     preencherCampos(dados);
 
-    tipoFundo =
-        dados.tipoFundo || "imagem";
-
-    temaAtual =
-        dados.tema || "azul";
+    tipoFundo = dados.tipoFundo || "imagem";
+    temaAtual = dados.tema || "azul";
 
     aplicarCorTexto(
         dados.cor || "#8c52e8",
@@ -687,6 +696,7 @@ botaoCopiarLink.addEventListener(
             mostrarToast(
                 "🔗 Link curto do card copiado!"
             );
+
         } catch (erro) {
             console.error(erro);
 
@@ -699,12 +709,22 @@ botaoCopiarLink.addEventListener(
 
 
 /* =========================================================
-   DOWNLOAD DO CARD
+   DOWNLOAD
+   CONFIRMAÇÃO → DOWNLOAD DIRETO
 ========================================================= */
 
 botaoBaixarCard.addEventListener(
     "click",
     async () => {
+
+        const confirmou = window.confirm(
+            "Baixar seu card como imagem?"
+        );
+
+        if (!confirmou) {
+            return;
+        }
+
         let arquivoURL = null;
 
         botaoBaixarCard.disabled = true;
@@ -712,7 +732,10 @@ botaoBaixarCard.addEventListener(
             "Gerando card...";
 
         try {
-            if (typeof html2canvas !== "function") {
+
+            if (
+                typeof html2canvas !== "function"
+            ) {
                 throw new Error(
                     "html2canvas não foi carregado."
                 );
@@ -750,6 +773,7 @@ botaoBaixarCard.addEventListener(
                 {
                     width: largura,
                     height: altura,
+
                     scale: escala,
 
                     useCORS: true,
@@ -848,258 +872,56 @@ botaoBaixarCard.addEventListener(
                 `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
 
 
-            /* =================================================
-               DESKTOP
-            ================================================= */
+            /* ---------------------------------------------
+               DOWNLOAD DIRETO
+            --------------------------------------------- */
 
-            if (!emCelular) {
-                const link =
-                    document.createElement("a");
-
-                link.href = arquivoURL;
-                link.download = nomeFinal;
-                link.style.display = "none";
-
-                document.body.appendChild(link);
-
-                link.click();
-
-                link.remove();
-
-                mostrarToast(
-                    "✨ Card baixado em alta resolução!"
-                );
-
-                setTimeout(() => {
-                    if (arquivoURL) {
-                        URL.revokeObjectURL(
-                            arquivoURL
-                        );
-
-                        arquivoURL = null;
-                    }
-                }, 2000);
-
-                return;
-            }
-
-
-            /* =================================================
-               CELULAR — PRIMEIRO TENTA DOWNLOAD
-            ================================================= */
-
-            const linkDownload =
+            const link =
                 document.createElement("a");
 
-            linkDownload.href = arquivoURL;
-            linkDownload.download = nomeFinal;
-            linkDownload.setAttribute(
+            link.href = arquivoURL;
+            link.download = nomeFinal;
+            link.setAttribute(
                 "download",
                 nomeFinal
             );
 
-            linkDownload.style.display = "none";
+            link.style.display = "none";
 
-            document.body.appendChild(
-                linkDownload
+            document.body.appendChild(link);
+
+            link.click();
+
+            link.remove();
+
+
+            /* ---------------------------------------------
+               MENSAGEM
+            --------------------------------------------- */
+
+            mostrarToast(
+                "✨ Card baixado em alta resolução!"
             );
 
-            linkDownload.click();
 
-            linkDownload.remove();
+            /* ---------------------------------------------
+               LIMPAR URL TEMPORÁRIA
+            --------------------------------------------- */
 
-            await new Promise((resolve) => {
-                setTimeout(resolve, 800);
-            });
-
-
-            /* =================================================
-               CELULAR — SEGUNDA TENTATIVA
-               COMPARTILHAMENTO
-            ================================================= */
-
-            if (
-                navigator.share &&
-                navigator.canShare
-            ) {
-                try {
-                    const arquivo =
-                        new File(
-                            [blob],
-                            nomeFinal,
-                            {
-                                type: "image/png"
-                            }
-                        );
-
-                    const podeCompartilhar =
-                        navigator.canShare({
-                            files: [arquivo]
-                        });
-
-                    if (podeCompartilhar) {
-                        mostrarToast(
-                            "📱 O navegador bloqueou o download automático. Escolha salvar a imagem."
-                        );
-
-                        await navigator.share({
-                            files: [arquivo],
-                            title:
-                                "Meu card da Casa dos MBTIs",
-                            text:
-                                "Meu card da Casa dos MBTIs 🏠🧠"
-                        });
-
-                        URL.revokeObjectURL(
-                            arquivoURL
-                        );
-
-                        arquivoURL = null;
-
-                        return;
-                    }
-                } catch (erro) {
-                    console.warn(
-                        "Compartilhamento cancelado ou indisponível:",
-                        erro
+            setTimeout(() => {
+                if (arquivoURL) {
+                    URL.revokeObjectURL(
+                        arquivoURL
                     );
+
+                    arquivoURL = null;
                 }
-            }
-
-
-            /* =================================================
-               CELULAR — ÚLTIMO FALLBACK
-               ABRIR A IMAGEM
-            ================================================= */
-
-            const imagemBase64 =
-                canvas.toDataURL(
-                    "image/png"
-                );
-
-            const novaAba =
-                window.open(
-                    "",
-                    "_blank"
-                );
-
-            if (novaAba) {
-                novaAba.document.open();
-
-                novaAba.document.write(`
-                    <!DOCTYPE html>
-                    <html lang="pt-BR">
-
-                    <head>
-                        <meta charset="UTF-8">
-
-                        <meta
-                            name="viewport"
-                            content="width=device-width, initial-scale=1.0"
-                        >
-
-                        <title>
-                            Casa dos MBTIs
-                        </title>
-
-                        <style>
-                            * {
-                                box-sizing: border-box;
-                            }
-
-                            html,
-                            body {
-                                width: 100%;
-                                min-height: 100%;
-
-                                margin: 0;
-                                padding: 0;
-
-                                background: #09060c;
-                            }
-
-                            body {
-                                min-height: 100vh;
-
-                                display: flex;
-                                flex-direction: column;
-
-                                align-items: center;
-
-                                padding:
-                                    16px
-                                    10px
-                                    30px;
-
-                                font-family:
-                                    Arial,
-                                    sans-serif;
-                            }
-
-                            img {
-                                display: block;
-
-                                width: 100%;
-                                max-width: 900px;
-                                height: auto;
-
-                                user-select: none;
-                                -webkit-user-select: none;
-                            }
-
-                            p {
-                                margin-top: 16px;
-
-                                color: #fff;
-
-                                text-align: center;
-
-                                font-size: 14px;
-
-                                line-height: 1.5;
-                            }
-                        </style>
-                    </head>
-
-                    <body>
-
-                        <img
-                            src="${imagemBase64}"
-                            alt="Card da Casa dos MBTIs"
-                        >
-
-                        <p>
-                            Toque e segure a imagem
-                            para salvar na galeria 📱✨
-                        </p>
-
-                    </body>
-
-                    </html>
-                `);
-
-                novaAba.document.close();
-
-                mostrarToast(
-                    "✨ Se o download não iniciar, toque e segure a imagem para salvar."
-                );
-
-                URL.revokeObjectURL(
-                    arquivoURL
-                );
-
-                arquivoURL = null;
-
-                return;
-            }
-
-            throw new Error(
-                "O navegador bloqueou o download e a abertura da imagem."
-            );
+            }, 2000);
 
         } catch (erro) {
+
             console.error(
-                "ERRO AO GERAR O CARD:",
+                "ERRO AO BAIXAR O CARD:",
                 erro
             );
 
@@ -1112,10 +934,11 @@ botaoBaixarCard.addEventListener(
             }
 
             mostrarToast(
-                "😿 Não consegui gerar a imagem."
+                "😿 Não consegui baixar a imagem."
             );
 
         } finally {
+
             botaoBaixarCard.disabled = false;
 
             botaoBaixarCard.textContent =
