@@ -463,33 +463,13 @@ body::before {
     box-shadow: 0 0 0 2px rgba(145, 79, 255, .25);
 }
 
-.fundo-opcao[data-color="#d9ccd9"] {
-    background: #d9ccd9;
-}
-
-.fundo-opcao[data-color="#f3d8e7"] {
-    background: #f3d8e7;
-}
-
-.fundo-opcao[data-color="#d7e5f5"] {
-    background: #d7e5f5;
-}
-
-.fundo-opcao[data-color="#dcebd8"] {
-    background: #dcebd8;
-}
-
-.fundo-opcao[data-color="#f5e5b8"] {
-    background: #f5e5b8;
-}
-
-.fundo-opcao[data-color="#242036"] {
-    background: #242036;
-}
-
-.fundo-opcao[data-color="#15151c"] {
-    background: #15151c;
-}
+.fundo-opcao[data-color="#d9ccd9"] { background: #d9ccd9; }
+.fundo-opcao[data-color="#f3d8e7"] { background: #f3d8e7; }
+.fundo-opcao[data-color="#d7e5f5"] { background: #d7e5f5; }
+.fundo-opcao[data-color="#dcebd8"] { background: #dcebd8; }
+.fundo-opcao[data-color="#f5e5b8"] { background: #f5e5b8; }
+.fundo-opcao[data-color="#242036"] { background: #242036; }
+.fundo-opcao[data-color="#15151c"] { background: #15151c; }
 
 .paleta-cores {
     display: flex;
@@ -523,53 +503,19 @@ body::before {
     box-shadow: 0 0 0 2px rgba(145, 79, 255, .28);
 }
 
-.cor-opcao[data-color="#8c52e8"] {
-    background: #8c52e8;
-}
+.cor-opcao[data-color="#8c52e8"] { background: #8c52e8; }
+.cor-opcao[data-color="#f0bd35"] { background: #f0bd35; }
+.cor-opcao[data-color="#4d82e8"] { background: #4d82e8; }
+.cor-opcao[data-color="#5c9b68"] { background: #5c9b68; }
+.cor-opcao[data-color="#d45487"] { background: #d45487; }
+.cor-opcao[data-color="#273c7a"] { background: #273c7a; }
 
-.cor-opcao[data-color="#f0bd35"] {
-    background: #f0bd35;
-}
-
-.cor-opcao[data-color="#4d82e8"] {
-    background: #4d82e8;
-}
-
-.cor-opcao[data-color="#5c9b68"] {
-    background: #5c9b68;
-}
-
-.cor-opcao[data-color="#d45487"] {
-    background: #d45487;
-}
-
-.cor-opcao[data-color="#273c7a"] {
-    background: #273c7a;
-}
-
-.cor-topo-opcao[data-color="#8c52e8"] {
-    background: #8c52e8;
-}
-
-.cor-topo-opcao[data-color="#f0bd35"] {
-    background: #f0bd35;
-}
-
-.cor-topo-opcao[data-color="#4d82e8"] {
-    background: #4d82e8;
-}
-
-.cor-topo-opcao[data-color="#5c9b68"] {
-    background: #5c9b68;
-}
-
-.cor-topo-opcao[data-color="#d45487"] {
-    background: #d45487;
-}
-
-.cor-topo-opcao[data-color="#ffffff"] {
-    background: #fff;
-}
+.cor-topo-opcao[data-color="#8c52e8"] { background: #8c52e8; }
+.cor-topo-opcao[data-color="#f0bd35"] { background: #f0bd35; }
+.cor-topo-opcao[data-color="#4d82e8"] { background: #4d82e8; }
+.cor-topo-opcao[data-color="#5c9b68"] { background: #5c9b68; }
+.cor-topo-opcao[data-color="#d45487"] { background: #d45487; }
+.cor-topo-opcao[data-color="#ffffff"] { background: #fff; }
 
 .cor-personalizada {
     position: relative;
@@ -725,12 +671,7 @@ body::before {
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(
-        135deg,
-        rgba(0, 0, 0, .18),
-        rgba(0, 0, 0, .03) 45%,
-        rgba(0, 0, 0, .25)
-    );
+    background: linear-gradient(135deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .03) 45%, rgba(0, 0, 0, .25));
 }
 
 .card-gerado::after {
@@ -886,7 +827,10 @@ body::before {
 .grupo-valor i {
     width: 10px;
     height: 10px;
-    flex-shrink: 0;
+    min-width: 10px;
+    min-height: 10px;
+    flex: 0 0 10px;
+    display: block;
     border: 1.5px solid #fff;
     border-radius: 50%;
     background: #8c52e8;
@@ -1373,7 +1317,7 @@ body::before {
         max-width: 100%;
         border-width: 2px;
         border-radius: 9px;
-        background: rgba(255, 255, 255, .09);
+        background: rgba(255, 255, 255, .11);
     }
 
     .avatar-placeholder span {
@@ -1395,7 +1339,7 @@ body::before {
         padding: 3px 5px;
         border-width: 1px;
         border-radius: 5px;
-        background: rgba(255, 255, 255, .20);
+        background: rgba(255, 255, 255, .28);
     }
 
     .grupo-card > span {
@@ -1410,8 +1354,11 @@ body::before {
     }
 
     .grupo-valor i {
-        width: 6px;
-        height: 6px;
+        width: 8px;
+        height: 8px;
+        min-width: 8px;
+        min-height: 8px;
+        flex: 0 0 8px;
         border-width: 1px;
     }
 
@@ -1430,7 +1377,7 @@ body::before {
         gap: 4px;
         padding: 3px 6px;
         border-radius: 6px;
-        background: rgba(255, 255, 255, .20);
+        background: rgba(255, 255, 255, .30);
     }
 
     .nome-card span {
@@ -1459,7 +1406,7 @@ body::before {
         min-height: 0;
         padding: 3px 4px;
         border-radius: 5px;
-        background: rgba(255, 255, 255, .18);
+        background: rgba(255, 255, 255, .27);
     }
 
     .info span {
@@ -1612,23 +1559,32 @@ body::before {
 
     .grupo-card {
         padding: 2px 4px;
+        background: rgba(255, 255, 255, .28);
     }
 
     .grupo-card > span {
         font-size: 3px;
     }
 
+    .grupo-valor {
+        gap: 2px;
+    }
+
+    .grupo-valor i {
+        width: 7px;
+        height: 7px;
+        min-width: 7px;
+        min-height: 7px;
+        flex: 0 0 7px;
+    }
+
     .grupo-valor strong {
         font-size: clamp(4.5px, 1.7vw, 7px);
     }
 
-    .grupo-valor i {
-        width: 5px;
-        height: 5px;
-    }
-
     .nome-card {
         padding: 3px 5px;
+        background: rgba(255, 255, 255, .30);
     }
 
     .nome-card strong {
@@ -1641,6 +1597,7 @@ body::before {
 
     .info {
         padding: 2px 4px 3px;
+        background: rgba(255, 255, 255, .27);
     }
 
     .info span {

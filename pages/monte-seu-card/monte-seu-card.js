@@ -123,15 +123,13 @@ function atualizarGrupoCard() {
     const grupo = campos.grupo.value || valoresPadrao.grupo;
 
     elementosCard.grupo.textContent = grupo;
-    grupoBolinha.style.background =
-        coresGrupos[grupo] || coresGrupos.Analistas;
+    grupoBolinha.style.background = coresGrupos[grupo] || coresGrupos.Analistas;
 }
 
 function atualizarCard() {
     Object.keys(campos).forEach((chave) => {
         const valor = campos[chave].value.trim();
-        elementosCard[chave].textContent =
-            valor || valoresPadrao[chave];
+        elementosCard[chave].textContent = valor || valoresPadrao[chave];
     });
 
     ajustarTamanhoNick();
@@ -344,13 +342,7 @@ botoesTipoFundo.forEach((botao) => {
 
         if (tipo === "imagem") {
             tipoFundo = "imagem";
-
-            aplicarTema(
-                temas[temaAtual]
-                    ? temaAtual
-                    : "azul"
-            );
-
+            aplicarTema(temas[temaAtual] ? temaAtual : "azul");
             return;
         }
 
@@ -387,9 +379,7 @@ function codificarDados(dados) {
         throw new Error("LZString não foi carregado.");
     }
 
-    return LZString.compressToEncodedURIComponent(
-        JSON.stringify(dados)
-    );
+    return LZString.compressToEncodedURIComponent(JSON.stringify(dados));
 }
 
 function decodificarDados(codigo) {
@@ -399,8 +389,7 @@ function decodificarDados(codigo) {
     }
 
     try {
-        const texto =
-            LZString.decompressFromEncodedURIComponent(codigo);
+        const texto = LZString.decompressFromEncodedURIComponent(codigo);
 
         if (!texto) {
             return null;
@@ -408,11 +397,7 @@ function decodificarDados(codigo) {
 
         return JSON.parse(texto);
     } catch (erro) {
-        console.warn(
-            "Não foi possível carregar os dados do card:",
-            erro
-        );
-
+        console.warn("Não foi possível carregar os dados do card:", erro);
         return null;
     }
 }
@@ -428,10 +413,7 @@ function salvarNaURL() {
             `${window.location.pathname}#${codigo}`
         );
     } catch (erro) {
-        console.error(
-            "Erro ao salvar o card na URL:",
-            erro
-        );
+        console.error("Erro ao salvar o card na URL:", erro);
     }
 }
 
@@ -466,9 +448,7 @@ function carregarImagem(src) {
 
         imagem.onerror = () => {
             reject(
-                new Error(
-                    `Não foi possível carregar a imagem: ${src}`
-                )
+                new Error(`Não foi possível carregar a imagem: ${src}`)
             );
         };
 
@@ -502,7 +482,7 @@ function mostrarToast(mensagem) {
 
     setTimeout(() => {
         toast.classList.remove("mostrar");
-    }, 2200);
+    }, 2500);
 }
 
 async function carregarDaURL() {
@@ -534,9 +514,7 @@ async function carregarDaURL() {
 
     if (tipoFundo === "imagem") {
         aplicarTema(
-            temas[temaAtual]
-                ? temaAtual
-                : "azul",
+            temas[temaAtual] ? temaAtual : "azul",
             false
         );
     } else {
@@ -554,17 +532,11 @@ document.getElementById("copiarLink").addEventListener("click", async () => {
     salvarNaURL();
 
     try {
-        await navigator.clipboard.writeText(
-            window.location.href
-        );
-
+        await navigator.clipboard.writeText(window.location.href);
         mostrarToast("🔗 Link do card copiado!");
     } catch (erro) {
         console.error(erro);
-
-        mostrarToast(
-            "Não foi possível copiar o link."
-        );
+        mostrarToast("Não foi possível copiar o link.");
     }
 });
 
@@ -573,6 +545,8 @@ document.getElementById("baixarCard").addEventListener("click", async () => {
 
     botao.disabled = true;
     botao.textContent = "Gerando card...";
+
+    let arquivoURL = null;
 
     try {
         if (typeof html2canvas !== "function") {
@@ -590,14 +564,14 @@ document.getElementById("baixarCard").addEventListener("click", async () => {
 
         const largura = card.clientWidth;
         const altura = card.clientHeight;
+        const emCelular = window.innerWidth <= 700;
+        const escala = emCelular ? 2 : 3;
 
         if (!largura || !altura) {
             throw new Error(
                 "Não foi possível identificar o tamanho do card."
             );
         }
-
-        const escala = window.innerWidth <= 700 ? 2 : 3;
 
         const canvas = await html2canvas(card, {
             width: largura,
@@ -612,8 +586,6 @@ document.getElementById("baixarCard").addEventListener("click", async () => {
             foreignObjectRendering: false,
             scrollX: 0,
             scrollY: 0,
-            windowWidth: document.documentElement.clientWidth,
-            windowHeight: document.documentElement.clientHeight,
             onclone: (documento) => {
                 const cardClone =
                     documento.getElementById("cardGerado");
@@ -636,7 +608,11 @@ document.getElementById("baixarCard").addEventListener("click", async () => {
             }
         });
 
-        if (!canvas || canvas.width === 0 || canvas.height === 0) {
+        if (
+            !canvas ||
+            canvas.width <= 0 ||
+            canvas.height <= 0
+        ) {
             throw new Error(
                 "A imagem gerada ficou vazia."
             );
@@ -656,8 +632,7 @@ document.getElementById("baixarCard").addEventListener("click", async () => {
             );
         }
 
-        const url = URL.createObjectURL(blob);
-        const link = document.createElement("a");
+        arquivoURL = URL.createObjectURL(blob);
 
         const nick =
             campos.nick.value.trim() ||
@@ -675,7 +650,35 @@ document.getElementById("baixarCard").addEventListener("click", async () => {
                     "-"
                 );
 
-        link.href = url;
+        if (emCelular) {
+            const janela = window.open(
+                arquivoURL,
+                "_blank"
+            );
+
+            if (!janela) {
+                throw new Error(
+                    "O navegador bloqueou a nova aba."
+                );
+            }
+
+            mostrarToast(
+                "✨ Imagem gerada! Salve a imagem pela nova aba."
+            );
+
+            setTimeout(() => {
+                if (arquivoURL) {
+                    URL.revokeObjectURL(arquivoURL);
+                }
+            }, 10000);
+
+            return;
+        }
+
+        const link =
+            document.createElement("a");
+
+        link.href = arquivoURL;
         link.download =
             `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
 
@@ -683,23 +686,29 @@ document.getElementById("baixarCard").addEventListener("click", async () => {
         link.click();
         link.remove();
 
+        mostrarToast(
+            "✨ Card baixado em alta resolução!"
+        );
+
         setTimeout(() => {
-            URL.revokeObjectURL(url);
+            if (arquivoURL) {
+                URL.revokeObjectURL(arquivoURL);
+            }
         }, 1000);
 
-        mostrarToast(
-            window.innerWidth <= 700
-                ? "✨ Card salvo em boa qualidade!"
-                : "✨ Card baixado em alta resolução!"
-        );
+        arquivoURL = null;
     } catch (erro) {
         console.error(
             "ERRO AO GERAR O CARD:",
             erro
         );
 
+        if (arquivoURL) {
+            URL.revokeObjectURL(arquivoURL);
+        }
+
         mostrarToast(
-            "😿 Não consegui gerar a imagem. Tente novamente."
+            "😿 Não consegui gerar a imagem."
         );
     } finally {
         botao.disabled = false;
