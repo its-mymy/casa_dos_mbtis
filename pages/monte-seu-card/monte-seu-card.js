@@ -58,49 +58,56 @@ const temas = {
     azul: {
         imagem: "img/azul.jpg"
     },
-
     azul2: {
         imagem: "img/azul2.jpg"
     },
-
     estrelado: {
         imagem: "img/estrelado.jpg"
     },
-
     preto: {
         imagem: "img/preto.jpg"
     },
-
     preto2: {
         imagem: "img/preto2.jpg"
     },
-
     rosa: {
         imagem: "img/rosa.jpg"
     },
-
     roxo: {
         imagem: "img/roxo.jpg"
     },
-
     verde: {
         imagem: "img/verde.jpg"
     },
-
     Giorno: {
         imagem: "img/giorno.jpg"
     },
-
     "noite azulado": {
         imagem: "img/noite azulada.jpg"
     },
-
     DIO: {
         imagem: "img/dio.jpg"
     },
-
     anime: {
         imagem: "img/anime.jpg"
+    },
+    gojo: {
+        imagem: "img/gojo.jpg"
+    },
+    zoro: {
+        imagem: "img/zoro.jpg"
+    },
+    alucard: {
+        imagem: "img/alucard.jpg"
+    },
+    Saiki: {
+        imagem: "img/Saiki.jpg"
+    },
+    "Johnny-Joestar": {
+        imagem: "img/Johnny-Joestar.jpg"
+    },
+    reze: {
+        imagem: "img/reze.jpg"
     }
 };
 
@@ -127,7 +134,6 @@ Object.values(campos).forEach((campo) => {
 
 function aplicarCorTexto(cor, salvar = true) {
     card.style.setProperty("--card-primary", cor);
-
     colorPicker.value = cor;
     valorCor.textContent = cor.toUpperCase();
 
@@ -326,59 +332,38 @@ function salvarNaURL() {
     );
 }
 
-function carregarDaURL() {
-    const codigo = window.location.hash.substring(1);
+function carregarImagem(src) {
+    return new Promise((resolve, reject) => {
+        const imagem = new Image();
 
-    if (!codigo) {
-        atualizarCard();
-        aplicarCorTexto("#8c52e8", false);
-        aplicarCorFundo("#d9ccd9", false);
-        aplicarTema("azul", false);
-        return;
-    }
+        imagem.onload = () => {
+            resolve(imagem);
+        };
 
-    const dados = decodificarDados(codigo);
+        imagem.onerror = () => {
+            reject(
+                new Error(
+                    `Não foi possível carregar a imagem: ${src}`
+                )
+            );
+        };
 
-    if (!dados) {
-        atualizarCard();
-        aplicarCorTexto("#8c52e8", false);
-        aplicarCorFundo("#d9ccd9", false);
-        aplicarTema("azul", false);
-        return;
-    }
-
-    Object.keys(campos).forEach((chave) => {
-        if (dados[chave] !== undefined) {
-            campos[chave].value = dados[chave];
-        }
+        imagem.src = src;
     });
+}
 
-    tipoFundo = dados.tipoFundo || "imagem";
-    temaAtual = dados.tema || "azul";
-
-    if (dados.cor) {
-        aplicarCorTexto(dados.cor, false);
-    } else {
-        aplicarCorTexto("#8c52e8", false);
+async function prepararImagensDoCard() {
+    if (tipoFundo !== "imagem") {
+        return;
     }
 
-    if (dados.corFundo) {
-        aplicarCorFundo(dados.corFundo, false);
-    } else {
-        aplicarCorFundo("#d9ccd9", false);
+    const tema = temas[temaAtual];
+
+    if (!tema) {
+        return;
     }
 
-    if (tipoFundo === "imagem") {
-        aplicarTema(temaAtual, false);
-    } else {
-        aplicarCorFundo(
-            dados.corFundo || "#d9ccd9",
-            false
-        );
-    }
-
-    atualizarTipoFundoVisual();
-    atualizarCard();
+    await carregarImagem(tema.imagem);
 }
 
 function mostrarToast(mensagem) {
@@ -402,13 +387,9 @@ document
                 window.location.href
             );
 
-            mostrarToast(
-                "🔗 Link do card copiado!"
-            );
+            mostrarToast("🔗 Link do card copiado!");
         } catch (erro) {
-            mostrarToast(
-                "Não foi possível copiar o link."
-            );
+            mostrarToast("Não foi possível copiar o link.");
         }
     });
 
@@ -418,18 +399,14 @@ document
         salvarNaURL();
 
         const nick =
-            campos.nick.value.trim() ||
-            "meu card";
+            campos.nick.value.trim() || "meu card";
 
         if (navigator.share) {
             try {
                 await navigator.share({
-                    title:
-                        `Card de ${nick} | Casa dos MBTIs`,
-                    text:
-                        "Olha meu card da Casa dos MBTIs 🏠🧠",
-                    url:
-                        window.location.href
+                    title: `Card de ${nick} | Casa dos MBTIs`,
+                    text: "Olha meu card da Casa dos MBTIs 🏠🧠",
+                    url: window.location.href
                 });
             } catch (erro) {
                 return;
@@ -440,9 +417,7 @@ document
                     window.location.href
                 );
 
-                mostrarToast(
-                    "🔗 Link copiado!"
-                );
+                mostrarToast("🔗 Link copiado!");
             } catch (erro) {
                 mostrarToast(
                     "Copie o link da barra do navegador."
@@ -461,23 +436,58 @@ document
         botao.textContent = "Gerando card...";
 
         try {
-            const canvas =
-                await html2canvas(
-                    card,
-                    {
-                        scale: 2,
-                        useCORS: true,
-                        allowTaint: false,
-                        backgroundColor: null
-                    }
+            if (typeof html2canvas !== "function") {
+                throw new Error(
+                    "html2canvas não foi carregado. Verifique sua conexão com a internet."
                 );
+            }
 
-            const link =
-                document.createElement("a");
+            await document.fonts.ready;
+            await prepararImagensDoCard();
+
+            await new Promise((resolve) => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(resolve);
+                });
+            });
+
+            const canvas = await html2canvas(
+                card,
+                {
+                    scale: 2,
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: null,
+                    logging: false,
+                    imageTimeout: 20000,
+                    removeContainer: true,
+                    onclone: (documento) => {
+                        const cardClone =
+                            documento.getElementById("cardGerado");
+
+                        if (!cardClone) {
+                            return;
+                        }
+
+                        cardClone.style.transform = "none";
+                        cardClone.style.filter = "none";
+                        cardClone.style.boxShadow = "none";
+
+                        const elementos =
+                            cardClone.querySelectorAll("*");
+
+                        elementos.forEach((elemento) => {
+                            elemento.style.animation = "none";
+                            elemento.style.transition = "none";
+                        });
+                    }
+                }
+            );
+
+            const link = document.createElement("a");
 
             const nick =
-                campos.nick.value.trim() ||
-                "meu-card";
+                campos.nick.value.trim() || "meu-card";
 
             const nomeArquivo =
                 nick
@@ -486,10 +496,7 @@ document
                         ""
                     )
                     .trim()
-                    .replace(
-                        /\s+/g,
-                        "-"
-                    );
+                    .replace(/\s+/g, "-");
 
             link.download =
                 `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
@@ -497,16 +504,19 @@ document
             link.href =
                 canvas.toDataURL("image/png");
 
+            document.body.appendChild(link);
             link.click();
+            link.remove();
 
-            mostrarToast(
-                "✨ Card baixado!"
-            );
+            mostrarToast("✨ Card baixado!");
         } catch (erro) {
-            console.error(erro);
+            console.error(
+                "ERRO AO GERAR O CARD:",
+                erro
+            );
 
             mostrarToast(
-                "Erro ao gerar o card."
+                "😿 Não consegui gerar a imagem."
             );
         } finally {
             botao.disabled = false;

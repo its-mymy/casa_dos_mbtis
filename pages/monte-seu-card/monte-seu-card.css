@@ -424,33 +424,13 @@ body {
         0 4px 10px rgba(0, 0, 0, .20);
 }
 
-.fundo-opcao[data-color="#d9ccd9"] {
-    background: #d9ccd9;
-}
-
-.fundo-opcao[data-color="#f3d8e7"] {
-    background: #f3d8e7;
-}
-
-.fundo-opcao[data-color="#d7e5f5"] {
-    background: #d7e5f5;
-}
-
-.fundo-opcao[data-color="#dcebd8"] {
-    background: #dcebd8;
-}
-
-.fundo-opcao[data-color="#f5e5b8"] {
-    background: #f5e5b8;
-}
-
-.fundo-opcao[data-color="#242036"] {
-    background: #242036;
-}
-
-.fundo-opcao[data-color="#15151c"] {
-    background: #15151c;
-}
+.fundo-opcao[data-color="#d9ccd9"] { background: #d9ccd9; }
+.fundo-opcao[data-color="#f3d8e7"] { background: #f3d8e7; }
+.fundo-opcao[data-color="#d7e5f5"] { background: #d7e5f5; }
+.fundo-opcao[data-color="#dcebd8"] { background: #dcebd8; }
+.fundo-opcao[data-color="#f5e5b8"] { background: #f5e5b8; }
+.fundo-opcao[data-color="#242036"] { background: #242036; }
+.fundo-opcao[data-color="#15151c"] { background: #15151c; }
 
 .paleta-cores {
     display: flex;
@@ -483,29 +463,12 @@ body {
         0 5px 15px rgba(0, 0, 0, .22);
 }
 
-.cor-opcao[data-color="#8c52e8"] {
-    background: #8c52e8;
-}
-
-.cor-opcao[data-color="#f0bd35"] {
-    background: #f0bd35;
-}
-
-.cor-opcao[data-color="#4d82e8"] {
-    background: #4d82e8;
-}
-
-.cor-opcao[data-color="#5c9b68"] {
-    background: #5c9b68;
-}
-
-.cor-opcao[data-color="#8d334b"] {
-    background: #8d334b;
-}
-
-.cor-opcao[data-color="#273c7a"] {
-    background: #273c7a;
-}
+.cor-opcao[data-color="#8c52e8"] { background: #8c52e8; }
+.cor-opcao[data-color="#f0bd35"] { background: #f0bd35; }
+.cor-opcao[data-color="#4d82e8"] { background: #4d82e8; }
+.cor-opcao[data-color="#5c9b68"] { background: #5c9b68; }
+.cor-opcao[data-color="#8d334b"] { background: #8d334b; }
+.cor-opcao[data-color="#273c7a"] { background: #273c7a; }
 
 .cor-personalizada {
     position: relative;
@@ -543,7 +506,8 @@ body {
     text-shadow: 0 1px 3px rgba(0, 0, 0, .35);
 }
 
-#valorCor {
+#valorCor,
+#valorCorFundo {
     display: block;
     margin-top: 8px;
     color: #aaa0b6;
@@ -662,7 +626,7 @@ body {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: rgba(255, 248, 253, .08);
+    background: rgba(15, 8, 25, .28);
     pointer-events: none;
 }
 
@@ -689,7 +653,7 @@ body {
     inset: 13px;
     z-index: 4;
     pointer-events: none;
-    border: 2px dashed color-mix(in srgb, var(--card-primary), #fff 40%);
+    border: 2px dashed var(--card-primary);
     border-radius: 21px;
     opacity: .45;
 }
@@ -706,32 +670,40 @@ body {
     position: absolute;
     z-index: 6;
     color: var(--card-primary);
-    font-size: clamp(17px, 2vw, 23px);
+    font-size: clamp(19px, 2.4vw, 27px);
     font-weight: 600;
     pointer-events: none;
+    -webkit-text-stroke: .6px rgba(255, 255, 255, .3);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, .35),
+        0 3px 7px rgba(45, 25, 65, .25);
 }
 
 .carinha-1 {
     left: 52%;
     top: 28%;
     transform: rotate(-4deg);
-    opacity: .75;
+    opacity: .80;
 }
 
 .carinha-2 {
     right: 35px;
     bottom: 48px;
-    font-size: clamp(22px, 2.6vw, 31px);
+    font-size: clamp(24px, 2.8vw, 34px);
     transform: rotate(-12deg);
-    opacity: .80;
+    opacity: .85;
 }
 
 .decor {
     position: absolute;
     z-index: 6;
     color: var(--card-primary);
-    font-size: clamp(19px, 2.5vw, 30px);
+    font-size: clamp(21px, 2.7vw, 32px);
     pointer-events: none;
+    -webkit-text-stroke: .7px rgba(255, 255, 255, .3);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, .35),
+        0 3px 8px rgba(45, 25, 65, .25);
 }
 
 .decor-1 {
@@ -770,23 +742,29 @@ body {
 
 .marca-casa span,
 .marca-casa strong {
-    font-size: clamp(17px, 2vw, 23px);
+    font-size: clamp(20px, 2.35vw, 28px);
     font-weight: 700;
     letter-spacing: .5px;
     color: var(--card-primary);
-    text-shadow: 0 0 10px rgba(255, 255, 255, .25);
+    -webkit-text-stroke: .8px rgba(255, 255, 255, .35);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, .5),
+        -1px -1px 0 rgba(60, 30, 80, .12),
+        0 3px 8px rgba(50, 25, 70, .22);
 }
 
 .card-id {
     color: var(--card-primary);
-    font-size: clamp(30px, 4.4vw, 58px);
+    font-size: clamp(34px, 5vw, 65px);
     line-height: .95;
     font-weight: 700;
     letter-spacing: 1px;
     transform: rotate(-2deg);
+    -webkit-text-stroke: 1px rgba(255, 255, 255, .35);
     text-shadow:
-        0 2px 0 rgba(255, 255, 255, .45),
-        0 3px 8px rgba(50, 30, 70, .18);
+        1px 1px 0 rgba(255, 255, 255, .5),
+        -1px -1px 0 rgba(60, 30, 80, .14),
+        0 3px 10px rgba(45, 25, 65, .25);
 }
 
 .card-corpo {
@@ -830,6 +808,10 @@ body {
     font-size: 10px;
     font-weight: 600;
     letter-spacing: 2px;
+    -webkit-text-stroke: .5px rgba(255, 255, 255, .3);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, .4),
+        0 2px 6px rgba(45, 25, 65, .22);
 }
 
 .avatar-tag {
@@ -838,9 +820,11 @@ body {
     background: rgba(255, 255, 255, .72);
     border-radius: 100px;
     color: var(--card-primary);
-    font-size: 8px;
+    font-size: 9px;
     font-weight: 600;
     letter-spacing: 1px;
+    -webkit-text-stroke: .3px rgba(255, 255, 255, .25);
+    text-shadow: 0 2px 5px rgba(45, 25, 65, .18);
 }
 
 .informacoes-card {
@@ -860,9 +844,13 @@ body {
 .nome-card span {
     flex-shrink: 0;
     color: var(--card-primary);
-    font-size: clamp(9px, 1vw, 11px);
+    font-size: clamp(10px, 1.1vw, 13px);
     font-weight: 700;
     letter-spacing: 1.5px;
+    -webkit-text-stroke: .5px rgba(255, 255, 255, .3);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, .4),
+        0 2px 6px rgba(45, 25, 65, .2);
 }
 
 .nome-card strong {
@@ -871,26 +859,29 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     color: var(--card-primary);
-    font-size: clamp(28px, 4vw, 50px);
+    font-size: clamp(36px, 4.9vw, 60px);
     font-weight: 700;
     line-height: 1;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, .4);
     text-shadow:
-        0 1px 0 rgba(255, 255, 255, .60),
-        0 2px 6px rgba(55, 30, 80, .16);
+        1px 1px 0 rgba(255, 255, 255, .55),
+        -1px -1px 0 rgba(60, 30, 80, .16),
+        0 3px 10px rgba(45, 25, 65, .25);
 }
 
 .linha-card {
     width: 100%;
-    height: 4px;
-    margin: 10px 0 17px;
+    height: 5px;
+    margin: 11px 0 18px;
     border-radius: 100px;
     background: var(--card-primary);
+    box-shadow: 0 2px 6px rgba(45, 25, 65, .2);
 }
 
 .infos-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: clamp(14px, 1.7vw, 21px) clamp(14px, 2vw, 24px);
+    gap: clamp(15px, 1.8vw, 22px) clamp(15px, 2vw, 25px);
 }
 
 .info {
@@ -899,11 +890,15 @@ body {
 
 .info span {
     display: block;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     color: var(--card-primary);
-    font-size: clamp(8px, .9vw, 10px);
+    font-size: clamp(10px, 1.05vw, 13px);
     font-weight: 700;
-    letter-spacing: 1.1px;
+    letter-spacing: 1px;
+    -webkit-text-stroke: .5px rgba(255, 255, 255, .3);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, .45),
+        0 2px 6px rgba(45, 25, 65, .2);
 }
 
 .info strong {
@@ -912,12 +907,14 @@ body {
     text-overflow: ellipsis;
     white-space: nowrap;
     color: var(--card-primary);
-    font-size: clamp(14px, 1.7vw, 20px);
+    font-size: clamp(19px, 2.15vw, 26px);
     line-height: 1.05;
     font-weight: 700;
+    -webkit-text-stroke: .9px rgba(255, 255, 255, .4);
     text-shadow:
-        0 1px 0 rgba(255, 255, 255, .60),
-        0 2px 6px rgba(55, 30, 80, .16);
+        1px 1px 0 rgba(255, 255, 255, .55),
+        -1px -1px 0 rgba(60, 30, 80, .14),
+        0 3px 9px rgba(45, 25, 65, .24);
 }
 
 .big-five {
@@ -933,9 +930,13 @@ body {
     align-items: center;
     justify-content: space-between;
     color: var(--card-primary);
-    font-size: clamp(8px, .9vw, 10px);
+    font-size: clamp(9px, 1vw, 12px);
     font-weight: 600;
     letter-spacing: 1.2px;
+    -webkit-text-stroke: .5px rgba(255, 255, 255, .3);
+    text-shadow:
+        1px 1px 0 rgba(255, 255, 255, .35),
+        0 2px 6px rgba(45, 25, 65, .2);
 }
 
 .preview-info {
@@ -1087,13 +1088,13 @@ body {
 
     .marca-casa span,
     .marca-casa strong {
-        font-size: clamp(8px, 2.6vw, 15px);
-        letter-spacing: .2px;
+        font-size: clamp(10px, 3.1vw, 17px);
+        -webkit-text-stroke: .5px rgba(255, 255, 255, .35);
     }
 
     .card-id {
-        font-size: clamp(13px, 5vw, 28px);
-        letter-spacing: .5px;
+        font-size: clamp(16px, 5.8vw, 34px);
+        -webkit-text-stroke: .7px rgba(255, 255, 255, .35);
     }
 
     .card-corpo {
@@ -1101,10 +1102,6 @@ body {
         gap: 4%;
         height: auto;
         margin-top: 4%;
-    }
-
-    .avatar-area {
-        display: flex;
     }
 
     .avatar-placeholder {
@@ -1122,6 +1119,7 @@ body {
         margin-top: 3px;
         font-size: 5px;
         letter-spacing: 1px;
+        -webkit-text-stroke: .3px rgba(255, 255, 255, .3);
     }
 
     .avatar-tag {
@@ -1137,18 +1135,24 @@ body {
     }
 
     .nome-card span {
-        font-size: clamp(5px, 1.8vw, 8px);
+        font-size: clamp(6px, 1.9vw, 9px);
         letter-spacing: .5px;
+        -webkit-text-stroke: .3px rgba(255, 255, 255, .3);
     }
 
     .nome-card strong {
         max-width: 82%;
-        font-size: clamp(13px, 5vw, 28px);
+        font-size: clamp(19px, 6.2vw, 35px);
+        -webkit-text-stroke: .7px rgba(255, 255, 255, .4);
+        text-shadow:
+            1px 1px 0 rgba(255, 255, 255, .5),
+            -1px -1px 0 rgba(60, 30, 80, .12),
+            0 2px 7px rgba(45, 25, 65, .23);
     }
 
     .linha-card {
-        height: 2px;
-        margin: 4px 0 7px;
+        height: 3px;
+        margin: 5px 0 8px;
     }
 
     .infos-grid {
@@ -1157,13 +1161,19 @@ body {
     }
 
     .info span {
-        margin-bottom: 2px;
-        font-size: clamp(4px, 1.55vw, 7px);
-        letter-spacing: .4px;
+        margin-bottom: 3px;
+        font-size: clamp(5.5px, 1.95vw, 9px);
+        letter-spacing: .35px;
+        -webkit-text-stroke: .3px rgba(255, 255, 255, .3);
     }
 
     .info strong {
-        font-size: clamp(7px, 2.4vw, 12px);
+        font-size: clamp(10px, 3.25vw, 16px);
+        -webkit-text-stroke: .55px rgba(255, 255, 255, .4);
+        text-shadow:
+            1px 1px 0 rgba(255, 255, 255, .5),
+            -1px -1px 0 rgba(60, 30, 80, .12),
+            0 2px 6px rgba(45, 25, 65, .22);
     }
 
     .big-five {
@@ -1174,24 +1184,30 @@ body {
         left: 5%;
         right: 5%;
         bottom: 4%;
-        font-size: clamp(5px, 1.7vw, 8px);
+        font-size: clamp(5px, 1.8vw, 8px);
         letter-spacing: .5px;
+        -webkit-text-stroke: .3px rgba(255, 255, 255, .3);
+    }
+
+    .carinha {
+        font-size: clamp(9px, 3vw, 17px);
+        -webkit-text-stroke: .4px rgba(255, 255, 255, .3);
     }
 
     .carinha-1 {
         left: 42%;
         top: 27%;
-        font-size: clamp(8px, 2.8vw, 16px);
     }
 
     .carinha-2 {
         right: 4%;
         bottom: 10%;
-        font-size: clamp(10px, 3.5vw, 18px);
+        font-size: clamp(11px, 3.6vw, 19px);
     }
 
     .decor {
-        font-size: clamp(9px, 3vw, 17px);
+        font-size: clamp(10px, 3.2vw, 18px);
+        -webkit-text-stroke: .45px rgba(255, 255, 255, .3);
     }
 
     .decor-1 {
@@ -1213,10 +1229,6 @@ body {
 @media (max-width: 430px) {
     .pagina-card {
         width: 94%;
-    }
-
-    .cabecalho {
-        gap: 16px;
     }
 
     .logo {
@@ -1267,11 +1279,13 @@ body {
 
     .marca-casa span,
     .marca-casa strong {
-        font-size: clamp(7px, 2.8vw, 13px);
+        font-size: clamp(8px, 3vw, 14px);
+        -webkit-text-stroke: .45px rgba(255, 255, 255, .35);
     }
 
     .card-id {
-        font-size: clamp(11px, 5vw, 23px);
+        font-size: clamp(12px, 5.3vw, 25px);
+        -webkit-text-stroke: .6px rgba(255, 255, 255, .35);
     }
 
     .card-corpo {
@@ -1288,14 +1302,25 @@ body {
     }
 
     .nome-card strong {
-        font-size: clamp(11px, 5vw, 24px);
+        font-size: clamp(13px, 5.5vw, 27px);
+        -webkit-text-stroke: .6px rgba(255, 255, 255, .4);
+    }
+
+    .info span {
+        font-size: clamp(5px, 1.9vw, 7px);
+    }
+
+    .info strong {
+        font-size: clamp(7px, 2.6vw, 12px);
+        -webkit-text-stroke: .45px rgba(255, 255, 255, .4);
     }
 
     .infos-grid {
         gap: 5px 6px;
     }
 
-    .info strong {
-        font-size: clamp(6px, 2.3vw, 10px);
+    .linha-card {
+        height: 2px;
+        margin: 4px 0 7px;
     }
 }
