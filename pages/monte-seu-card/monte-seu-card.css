@@ -972,6 +972,7 @@ body {
 @media (max-width: 1050px) {
     .builder {
         grid-template-columns: 1fr;
+        gap: 30px;
     }
 
     .painel-form {
@@ -983,16 +984,260 @@ body {
     .preview-area {
         order: 1;
     }
+
+    .card-wrapper {
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .card-gerado {
+        width: 100%;
+        max-width: 900px;
+    }
 }
 
 @media (max-width: 700px) {
     .pagina-card {
-        padding-top: 25px;
+        width: 92%;
+        padding: 22px 0 50px;
     }
 
     .cabecalho {
         flex-direction: column;
         align-items: flex-start;
+        gap: 20px;
+    }
+
+    .logo {
+        width: 56px;
+        height: 56px;
+    }
+
+    .logo-texto strong {
+        font-size: 28px;
+    }
+
+    .titulo-area {
+        width: 100%;
+    }
+
+    .titulo-area h1 {
+        font-size: 40px;
+    }
+
+    .titulo-area p {
+        font-size: 13px;
+    }
+
+    .builder {
+        gap: 25px;
+    }
+
+    .painel-form {
+        padding: 20px;
+        border-radius: 22px;
+    }
+
+    .grid-2 {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .temas {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .preview-topo {
+        margin-bottom: 10px;
+    }
+
+    .preview-topo span {
+        font-size: 9px;
+        letter-spacing: 2px;
+    }
+
+    .preview-topo small {
+        font-size: 9px;
+    }
+
+    .card-wrapper {
+        width: 100%;
+        overflow: visible;
+    }
+
+    .card-gerado {
+        width: 100%;
+        aspect-ratio: 1.58 / 1;
+        min-height: 0;
+        height: auto;
+        border-radius: 20px;
+        border-width: 2px;
+    }
+
+    .card-conteudo {
+        padding: 5%;
+    }
+
+    .card-topo {
+        gap: 8px;
+    }
+
+    .marca-casa {
+        gap: 4px;
+    }
+
+    .marca-casa span,
+    .marca-casa strong {
+        font-size: clamp(8px, 2.6vw, 15px);
+        letter-spacing: .2px;
+    }
+
+    .card-id {
+        font-size: clamp(13px, 5vw, 28px);
+        letter-spacing: .5px;
+    }
+
+    .card-corpo {
+        grid-template-columns: 25% 1fr;
+        gap: 4%;
+        height: auto;
+        margin-top: 4%;
+    }
+
+    .avatar-area {
+        display: flex;
+    }
+
+    .avatar-placeholder {
+        width: 100%;
+        max-width: 120px;
+        border-width: 2px;
+        border-radius: 12px;
+    }
+
+    .avatar-placeholder span {
+        font-size: clamp(22px, 7vw, 42px);
+    }
+
+    .avatar-placeholder small {
+        margin-top: 3px;
+        font-size: 5px;
+        letter-spacing: 1px;
+    }
+
+    .avatar-tag {
+        display: none;
+    }
+
+    .informacoes-card {
+        min-width: 0;
+    }
+
+    .nome-card {
+        gap: 5px;
+    }
+
+    .nome-card span {
+        font-size: clamp(5px, 1.8vw, 8px);
+        letter-spacing: .5px;
+    }
+
+    .nome-card strong {
+        max-width: 82%;
+        font-size: clamp(13px, 5vw, 28px);
+    }
+
+    .linha-card {
+        height: 2px;
+        margin: 4px 0 7px;
+    }
+
+    .infos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 7px 8px;
+    }
+
+    .info span {
+        margin-bottom: 2px;
+        font-size: clamp(4px, 1.55vw, 7px);
+        letter-spacing: .4px;
+    }
+
+    .info strong {
+        font-size: clamp(7px, 2.4vw, 12px);
+    }
+
+    .big-five {
+        grid-column: span 3;
+    }
+
+    .card-footer {
+        left: 5%;
+        right: 5%;
+        bottom: 4%;
+        font-size: clamp(5px, 1.7vw, 8px);
+        letter-spacing: .5px;
+    }
+
+    .carinha-1 {
+        left: 42%;
+        top: 27%;
+        font-size: clamp(8px, 2.8vw, 16px);
+    }
+
+    .carinha-2 {
+        right: 4%;
+        bottom: 10%;
+        font-size: clamp(10px, 3.5vw, 18px);
+    }
+
+    .decor {
+        font-size: clamp(9px, 3vw, 17px);
+    }
+
+    .decor-1 {
+        top: 6%;
+        right: 7%;
+    }
+
+    .decor-2 {
+        right: 6%;
+        bottom: 12%;
+    }
+
+    .decor-3 {
+        left: 41%;
+        bottom: 4%;
+    }
+}
+
+@media (max-width: 430px) {
+    .pagina-card {
+        width: 94%;
+    }
+
+    .cabecalho {
+        gap: 16px;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+    }
+
+    .logo-texto strong {
+        font-size: 25px;
+    }
+
+    .titulo-area h1 {
+        font-size: 34px;
+    }
+
+    .titulo-area p {
+        font-size: 12px;
+    }
+
+    .painel-form {
+        padding: 17px;
     }
 
     .grid-2 {
@@ -1003,67 +1248,54 @@ body {
         grid-template-columns: repeat(3, 1fr);
     }
 
+    .tipo-fundo {
+        gap: 6px;
+    }
+
+    .tipo-fundo-btn {
+        min-height: 38px;
+        font-size: 10px;
+    }
+
     .card-gerado {
-        aspect-ratio: auto;
-        min-height: 540px;
-    }
-
-    .card-corpo {
-        grid-template-columns: 1fr;
-        height: auto;
-    }
-
-    .avatar-area {
-        display: none;
-    }
-
-    .infos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .big-five {
-        grid-column: span 2;
-    }
-
-    .titulo-area h1 {
-        font-size: 42px;
-    }
-}
-
-@media (max-width: 430px) {
-    .painel-form {
-        padding: 20px;
+        border-radius: 16px;
     }
 
     .card-conteudo {
-        padding: 22px;
-    }
-
-    .card-id {
-        font-size: 29px;
-    }
-
-    .preview-topo {
-        align-items: flex-start;
-        flex-direction: column;
-        gap: 5px;
-    }
-
-    .marca-casa {
-        gap: 5px;
+        padding: 5.5%;
     }
 
     .marca-casa span,
     .marca-casa strong {
-        font-size: 17px;
+        font-size: clamp(7px, 2.8vw, 13px);
+    }
+
+    .card-id {
+        font-size: clamp(11px, 5vw, 23px);
+    }
+
+    .card-corpo {
+        grid-template-columns: 23% 1fr;
+        gap: 5%;
+    }
+
+    .avatar-placeholder {
+        border-radius: 9px;
+    }
+
+    .avatar-placeholder span {
+        font-size: clamp(18px, 6vw, 32px);
+    }
+
+    .nome-card strong {
+        font-size: clamp(11px, 5vw, 24px);
     }
 
     .infos-grid {
-        gap: 12px;
+        gap: 5px 6px;
     }
 
     .info strong {
-        font-size: 13px;
+        font-size: clamp(6px, 2.3vw, 10px);
     }
 }
-
