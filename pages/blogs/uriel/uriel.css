@@ -1,3 +1,4 @@
+
 * {
     margin: 0;
     padding: 0;
@@ -190,7 +191,6 @@ button {
 .hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,11 +213,12 @@ button {
     width: 800px;
     height: 800px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(
-        circle,
-        rgba(125, 74, 179, 0.07),
-        transparent 70%
-    );
+    background:
+        radial-gradient(
+            circle,
+            rgba(125, 74, 179, 0.07),
+            transparent 70%
+        );
     filter: blur(40px);
     pointer-events: none;
 }
@@ -226,10 +227,9 @@ button {
     position: relative;
     z-index: 2;
     display: block;
-    width: min(1400px, 100%);
+    width: min(1200px, 100%);
     height: auto;
-    max-height: 760px;
-    object-fit: cover;
+    max-width: 100%;
     border: 1px solid rgba(161, 106, 223, 0.22);
     border-radius: 2px;
     background: #0a080d;
@@ -327,11 +327,12 @@ button {
     left: 0;
     width: 2px;
     height: 55px;
-    background: linear-gradient(
-        180deg,
-        var(--purple-light),
-        transparent
-    );
+    background:
+        linear-gradient(
+            180deg,
+            var(--purple-light),
+            transparent
+        );
     box-shadow: 0 0 8px rgba(166, 106, 229, 0.5);
 }
 
@@ -508,11 +509,12 @@ button {
     left: 0;
     width: 70px;
     height: 1px;
-    background: linear-gradient(
-        90deg,
-        var(--purple-light),
-        transparent
-    );
+    background:
+        linear-gradient(
+            90deg,
+            var(--purple-light),
+            transparent
+        );
     box-shadow: 0 0 8px rgba(163, 104, 225, 0.55);
 }
 
@@ -621,6 +623,10 @@ footer span {
         padding-right: 5%;
     }
 
+    .hero-banner {
+        width: 100%;
+    }
+
     .section {
         padding-left: 7%;
         padding-right: 7%;
@@ -636,7 +642,7 @@ footer span {
     }
 }
 
-/* MENU MOBILE / TABLET */
+/* MENU TABLET / MOBILE */
 
 @media (max-width: 850px) {
 
@@ -671,7 +677,7 @@ footer span {
     .hero {
         min-height: auto;
         padding-top: 100px;
-        padding-bottom: 40px;
+        padding-bottom: 35px;
     }
 
     .hero-banner {
@@ -712,18 +718,17 @@ footer span {
     }
 
     .hero {
+        width: 100%;
         min-height: auto;
         display: block;
-        padding: 78px 10px 20px;
+        padding: 78px 12px 20px;
     }
 
     .hero-banner {
         width: 100%;
-        height: 240px;
-        max-height: none;
-        object-fit: cover;
-        object-position: center;
-        border-radius: 12px;
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
     }
 
     .section {
@@ -794,20 +799,24 @@ footer span {
     footer {
         padding: 50px 6%;
     }
-
 }
 
 /* CELULARES PEQUENOS */
 
 @media (max-width: 380px) {
 
+    .header {
+        padding: 0 5%;
+    }
+
     .hero {
-        padding: 76px 8px 16px;
+        padding: 74px 10px 16px;
     }
 
     .hero-banner {
-        height: 200px;
-        border-radius: 10px;
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
     }
 
     .section-title h2 {
@@ -823,3 +832,4 @@ footer span {
         letter-spacing: 4px;
     }
 }
+
