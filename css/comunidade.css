@@ -1,300 +1,172 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800&display=swap');
 
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+
 :root {
     --preto: #050508;
     --preto-sec: #0b0a10;
+
     --roxo: #8b42ff;
     --roxo-claro: #b77aff;
     --roxo-escuro: #34105c;
     --roxo-neon: #9b4dff;
+
     --branco: #f4efff;
     --cinza: #aaa3b8;
+
     --borda: rgba(164, 91, 255, 0.2);
     --sombra: rgba(124, 43, 255, 0.25);
 }
+
 
 html {
     scroll-behavior: smooth;
 }
 
+
 body {
     background:
-        radial-gradient(circle at 15% 10%, rgba(105, 34, 181, 0.13), transparent 28%),
-        radial-gradient(circle at 85% 35%, rgba(122, 46, 255, 0.1), transparent 30%),
-        linear-gradient(180deg, #050508 0%, #08060d 45%, #040406 100%);
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(105, 34, 181, 0.13),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 85% 35%,
+            rgba(122, 46, 255, 0.1),
+            transparent 30%
+        ),
+        linear-gradient(
+            180deg,
+            #050508 0%,
+            #08060d 45%,
+            #040406 100%
+        );
+
     color: var(--branco);
+
     font-family: 'Inter', sans-serif;
+
     overflow-x: hidden;
 }
 
+
+/* =========================================================
+   TEXTURA DE FUNDO
+   ========================================================= */
+
 body::before {
     content: "";
+
     position: fixed;
+
     inset: 0;
+
     pointer-events: none;
+
     opacity: 0.08;
+
     background-image:
-        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+        linear-gradient(
+            rgba(255,255,255,0.03) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,0.03) 1px,
+            transparent 1px
+        );
+
     background-size: 45px 45px;
+
     z-index: -1;
 }
+
 
 main {
     width: 100%;
 }
 
-.comunidade-banner {
-    min-height: 720px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    border-bottom: 1px solid var(--borda);
-    background:
-        radial-gradient(circle at 72% 48%, rgba(132, 45, 255, 0.2), transparent 22%),
-        radial-gradient(circle at 30% 55%, rgba(75, 27, 112, 0.12), transparent 30%),
-        linear-gradient(135deg, #050507 0%, #09050f 50%, #050507 100%);
-}
 
-.comunidade-banner::before {
-    content: "";
-    position: absolute;
-    width: 600px;
-    height: 600px;
-    border: 1px solid rgba(161, 84, 255, 0.12);
-    border-radius: 50%;
-    right: 12%;
-    top: 50%;
-    transform: translateY(-50%);
-    box-shadow:
-        0 0 80px rgba(133, 53, 255, 0.08),
-        inset 0 0 80px rgba(133, 53, 255, 0.05);
-}
+/* =========================================================
+   BANNER PRINCIPAL
+   ========================================================= */
 
-.comunidade-banner::after {
-    content: "";
-    position: absolute;
-    width: 900px;
-    height: 900px;
-    border: 1px solid rgba(161, 84, 255, 0.05);
-    border-radius: 50%;
-    right: 1%;
-    top: 50%;
-    transform: translateY(-50%);
-}
-
-.banner-conteudo {
-    width: min(1400px, 92%);
-    margin: auto;
-    min-height: 720px;
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.banner-texto {
-    width: 52%;
-    position: relative;
-    z-index: 8;
-}
-
-.mini-titulo {
-    display: inline-block;
-    margin-bottom: 18px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.78rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    color: var(--roxo-claro);
-}
-
-.banner-texto h1 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: clamp(3.5rem, 7vw, 7rem);
-    line-height: 0.9;
-    letter-spacing: -4px;
-    text-transform: uppercase;
-    color: #fff;
-    text-shadow: 0 0 30px rgba(157, 74, 255, 0.14);
-}
-
-.banner-texto h1 strong {
-    display: block;
-    color: var(--roxo);
-    text-shadow:
-        0 0 12px rgba(148, 68, 255, 0.65),
-        0 0 40px rgba(148, 68, 255, 0.3);
-}
-
-.banner-texto p {
-    max-width: 640px;
-    margin-top: 30px;
-    color: var(--cinza);
-    font-size: 1.08rem;
-    line-height: 1.8;
-}
-
-.banner-texto p strong {
-    color: #ded0f8;
-}
-
-.banner-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    margin-top: 28px;
-}
-
-.banner-tags span {
-    padding: 9px 14px;
-    border: 1px solid rgba(169, 101, 255, 0.2);
-    background: rgba(97, 40, 152, 0.08);
-    border-radius: 50px;
-    color: #c9b1ef;
-    font-size: 0.82rem;
-    backdrop-filter: blur(10px);
-}
-
-.banner-cerebro {
-    position: absolute;
-    width: 430px;
-    height: 430px;
-    right: 24%;
-    top: 50%;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-}
-
-.cerebro-glow {
-    position: absolute;
-    width: 270px;
-    height: 270px;
-    border-radius: 50%;
-    background: rgba(141, 58, 255, 0.3);
-    filter: blur(80px);
-    animation: pulsar 4s ease-in-out infinite;
-}
-
-.cerebro {
-    width: 220px;
-    height: 220px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(184, 119, 255, 0.45);
-    border-radius: 50%;
-    background: rgba(37, 14, 58, 0.38);
-    box-shadow:
-        0 0 25px rgba(142, 58, 255, 0.4),
-        0 0 80px rgba(142, 58, 255, 0.2),
-        inset 0 0 40px rgba(142, 58, 255, 0.1);
-    font-size: 7rem;
-    position: relative;
-    z-index: 2;
-    animation: flutuar 5s ease-in-out infinite;
-}
-
-.banner-personagem {
-    position: absolute;
-    right: -20px;
-    bottom: 0;
-    width: 430px;
-    height: 650px;
-    z-index: 6;
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    pointer-events: none;
-}
-
-.banner-personagem::before {
-    content: "";
-    position: absolute;
-    width: 270px;
-    height: 270px;
-    bottom: 80px;
-    border-radius: 50%;
-    background: rgba(144, 54, 255, 0.22);
-    filter: blur(80px);
-}
-
-.banner-personagem img {
+.banner-inicial {
     width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    object-position: bottom center;
+
     position: relative;
-    z-index: 2;
-    filter:
-        drop-shadow(0 0 15px rgba(135, 53, 255, 0.3))
-        drop-shadow(0 0 45px rgba(135, 53, 255, 0.12));
+
+    overflow: hidden;
+
+    background: #111;
+
+    border-bottom: 1px solid var(--borda);
 }
 
-.banner-conexoes {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
+
+/*
+    O banner ocupa a largura da tela.
+*/
+
+.banner-imagem {
+    width: 100%;
+
+    display: block;
+
+    line-height: 0;
 }
 
-.linha {
-    position: absolute;
-    height: 1px;
-    transform-origin: left center;
-    background: linear-gradient(90deg, transparent, rgba(169, 91, 255, 0.45), transparent);
-    box-shadow: 0 0 10px rgba(166, 80, 255, 0.3);
+
+.banner-imagem img {
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+
+    max-width: 100%;
+
+    object-fit: cover;
 }
 
-.linha::after {
+
+/*
+    Um brilho bem discreto por cima do banner.
+    Não interfere na imagem.
+*/
+
+.banner-inicial::after {
     content: "";
+
     position: absolute;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    right: 20%;
-    top: 50%;
-    transform: translateY(-50%);
-    background: var(--roxo-claro);
-    box-shadow: 0 0 15px var(--roxo);
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            180deg,
+            transparent 70%,
+            rgba(5, 5, 8, 0.35) 100%
+        );
 }
 
-.linha-1 {
-    width: 360px;
-    right: 25%;
-    top: 29%;
-    transform: rotate(18deg);
-}
 
-.linha-2 {
-    width: 300px;
-    right: 21%;
-    top: 47%;
-    transform: rotate(-4deg);
-}
-
-.linha-3 {
-    width: 330px;
-    right: 23%;
-    top: 65%;
-    transform: rotate(-18deg);
-}
-
-.linha-4 {
-    width: 250px;
-    right: 12%;
-    top: 43%;
-    transform: rotate(28deg);
-}
+/* =========================================================
+   ÁREAS PRINCIPAIS
+   ========================================================= */
 
 .introducao,
 .grupos,
@@ -303,23 +175,42 @@ main {
 .historia-comunidade,
 .comunidade-final {
     width: min(1180px, 90%);
+
     margin: auto;
 }
 
-.introducao {
-    padding: 120px 0 70px;
-    text-align: center;
-}
+
+/* =========================================================
+   LABELS
+   ========================================================= */
 
 .secao-label {
     display: inline-block;
+
     margin-bottom: 18px;
+
     font-family: 'Orbitron', sans-serif;
+
     font-size: 0.68rem;
+
     letter-spacing: 3px;
+
     color: var(--roxo-claro);
+
     font-weight: 700;
 }
+
+
+/* =========================================================
+   INTRODUÇÃO
+   ========================================================= */
+
+.introducao {
+    padding: 120px 0 70px;
+
+    text-align: center;
+}
+
 
 .introducao h2,
 .grupo-header h2,
@@ -328,677 +219,1087 @@ main {
 .historia-comunidade h2,
 .comunidade-final h2 {
     font-size: clamp(2rem, 4vw, 3.4rem);
+
     line-height: 1.1;
+
     color: #fff;
 }
 
+
 .introducao p {
     max-width: 850px;
+
     margin: 22px auto 0;
+
     color: var(--cinza);
+
     line-height: 1.9;
+
     font-size: 1rem;
 }
+
 
 .introducao strong {
     color: #e6d7fa;
 }
 
+
+/* =========================================================
+   GRUPOS
+   ========================================================= */
+
 .grupos {
     padding: 80px 0 120px;
 }
 
+
 .grupo-header,
 .espacos-header {
     text-align: center;
+
     margin-bottom: 50px;
 }
+
 
 .grupo-header p,
 .espacos-header p {
     color: var(--cinza);
+
     margin-top: 18px;
 }
 
+
+/* =========================================================
+   GRID DOS GRUPOS
+   ========================================================= */
+
 .grupos-grid {
     display: grid;
+
     grid-template-columns: repeat(4, 1fr);
+
     gap: 18px;
 }
 
+
 .grupo-card {
     min-height: 310px;
+
     padding: 30px;
+
     position: relative;
+
     overflow: hidden;
+
     border-radius: 22px;
+
     border: 1px solid var(--borda);
+
     background:
-        linear-gradient(145deg, rgba(44, 19, 67, 0.7), rgba(13, 9, 17, 0.88));
+        linear-gradient(
+            145deg,
+            rgba(44, 19, 67, 0.7),
+            rgba(13, 9, 17, 0.88)
+        );
+
     transition: 0.35s ease;
 }
 
+
 .grupo-card::before {
     content: "";
+
     position: absolute;
+
     width: 160px;
     height: 160px;
+
     border-radius: 50%;
+
     top: -70px;
     right: -60px;
+
     background: rgba(141, 61, 255, 0.14);
+
     filter: blur(20px);
 }
 
+
 .grupo-card:hover {
     transform: translateY(-8px);
+
     border-color: rgba(174, 101, 255, 0.5);
-    box-shadow: 0 18px 50px rgba(79, 26, 139, 0.2);
+
+    box-shadow:
+        0 18px 50px rgba(79, 26, 139, 0.2);
 }
+
 
 .grupo-icone {
     font-size: 2.4rem;
+
     margin-bottom: 25px;
 }
 
+
 .grupo-numero {
     position: absolute;
+
     right: 20px;
     top: 20px;
+
     font-family: 'Orbitron', sans-serif;
+
     font-size: 0.72rem;
+
     color: rgba(192, 160, 235, 0.35);
 }
 
+
 .grupo-card h3 {
     font-family: 'Orbitron', sans-serif;
+
     font-size: 1.15rem;
+
     margin-bottom: 15px;
 }
 
+
 .grupo-card p {
     color: var(--cinza);
+
     font-size: 0.9rem;
+
     line-height: 1.7;
 }
 
+
 .grupo-tipos {
     display: block;
+
     margin-top: 22px;
+
     color: var(--roxo-claro);
+
     font-size: 0.72rem;
+
     font-weight: 700;
+
     letter-spacing: 0.8px;
 }
 
+
 .diplomatas {
-    background: linear-gradient(145deg, rgba(53, 21, 67, 0.7), rgba(13, 9, 17, 0.88));
+    background:
+        linear-gradient(
+            145deg,
+            rgba(53, 21, 67, 0.7),
+            rgba(13, 9, 17, 0.88)
+        );
 }
 
-.sentinetelas {
-    background: linear-gradient(145deg, rgba(29, 20, 48, 0.7), rgba(13, 9, 17, 0.88));
+
+.sentinelas {
+    background:
+        linear-gradient(
+            145deg,
+            rgba(29, 20, 48, 0.7),
+            rgba(13, 9, 17, 0.88)
+        );
 }
+
 
 .exploradores {
-    background: linear-gradient(145deg, rgba(57, 22, 65, 0.7), rgba(13, 9, 17, 0.88));
+    background:
+        linear-gradient(
+            145deg,
+            rgba(57, 22, 65, 0.7),
+            rgba(13, 9, 17, 0.88)
+        );
 }
+
+
+/* =========================================================
+   ESPAÇOS
+   ========================================================= */
 
 .espacos {
     padding: 80px 0 120px;
 }
 
+
 .espacos-grid {
     display: grid;
+
     grid-template-columns: repeat(2, 1fr);
+
     gap: 18px;
 }
 
+
 .espaco-card {
     display: flex;
+
     gap: 22px;
+
     padding: 28px;
+
     border-radius: 20px;
+
     background: rgba(15, 11, 20, 0.8);
+
     border: 1px solid rgba(163, 85, 255, 0.14);
+
     transition: 0.3s ease;
 }
 
+
 .espaco-card:hover {
     transform: translateY(-5px);
+
     border-color: rgba(163, 85, 255, 0.38);
+
     background: rgba(26, 15, 37, 0.9);
 }
+
 
 .espaco-icon {
     width: 58px;
     height: 58px;
+
     flex-shrink: 0;
+
     display: flex;
+
     justify-content: center;
     align-items: center;
+
     border-radius: 16px;
+
     background: rgba(128, 52, 215, 0.11);
+
     border: 1px solid rgba(171, 98, 255, 0.16);
+
     font-size: 1.6rem;
 }
 
+
 .espaco-card h3 {
     font-size: 1.1rem;
+
     margin-bottom: 9px;
+
     color: #f2e9ff;
 }
 
+
 .espaco-card p {
     color: var(--cinza);
+
     font-size: 0.88rem;
+
     line-height: 1.7;
 }
 
+
+/* =========================================================
+   MAPA DA COMUNIDADE
+   ========================================================= */
+
 .mapa-comunidade {
     margin-top: 40px;
+
     margin-bottom: 120px;
+
     padding: 65px;
+
     display: grid;
+
     grid-template-columns: 0.8fr 1.2fr;
+
     align-items: center;
+
     gap: 50px;
+
     position: relative;
+
     overflow: hidden;
+
     border-radius: 30px;
+
     border: 1px solid rgba(157, 80, 255, 0.2);
+
     background:
-        radial-gradient(circle at 15% 50%, rgba(125, 50, 223, 0.13), transparent 30%),
-        linear-gradient(145deg, rgba(28, 15, 42, 0.85), rgba(8, 7, 11, 0.95));
+        radial-gradient(
+            circle at 15% 50%,
+            rgba(125, 50, 223, 0.13),
+            transparent 30%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(28, 15, 42, 0.85),
+            rgba(8, 7, 11, 0.95)
+        );
 }
+
 
 .mapa-comunidade::before {
     content: "";
+
     position: absolute;
+
     width: 500px;
     height: 500px;
+
     border-radius: 50%;
+
     border: 1px solid rgba(150, 75, 255, 0.08);
+
     left: -130px;
+
     top: 50%;
+
     transform: translateY(-50%);
 }
 
+
 .mapa-cerebro {
     min-height: 340px;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
+
     position: relative;
 }
+
 
 .mapa-cerebro::before,
 .mapa-cerebro::after {
     content: "";
+
     position: absolute;
+
     border-radius: 50%;
+
     border: 1px solid rgba(157, 81, 255, 0.2);
 }
+
 
 .mapa-cerebro::before {
     width: 290px;
     height: 290px;
 }
 
+
 .mapa-cerebro::after {
     width: 370px;
     height: 370px;
+
     border-style: dashed;
+
     animation: girar 18s linear infinite;
 }
+
 
 .cerebro-grande {
     width: 180px;
     height: 180px;
+
     display: flex;
+
     justify-content: center;
     align-items: center;
+
     border-radius: 50%;
+
     background: rgba(75, 27, 108, 0.2);
+
     border: 1px solid rgba(181, 117, 255, 0.32);
+
     box-shadow:
         0 0 35px rgba(145, 60, 255, 0.24),
         inset 0 0 35px rgba(145, 60, 255, 0.1);
+
     font-size: 5.5rem;
+
     z-index: 2;
 }
+
 
 .mapa-texto {
     position: relative;
+
     z-index: 2;
 }
 
+
 .mapa-texto p {
     color: var(--cinza);
+
     line-height: 1.8;
+
     margin-top: 20px;
 }
 
+
 .conexoes-lista {
     display: flex;
+
     flex-wrap: wrap;
+
     gap: 10px;
+
     margin-top: 25px;
 }
 
+
 .conexoes-lista span {
     padding: 9px 13px;
+
     border-radius: 10px;
+
     font-size: 0.78rem;
+
     color: #cab5ea;
+
     background: rgba(129, 52, 220, 0.1);
+
     border: 1px solid rgba(173, 98, 255, 0.13);
 }
 
+
+/* =========================================================
+   HISTÓRIA
+   ========================================================= */
+
 .historia-comunidade {
     max-width: 950px;
+
     padding: 80px 0 110px;
 }
 
+
 .historia-comunidade h2 {
     margin-top: 55px;
+
     margin-bottom: 20px;
+
     font-size: clamp(1.7rem, 3vw, 2.6rem);
 }
 
+
 .historia-comunidade p {
     color: var(--cinza);
+
     line-height: 1.9;
+
     margin-top: 18px;
+
     font-size: 0.98rem;
 }
+
 
 .historia-comunidade strong {
     color: #e0cdf8;
 }
 
+
 .historia-comunidade blockquote {
     margin: 35px 0;
+
     padding: 25px 30px;
+
     border-left: 3px solid var(--roxo);
+
     background: rgba(102, 41, 171, 0.08);
+
     color: #e8d9fa;
+
     font-size: 1.1rem;
+
     font-style: italic;
+
     border-radius: 0 12px 12px 0;
 }
 
+
 .historia-comunidade .final {
     margin-top: 60px;
+
     text-align: center;
+
     color: #d6b9fa;
+
     font-size: 1.1rem;
 }
 
+
+/* =========================================================
+   FINAL
+   ========================================================= */
+
 .comunidade-final {
     margin-top: 20px;
+
     margin-bottom: 100px;
+
     padding: 80px 30px;
+
     text-align: center;
+
     border-radius: 30px;
+
     border: 1px solid rgba(157, 78, 255, 0.18);
+
     background:
-        radial-gradient(circle at center, rgba(128, 45, 227, 0.13), transparent 45%),
+        radial-gradient(
+            circle at center,
+            rgba(128, 45, 227, 0.13),
+            transparent 45%
+        ),
         rgba(11, 8, 15, 0.8);
 }
 
+
 .final-casa {
     font-size: 4rem;
+
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 20px rgba(151, 73, 255, 0.28));
+
+    filter:
+        drop-shadow(
+            0 0 20px rgba(151, 73, 255, 0.28)
+        );
 }
+
 
 .comunidade-final h2 {
     margin-bottom: 18px;
 }
 
+
 .comunidade-final p {
     max-width: 650px;
+
     margin: auto;
+
     color: var(--cinza);
+
     line-height: 1.8;
 }
 
+
 .comunidade-final strong {
     display: block;
+
     margin-top: 22px;
+
     color: var(--roxo-claro);
 }
 
-@keyframes pulsar {
-    0%, 100% {
-        transform: scale(0.9);
-        opacity: 0.55;
-    }
-    50% {
-        transform: scale(1.15);
-        opacity: 0.9;
-    }
+
+/* =========================================================
+   TIKTOK
+   ========================================================= */
+
+.tiktok-comunidade {
+    width: min(1180px, 90%);
+
+    margin: 20px auto 100px;
 }
 
-@keyframes flutuar {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+
+.tiktok-header {
+    text-align: center;
+
+    margin-bottom: 45px;
 }
+
+
+.tiktok-header h2 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+
+    color: #fff;
+}
+
+
+.tiktok-header p {
+    max-width: 680px;
+
+    margin: 18px auto 0;
+
+    color: var(--cinza);
+
+    line-height: 1.8;
+}
+
+
+.tiktok-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 20px;
+}
+
+
+.tiktok-card {
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 22px;
+
+    padding: 30px;
+
+    text-decoration: none;
+
+    color: inherit;
+
+    border-radius: 24px;
+
+    border: 1px solid rgba(163, 85, 255, 0.18);
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(150, 67, 255, 0.14),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(27, 14, 39, 0.92),
+            rgba(8, 7, 11, 0.96)
+        );
+
+    transition: 0.35s ease;
+}
+
+
+.tiktok-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    right: -80px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(138, 54, 255, 0.18);
+
+    filter: blur(30px);
+}
+
+
+.tiktok-card:hover {
+    transform: translateY(-7px);
+
+    border-color: rgba(185, 111, 255, 0.5);
+
+    box-shadow:
+        0 18px 50px rgba(86, 27, 145, 0.22);
+}
+
+
+.tiktok-icon {
+    width: 64px;
+    height: 64px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    font-size: 2rem;
+
+    color: #fff;
+
+    background: rgba(122, 50, 205, 0.15);
+
+    border: 1px solid rgba(178, 105, 255, 0.22);
+
+    box-shadow:
+        0 0 25px rgba(136, 55, 240, 0.12);
+}
+
+
+.tiktok-info {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.tiktok-info span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    font-family: 'Orbitron', sans-serif;
+
+    font-size: 0.62rem;
+
+    letter-spacing: 2px;
+
+    color: var(--roxo-claro);
+}
+
+
+.tiktok-info h3 {
+    margin-bottom: 9px;
+
+    font-size: 1.15rem;
+
+    color: #fff;
+}
+
+
+.tiktok-info p {
+    color: var(--cinza);
+
+    font-size: 0.85rem;
+
+    line-height: 1.65;
+}
+
+
+.tiktok-arrow {
+    margin-left: auto;
+
+    align-self: flex-start;
+
+    font-size: 1.5rem;
+
+    color: var(--roxo-claro);
+
+    transition: 0.3s ease;
+}
+
+
+.tiktok-card:hover .tiktok-arrow {
+    transform: translate(4px, -4px);
+}
+
+
+.comunidade-tiktok {
+    background:
+        radial-gradient(
+            circle at 0% 100%,
+            rgba(110, 42, 188, 0.13),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            rgba(31, 16, 45, 0.95),
+            rgba(8, 7, 11, 0.96)
+        );
+}
+
+
+/* =========================================================
+   ANIMAÇÃO
+   ========================================================= */
 
 @keyframes girar {
+
     from {
         transform: rotate(0deg);
     }
+
     to {
         transform: rotate(360deg);
     }
+
 }
 
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
 @media (max-width: 1100px) {
-    .banner-texto {
-        width: 58%;
-    }
-
-    .banner-cerebro {
-        right: 25%;
-        width: 350px;
-        height: 350px;
-    }
-
-    .banner-personagem {
-        width: 350px;
-        right: -30px;
-    }
 
     .grupos-grid {
         grid-template-columns: repeat(2, 1fr);
     }
+
 }
 
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
 @media (max-width: 800px) {
-    .comunidade-banner,
-    .banner-conteudo {
-        min-height: 850px;
-    }
 
-    .banner-conteudo {
-        align-items: flex-start;
-        padding-top: 100px;
-    }
+    /*
+        O banner continua usando a imagem inteira.
+        Não colocamos altura fixa para evitar cortes.
+    */
 
-    .banner-texto {
+    .banner-imagem img {
         width: 100%;
-        text-align: center;
-        z-index: 9;
+        height: auto;
+
+        object-fit: contain;
     }
 
-    .banner-texto p {
-        margin-left: auto;
-        margin-right: auto;
+
+    .introducao {
+        padding: 85px 0 55px;
     }
 
-    .banner-tags {
-        justify-content: center;
+
+    .grupos {
+        padding: 65px 0 85px;
     }
 
-    .banner-cerebro {
-        width: 300px;
-        height: 300px;
-        right: 50%;
-        top: 63%;
-        transform: translate(50%, -50%);
-        opacity: 0.65;
-    }
-
-    .banner-personagem {
-        width: 320px;
-        height: 470px;
-        right: 50%;
-        transform: translateX(50%);
-        z-index: 8;
-        opacity: 0.92;
-    }
-
-    .banner-conexoes {
-        opacity: 0.45;
-    }
-
-    .linha-1,
-    .linha-2,
-    .linha-3,
-    .linha-4 {
-        right: 50%;
-    }
 
     .grupos-grid {
         grid-template-columns: 1fr;
     }
+
+
+    .espacos {
+        padding: 65px 0 85px;
+    }
+
 
     .espacos-grid {
         grid-template-columns: 1fr;
     }
 
+
     .mapa-comunidade {
         grid-template-columns: 1fr;
+
         padding: 40px 25px;
+
         text-align: center;
     }
+
 
     .conexoes-lista {
         justify-content: center;
     }
 
+
     .mapa-cerebro {
         min-height: 280px;
     }
+
+
+    .historia-comunidade {
+        padding: 65px 0 85px;
+    }
+
+
+    .comunidade-final {
+        padding: 60px 25px;
+    }
+
+
+    .tiktok-grid {
+        grid-template-columns: 1fr;
+    }
+
 }
 
+
+/* =========================================================
+   CELULAR MENOR
+   ========================================================= */
+
 @media (max-width: 520px) {
-    .banner-texto h1 {
-        font-size: 3rem;
-        letter-spacing: -2px;
+
+    .banner-inicial {
+        border-bottom: 1px solid rgba(164, 91, 255, 0.15);
     }
 
-    .banner-texto p {
-        font-size: 0.92rem;
+
+    .banner-imagem img {
+        width: 100%;
+
+        height: auto;
+
+        object-fit: contain;
     }
 
-    .banner-cerebro {
-        top: 66%;
-        width: 250px;
-        height: 250px;
-    }
-
-    .cerebro {
-        width: 170px;
-        height: 170px;
-        font-size: 5rem;
-    }
-
-    .banner-personagem {
-        width: 270px;
-        height: 400px;
-    }
 
     .introducao,
     .grupos,
-    .espacos {
-        padding-top: 75px;
+    .espacos,
+    .mapa-comunidade,
+    .historia-comunidade,
+    .comunidade-final {
+        width: 90%;
     }
+
+
+    .introducao h2,
+    .grupo-header h2,
+    .espacos-header h2,
+    .mapa-texto h2,
+    .historia-comunidade h2,
+    .comunidade-final h2 {
+        font-size: 2rem;
+    }
+
+
+    .introducao p {
+        font-size: 0.92rem;
+
+        line-height: 1.8;
+    }
+
+
+    .grupo-card {
+        padding: 25px;
+
+        min-height: auto;
+    }
+
 
     .espaco-card {
         padding: 22px;
+
+        gap: 16px;
     }
+
 
     .espaco-icon {
         width: 48px;
         height: 48px;
+
         font-size: 1.35rem;
     }
+
+
+    .mapa-comunidade {
+        padding: 35px 20px;
+
+        border-radius: 22px;
+    }
+
 
     .mapa-cerebro::before {
         width: 220px;
         height: 220px;
     }
 
+
     .mapa-cerebro::after {
         width: 285px;
         height: 285px;
     }
 
+
     .cerebro-grande {
         width: 145px;
         height: 145px;
+
         font-size: 4.3rem;
     }
-}
 
-.tiktok-comunidade {
-    width: min(1180px, 90%);
-    margin: 20px auto 100px;
-}
 
-.tiktok-header {
-    text-align: center;
-    margin-bottom: 45px;
-}
+    .historia-comunidade blockquote {
+        padding: 20px;
 
-.tiktok-header h2 {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    color: #fff;
-}
-
-.tiktok-header p {
-    max-width: 680px;
-    margin: 18px auto 0;
-    color: var(--cinza);
-    line-height: 1.8;
-}
-
-.tiktok-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.tiktok-card {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    padding: 30px;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 24px;
-    border: 1px solid rgba(163, 85, 255, 0.18);
-    background:
-        radial-gradient(circle at 100% 0%, rgba(150, 67, 255, 0.14), transparent 35%),
-        linear-gradient(145deg, rgba(27, 14, 39, 0.92), rgba(8, 7, 11, 0.96));
-    transition: 0.35s ease;
-}
-
-.tiktok-card::before {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    right: -80px;
-    bottom: -100px;
-    border-radius: 50%;
-    background: rgba(138, 54, 255, 0.18);
-    filter: blur(30px);
-}
-
-.tiktok-card:hover {
-    transform: translateY(-7px);
-    border-color: rgba(185, 111, 255, 0.5);
-    box-shadow: 0 18px 50px rgba(86, 27, 145, 0.22);
-}
-
-.tiktok-icon {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 18px;
-    font-size: 2rem;
-    color: #fff;
-    background: rgba(122, 50, 205, 0.15);
-    border: 1px solid rgba(178, 105, 255, 0.22);
-    box-shadow: 0 0 25px rgba(136, 55, 240, 0.12);
-}
-
-.tiktok-info {
-    position: relative;
-    z-index: 2;
-}
-
-.tiktok-info span {
-    display: block;
-    margin-bottom: 7px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.62rem;
-    letter-spacing: 2px;
-    color: var(--roxo-claro);
-}
-
-.tiktok-info h3 {
-    margin-bottom: 9px;
-    font-size: 1.15rem;
-    color: #fff;
-}
-
-.tiktok-info p {
-    color: var(--cinza);
-    font-size: 0.85rem;
-    line-height: 1.65;
-}
-
-.tiktok-arrow {
-    margin-left: auto;
-    align-self: flex-start;
-    font-size: 1.5rem;
-    color: var(--roxo-claro);
-    transition: 0.3s ease;
-}
-
-.tiktok-card:hover .tiktok-arrow {
-    transform: translate(4px, -4px);
-}
-
-.comunidade-tiktok {
-    background:
-        radial-gradient(circle at 0% 100%, rgba(110, 42, 188, 0.13), transparent 35%),
-        linear-gradient(145deg, rgba(31, 16, 45, 0.95), rgba(8, 7, 11, 0.96));
-}
-
-@media (max-width: 750px) {
-    .tiktok-grid {
-        grid-template-columns: 1fr;
+        font-size: 1rem;
     }
-}
 
-@media (max-width: 500px) {
+
+    .comunidade-final {
+        padding: 55px 20px;
+
+        border-radius: 22px;
+    }
+
+
+    .final-casa {
+        font-size: 3.3rem;
+    }
+
+
+    .tiktok-comunidade {
+        width: 90%;
+
+        margin-bottom: 70px;
+    }
+
+
     .tiktok-card {
         padding: 22px;
+
         gap: 16px;
     }
+
 
     .tiktok-icon {
         width: 52px;
         height: 52px;
+
         font-size: 1.6rem;
     }
+
+
+    .tiktok-info h3 {
+        font-size: 1rem;
+    }
+
+
+    .tiktok-info p {
+        font-size: 0.8rem;
+    }
+
 
     .tiktok-arrow {
         font-size: 1.2rem;
     }
+
 }
 
+
+
+@media (max-width: 380px) {
+
+    .introducao h2,
+    .grupo-header h2,
+    .espacos-header h2,
+    .mapa-texto h2,
+    .historia-comunidade h2,
+    .comunidade-final h2 {
+        font-size: 1.75rem;
+    }
+
+
+    .grupo-card {
+        padding: 22px;
+    }
+
+
+    .espaco-card {
+        flex-direction: column;
+    }
+
+
+    .tiktok-card {
+        align-items: flex-start;
+    }
+
+}
