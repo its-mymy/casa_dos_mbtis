@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap');
 
+/* =========================================================
+   RESET
+   ========================================================= */
+
 * {
     margin: 0;
     padding: 0;
@@ -8,30 +12,31 @@
 
 html {
     scroll-behavior: smooth;
-}
-
-:root {
-    --roxo: #914fff;
-    --roxo-claro: #bc86ff;
-    --rosa: #ff75b9;
-    --rosa-claro: #ffb1d5;
-    --azul: #6184ff;
-    --texto: #ffffff;
-    --texto-suave: #b4a9c3;
-    --fonte-site: "Fredoka", sans-serif;
-    --fonte-card: "Baloo 2", sans-serif;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
-    font-family: var(--fonte-site);
-    color: var(--texto);
+    overflow-x: hidden;
+
+    font-family: "Fredoka", sans-serif;
+    color: #fff;
+
     background:
         radial-gradient(circle at 15% 10%, rgba(145, 79, 255, .35), transparent 28%),
         radial-gradient(circle at 85% 20%, rgba(255, 117, 185, .25), transparent 28%),
         radial-gradient(circle at 50% 100%, rgba(119, 55, 255, .25), transparent 35%),
-        linear-gradient(145deg, #050507 0%, #08050e 40%, #0d0713 70%, #09060c 100%);
-    overflow-x: hidden;
+        linear-gradient(
+            145deg,
+            #050507 0%,
+            #08050e 40%,
+            #0d0713 70%,
+            #09060c 100%
+        );
 }
 
 body::before {
@@ -40,7 +45,27 @@ body::before {
     inset: 0;
     z-index: -1;
     pointer-events: none;
-    background: radial-gradient(circle at 40% 30%, rgba(255, 255, 255, .025), transparent 25%);
+
+    background:
+        radial-gradient(
+            circle at 40% 30%,
+            rgba(255, 255, 255, .025),
+            transparent 25%
+        );
+}
+
+:root {
+    --roxo: #914fff;
+    --roxo-claro: #bc86ff;
+    --rosa: #ff75b9;
+    --rosa-claro: #ffb1d5;
+    --azul: #6184ff;
+
+    --texto: #ffffff;
+    --texto-suave: #b4a9c3;
+
+    --fonte-site: "Fredoka", sans-serif;
+    --fonte-card: "Baloo 2", sans-serif;
 }
 
 button,
@@ -53,60 +78,97 @@ button {
     -webkit-tap-highlight-color: transparent;
 }
 
+
+/* =========================================================
+   PÁGINA
+   ========================================================= */
+
 .pagina-card {
     width: min(1450px, 94%);
+    max-width: 1450px;
     margin: 0 auto;
     padding: 35px 0 80px;
 }
+
+
+/* =========================================================
+   VOLTAR
+   ========================================================= */
 
 .voltar-site {
     display: inline-flex;
     align-items: center;
     gap: 8px;
+
     margin-bottom: 28px;
     padding: 10px 17px;
+
     border: 1px solid rgba(255, 255, 255, .12);
     border-radius: 999px;
+
     background: rgba(255, 255, 255, .055);
     color: #eee7f6;
+
     text-decoration: none;
     font-size: 13px;
     font-weight: 600;
+
     transition: .2s ease;
 }
 
 .voltar-site:hover {
     transform: translateX(-3px);
+
     border-color: rgba(190, 134, 255, .45);
     background: rgba(145, 79, 255, .13);
 }
+
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
 
 .cabecalho {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     gap: 40px;
     margin-bottom: 25px;
+
+    min-width: 0;
 }
 
 .logo-area {
     display: flex;
     align-items: center;
     gap: 15px;
+
+    min-width: 0;
 }
 
 .logo {
     width: 74px;
     height: 74px;
+
+    flex-shrink: 0;
+
     object-fit: contain;
     padding: 7px;
+
     background: #fff;
     border-radius: 20px;
+
     box-shadow: 0 15px 40px rgba(0, 0, 0, .3);
+}
+
+.logo-texto {
+    min-width: 0;
 }
 
 .logo-texto span {
     display: block;
+
     color: #e7e0ef;
     font-size: 13px;
     font-weight: 700;
@@ -115,19 +177,25 @@ button {
 
 .logo-texto strong {
     display: block;
+
     color: #b786ff;
     font-size: 36px;
     line-height: .95;
+
     text-shadow: 0 4px 20px rgba(145, 79, 255, .3);
 }
 
 .titulo-area {
+    width: 100%;
     max-width: 650px;
+    min-width: 0;
 }
 
 .eyebrow {
     display: block;
+
     margin-bottom: 6px;
+
     color: var(--rosa-claro);
     font-size: 12px;
     font-weight: 700;
@@ -136,6 +204,7 @@ button {
 
 .titulo-area h1 {
     color: #fff;
+
     font-size: clamp(40px, 5vw, 68px);
     line-height: .98;
     font-weight: 700;
@@ -143,65 +212,122 @@ button {
 
 .titulo-area p {
     margin-top: 14px;
+
     color: #a99eb6;
     font-size: 16px;
     line-height: 1.55;
 }
 
+
+/* =========================================================
+   AVISO
+   ========================================================= */
+
 .aviso-inicial {
     width: 100%;
+
     display: flex;
     align-items: center;
+
     gap: 15px;
     margin: 0 auto 32px;
     padding: 18px 22px;
+
     border: 1px solid rgba(255, 255, 255, .11);
     border-radius: 20px;
-    background: linear-gradient(100deg, rgba(145, 79, 255, .13), rgba(255, 117, 185, .08));
+
+    background:
+        linear-gradient(
+            100deg,
+            rgba(145, 79, 255, .13),
+            rgba(255, 117, 185, .08)
+        );
+
     box-shadow: 0 15px 40px rgba(0, 0, 0, .18);
+
+    min-width: 0;
 }
 
 .aviso-icone {
     width: 42px;
     height: 42px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+
+    flex: 0 0 42px;
+
     border-radius: 14px;
-    background: linear-gradient(135deg, var(--roxo), var(--rosa));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--roxo),
+            var(--rosa)
+        );
+
     color: #fff;
     font-size: 20px;
-    box-shadow: 0 7px 22px rgba(145, 79, 255, .25);
+
+    box-shadow:
+        0 7px 22px rgba(145, 79, 255, .25);
 }
 
 .aviso-inicial strong {
     display: block;
+
     color: #fff;
     font-size: 17px;
 }
 
 .aviso-inicial p {
     margin-top: 2px;
+
     color: #aca1b8;
     font-size: 13px;
 }
 
+
+/* =========================================================
+   BUILDER
+   ========================================================= */
+
 .builder {
     display: grid;
-    grid-template-columns: minmax(340px, 430px) minmax(0, 1fr);
+
+    grid-template-columns:
+        minmax(340px, 430px)
+        minmax(0, 1fr);
+
     gap: 45px;
     align-items: start;
+
+    width: 100%;
+    min-width: 0;
 }
+
+
+/* =========================================================
+   PAINEL
+   ========================================================= */
 
 .painel-form {
     position: sticky;
     top: 20px;
+
+    width: 100%;
+    min-width: 0;
+
     padding: 28px;
+
     border: 1px solid rgba(255, 255, 255, .09);
     border-radius: 28px;
+
     background: rgba(16, 12, 24, .78);
+
     backdrop-filter: blur(20px);
+
     box-shadow:
         0 30px 90px rgba(0, 0, 0, .45),
         0 0 60px rgba(145, 79, 255, .08);
@@ -211,7 +337,10 @@ button {
     display: flex;
     align-items: center;
     gap: 11px;
+
     margin-bottom: 22px;
+
+    min-width: 0;
 }
 
 .secao-titulo.pequeno {
@@ -221,16 +350,29 @@ button {
 .numero {
     width: 34px;
     height: 34px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+
+    flex: 0 0 34px;
+
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--roxo), var(--rosa));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--roxo),
+            var(--rosa)
+        );
+
     color: #fff;
+
     font-size: 12px;
     font-weight: 700;
-    box-shadow: 0 8px 20px rgba(145, 79, 255, .25);
+
+    box-shadow:
+        0 8px 20px rgba(145, 79, 255, .25);
 }
 
 .secao-titulo h2 {
@@ -240,17 +382,27 @@ button {
 
 .secao-titulo p {
     margin-top: 2px;
+
     color: #84798f;
     font-size: 12px;
 }
 
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
 .campo {
+    width: 100%;
+    min-width: 0;
     margin-bottom: 15px;
 }
 
 .campo label {
     display: block;
+
     margin-bottom: 7px;
+
     color: #bbb1c8;
     font-size: 11px;
     font-weight: 700;
@@ -260,15 +412,22 @@ button {
 .campo input,
 .campo select {
     width: 100%;
+    min-width: 0;
     height: 46px;
+
     padding: 0 14px;
+
     border: 1px solid rgba(255, 255, 255, .09);
     border-radius: 13px;
+
     outline: none;
+
     background: rgba(255, 255, 255, .055);
     color: #fff;
+
     font-family: inherit;
     font-size: 14px;
+
     transition: .2s ease;
 }
 
@@ -288,39 +447,76 @@ button {
 .campo input:focus,
 .campo select:focus {
     border-color: var(--roxo);
+
     background: rgba(255, 255, 255, .075);
-    box-shadow: 0 0 0 4px rgba(145, 79, 255, .10);
+
+    box-shadow:
+        0 0 0 4px rgba(145, 79, 255, .10);
 }
 
 .grid-2 {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
     gap: 10px;
+
+    min-width: 0;
 }
+
+
+/* =========================================================
+   DIVISÓRIA
+   ========================================================= */
 
 .linha-divisoria {
     width: 100%;
     height: 1px;
+
     margin: 26px 0;
-    background: linear-gradient(to right, transparent, rgba(255, 255, 255, .13), transparent);
+
+    background:
+        linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, .13),
+            transparent
+        );
 }
+
+
+/* =========================================================
+   FUNDOS
+   ========================================================= */
 
 .tipo-fundo {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
     gap: 8px;
+
     margin-bottom: 16px;
 }
 
 .tipo-fundo-btn {
     min-height: 42px;
+
     border: 1px solid rgba(255, 255, 255, .09);
     border-radius: 12px;
+
     background: rgba(255, 255, 255, .045);
     color: #aaa1b0;
+
     cursor: pointer;
+
     font-size: 12px;
     font-weight: 700;
+
     transition: .2s ease;
 }
 
@@ -330,9 +526,13 @@ button {
 
 .tipo-fundo-btn.ativo {
     border-color: rgba(175, 120, 255, .65);
+
     background: rgba(145, 79, 255, .16);
+
     color: #eee2ff;
-    box-shadow: 0 0 0 2px rgba(145, 79, 255, .08);
+
+    box-shadow:
+        0 0 0 2px rgba(145, 79, 255, .08);
 }
 
 .fundo-imagens,
@@ -347,37 +547,54 @@ button {
 
 .temas {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    grid-template-columns:
+        repeat(4, minmax(0, 1fr));
+
     gap: 12px;
+
     margin-bottom: 20px;
 }
 
 .tema {
     width: 100%;
+    min-width: 0;
+
     padding: 0;
+
     border: 0;
     background: none;
+
     cursor: pointer;
+
     color: #92889f;
     font-family: inherit;
 }
 
 .tema img {
     display: block;
+
     width: 100%;
     aspect-ratio: 1 / 1;
+
     object-fit: cover;
+
     border: 2px solid transparent;
     border-radius: 14px;
+
     opacity: .65;
     filter: brightness(.8);
+
     pointer-events: none;
+
     transition: .2s ease;
 }
 
 .tema span {
     display: block;
+
     margin-top: 6px;
+
     color: #8f859c;
     font-size: 10px;
     font-weight: 600;
@@ -386,6 +603,7 @@ button {
 .tema:hover img {
     opacity: .95;
     filter: brightness(.95);
+
     transform: translateY(-2px);
 }
 
@@ -393,38 +611,65 @@ button {
     border-color: #bd90ff;
     opacity: 1;
     filter: brightness(1);
+
     box-shadow:
         0 0 0 2px rgba(145, 79, 255, .15),
         0 10px 25px rgba(0, 0, 0, .25);
 }
 
+
+/* =========================================================
+   CORES
+   ========================================================= */
+
 .cor-fundo-controle {
     display: flex;
     align-items: center;
+
     gap: 12px;
     margin-bottom: 14px;
+
+    min-width: 0;
 }
 
 .fundo-personalizado {
     position: relative;
+
     width: 48px;
     height: 48px;
+
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-shrink: 0;
+
+    flex: 0 0 48px;
+
     overflow: hidden;
+
     border: 2px solid rgba(255, 255, 255, .5);
     border-radius: 50%;
-    background: conic-gradient(#ff4d4d, #ffd43b, #55d66b, #45a8ff, #8c52e8, #ff5ca8, #ff4d4d);
+
+    background:
+        conic-gradient(
+            #ff4d4d,
+            #ffd43b,
+            #55d66b,
+            #45a8ff,
+            #8c52e8,
+            #ff5ca8,
+            #ff4d4d
+        );
+
     cursor: pointer;
 }
 
 .fundo-personalizado input {
     position: absolute;
     inset: -8px;
+
     width: 62px;
     height: 62px;
+
     opacity: 0;
     cursor: pointer;
 }
@@ -434,15 +679,22 @@ button {
     font-size: 21px;
 }
 
+.fundo-cor-info {
+    min-width: 0;
+}
+
 .fundo-cor-info span {
     display: block;
+
     color: #81778f;
     font-size: 11px;
 }
 
 .fundo-cor-info strong {
     display: block;
+
     margin-top: 2px;
+
     color: #c1b8cb;
     font-size: 11px;
 }
@@ -456,10 +708,16 @@ button {
 .fundo-opcao {
     width: 30px;
     height: 30px;
+
+    flex: 0 0 30px;
+
     padding: 0;
+
     border: 2px solid rgba(255, 255, 255, .4);
     border-radius: 50%;
+
     cursor: pointer;
+
     transition: .2s ease;
 }
 
@@ -469,21 +727,44 @@ button {
 
 .fundo-opcao.ativa {
     border-color: #fff;
-    box-shadow: 0 0 0 2px rgba(145, 79, 255, .25);
+
+    box-shadow:
+        0 0 0 2px rgba(145, 79, 255, .25);
 }
 
-.fundo-opcao[data-color="#d9ccd9"] { background: #d9ccd9; }
-.fundo-opcao[data-color="#f3d8e7"] { background: #f3d8e7; }
-.fundo-opcao[data-color="#d7e5f5"] { background: #d7e5f5; }
-.fundo-opcao[data-color="#dcebd8"] { background: #dcebd8; }
-.fundo-opcao[data-color="#f5e5b8"] { background: #f5e5b8; }
-.fundo-opcao[data-color="#242036"] { background: #242036; }
-.fundo-opcao[data-color="#15151c"] { background: #15151c; }
+.fundo-opcao[data-color="#d9ccd9"] {
+    background: #d9ccd9;
+}
+
+.fundo-opcao[data-color="#f3d8e7"] {
+    background: #f3d8e7;
+}
+
+.fundo-opcao[data-color="#d7e5f5"] {
+    background: #d7e5f5;
+}
+
+.fundo-opcao[data-color="#dcebd8"] {
+    background: #dcebd8;
+}
+
+.fundo-opcao[data-color="#f5e5b8"] {
+    background: #f5e5b8;
+}
+
+.fundo-opcao[data-color="#242036"] {
+    background: #242036;
+}
+
+.fundo-opcao[data-color="#15151c"] {
+    background: #15151c;
+}
 
 .paleta-cores {
     display: flex;
     align-items: center;
     flex-wrap: wrap;
+
     gap: 9px;
     margin-top: 8px;
 }
@@ -493,10 +774,16 @@ button {
 .cor-personalizada {
     width: 34px;
     height: 34px;
+
+    flex: 0 0 34px;
+
     padding: 0;
+
     border: 2px solid rgba(255, 255, 255, .45);
     border-radius: 50%;
+
     cursor: pointer;
+
     transition: .2s ease;
 }
 
@@ -509,37 +796,87 @@ button {
 .cor-opcao.ativa,
 .cor-topo-opcao.ativa {
     border-color: #fff;
-    box-shadow: 0 0 0 2px rgba(145, 79, 255, .28);
+
+    box-shadow:
+        0 0 0 2px rgba(145, 79, 255, .28);
 }
 
-.cor-opcao[data-color="#8c52e8"] { background: #8c52e8; }
-.cor-opcao[data-color="#f0bd35"] { background: #f0bd35; }
-.cor-opcao[data-color="#4d82e8"] { background: #4d82e8; }
-.cor-opcao[data-color="#5c9b68"] { background: #5c9b68; }
-.cor-opcao[data-color="#d45487"] { background: #d45487; }
-.cor-opcao[data-color="#273c7a"] { background: #273c7a; }
+.cor-opcao[data-color="#8c52e8"] {
+    background: #8c52e8;
+}
 
-.cor-topo-opcao[data-color="#8c52e8"] { background: #8c52e8; }
-.cor-topo-opcao[data-color="#f0bd35"] { background: #f0bd35; }
-.cor-topo-opcao[data-color="#4d82e8"] { background: #4d82e8; }
-.cor-topo-opcao[data-color="#5c9b68"] { background: #5c9b68; }
-.cor-topo-opcao[data-color="#d45487"] { background: #d45487; }
-.cor-topo-opcao[data-color="#ffffff"] { background: #fff; }
+.cor-opcao[data-color="#f0bd35"] {
+    background: #f0bd35;
+}
+
+.cor-opcao[data-color="#4d82e8"] {
+    background: #4d82e8;
+}
+
+.cor-opcao[data-color="#5c9b68"] {
+    background: #5c9b68;
+}
+
+.cor-opcao[data-color="#d45487"] {
+    background: #d45487;
+}
+
+.cor-opcao[data-color="#273c7a"] {
+    background: #273c7a;
+}
+
+.cor-topo-opcao[data-color="#8c52e8"] {
+    background: #8c52e8;
+}
+
+.cor-topo-opcao[data-color="#f0bd35"] {
+    background: #f0bd35;
+}
+
+.cor-topo-opcao[data-color="#4d82e8"] {
+    background: #4d82e8;
+}
+
+.cor-topo-opcao[data-color="#5c9b68"] {
+    background: #5c9b68;
+}
+
+.cor-topo-opcao[data-color="#d45487"] {
+    background: #d45487;
+}
+
+.cor-topo-opcao[data-color="#ffffff"] {
+    background: #fff;
+}
 
 .cor-personalizada {
     position: relative;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
-    background: conic-gradient(#ff4d4d, #ffd43b, #55d66b, #45a8ff, #8c52e8, #ff5ca8, #ff4d4d);
+
+    background:
+        conic-gradient(
+            #ff4d4d,
+            #ffd43b,
+            #55d66b,
+            #45a8ff,
+            #8c52e8,
+            #ff5ca8,
+            #ff4d4d
+        );
 }
 
 .cor-personalizada input {
     position: absolute;
     inset: -5px;
+
     width: 44px;
     height: 44px;
+
     opacity: 0;
     cursor: pointer;
 }
@@ -548,17 +885,26 @@ button {
     color: #fff;
     font-size: 20px;
     font-weight: 700;
-    text-shadow: 0 2px 5px rgba(0, 0, 0, .35);
+
+    text-shadow:
+        0 2px 5px rgba(0, 0, 0, .35);
 }
 
 #valorCor,
 #valorCorTopo,
 #valorCorFundo {
     display: block;
+
     margin-top: 8px;
+
     color: #9d94a7;
     font-size: 11px;
 }
+
+
+/* =========================================================
+   BOTÕES
+   ========================================================= */
 
 .acoes {
     display: grid;
@@ -568,13 +914,18 @@ button {
 .btn {
     width: 100%;
     min-height: 46px;
+
     border: 1px solid rgba(255, 255, 255, .08);
     border-radius: 13px;
+
     background: rgba(255, 255, 255, .055);
     color: #e9e2f0;
+
     cursor: pointer;
+
     font-size: 13px;
     font-weight: 700;
+
     transition: .2s ease;
 }
 
@@ -585,9 +936,18 @@ button {
 
 .btn.principal {
     border: 0;
-    background: linear-gradient(135deg, #9155ff, #ff6eae);
+
+    background:
+        linear-gradient(
+            135deg,
+            #9155ff,
+            #ff6eae
+        );
+
     color: #fff;
-    box-shadow: 0 12px 30px rgba(145, 79, 255, .28);
+
+    box-shadow:
+        0 12px 30px rgba(145, 79, 255, .28);
 }
 
 .btn:disabled {
@@ -597,27 +957,50 @@ button {
 
 .aviso {
     margin-top: 17px;
+
     color: #746b7e;
     font-size: 10px;
     line-height: 1.5;
+
     text-align: center;
 }
 
+
+/* =========================================================
+   ÁREA DA PRÉVIA
+   ========================================================= */
+
 .preview-area {
     position: relative;
+
+    width: 100%;
     min-width: 0;
+
+    overflow: visible;
 }
 
 .preview-area::before {
     content: "";
+
     position: absolute;
+
     width: 75%;
     height: 65%;
+
     left: 12%;
     top: 18%;
+
     z-index: -1;
+
     pointer-events: none;
-    background: radial-gradient(circle, rgba(145, 79, 255, .26), transparent 70%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(145, 79, 255, .26),
+            transparent 70%
+        );
+
     filter: blur(70px);
 }
 
@@ -625,11 +1008,17 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    gap: 10px;
+
     margin-bottom: 14px;
+
+    min-width: 0;
 }
 
 .preview-topo span {
     color: #a99ead;
+
     font-size: 11px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -642,64 +1031,54 @@ button {
 
 .card-wrapper {
     width: 100%;
+    max-width: 900px;
+
+    margin: 0 auto;
+
     min-width: 0;
+
+    overflow: visible;
 }
+
+
+/* =========================================================
+   CARD GERADO
+   ========================================================= */
 
 .card-gerado {
     --card-primary: #8c52e8;
     --card-top: #8c52e8;
     --card-background: #d9ccd9;
+
     position: relative;
-    width: min(100%, 900px);
+
+    width: 100%;
+    max-width: 900px;
+
+    /*
+     * O aspect-ratio fica responsável por manter
+     * a proporção do card em qualquer tela.
+     */
     aspect-ratio: 1.58 / 1;
+
     margin: 0 auto;
+
     overflow: hidden;
+
     border: 3px solid rgba(255, 255, 255, .85);
     border-radius: 28px;
+
     background-color: var(--card-background);
+
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+
     box-shadow:
         0 35px 100px rgba(0, 0, 0, .48),
         0 0 60px rgba(145, 79, 255, .18);
+
     isolation: isolate;
-}
-
-.card-overlay {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    background: rgba(0, 0, 0, .43);
-}
-
-.card-gerado::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    pointer-events: none;
-    background: linear-gradient(135deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .03) 45%, rgba(0, 0, 0, .25));
-}
-
-.card-gerado::after {
-    content: "";
-    position: absolute;
-    inset: 12px;
-    z-index: 3;
-    pointer-events: none;
-    border: 2px dashed rgba(255, 255, 255, .48);
-    border-radius: 20px;
-}
-
-.card-conteudo {
-    position: relative;
-    z-index: 8;
-    width: 100%;
-    height: 100%;
-    padding: 38px 42px 34px;
-    overflow: hidden;
 }
 
 .card-gerado,
@@ -707,84 +1086,210 @@ button {
     font-family: var(--fonte-card);
 }
 
+.card-overlay {
+    position: absolute;
+    inset: 0;
+
+    z-index: 1;
+
+    pointer-events: none;
+
+    background: rgba(0, 0, 0, .43);
+}
+
+.card-gerado::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    z-index: 2;
+
+    pointer-events: none;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(0, 0, 0, .18),
+            rgba(0, 0, 0, .03) 45%,
+            rgba(0, 0, 0, .25)
+        );
+}
+
+.card-gerado::after {
+    content: "";
+
+    position: absolute;
+    inset: 12px;
+
+    z-index: 3;
+
+    pointer-events: none;
+
+    border: 2px dashed rgba(255, 255, 255, .48);
+    border-radius: 20px;
+}
+
+
+/* =========================================================
+   CONTEÚDO DO CARD
+   ========================================================= */
+
+.card-conteudo {
+    position: relative;
+
+    z-index: 8;
+
+    width: 100%;
+    height: 100%;
+
+    padding: 4.2% 4.7% 3.8%;
+
+    overflow: hidden;
+}
+
+
+/* =========================================================
+   TOPO DO CARD
+   ========================================================= */
+
 .card-topo {
+    width: 100%;
+    min-width: 0;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 14px;
+
+    gap: 12px;
 }
 
 .marca-casa {
     display: flex;
     align-items: center;
-    gap: 6px;
+
+    gap: 5px;
+
     min-width: 0;
+
     white-space: nowrap;
 }
 
 .marca-casa span,
 .marca-casa strong {
     color: var(--card-top);
-    font-size: clamp(22px, 2.5vw, 33px);
+
+    /*
+     * MENOR
+     */
+    font-size: clamp(18px, 2.25vw, 30px);
+
     line-height: 1;
     font-weight: 800;
-    letter-spacing: .4px;
-    -webkit-text-stroke: 1.4px #000;
+
+    letter-spacing: .3px;
+
+    -webkit-text-stroke: 1.3px #000;
     paint-order: stroke fill;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, .3);
 }
 
 .card-id {
-    flex-shrink: 0;
+    flex: 0 0 auto;
+
     color: var(--card-top);
-    font-size: clamp(30px, 4vw, 52px);
+
+    /*
+     * MENOR
+     */
+    font-size: clamp(27px, 3.45vw, 46px);
+
     line-height: .9;
+
     font-weight: 800;
-    letter-spacing: .5px;
+    letter-spacing: .4px;
+
     transform: rotate(-2deg);
-    -webkit-text-stroke: 1.4px #000;
+
+    -webkit-text-stroke: 1.3px #000;
     paint-order: stroke fill;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, .3);
 }
 
 .linha-identidade {
     width: 100%;
     height: 3px;
+
     margin-top: 10px;
+
     border-radius: 999px;
+
     background: var(--card-top);
+
     border: 1px solid #111;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, .25);
+
+    box-shadow:
+        0 2px 5px rgba(0, 0, 0, .25);
 }
+
+
+/* =========================================================
+   CORPO
+   ========================================================= */
 
 .card-corpo {
     display: grid;
-    grid-template-columns: 21% minmax(0, 1fr);
+
+    /*
+     * Avatar menor, informações maiores.
+     */
+    grid-template-columns:
+        minmax(110px, 21%)
+        minmax(0, 1fr);
+
     gap: 20px;
+
     align-items: center;
+
     margin-top: 20px;
+
+    width: 100%;
     min-width: 0;
 }
 
 .avatar-area {
+    width: 100%;
     min-width: 0;
+
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
 }
 
 .avatar-placeholder {
     width: min(100%, 165px);
+
     aspect-ratio: 1 / 1;
+
     display: flex;
     flex-direction: column;
+
     align-items: center;
     justify-content: center;
+
     overflow: hidden;
+
     background: rgba(255, 255, 255, .15);
+
     border: 3px solid #fff;
     border-radius: 16px;
+
     box-shadow:
         0 8px 20px rgba(0, 0, 0, .28),
         inset 0 0 0 2px rgba(0, 0, 0, .15);
@@ -792,36 +1297,49 @@ button {
 
 .avatar-placeholder span {
     font-size: clamp(42px, 5vw, 66px);
+
     -webkit-text-stroke: 1.5px #000;
 }
 
 .avatar-placeholder small {
     margin-top: 5px;
+
     color: var(--card-primary);
+
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1.5px;
+
     -webkit-text-stroke: .9px #000;
     paint-order: stroke fill;
 }
 
 .grupo-card {
     width: min(100%, 165px);
+
     margin-top: 9px;
     padding: 6px 10px;
+
     border: 1.5px solid rgba(255, 255, 255, .7);
     border-radius: 10px;
+
     background: rgba(255, 255, 255, .28);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, .08);
 }
 
 .grupo-card > span {
     display: block;
+
     margin-bottom: 1px;
+
     color: #fff;
+
     font-size: 7px;
     font-weight: 800;
     letter-spacing: .8px;
+
     -webkit-text-stroke: .8px #000;
     paint-order: stroke fill;
 }
@@ -829,127 +1347,211 @@ button {
 .grupo-valor {
     display: flex;
     align-items: center;
+
     gap: 5px;
+
     min-width: 0;
 }
 
 .grupo-valor i {
     width: 10px;
     height: 10px;
+
     min-width: 10px;
     min-height: 10px;
+
     flex: 0 0 10px;
+
     display: block;
+
     border: 1.5px solid #fff;
     border-radius: 50%;
+
     background: #8c52e8;
-    box-shadow: 0 0 0 1px #111;
+
+    box-shadow:
+        0 0 0 1px #111;
 }
 
 .grupo-valor strong {
     min-width: 0;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
     color: var(--card-primary);
+
     font-size: 11px;
     font-weight: 800;
+
     -webkit-text-stroke: .9px #000;
     paint-order: stroke fill;
 }
 
+
+/* =========================================================
+   INFORMAÇÕES
+   ========================================================= */
+
 .informacoes-card {
+    width: 100%;
     min-width: 0;
+
     overflow: hidden;
 }
 
 .nome-card {
     width: 100%;
     min-width: 0;
+
     display: flex;
     align-items: center;
+
     gap: 10px;
+
     padding: 6px 11px;
+
     border-radius: 10px;
+
     background: rgba(255, 255, 255, .30);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, .08);
+
+    box-shadow:
+        0 4px 10px rgba(0, 0, 0, .08);
 }
 
 .nome-card span {
-    flex-shrink: 0;
+    flex: 0 0 auto;
+
     color: var(--card-primary);
+
     font-size: clamp(11px, 1vw, 14px);
     font-weight: 800;
     letter-spacing: .8px;
+
     -webkit-text-stroke: 1px #000;
     paint-order: stroke fill;
 }
 
 .nome-card strong {
     min-width: 0;
-    flex: 1;
+
+    flex: 1 1 auto;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
     color: var(--card-primary);
+
     font-size: clamp(27px, 3.2vw, 43px);
+
     font-weight: 800;
     line-height: .95;
+
     -webkit-text-stroke: 1.5px #000;
     paint-order: stroke fill;
-    text-shadow: 0 2px 6px rgba(0, 0, 0, .3);
+
+    text-shadow:
+        0 2px 6px rgba(0, 0, 0, .3);
 }
 
 .linha-card {
     width: 100%;
     height: 3px;
+
     margin: 8px 0 10px;
+
     border-radius: 999px;
+
     background: var(--card-primary);
+
     border: 1px solid #111;
 }
 
+
+/* =========================================================
+   GRID DOS DADOS
+   ========================================================= */
+
 .infos-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 5px 7px;
+    width: 100%;
     min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 5px 7px;
 }
 
 .info {
+    width: 100%;
     min-width: 0;
+
     min-height: 42px;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
+
     padding: 4px 8px;
+
     border: 1px solid rgba(255, 255, 255, .48);
     border-radius: 9px;
+
     background: rgba(255, 255, 255, .28);
-    box-shadow: 0 3px 8px rgba(0, 0, 0, .08);
+
+    box-shadow:
+        0 3px 8px rgba(0, 0, 0, .08);
+
+    overflow: hidden;
 }
 
 .info span {
     display: block;
+
     margin-bottom: 1px;
+
     color: #fff;
-    font-size: clamp(9px, .78vw, 12px);
+
+    /*
+     * MAIOR
+     */
+    font-size: clamp(10px, .82vw, 13px);
+
     font-weight: 800;
-    letter-spacing: .4px;
+    letter-spacing: .3px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     -webkit-text-stroke: .9px #000;
     paint-order: stroke fill;
 }
 
 .info strong {
     display: block;
+
     min-width: 0;
+
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
     color: var(--card-primary);
-    font-size: clamp(19px, 1.65vw, 24px);
+
+    /*
+     * MAIOR
+     */
+    font-size: clamp(20px, 1.75vw, 26px);
+
     font-weight: 800;
     line-height: 1;
+
     -webkit-text-stroke: 1.1px #000;
     paint-order: stroke fill;
 }
@@ -958,25 +1560,42 @@ button {
     grid-column: 1 / -1;
 }
 
+
+/* =========================================================
+   DECORAÇÕES
+   ========================================================= */
+
 .carinha-2 {
     position: absolute;
+
     z-index: 6;
+
     right: 2.5%;
     bottom: 5%;
+
     color: var(--card-primary);
+
     font-size: clamp(22px, 2.4vw, 31px);
+
     pointer-events: none;
+
     transform: rotate(-12deg);
+
     -webkit-text-stroke: 1.2px #000;
     paint-order: stroke fill;
 }
 
 .decor {
     position: absolute;
+
     z-index: 6;
+
     color: var(--card-primary);
+
     font-size: clamp(20px, 2.4vw, 28px);
+
     pointer-events: none;
+
     -webkit-text-stroke: 1.2px #000;
     paint-order: stroke fill;
 }
@@ -996,56 +1615,114 @@ button {
     bottom: 4%;
 }
 
+
+/* =========================================================
+   FOOTER DO CARD
+   ========================================================= */
+
 .card-footer {
     position: absolute;
-    left: 42px;
-    right: 42px;
+
+    left: 4.7%;
+    right: 4.7%;
     bottom: 2%;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     gap: 10px;
+
     color: var(--card-primary);
+
     font-size: clamp(8px, .72vw, 10px);
+
     font-weight: 800;
     letter-spacing: .7px;
+
     -webkit-text-stroke: .9px #000;
     paint-order: stroke fill;
+
+    white-space: nowrap;
+    overflow: hidden;
 }
+
+.card-footer span {
+    min-width: 0;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* =========================================================
+   TEXTO ABAIXO DO CARD
+   ========================================================= */
 
 .preview-info {
     margin-top: 15px;
+
     text-align: center;
+
     color: #756b80;
     font-size: 12px;
 }
 
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
 .toast {
     position: fixed;
+
     left: 50%;
     bottom: 28px;
+
     z-index: 999;
+
+    max-width: calc(100vw - 30px);
+
     padding: 12px 18px;
+
     border-radius: 999px;
+
     background: #17131d;
     color: #fff;
+
     font-size: 13px;
     font-weight: 700;
+
     opacity: 0;
     pointer-events: none;
+
     transform: translate(-50%, 20px);
-    box-shadow: 0 15px 40px rgba(0, 0, 0, .35);
+
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, .35);
+
     transition: .25s ease;
 }
 
 .toast.mostrar {
     opacity: 1;
-    transform: translate(-50%, 0);
+
+    transform:
+        translate(-50%, 0);
 }
 
+
+/* =========================================================
+   TABLET / NOTEBOOK
+   ========================================================= */
+
 @media (max-width: 1200px) and (min-width: 1051px) {
+
     .builder {
-        grid-template-columns: 350px minmax(0, 1fr);
+        grid-template-columns:
+            350px
+            minmax(0, 1fr);
+
         gap: 25px;
     }
 
@@ -1053,13 +1730,13 @@ button {
         padding: 21px;
     }
 
-    .card-conteudo {
-        padding: 30px 32px 28px;
-    }
-
     .card-corpo {
-        grid-template-columns: 20% minmax(0, 1fr);
+        grid-template-columns:
+            minmax(95px, 20%)
+            minmax(0, 1fr);
+
         gap: 14px;
+
         margin-top: 17px;
     }
 
@@ -1086,24 +1763,27 @@ button {
     }
 
     .info strong {
-        font-size: clamp(14px, 1.35vw, 19px);
-    }
-
-    .card-footer {
-        left: 32px;
-        right: 32px;
+        font-size: clamp(16px, 1.4vw, 21px);
     }
 }
 
+
+/* =========================================================
+   TABLET / CELULAR GRANDE
+   ========================================================= */
+
 @media (max-width: 1050px) {
+
     .builder {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
+
         gap: 30px;
     }
 
     .painel-form {
         position: relative;
         top: 0;
+
         order: 2;
     }
 
@@ -1111,21 +1791,42 @@ button {
         order: 1;
     }
 
-    .card-gerado {
-        width: min(100%, 900px);
+    .card-wrapper {
+        width: 100%;
+        max-width: 900px;
+
+        margin-left: auto;
+        margin-right: auto;
     }
 }
 
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
 @media (max-width: 700px) {
+
     .pagina-card {
-        width: 94%;
-        padding: 22px 0 55px;
+        width: calc(100% - 20px);
+        max-width: 100%;
+
+        padding:
+            22px
+            0
+            55px;
     }
+
+
+    /* ---------- Cabeçalho ---------- */
 
     .cabecalho {
         flex-direction: column;
+
         align-items: center;
+
         text-align: center;
+
         gap: 18px;
     }
 
@@ -1144,6 +1845,7 @@ button {
 
     .titulo-area {
         width: 100%;
+        max-width: 100%;
     }
 
     .titulo-area h1 {
@@ -1154,47 +1856,482 @@ button {
         font-size: 13px;
     }
 
+
+    /* ---------- Aviso ---------- */
+
     .aviso-inicial {
+        width: 100%;
+
         align-items: flex-start;
+
         padding: 16px;
     }
 
     .aviso-icone {
         width: 38px;
         height: 38px;
+
+        flex-basis: 38px;
     }
 
     .aviso-inicial strong {
         font-size: 15px;
     }
 
+
+    /* ---------- Builder ---------- */
+
     .builder {
         display: flex;
         flex-direction: column;
+
+        width: 100%;
+        min-width: 0;
+
         gap: 24px;
     }
 
     .preview-area {
         width: 100%;
+        max-width: 100%;
         min-width: 0;
+
         order: 1;
     }
 
     .painel-form {
         width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
         order: 2;
+
         position: relative;
         top: 0;
+
         padding: 19px;
+
         border-radius: 22px;
     }
 
+
+    /* ---------- Card ---------- */
+
+    .card-wrapper {
+        width: 100%;
+        max-width: 900px;
+
+        margin: 0 auto;
+
+        padding: 0;
+
+        min-width: 0;
+    }
+
+    .card-gerado {
+        display: block;
+
+        width: 100%;
+        max-width: 900px;
+        min-width: 0;
+
+        margin: 0 auto;
+
+        /*
+         * NÃO usamos mais largura baseada em viewport
+         * para os elementos internos.
+         */
+        aspect-ratio: 1.58 / 1;
+
+        border-width: 2px;
+        border-radius: 18px;
+    }
+
+    .card-gerado::after {
+        inset: 7px;
+
+        border-width: 1px;
+        border-radius: 12px;
+    }
+
+    .card-conteudo {
+        width: 100%;
+        height: 100%;
+
+        padding: 5.2%;
+
+        overflow: hidden;
+    }
+
+
+    /* ---------- Topo ---------- */
+
+    .card-topo {
+        width: 100%;
+        min-width: 0;
+
+        gap: 5px;
+    }
+
+    .marca-casa {
+        min-width: 0;
+        max-width: 55%;
+
+        gap: 2px;
+    }
+
+    .marca-casa span,
+    .marca-casa strong {
+
+        /*
+         * MENOR
+         */
+        font-size: clamp(9px, 2.5vw, 16px);
+
+        -webkit-text-stroke: .6px #000;
+    }
+
+    .card-id {
+
+        /*
+         * MENOR
+         */
+        font-size: clamp(13px, 4.1vw, 26px);
+
+        max-width: 42%;
+
+        white-space: nowrap;
+
+        -webkit-text-stroke: .6px #000;
+    }
+
+    .linha-identidade {
+        height: 2px;
+
+        margin-top: 6px;
+    }
+
+
+    /* =====================================================
+       CORPO DO CARD MOBILE
+
+       AQUI ESTÁ A PRINCIPAL CORREÇÃO.
+
+       Em vez de usar uma posição absoluta que pode
+       ficar desalinhada durante o resize, o corpo
+       permanece dentro do fluxo do card.
+       ===================================================== */
+
+    .card-corpo {
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 22%)
+            minmax(0, 1fr);
+
+        gap: 4%;
+
+        width: 100%;
+        min-width: 0;
+
+        margin-top: 4%;
+
+        align-items: stretch;
+
+        overflow: hidden;
+    }
+
+
+    /* ---------- Avatar ---------- */
+
+    .avatar-area {
+        width: 100%;
+        min-width: 0;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .avatar-placeholder {
+        width: 100%;
+        max-width: 100%;
+
+        aspect-ratio: 1 / 1;
+
+        border-width: 2px;
+        border-radius: 9px;
+
+        background: rgba(255, 255, 255, .11);
+    }
+
+    .avatar-placeholder span {
+        font-size: clamp(18px, 5vw, 34px);
+
+        -webkit-text-stroke: .8px #000;
+    }
+
+    .avatar-placeholder small {
+        margin-top: 2px;
+
+        font-size: 5px;
+        letter-spacing: .4px;
+
+        -webkit-text-stroke: .35px #000;
+    }
+
+
+    /* ---------- Grupo ---------- */
+
+    .grupo-card {
+        width: 100%;
+        max-width: 100%;
+
+        margin-top: 5px;
+
+        padding: 3px 5px;
+
+        border-width: 1px;
+        border-radius: 5px;
+
+        background: rgba(255, 255, 255, .28);
+    }
+
+    .grupo-card > span {
+        font-size: 3.5px;
+        letter-spacing: .2px;
+
+        -webkit-text-stroke: .3px #000;
+    }
+
+    .grupo-valor {
+        gap: 2px;
+    }
+
+    .grupo-valor i {
+        width: 7px;
+        height: 7px;
+
+        min-width: 7px;
+        min-height: 7px;
+
+        flex-basis: 7px;
+
+        border-width: 1px;
+    }
+
+    .grupo-valor strong {
+        min-width: 0;
+
+        font-size: clamp(5px, 1.6vw, 8px);
+
+        -webkit-text-stroke: .3px #000;
+    }
+
+
+    /* =====================================================
+       INFORMAÇÕES MOBILE
+       ===================================================== */
+
+    .informacoes-card {
+        width: 100%;
+        min-width: 0;
+
+        overflow: hidden;
+    }
+
+    .nome-card {
+        width: 100%;
+        min-width: 0;
+
+        gap: 4px;
+
+        padding: 3px 6px;
+
+        border-radius: 6px;
+
+        overflow: hidden;
+    }
+
+    .nome-card span {
+
+        /*
+         * MAIOR
+         */
+        font-size: clamp(6px, 1.8vw, 9px);
+
+        -webkit-text-stroke: .4px #000;
+    }
+
+    .nome-card strong {
+        min-width: 0;
+
+        font-size: clamp(13px, 4.2vw, 23px);
+
+        -webkit-text-stroke: .6px #000;
+    }
+
+    .linha-card {
+        height: 2px;
+
+        margin: 3px 0 4px;
+    }
+
+
+    /* ---------- Dados ---------- */
+
+    .infos-grid {
+        width: 100%;
+        min-width: 0;
+
+        display: grid;
+
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
+
+        gap: 3px 4px;
+
+        overflow: hidden;
+    }
+
+    .info {
+        width: 100%;
+        min-width: 0;
+        min-height: 0;
+
+        padding: 3px 5px;
+
+        border-radius: 5px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        overflow: hidden;
+    }
+
+    .info span {
+        display: block;
+
+        min-width: 0;
+
+        margin: 0;
+
+        /*
+         * LABELS MAIORES
+         */
+        font-size: clamp(5px, 1.55vw, 7px);
+
+        line-height: 1;
+
+        letter-spacing: 0;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        -webkit-text-stroke: .3px #000;
+    }
+
+    .info strong {
+        display: block;
+
+        min-width: 0;
+
+        /*
+         * VALORES MAIORES
+         */
+        font-size: clamp(8px, 2.65vw, 13px);
+
+        line-height: 1;
+
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        -webkit-text-stroke: .4px #000;
+    }
+
+    .big-five {
+        grid-column: 1 / -1;
+    }
+
+    .big-five strong {
+        font-size: clamp(8px, 2.7vw, 13px);
+    }
+
+
+    /* ---------- Decorações ---------- */
+
+    .carinha-2 {
+        right: 3%;
+        bottom: 7%;
+
+        font-size: clamp(10px, 3vw, 17px);
+
+        -webkit-text-stroke: .5px #000;
+    }
+
+    .decor {
+        font-size: clamp(10px, 2.7vw, 17px);
+
+        -webkit-text-stroke: .5px #000;
+    }
+
+    .decor-1 {
+        top: 3%;
+        right: 6%;
+    }
+
+    .decor-2 {
+        right: 4%;
+        bottom: 13%;
+    }
+
+    .decor-3 {
+        left: 3%;
+        bottom: 4%;
+    }
+
+
+    /* ---------- Footer ---------- */
+
+    .card-footer {
+        left: 5%;
+        right: 5%;
+        bottom: 2.5%;
+
+        font-size: clamp(4px, 1.2vw, 6px);
+
+        letter-spacing: .1px;
+
+        -webkit-text-stroke: .3px #000;
+    }
+
+    .preview-info {
+        margin-top: 10px;
+        font-size: 10px;
+    }
+
+
+    /* ---------- Outros ---------- */
+
     .grid-2 {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns:
+            minmax(0, 1fr)
+            minmax(0, 1fr);
     }
 
     .temas {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns:
+            repeat(4, minmax(0, 1fr));
+
         gap: 11px 9px;
     }
 
@@ -1216,6 +2353,8 @@ button {
     .cor-personalizada {
         width: 31px;
         height: 31px;
+
+        flex-basis: 31px;
     }
 
     .cor-personalizada input {
@@ -1254,303 +2393,17 @@ button {
     .preview-topo small {
         font-size: 9px;
     }
-
-    .card-wrapper {
-        width: 100%;
-        margin: 0;
-        min-width: 0;
-        overflow: visible;
-    }
-
-    .card-gerado {
-        width: 100%;
-        max-width: 100%;
-        aspect-ratio: 1.58 / 1;
-        margin: 0 auto;
-        border-width: 2px;
-        border-radius: 18px;
-    }
-
-    .card-gerado::after {
-        inset: 7px;
-        border-width: 1px;
-        border-radius: 12px;
-    }
-
-    .card-conteudo {
-        padding: 5.2%;
-        overflow: hidden;
-    }
-
-    .card-topo {
-        gap: 6px;
-    }
-
-    .marca-casa {
-        gap: 3px;
-        min-width: 0;
-    }
-
-    .marca-casa span,
-    .marca-casa strong {
-        font-size: clamp(10px, 3vw, 17px);
-        -webkit-text-stroke: .7px #000;
-    }
-
-    .card-id {
-        font-size: clamp(14px, 5vw, 29px);
-        -webkit-text-stroke: .7px #000;
-    }
-
-    .linha-identidade {
-        height: 2px;
-        margin-top: 6px;
-    }
-
-    .card-corpo {
-        position: absolute;
-        top: 21%;
-        right: 5.2%;
-        bottom: 7.5%;
-        left: 5.2%;
-        display: grid;
-        grid-template-columns: 22% minmax(0, 1fr);
-        gap: 4%;
-        align-items: stretch;
-        margin: 0;
-        min-width: 0;
-        min-height: 0;
-        overflow: hidden;
-    }
-
-    .avatar-area {
-        width: 100%;
-        min-width: 0;
-        min-height: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .avatar-placeholder {
-        width: 100%;
-        max-width: 100%;
-        flex-shrink: 1;
-        aspect-ratio: 1 / 1;
-        border-width: 2px;
-        border-radius: 9px;
-        background: rgba(255, 255, 255, .11);
-    }
-
-    .avatar-placeholder span {
-        font-size: clamp(21px, 6vw, 38px);
-        -webkit-text-stroke: .9px #000;
-    }
-
-    .avatar-placeholder small {
-        margin-top: 2px;
-        font-size: 5px;
-        letter-spacing: .5px;
-        -webkit-text-stroke: .4px #000;
-    }
-
-    .grupo-card {
-        width: 100%;
-        max-width: none;
-        flex-shrink: 0;
-        margin-top: 5px;
-        padding: 3px 5px;
-        border-width: 1px;
-        border-radius: 5px;
-        background: rgba(255, 255, 255, .28);
-    }
-
-    .grupo-card > span {
-        margin-bottom: 0;
-        font-size: 3.5px;
-        letter-spacing: .2px;
-        -webkit-text-stroke: .35px #000;
-    }
-
-    .grupo-valor {
-        gap: 2px;
-        min-width: 0;
-    }
-
-    .grupo-valor i {
-        width: 8px;
-        height: 8px;
-        min-width: 8px;
-        min-height: 8px;
-        flex: 0 0 8px;
-        border-width: 1px;
-    }
-
-    .grupo-valor strong {
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: clamp(5px, 1.8vw, 8px);
-        -webkit-text-stroke: .35px #000;
-    }
-
-    .informacoes-card {
-        width: 100%;
-        min-width: 0;
-        min-height: 0;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-    }
-
-    .nome-card {
-        width: 100%;
-        min-width: 0;
-        flex: 0 0 auto;
-        display: flex;
-        align-items: center;
-        gap: 4px;
-        padding: 3px 6px;
-        border-radius: 6px;
-        background: rgba(255, 255, 255, .30);
-        overflow: hidden;
-    }
-
-    .nome-card span {
-        flex-shrink: 0;
-        font-size: clamp(5px, 1.7vw, 8px);
-        -webkit-text-stroke: .4px #000;
-    }
-
-    .nome-card strong {
-        min-width: 0;
-        flex: 1 1 auto;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: clamp(13px, 4.4vw, 24px);
-        -webkit-text-stroke: .7px #000;
-    }
-
-    .linha-card {
-        width: 100%;
-        flex: 0 0 auto;
-        height: 2px;
-        margin: 3px 0 4px;
-    }
-
-    .infos-grid {
-        width: 100%;
-        min-width: 0;
-        min-height: 0;
-        flex: 1 1 0;
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: repeat(5, minmax(0, 1fr));
-        gap: 3px 4px;
-        overflow: hidden;
-    }
-
-    .info {
-        width: 100%;
-        min-width: 0;
-        min-height: 0;
-        height: auto;
-        padding: 2px 4px;
-        border-radius: 5px;
-        background: rgba(255, 255, 255, .27);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        overflow: hidden;
-    }
-
-    .info span {
-        display: block;
-        min-width: 0;
-        margin: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: clamp(3.8px, 1.45vw, 5.5px);
-        line-height: 1;
-        letter-spacing: 0;
-        -webkit-text-stroke: .35px #000;
-    }
-
-    .info strong {
-        display: block;
-        min-width: 0;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        font-size: clamp(6.5px, 2.35vw, 10.5px);
-        line-height: 1;
-        -webkit-text-stroke: .45px #000;
-    }
-
-    .big-five {
-        grid-column: 1 / -1;
-        min-width: 0;
-        min-height: 0;
-    }
-
-    .big-five strong {
-        font-size: clamp(7px, 2.5vw, 11px);
-    }
-
-    .carinha-2 {
-        right: 3%;
-        bottom: 7%;
-        font-size: clamp(10px, 3.2vw, 17px);
-        -webkit-text-stroke: .5px #000;
-    }
-
-    .decor {
-        font-size: clamp(10px, 2.8vw, 17px);
-        -webkit-text-stroke: .5px #000;
-    }
-
-    .decor-1 {
-        top: 3%;
-        right: 6%;
-    }
-
-    .decor-2 {
-        right: 4%;
-        bottom: 13%;
-    }
-
-    .decor-3 {
-        left: 3%;
-        bottom: 4%;
-    }
-
-    .card-footer {
-        left: 5%;
-        right: 5%;
-        bottom: 2.5%;
-        font-size: clamp(3.5px, 1.25vw, 5.5px);
-        letter-spacing: .15px;
-        -webkit-text-stroke: .4px #000;
-        white-space: nowrap;
-        overflow: hidden;
-    }
-
-    .preview-info {
-        margin-top: 10px;
-        font-size: 10px;
-    }
 }
 
+
+/* =========================================================
+   CELULARES PEQUENOS
+   ========================================================= */
+
 @media (max-width: 430px) {
+
     .pagina-card {
-        width: 95%;
+        width: calc(100% - 16px);
     }
 
     .logo {
@@ -1578,7 +2431,11 @@ button {
     .aviso-icone {
         width: 34px;
         height: 34px;
+
+        flex-basis: 34px;
+
         border-radius: 11px;
+
         font-size: 17px;
     }
 
@@ -1595,11 +2452,13 @@ button {
     }
 
     .grid-2 {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
     }
 
     .temas {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns:
+            repeat(3, minmax(0, 1fr));
+
         gap: 10px 8px;
     }
 
@@ -1612,35 +2471,51 @@ button {
     .cor-personalizada {
         width: 29px;
         height: 29px;
+
+        flex-basis: 29px;
     }
+
+
+    /* ---------- CARD ---------- */
 
     .card-gerado {
         width: 100%;
         max-width: 100%;
+
         aspect-ratio: 1.58 / 1;
+
         border-radius: 15px;
     }
 
     .marca-casa span,
     .marca-casa strong {
-        font-size: clamp(8px, 2.8vw, 14px);
+
+        /*
+         * CASA DOS MBTIS menor
+         */
+        font-size: clamp(8px, 2.5vw, 13px);
     }
 
     .card-id {
-        font-size: clamp(11px, 4.7vw, 22px);
+
+        /*
+         * ID CARD menor
+         */
+        font-size: clamp(11px, 4.1vw, 21px);
     }
 
     .card-corpo {
-        top: 21%;
-        right: 5.2%;
-        bottom: 7%;
-        left: 5.2%;
-        grid-template-columns: 22% minmax(0, 1fr);
+        grid-template-columns:
+            minmax(0, 22%)
+            minmax(0, 1fr);
+
         gap: 5%;
+
+        margin-top: 4%;
     }
 
     .avatar-placeholder span {
-        font-size: clamp(18px, 6vw, 30px);
+        font-size: clamp(17px, 5.5vw, 29px);
     }
 
     .grupo-card {
@@ -1656,23 +2531,29 @@ button {
     }
 
     .grupo-valor i {
-        width: 7px;
-        height: 7px;
-        min-width: 7px;
-        min-height: 7px;
-        flex: 0 0 7px;
+        width: 6px;
+        height: 6px;
+
+        min-width: 6px;
+        min-height: 6px;
+
+        flex-basis: 6px;
     }
 
     .grupo-valor strong {
-        font-size: clamp(4.5px, 1.7vw, 7px);
+        font-size: clamp(4.5px, 1.6vw, 7px);
     }
 
     .nome-card {
         padding: 3px 5px;
     }
 
+    .nome-card span {
+        font-size: clamp(5px, 1.7vw, 8px);
+    }
+
     .nome-card strong {
-        font-size: clamp(11px, 4.5vw, 21px);
+        font-size: clamp(11px, 4.2vw, 21px);
     }
 
     .linha-card {
@@ -1684,22 +2565,88 @@ button {
     }
 
     .info {
+        padding: 2px 4px;
+    }
+
+    /*
+     * LABELS maiores que antes
+     */
+    .info span {
+        font-size: clamp(4.5px, 1.55vw, 6.5px);
+    }
+
+    /*
+     * VALORES maiores que antes
+     */
+    .info strong {
+        font-size: clamp(7px, 2.55vw, 11px);
+    }
+
+    .big-five strong {
+        font-size: clamp(7.5px, 2.6vw, 11.5px);
+    }
+
+    .card-footer {
+        font-size: clamp(3.5px, 1.2vw, 5px);
+    }
+}
+
+
+/* =========================================================
+   CELULAR MUITO PEQUENO
+   ========================================================= */
+
+@media (max-width: 360px) {
+
+    .pagina-card {
+        width: calc(100% - 12px);
+    }
+
+    .card-conteudo {
+        padding: 5%;
+    }
+
+    .card-corpo {
+        gap: 4%;
+    }
+
+    .info {
         padding: 2px 3px;
     }
 
     .info span {
-        font-size: clamp(3.5px, 1.5vw, 5px);
+        font-size: 4.5px;
     }
 
     .info strong {
-        font-size: clamp(6px, 2.3vw, 9.5px);
+        font-size: 7px;
     }
 
-    .big-five strong {
-        font-size: clamp(6.5px, 2.4vw, 10px);
+    .nome-card strong {
+        font-size: 11px;
     }
+}
 
-    .card-footer {
-        font-size: clamp(3.5px, 1.3vw, 5.5px);
-    }
+
+/* =========================================================
+   PROTEÇÃO FINAL CONTRA OVERFLOW
+   ========================================================= */
+
+.pagina-card,
+.builder,
+.preview-area,
+.card-wrapper,
+.card-gerado,
+.card-conteudo,
+.card-corpo,
+.informacoes-card,
+.infos-grid,
+.info,
+.nome-card {
+    min-width: 0;
+    max-width: 100%;
+}
+
+.card-gerado img {
+    max-width: 100%;
 }
