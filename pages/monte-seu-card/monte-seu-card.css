@@ -463,13 +463,33 @@ body::before {
     box-shadow: 0 0 0 2px rgba(145, 79, 255, .25);
 }
 
-.fundo-opcao[data-color="#d9ccd9"] { background: #d9ccd9; }
-.fundo-opcao[data-color="#f3d8e7"] { background: #f3d8e7; }
-.fundo-opcao[data-color="#d7e5f5"] { background: #d7e5f5; }
-.fundo-opcao[data-color="#dcebd8"] { background: #dcebd8; }
-.fundo-opcao[data-color="#f5e5b8"] { background: #f5e5b8; }
-.fundo-opcao[data-color="#242036"] { background: #242036; }
-.fundo-opcao[data-color="#15151c"] { background: #15151c; }
+.fundo-opcao[data-color="#d9ccd9"] {
+    background: #d9ccd9;
+}
+
+.fundo-opcao[data-color="#f3d8e7"] {
+    background: #f3d8e7;
+}
+
+.fundo-opcao[data-color="#d7e5f5"] {
+    background: #d7e5f5;
+}
+
+.fundo-opcao[data-color="#dcebd8"] {
+    background: #dcebd8;
+}
+
+.fundo-opcao[data-color="#f5e5b8"] {
+    background: #f5e5b8;
+}
+
+.fundo-opcao[data-color="#242036"] {
+    background: #242036;
+}
+
+.fundo-opcao[data-color="#15151c"] {
+    background: #15151c;
+}
 
 .paleta-cores {
     display: flex;
@@ -503,19 +523,53 @@ body::before {
     box-shadow: 0 0 0 2px rgba(145, 79, 255, .28);
 }
 
-.cor-opcao[data-color="#8c52e8"] { background: #8c52e8; }
-.cor-opcao[data-color="#f0bd35"] { background: #f0bd35; }
-.cor-opcao[data-color="#4d82e8"] { background: #4d82e8; }
-.cor-opcao[data-color="#5c9b68"] { background: #5c9b68; }
-.cor-opcao[data-color="#d45487"] { background: #d45487; }
-.cor-opcao[data-color="#273c7a"] { background: #273c7a; }
+.cor-opcao[data-color="#8c52e8"] {
+    background: #8c52e8;
+}
 
-.cor-topo-opcao[data-color="#8c52e8"] { background: #8c52e8; }
-.cor-topo-opcao[data-color="#f0bd35"] { background: #f0bd35; }
-.cor-topo-opcao[data-color="#4d82e8"] { background: #4d82e8; }
-.cor-topo-opcao[data-color="#5c9b68"] { background: #5c9b68; }
-.cor-topo-opcao[data-color="#d45487"] { background: #d45487; }
-.cor-topo-opcao[data-color="#ffffff"] { background: #fff; }
+.cor-opcao[data-color="#f0bd35"] {
+    background: #f0bd35;
+}
+
+.cor-opcao[data-color="#4d82e8"] {
+    background: #4d82e8;
+}
+
+.cor-opcao[data-color="#5c9b68"] {
+    background: #5c9b68;
+}
+
+.cor-opcao[data-color="#d45487"] {
+    background: #d45487;
+}
+
+.cor-opcao[data-color="#273c7a"] {
+    background: #273c7a;
+}
+
+.cor-topo-opcao[data-color="#8c52e8"] {
+    background: #8c52e8;
+}
+
+.cor-topo-opcao[data-color="#f0bd35"] {
+    background: #f0bd35;
+}
+
+.cor-topo-opcao[data-color="#4d82e8"] {
+    background: #4d82e8;
+}
+
+.cor-topo-opcao[data-color="#5c9b68"] {
+    background: #5c9b68;
+}
+
+.cor-topo-opcao[data-color="#d45487"] {
+    background: #d45487;
+}
+
+.cor-topo-opcao[data-color="#ffffff"] {
+    background: #fff;
+}
 
 .cor-personalizada {
     position: relative;
@@ -671,7 +725,12 @@ body::before {
     inset: 0;
     z-index: 2;
     pointer-events: none;
-    background: linear-gradient(135deg, rgba(0, 0, 0, .18), rgba(0, 0, 0, .03) 45%, rgba(0, 0, 0, .25));
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, .18),
+        rgba(0, 0, 0, .03) 45%,
+        rgba(0, 0, 0, .25)
+    );
 }
 
 .card-gerado::after {
@@ -1301,10 +1360,10 @@ body::before {
 
     .card-corpo {
         display: grid;
-        grid-template-columns: 23% minmax(0, 1fr);
-        gap: 5%;
+        grid-template-columns: 22% minmax(0, 1fr);
+        gap: 4%;
         align-items: center;
-        margin-top: 4.5%;
+        margin-top: 4%;
     }
 
     .avatar-area {
@@ -1321,14 +1380,14 @@ body::before {
     }
 
     .avatar-placeholder span {
-        font-size: clamp(22px, 6.5vw, 40px);
+        font-size: clamp(21px, 6vw, 38px);
         -webkit-text-stroke: .9px #000;
     }
 
     .avatar-placeholder small {
         margin-top: 2px;
         font-size: 5px;
-        letter-spacing: .6px;
+        letter-spacing: .5px;
         -webkit-text-stroke: .4px #000;
     }
 
@@ -1363,7 +1422,7 @@ body::before {
     }
 
     .grupo-valor strong {
-        font-size: clamp(5px, 1.9vw, 8px);
+        font-size: clamp(5px, 1.8vw, 8px);
         -webkit-text-stroke: .35px #000;
     }
 
@@ -1387,43 +1446,53 @@ body::before {
 
     .nome-card strong {
         min-width: 0;
-        font-size: clamp(14px, 4.6vw, 25px);
+        font-size: clamp(13px, 4.4vw, 24px);
         -webkit-text-stroke: .7px #000;
     }
 
     .linha-card {
         height: 2px;
-        margin: 4px 0 6px;
+        margin: 3px 0 5px;
     }
 
     .infos-grid {
+        display: grid;
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 3px 4px;
+        min-width: 0;
     }
 
     .info {
         min-width: 0;
         min-height: 0;
-        padding: 3px 4px;
+        height: 31px;
+        padding: 2px 4px;
         border-radius: 5px;
         background: rgba(255, 255, 255, .27);
     }
 
     .info span {
-        margin-bottom: 1px;
-        font-size: clamp(4px, 1.5vw, 6px);
+        margin-bottom: 0;
+        font-size: clamp(3.8px, 1.45vw, 5.5px);
+        line-height: 1;
         letter-spacing: 0;
         -webkit-text-stroke: .35px #000;
     }
 
     .info strong {
         min-width: 0;
-        font-size: clamp(7px, 2.5vw, 12px);
+        font-size: clamp(6.5px, 2.35vw, 10.5px);
+        line-height: 1;
         -webkit-text-stroke: .45px #000;
     }
 
     .big-five {
         grid-column: 1 / -1;
+        height: 29px;
+    }
+
+    .big-five strong {
+        font-size: clamp(7px, 2.5vw, 11px);
     }
 
     .carinha-2 {
@@ -1456,9 +1525,9 @@ body::before {
     .card-footer {
         left: 5%;
         right: 5%;
-        bottom: 3%;
-        font-size: clamp(4px, 1.4vw, 6px);
-        letter-spacing: .2px;
+        bottom: 2.5%;
+        font-size: clamp(3.5px, 1.25vw, 5.5px);
+        letter-spacing: .15px;
         -webkit-text-stroke: .4px #000;
     }
 
@@ -1550,7 +1619,7 @@ body::before {
     .card-corpo {
         grid-template-columns: 22% minmax(0, 1fr);
         gap: 5%;
-        margin-top: 4%;
+        margin-top: 3.7%;
     }
 
     .avatar-placeholder span {
@@ -1591,12 +1660,17 @@ body::before {
         font-size: clamp(11px, 4.5vw, 21px);
     }
 
+    .linha-card {
+        margin: 3px 0 4px;
+    }
+
     .infos-grid {
-        gap: 3px;
+        gap: 2px 3px;
     }
 
     .info {
-        padding: 2px 4px 3px;
+        height: 29px;
+        padding: 2px 3px;
         background: rgba(255, 255, 255, .27);
     }
 
@@ -1605,11 +1679,15 @@ body::before {
     }
 
     .info strong {
-        font-size: clamp(6px, 2.4vw, 10px);
+        font-size: clamp(6px, 2.3vw, 9.5px);
     }
 
-    .linha-card {
-        margin: 3px 0 5px;
+    .big-five {
+        height: 27px;
+    }
+
+    .big-five strong {
+        font-size: clamp(6.5px, 2.4vw, 10px);
     }
 
     .card-footer {
