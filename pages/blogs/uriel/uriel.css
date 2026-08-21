@@ -1,4 +1,3 @@
-
 * {
     margin: 0;
     padding: 0;
@@ -109,6 +108,8 @@ button {
     font: inherit;
 }
 
+/* HEADER */
+
 .header {
     position: fixed;
     top: 0;
@@ -184,6 +185,8 @@ button {
     cursor: pointer;
 }
 
+/* HERO */
+
 .hero {
     position: relative;
     width: 100%;
@@ -228,12 +231,15 @@ button {
     max-height: 760px;
     object-fit: cover;
     border: 1px solid rgba(161, 106, 223, 0.22);
+    border-radius: 2px;
     background: #0a080d;
     box-shadow:
         0 0 0 1px rgba(119, 69, 166, 0.05),
         0 0 35px rgba(131, 72, 192, 0.10),
         0 30px 80px rgba(0, 0, 0, 0.45);
 }
+
+/* SEÇÕES */
 
 .section {
     position: relative;
@@ -275,6 +281,8 @@ button {
     font-size: 42px;
     letter-spacing: -1px;
 }
+
+/* SOBRE */
 
 .about-grid {
     display: grid;
@@ -371,6 +379,8 @@ button {
     text-transform: uppercase;
 }
 
+/* MBTI */
+
 .topic-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -465,6 +475,8 @@ button {
     text-shadow: 0 0 10px rgba(162, 110, 225, 0.4);
 }
 
+/* ARTIGOS */
+
 .articles {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -543,6 +555,8 @@ button {
     text-shadow: 0 0 10px rgba(162, 110, 225, 0.4);
 }
 
+/* VOLTAR */
+
 .community-return {
     padding: 70px 10%;
     text-align: center;
@@ -561,6 +575,8 @@ button {
     color: var(--purple-light);
     text-shadow: 0 0 10px rgba(164, 106, 227, 0.3);
 }
+
+/* FOOTER */
 
 footer {
     padding: 65px 10%;
@@ -592,7 +608,13 @@ footer span {
     color: #fff;
 }
 
+/* TABLET */
+
 @media (max-width: 1000px) {
+
+    .header {
+        padding: 0 6%;
+    }
 
     .hero {
         padding-left: 5%;
@@ -613,6 +635,8 @@ footer span {
         grid-template-columns: repeat(2, 1fr);
     }
 }
+
+/* MENU MOBILE / TABLET */
 
 @media (max-width: 850px) {
 
@@ -664,6 +688,8 @@ footer span {
     }
 }
 
+/* CELULAR */
+
 @media (max-width: 600px) {
 
     .header {
@@ -687,13 +713,17 @@ footer span {
 
     .hero {
         min-height: auto;
-        padding: 84px 3% 20px;
+        display: block;
+        padding: 78px 10px 20px;
     }
 
     .hero-banner {
         width: 100%;
-        height: auto;
+        height: 240px;
         max-height: none;
+        object-fit: cover;
+        object-position: center;
+        border-radius: 12px;
     }
 
     .section {
@@ -764,13 +794,20 @@ footer span {
     footer {
         padding: 50px 6%;
     }
+
 }
+
+/* CELULARES PEQUENOS */
 
 @media (max-width: 380px) {
 
     .hero {
-        padding-left: 2%;
-        padding-right: 2%;
+        padding: 76px 8px 16px;
+    }
+
+    .hero-banner {
+        height: 200px;
+        border-radius: 10px;
     }
 
     .section-title h2 {
@@ -780,5 +817,9 @@ footer span {
     .shakespeare-quote p {
         font-size: 15px;
     }
-}
 
+    .logo {
+        font-size: 16px;
+        letter-spacing: 4px;
+    }
+}
