@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 </head>
+
 <body>
     <main class="pagina-card">
         <a href="../../index.html" class="voltar-site">← 🏠 Voltar para a Casa</a>
@@ -35,7 +38,6 @@
             <aside class="painel-form">
                 <div class="secao-titulo">
                     <div class="numero">01</div>
-
                     <div>
                         <h2>Suas informações</h2>
                         <p>Preencha seu perfil</p>
@@ -50,7 +52,6 @@
                 <div class="grid-2">
                     <div class="campo">
                         <label for="mbti">MBTI</label>
-
                         <select id="mbti">
                             <option value="">Selecione</option>
                             <option>INTJ</option>
@@ -123,7 +124,6 @@
 
                 <div class="secao-titulo">
                     <div class="numero">02</div>
-
                     <div>
                         <h2>Personalize o fundo</h2>
                         <p>Escolha imagem ou cor</p>
@@ -282,7 +282,6 @@
 
                 <div class="secao-titulo pequeno">
                     <div class="numero">03</div>
-
                     <div>
                         <h2>Seu card</h2>
                         <p>Salve ou compartilhe</p>
@@ -290,12 +289,22 @@
                 </div>
 
                 <div class="acoes">
-                    <button class="btn principal" id="baixarCard" type="button">↓ Baixar como imagem</button>
-                    <button class="btn" id="compartilharCard" type="button">↗ Compartilhar</button>
-                    <button class="btn" id="copiarLink" type="button">🔗 Copiar link do card</button>
+                    <button class="btn principal" id="baixarCard" type="button">
+                        ↓ Baixar como imagem
+                    </button>
+
+                    <button class="btn" id="compartilharCard" type="button">
+                        ↗ Compartilhar
+                    </button>
+
+                    <button class="btn" id="copiarLink" type="button">
+                        🔗 Copiar link do card
+                    </button>
                 </div>
 
-                <p class="aviso">✦ Nenhum dado é salvo em banco de dados. Seu card existe apenas na página / no link.</p>
+                <p class="aviso">
+                    ✦ Nenhum dado é salvo em banco de dados. Seu card existe apenas na página / no link.
+                </p>
             </aside>
 
             <section class="preview-area">
@@ -334,7 +343,9 @@
                                         <small>SUA FOTO</small>
                                     </div>
 
-                                    <div class="avatar-tag">CASA DOS MBTIs</div>
+                                    <div class="avatar-tag">
+                                        CASA DOS MBTIs
+                                    </div>
                                 </div>
 
                                 <div class="informacoes-card">
@@ -401,7 +412,9 @@
                     </div>
                 </div>
 
-                <p class="preview-info">Digite, escolha uma imagem ou uma cor e veja tudo mudar instantaneamente.</p>
+                <p class="preview-info">
+                    Digite, escolha uma imagem ou uma cor e veja tudo mudar instantaneamente.
+                </p>
             </section>
         </section>
     </main>

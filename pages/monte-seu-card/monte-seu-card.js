@@ -315,92 +315,57 @@ function pegarDados() {
     };
 }
 
-const chavesURL = {
-    nick: "n",
-    mbti: "m",
-    eneagrama: "e",
-    subtipo: "u",
-    stacking: "s",
-    temperamento: "p",
-    tritype: "t",
-    socionics: "o",
-    instintos: "i",
-    bigfive: "b",
-    tipoFundo: "y",
-    tema: "f",
-    cor: "c",
-    corFundo: "d"
-};
-
 function codificarDados(dados) {
-    const params = new URLSearchParams();
+    if (typeof LZString === "undefined") {
+        throw new Error("LZString não foi carregado.");
+    }
 
-    Object.entries(chavesURL).forEach(([chave, codigo]) => {
-        const valor = dados[chave];
+    const texto = JSON.stringify(dados);
 
-        if (
-            valor !== undefined &&
-            valor !== null &&
-            valor !== ""
-        ) {
-            params.set(codigo, valor);
-        }
-    });
-
-    return params.toString();
+    return LZString.compressToEncodedURIComponent(texto);
 }
 
-function decodificarDadosCompactos(codigo) {
-    const params = new URLSearchParams(codigo);
-    const dados = {};
+function decodificarDados(codigo) {
+    if (typeof LZString === "undefined") {
+        console.error("LZString não foi carregado.");
+        return null;
+    }
 
-    Object.entries(chavesURL).forEach(([chave, codigo]) => {
-        if (params.has(codigo)) {
-            dados[chave] = params.get(codigo);
-        }
-    });
-
-    return dados;
-}
-
-function decodificarDadosAntigos(codigo) {
     try {
-        let base64 = codigo
-            .replace(/-/g, "+")
-            .replace(/_/g, "/");
+        const texto =
+            LZString.decompressFromEncodedURIComponent(codigo);
 
-        while (base64.length % 4 !== 0) {
-            base64 += "=";
+        if (!texto) {
+            return null;
         }
-
-        const binario = atob(base64);
-
-        const bytes = Uint8Array.from(
-            binario,
-            (letra) => letra.charCodeAt(0)
-        );
-
-        const texto = new TextDecoder().decode(bytes);
 
         return JSON.parse(texto);
     } catch (erro) {
+        console.warn(
+            "Não foi possível carregar os dados do card:",
+            erro
+        );
+
         return null;
     }
 }
 
 function salvarNaURL() {
-    const dados = pegarDados();
-    const codigo = codificarDados(dados);
+    try {
+        const dados = pegarDados();
+        const codigo = codificarDados(dados);
 
-    const novaURL = codigo
-        ? `${window.location.pathname}#${codigo}`
-        : window.location.pathname;
-
-    history.replaceState(
-        null,
-        "",
-        novaURL
-    );
+        history.replaceState(
+            null,
+            "",
+            `${window.location.pathname}#${codigo}`
+        );
+    } catch (erro) {
+        console.error(
+            "Erro ao salvar o card na URL:",
+            erro
+        );
+    }
 }
 
 function carregarDadosDaURL() {
@@ -410,16 +375,7 @@ function carregarDadosDaURL() {
         return null;
     }
 
-    const dadosCompactos = decodificarDadosCompactos(codigo);
-
-    if (
-        dadosCompactos &&
-        Object.keys(dadosCompactos).length > 0
-    ) {
-        return dadosCompactos;
-    }
-
-    return decodificarDadosAntigos(codigo);
+    return decodificarDados(codigo);
 }
 
 function preencherCampos(dados) {
@@ -485,6 +441,7 @@ async function carregarDaURL() {
         atualizarCard();
         aplicarCorTexto("#8c52e8", false);
         aplicarTema("azul", false);
+        atualizarTipoFundoVisual();
         return;
     }
 
@@ -493,22 +450,26 @@ async function carregarDaURL() {
     tipoFundo = dados.tipoFundo || "imagem";
     temaAtual = dados.tema || "azul";
 
-    const corTexto = dados.cor || "#8c52e8";
-    const corBackground = dados.corFundo || "#d9ccd9";
-
     aplicarCorTexto(
-        corTexto,
+        dados.cor || "#8c52e8",
         false
     );
 
     if (tipoFundo === "imagem") {
-        aplicarTema(
-            temaAtual,
-            false
-        );
+        if (temas[temaAtual]) {
+            aplicarTema(
+                temaAtual,
+                false
+            );
+        } else {
+            aplicarTema(
+                "azul",
+                false
+            );
+        }
     } else {
         aplicarCorFundo(
-            corBackground,
+            dados.corFundo || "#d9ccd9",
             false
         );
     }
