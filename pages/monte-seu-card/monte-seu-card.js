@@ -11,6 +11,9 @@ const campos = {
 };
 
 const card = document.getElementById("cardGerado");
+const cardArea = document.querySelector(".card-area");
+const grupoCard = document.getElementById("grupoCard");
+const cardFundo = document.querySelector(".card-fundo");
 
 const cardCampos = {
     nick: document.getElementById("cardNick"),
@@ -24,7 +27,6 @@ const cardCampos = {
     psychophy: document.getElementById("cardPsychophy")
 };
 
-const grupoCard = document.getElementById("grupoCard");
 const abas = document.querySelectorAll(".aba");
 const painelImagens = document.getElementById("painelImagens");
 const painelCor = document.getElementById("painelCor");
@@ -33,12 +35,15 @@ const botoesCorLetra = document.querySelectorAll(".cor.letra");
 const botoesCorTopo = document.querySelectorAll(".cor.topo");
 const botoesFundo = document.querySelectorAll(".cores-fundo button");
 const botoesAcessorio = document.querySelectorAll(".acessorio");
+
 const corLetra = document.getElementById("corLetra");
 const corTopo = document.getElementById("corTopo");
 const corFundo = document.getElementById("corFundo");
+
 const valorCorLetra = document.getElementById("valorCorLetra");
 const valorCorTopo = document.getElementById("valorCorTopo");
 const valorCorFundo = document.getElementById("valorCorFundo");
+
 const botaoDownload = document.getElementById("baixarCard");
 const botaoLink = document.getElementById("copiarLink");
 
@@ -145,398 +150,143 @@ function aplicarCoresBotoes() {
     });
 }
 
+function ajustarEscalaCard() {
+    if (!cardArea || !card) {
+        return;
+    }
+
+    const larguraDisponivel = cardArea.clientWidth;
+    const larguraOriginal = 760;
+    const alturaOriginal = 500;
+    const margem = 4;
+
+    if (!larguraDisponivel) {
+        return;
+    }
+
+    let escala = (larguraDisponivel - margem) / larguraOriginal;
+
+    if (escala > 1) {
+        escala = 1;
+    }
+
+    if (escala < 0.35) {
+        escala = 0.35;
+    }
+
+    card.style.setProperty(
+        "--card-scale",
+        escala
+    );
+
+    const alturaVisual = alturaOriginal * escala;
+
+    cardArea.style.height =
+        `${alturaVisual}px`;
+}
+
+function atualizarGrupo() {
+    const grupo =
+        campos.grupo.value ||
+        valoresPadrao.grupo;
+
+    const cor =
+        grupos[grupo] ||
+        grupos.Analistas;
+
+    grupoCard.style.setProperty(
+        "--group",
+        cor
+    );
+}
+
 function atualizarCard() {
     Object.keys(campos).forEach(chave => {
-        const valor = campos[chave].value.trim();
-        cardCampos[chave].textContent = valor || valoresPadrao[chave];
+        const valor =
+            campos[chave].value.trim();
+
+        cardCampos[chave].textContent =
+            valor ||
+            valoresPadrao[chave];
     });
 
     atualizarGrupo();
 }
 
-function atualizarGrupo() {
-    const grupo = campos.grupo.value || valoresPadrao.grupo;
-    const cor = grupos[grupo] || grupos.Analistas;
-
-    grupoCard.style.setProperty("--group", cor);
-}
-
-function atualizarNick() {
-    const valor = campos.nick.value.trim();
-    const tamanho = valor.length;
-
-    if (!valor) {
-        cardCampos.nick.style.fontSize = "";
-        return;
-    }
-
-    if (window.matchMedia("(max-width: 820px)").matches) {
-        if (tamanho <= 7) {
-            cardCampos.nick.style.fontSize = "30px";
-        } else if (tamanho <= 12) {
-            cardCampos.nick.style.fontSize = "25px";
-        } else if (tamanho <= 18) {
-            cardCampos.nick.style.fontSize = "21px";
-        } else {
-            cardCampos.nick.style.fontSize = "18px";
-        }
-
-        return;
-    }
-
-    if (tamanho <= 5) {
-        cardCampos.nick.style.fontSize = "54px";
-    } else if (tamanho <= 9) {
-        cardCampos.nick.style.fontSize = "48px";
-    } else if (tamanho <= 14) {
-        cardCampos.nick.style.fontSize = "42px";
-    } else if (tamanho <= 20) {
-        cardCampos.nick.style.fontSize = "36px";
-    } else {
-        cardCampos.nick.style.fontSize = "31px";
-    }
-}
-
-function atualizarTudo() {
-    atualizarCard();
-    atualizarNick();
-}
-
 Object.values(campos).forEach(campo => {
-    campo.addEventListener("input", () => {
-        atualizarTudo();
-        agendarLink();
-    });
+    campo.addEventListener(
+        "input",
+        () => {
+            atualizarCard();
+            agendarLink();
+        }
+    );
 
-    campo.addEventListener("change", () => {
-        atualizarTudo();
-        salvarLink();
-    });
+    campo.addEventListener(
+        "change",
+        () => {
+            atualizarCard();
+            salvarLink();
+        }
+    );
 });
 
+function agendarLink() {
+    clearTimeout(timeoutLink);
+
+    timeoutLink =
+        setTimeout(
+            salvarLink,
+            250
+        );
+}
+
 function mostrarAba(tipo) {
+    fundoAtual = tipo;
+
     abas.forEach(aba => {
-        aba.classList.toggle("ativo", aba.dataset.fundo === tipo);
+        aba.classList.toggle(
+            "ativo",
+            aba.dataset.fundo === tipo
+        );
     });
 
-    painelImagens.classList.toggle("ativo", tipo === "imagem");
-    painelCor.classList.toggle("ativo", tipo === "cor");
+    painelImagens.classList.toggle(
+        "ativo",
+        tipo === "imagem"
+    );
 
-    fundoAtual = tipo;
+    painelCor.classList.toggle(
+        "ativo",
+        tipo === "cor"
+    );
+
     salvarLink();
 }
 
 abas.forEach(aba => {
-    aba.addEventListener("click", () => {
-        mostrarAba(aba.dataset.fundo);
-    });
+    aba.addEventListener(
+        "click",
+        () => {
+            mostrarAba(
+                aba.dataset.fundo
+            );
+        }
+    );
 });
 
-function aplicarTema(nome) {
-    if (!temas[nome]) return;
+function aplicarTema(
+    nome,
+    salvar = true
+) {
+    if (!temas[nome]) {
+        return;
+    }
 
     temaAtual = nome;
     fundoAtual = "imagem";
 
-    card.style.backgroundImage = "none";
-    document.querySelector(".card-fundo").style.backgroundImage = `url("${temas[nome]}")`;
-
-    temasBotoes.forEach(botao => {
-        botao.classList.toggle("ativo", botao.dataset.tema === nome);
-    });
-
-    abas.forEach(aba => {
-        aba.classList.toggle("ativo", aba.dataset.fundo === "imagem");
-    });
-
-    painelImagens.classList.add("ativo");
-    painelCor.classList.remove("ativo");
-
-    salvarLink();
-}
-
-temasBotoes.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarTema(botao.dataset.tema);
-    });
-});
-
-function aplicarCorFundo(cor) {
-    fundoAtual = "cor";
-
-    document.querySelector(".card-fundo").style.backgroundImage = "none";
-    card.style.background = cor;
-    card.style.setProperty("--background", cor);
-
-    corFundo.value = cor;
-    valorCorFundo.textContent = cor.toUpperCase();
-
-    botoesFundo.forEach(botao => {
-        botao.classList.toggle(
-            "ativo",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
-        );
-    });
-
-    abas.forEach(aba => {
-        aba.classList.toggle("ativo", aba.dataset.fundo === "cor");
-    });
-
-    painelImagens.classList.remove("ativo");
-    painelCor.classList.add("ativo");
-
-    salvarLink();
-}
-
-botoesFundo.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarCorFundo(botao.dataset.cor);
-    });
-});
-
-corFundo.addEventListener("input", () => {
-    aplicarCorFundo(corFundo.value);
-});
-
-function aplicarCorLetraFunc(cor) {
-    card.style.setProperty("--primary", cor);
-    corLetra.value = cor;
-    valorCorLetra.textContent = cor.toUpperCase();
-
-    botoesCorLetra.forEach(botao => {
-        botao.classList.toggle(
-            "ativa",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
-        );
-    });
-
-    salvarLink();
-}
-
-botoesCorLetra.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarCorLetraFunc(botao.dataset.cor);
-    });
-});
-
-corLetra.addEventListener("input", () => {
-    aplicarCorLetraFunc(corLetra.value);
-});
-
-function aplicarCorTopoFunc(cor) {
-    card.style.setProperty("--top", cor);
-    corTopo.value = cor;
-    valorCorTopo.textContent = cor.toUpperCase();
-
-    botoesCorTopo.forEach(botao => {
-        botao.classList.toggle(
-            "ativa",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
-        );
-    });
-
-    salvarLink();
-}
-
-botoesCorTopo.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarCorTopoFunc(botao.dataset.cor);
-    });
-});
-
-corTopo.addEventListener("input", () => {
-    aplicarCorTopoFunc(corTopo.value);
-});
-
-function aplicarAcessorio(nome) {
-    acessorioAtual = nome;
-
-    botoesAcessorio.forEach(botao => {
-        botao.classList.toggle(
-            "ativo",
-            botao.dataset.acessorio === nome
-        );
-    });
-
-    Object.values(decoracoes).forEach(decoracao => {
-        decoracao.classList.remove("visivel");
-    });
-
-    if (decoracoes[nome]) {
-        decoracoes[nome].classList.add("visivel");
-    }
-
-    salvarLink();
-}
-
-botoesAcessorio.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarAcessorio(botao.dataset.acessorio);
-    });
-});
-
-function gerarDados() {
-    const dados = {};
-
-    Object.keys(campos).forEach(chave => {
-        const valor = campos[chave].value.trim();
-
-        if (valor && valor !== valoresPadrao[chave]) {
-            dados[abreviacoes[chave]] = valor;
-        }
-    });
-
-    if (fundoAtual !== "imagem") {
-        dados.f = fundoAtual;
-    }
-
-    if (temaAtual !== "azul") {
-        dados.h = temaAtual;
-    }
-
-    if (corLetra.value.toLowerCase() !== "#c88dff") {
-        dados.l = corLetra.value;
-    }
-
-    if (corTopo.value.toLowerCase() !== "#9f63d9") {
-        dados.q = corTopo.value;
-    }
-
-    if (corFundo.value.toLowerCase() !== "#17121f") {
-        dados.u = corFundo.value;
-    }
-
-    if (acessorioAtual !== "none") {
-        dados.a = acessorioAtual;
-    }
-
-    return dados;
-}
-
-function expandirDados(dados) {
-    const resultado = {};
-
-    Object.keys(dados).forEach(chave => {
-        const nome = nomesAbreviados[chave];
-
-        if (nome) {
-            resultado[nome] = dados[chave];
-        }
-    });
-
-    return resultado;
-}
-
-function compactar(dados) {
-    return LZString.compressToEncodedURIComponent(
-        JSON.stringify(dados)
-    );
-}
-
-function descompactar(codigo) {
-    try {
-        const texto =
-            LZString.decompressFromEncodedURIComponent(codigo);
-
-        if (!texto) return null;
-
-        return expandirDados(
-            JSON.parse(texto)
-        );
-    } catch (erro) {
-        console.error(erro);
-        return null;
-    }
-}
-
-function salvarLink() {
-    clearTimeout(timeoutLink);
-
-    timeoutLink = setTimeout(() => {
-        try {
-            const dados = gerarDados();
-            const codigo = compactar(dados);
-
-            history.replaceState(
-                null,
-                "",
-                `${window.location.pathname}#${codigo}`
-            );
-        } catch (erro) {
-            console.error(
-                "Erro ao salvar link:",
-                erro
-            );
-        }
-    }, 250);
-}
-
-function carregarLink() {
-    const codigo =
-        window.location.hash.substring(1);
-
-    if (!codigo) {
-        inicializar();
-        return;
-    }
-
-    const dados = descompactar(codigo);
-
-    if (!dados) {
-        inicializar();
-        return;
-    }
-
-    Object.keys(campos).forEach(chave => {
-        if (
-            dados[chave] !== undefined &&
-            dados[chave] !== null
-        ) {
-            campos[chave].value = dados[chave];
-        }
-    });
-
-    fundoAtual =
-        dados.fundo || "imagem";
-
-    temaAtual =
-        dados.tema || "azul";
-
-    acessorioAtual =
-        dados.acessorio || "none";
-
-    atualizarTudo();
-
-    if (fundoAtual === "imagem") {
-        aplicarTemaInicial(
-            temas[temaAtual]
-                ? temaAtual
-                : "azul"
-        );
-    } else {
-        aplicarCorFundoInicial(
-            dados.corFundo || "#17121f"
-        );
-    }
-
-    aplicarCorLetraInicial(
-        dados.corLetra || "#c88dff"
-    );
-
-    aplicarCorTopoInicial(
-        dados.corTopo || "#9f63d9"
-    );
-
-    aplicarAcessorioInicial(
-        acessorioAtual
-    );
-}
-
-function aplicarTemaInicial(nome) {
-    temaAtual = nome;
-    fundoAtual = "imagem";
-
-    document.querySelector(".card-fundo").style.backgroundImage =
+    cardFundo.style.backgroundImage =
         `url("${temas[nome]}")`;
 
     temasBotoes.forEach(botao => {
@@ -553,25 +303,56 @@ function aplicarTemaInicial(nome) {
         );
     });
 
-    painelImagens.classList.add("ativo");
-    painelCor.classList.remove("ativo");
+    painelImagens.classList.add(
+        "ativo"
+    );
+
+    painelCor.classList.remove(
+        "ativo"
+    );
+
+    if (salvar) {
+        salvarLink();
+    }
 }
 
-function aplicarCorFundoInicial(cor) {
+temasBotoes.forEach(botao => {
+    botao.addEventListener(
+        "click",
+        () => {
+            aplicarTema(
+                botao.dataset.tema
+            );
+        }
+    );
+});
+
+function aplicarCorFundo(
+    cor,
+    salvar = true
+) {
     fundoAtual = "cor";
 
-    document.querySelector(".card-fundo").style.backgroundImage =
+    cardFundo.style.backgroundImage =
         "none";
 
-    card.style.background = cor;
     card.style.setProperty(
         "--background",
         cor
     );
 
     corFundo.value = cor;
+
     valorCorFundo.textContent =
         cor.toUpperCase();
+
+    botoesFundo.forEach(botao => {
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.cor.toLowerCase() ===
+                cor.toLowerCase()
+        );
+    });
 
     abas.forEach(aba => {
         aba.classList.toggle(
@@ -580,97 +361,490 @@ function aplicarCorFundoInicial(cor) {
         );
     });
 
-    painelImagens.classList.remove("ativo");
-    painelCor.classList.add("ativo");
+    painelImagens.classList.remove(
+        "ativo"
+    );
+
+    painelCor.classList.add(
+        "ativo"
+    );
+
+    if (salvar) {
+        salvarLink();
+    }
 }
 
-function aplicarCorLetraInicial(cor) {
+botoesFundo.forEach(botao => {
+    botao.addEventListener(
+        "click",
+        () => {
+            aplicarCorFundo(
+                botao.dataset.cor
+            );
+        }
+    );
+});
+
+corFundo.addEventListener(
+    "input",
+    () => {
+        aplicarCorFundo(
+            corFundo.value
+        );
+    }
+);
+
+function aplicarCorLetra(
+    cor,
+    salvar = true
+) {
     card.style.setProperty(
         "--primary",
         cor
     );
 
-    corLetra.value = cor;
+    corLetra.value =
+        cor;
+
     valorCorLetra.textContent =
         cor.toUpperCase();
 
     botoesCorLetra.forEach(botao => {
         botao.classList.toggle(
             "ativa",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+            botao.dataset.cor.toLowerCase() ===
+                cor.toLowerCase()
         );
     });
+
+    if (salvar) {
+        salvarLink();
+    }
 }
 
-function aplicarCorTopoInicial(cor) {
+botoesCorLetra.forEach(botao => {
+    botao.addEventListener(
+        "click",
+        () => {
+            aplicarCorLetra(
+                botao.dataset.cor
+            );
+        }
+    );
+});
+
+corLetra.addEventListener(
+    "input",
+    () => {
+        aplicarCorLetra(
+            corLetra.value
+        );
+    }
+);
+
+function aplicarCorTopo(
+    cor,
+    salvar = true
+) {
     card.style.setProperty(
         "--top",
         cor
     );
 
-    corTopo.value = cor;
+    corTopo.value =
+        cor;
+
     valorCorTopo.textContent =
         cor.toUpperCase();
 
     botoesCorTopo.forEach(botao => {
         botao.classList.toggle(
             "ativa",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+            botao.dataset.cor.toLowerCase() ===
+                cor.toLowerCase()
         );
     });
+
+    if (salvar) {
+        salvarLink();
+    }
 }
 
-function aplicarAcessorioInicial(nome) {
-    acessorioAtual = nome;
+botoesCorTopo.forEach(botao => {
+    botao.addEventListener(
+        "click",
+        () => {
+            aplicarCorTopo(
+                botao.dataset.cor
+            );
+        }
+    );
+});
+
+corTopo.addEventListener(
+    "input",
+    () => {
+        aplicarCorTopo(
+            corTopo.value
+        );
+    }
+);
+
+function aplicarAcessorio(
+    nome,
+    salvar = true
+) {
+    acessorioAtual =
+        nome;
 
     botoesAcessorio.forEach(botao => {
         botao.classList.toggle(
             "ativo",
-            botao.dataset.acessorio === nome
+            botao.dataset.acessorio ===
+                nome
         );
     });
 
-    Object.values(decoracoes).forEach(decoracao => {
-        decoracao.classList.remove("visivel");
+    Object.values(
+        decoracoes
+    ).forEach(decoracao => {
+        decoracao.classList.remove(
+            "visivel"
+        );
     });
 
     if (decoracoes[nome]) {
-        decoracoes[nome].classList.add("visivel");
+        decoracoes[nome].classList.add(
+            "visivel"
+        );
+    }
+
+    if (salvar) {
+        salvarLink();
     }
 }
 
-function inicializar() {
-    aplicarTemaInicial("azul");
-    aplicarCorLetraInicial("#c88dff");
-    aplicarCorTopoInicial("#9f63d9");
-    aplicarCorFundoInicial("#17121f");
-    aplicarAcessorioInicial("none");
-    atualizarTudo();
+botoesAcessorio.forEach(botao => {
+    botao.addEventListener(
+        "click",
+        () => {
+            aplicarAcessorio(
+                botao.dataset.acessorio
+            );
+        }
+    );
+});
+
+function gerarDados() {
+    const dados = {};
+
+    Object.keys(campos).forEach(chave => {
+        const valor =
+            campos[chave].value.trim();
+
+        if (
+            valor &&
+            valor !== valoresPadrao[chave]
+        ) {
+            dados[
+                abreviacoes[chave]
+            ] = valor;
+        }
+    });
+
+    if (fundoAtual !== "imagem") {
+        dados.f =
+            fundoAtual;
+    }
+
+    if (temaAtual !== "azul") {
+        dados.h =
+            temaAtual;
+    }
+
+    if (
+        corLetra.value.toLowerCase() !==
+        "#c88dff"
+    ) {
+        dados.l =
+            corLetra.value;
+    }
+
+    if (
+        corTopo.value.toLowerCase() !==
+        "#9f63d9"
+    ) {
+        dados.q =
+            corTopo.value;
+    }
+
+    if (
+        corFundo.value.toLowerCase() !==
+        "#17121f"
+    ) {
+        dados.u =
+            corFundo.value;
+    }
+
+    if (acessorioAtual !== "none") {
+        dados.a =
+            acessorioAtual;
+    }
+
+    return dados;
 }
 
-function mostrarToast(texto) {
+function expandirDados(dados) {
+    const resultado = {};
+
+    Object.keys(dados).forEach(chave => {
+        const nome =
+            nomesAbreviados[chave];
+
+        if (nome) {
+            resultado[nome] =
+                dados[chave];
+        }
+    });
+
+    return resultado;
+}
+
+function compactar(dados) {
+    if (
+        typeof LZString ===
+        "undefined"
+    ) {
+        throw new Error(
+            "LZString não foi carregado."
+        );
+    }
+
+    return LZString
+        .compressToEncodedURIComponent(
+            JSON.stringify(dados)
+        );
+}
+
+function descompactar(codigo) {
+    try {
+        const texto =
+            LZString
+                .decompressFromEncodedURIComponent(
+                    codigo
+                );
+
+        if (!texto) {
+            return null;
+        }
+
+        return expandirDados(
+            JSON.parse(texto)
+        );
+    } catch (erro) {
+        console.error(
+            "Erro ao ler link:",
+            erro
+        );
+
+        return null;
+    }
+}
+
+function salvarLink() {
+    clearTimeout(
+        timeoutLink
+    );
+
+    timeoutLink =
+        setTimeout(
+            () => {
+                try {
+                    const dados =
+                        gerarDados();
+
+                    const codigo =
+                        compactar(
+                            dados
+                        );
+
+                    history.replaceState(
+                        null,
+                        "",
+                        `${window.location.pathname}#${codigo}`
+                    );
+                } catch (erro) {
+                    console.error(
+                        "Erro ao salvar link:",
+                        erro
+                    );
+                }
+            },
+            100
+        );
+}
+
+function aplicarDadosDoLink(
+    dados
+) {
+    Object.keys(campos).forEach(chave => {
+        if (
+            dados[chave] !== undefined &&
+            dados[chave] !== null
+        ) {
+            campos[chave].value =
+                dados[chave];
+        }
+    });
+
+    fundoAtual =
+        dados.fundo ||
+        "imagem";
+
+    temaAtual =
+        dados.tema ||
+        "azul";
+
+    acessorioAtual =
+        dados.acessorio ||
+        "none";
+
+    aplicarCorLetra(
+        dados.corLetra ||
+            "#c88dff",
+        false
+    );
+
+    aplicarCorTopo(
+        dados.corTopo ||
+            "#9f63d9",
+        false
+    );
+
+    if (
+        fundoAtual ===
+        "imagem"
+    ) {
+        aplicarTema(
+            temas[temaAtual]
+                ? temaAtual
+                : "azul",
+            false
+        );
+    } else {
+        aplicarCorFundo(
+            dados.corFundo ||
+                "#17121f",
+            false
+        );
+    }
+
+    aplicarAcessorio(
+        acessorioAtual,
+        false
+    );
+
+    atualizarCard();
+}
+
+function inicializar() {
+    aplicarTema(
+        "azul",
+        false
+    );
+
+    aplicarCorFundo(
+        "#17121f",
+        false
+    );
+
+    aplicarCorLetra(
+        "#c88dff",
+        false
+    );
+
+    aplicarCorTopo(
+        "#9f63d9",
+        false
+    );
+
+    aplicarAcessorio(
+        "none",
+        false
+    );
+
+    atualizarCard();
+}
+
+function carregarLink() {
+    const codigo =
+        window.location.hash.substring(
+            1
+        );
+
+    if (!codigo) {
+        inicializar();
+        return;
+    }
+
+    const dados =
+        descompactar(codigo);
+
+    if (!dados) {
+        inicializar();
+        return;
+    }
+
+    aplicarDadosDoLink(
+        dados
+    );
+}
+
+function mostrarToast(
+    mensagem
+) {
     const toast =
-        document.getElementById("toast");
+        document.getElementById(
+            "toast"
+        );
 
-    toast.textContent = texto;
-    toast.classList.add("mostrar");
+    toast.textContent =
+        mensagem;
 
-    clearTimeout(mostrarToast.timer);
+    toast.classList.add(
+        "mostrar"
+    );
+
+    clearTimeout(
+        mostrarToast.timer
+    );
 
     mostrarToast.timer =
-        setTimeout(() => {
-            toast.classList.remove("mostrar");
-        }, 2500);
+        setTimeout(
+            () => {
+                toast.classList.remove(
+                    "mostrar"
+                );
+            },
+            2500
+        );
 }
 
 botaoLink.addEventListener(
     "click",
     async () => {
         try {
-            clearTimeout(timeoutLink);
+            clearTimeout(
+                timeoutLink
+            );
 
-            const dados = gerarDados();
-            const codigo = compactar(dados);
+            const dados =
+                gerarDados();
+
+            const codigo =
+                compactar(
+                    dados
+                );
 
             const url =
                 `${window.location.origin}${window.location.pathname}#${codigo}`;
@@ -678,16 +852,20 @@ botaoLink.addEventListener(
             history.replaceState(
                 null,
                 "",
-                `#${codigo}`
+                `${window.location.pathname}#${codigo}`
             );
 
-            await navigator.clipboard.writeText(url);
+            await navigator.clipboard.writeText(
+                url
+            );
 
             mostrarToast(
                 "🔗 Link compacto copiado!"
             );
         } catch (erro) {
-            console.error(erro);
+            console.error(
+                erro
+            );
 
             mostrarToast(
                 "Não foi possível copiar o link."
@@ -695,6 +873,38 @@ botaoLink.addEventListener(
         }
     }
 );
+
+async function prepararImagemAtual() {
+    if (
+        fundoAtual !==
+        "imagem"
+    ) {
+        return;
+    }
+
+    const imagem =
+        temas[temaAtual];
+
+    if (!imagem) {
+        return;
+    }
+
+    await new Promise(
+        (resolve, reject) => {
+            const img =
+                new Image();
+
+            img.onload =
+                resolve;
+
+            img.onerror =
+                reject;
+
+            img.src =
+                imagem;
+        }
+    );
+}
 
 botaoDownload.addEventListener(
     "click",
@@ -704,13 +914,18 @@ botaoDownload.addEventListener(
                 "Baixar seu card como imagem?"
             );
 
-        if (!confirmar) return;
+        if (!confirmar) {
+            return;
+        }
 
-        botaoDownload.disabled = true;
+        let arquivoURL =
+            null;
+
+        botaoDownload.disabled =
+            true;
+
         botaoDownload.textContent =
             "Gerando card...";
-
-        let urlArquivo = null;
 
         try {
             if (
@@ -718,7 +933,7 @@ botaoDownload.addEventListener(
                 "function"
             ) {
                 throw new Error(
-                    "html2canvas não carregou."
+                    "html2canvas não foi carregado."
                 );
             }
 
@@ -726,61 +941,66 @@ botaoDownload.addEventListener(
                 await document.fonts.ready;
             }
 
-            await new Promise(resolve => {
-                requestAnimationFrame(() => {
-                    requestAnimationFrame(resolve);
-                });
-            });
+            await prepararImagemAtual();
 
-            const largura =
-                card.clientWidth;
-
-            const altura =
-                card.clientHeight;
-
-            if (!largura || !altura) {
-                throw new Error(
-                    "Tamanho inválido do card."
-                );
-            }
-
-            const mobile =
-                window.innerWidth <= 820;
-
-            const escala =
-                mobile ? 3 : 4;
+            await new Promise(
+                resolve => {
+                    requestAnimationFrame(
+                        () => {
+                            requestAnimationFrame(
+                                resolve
+                            );
+                        }
+                    );
+                }
+            );
 
             const canvas =
                 await html2canvas(
                     card,
                     {
-                        width: largura,
-                        height: altura,
-                        scale: escala,
+                        width: 760,
+                        height: 500,
+                        scale: 4,
                         useCORS: true,
                         allowTaint: false,
                         backgroundColor: null,
                         logging: false,
                         imageTimeout: 30000,
-                        scrollX: 0,
-                        scrollY: 0,
                         removeContainer: true,
                         foreignObjectRendering: false,
+                        scrollX: 0,
+                        scrollY: 0,
+
                         onclone: documento => {
                             const clone =
                                 documento.getElementById(
                                     "cardGerado"
                                 );
 
-                            if (!clone) return;
+                            if (!clone) {
+                                return;
+                            }
 
                             clone.style.transform =
                                 "none";
 
-                            clone.style.filter =
-                                "none";
+                            clone.style.width =
+                                "760px";
+
+                            clone.style.height =
+                                "500px";
+
+                            clone.style.minWidth =
+                                "760px";
+
+                            clone.style.minHeight =
+                                "500px";
 
                             clone.style.boxShadow =
+                                "none";
+
+                            clone.style.filter =
                                 "none";
 
                             clone.style.opacity =
@@ -791,13 +1011,15 @@ botaoDownload.addEventListener(
 
                             clone.querySelectorAll(
                                 "*"
-                            ).forEach(elemento => {
-                                elemento.style.animation =
-                                    "none";
+                            ).forEach(
+                                elemento => {
+                                    elemento.style.animation =
+                                        "none";
 
-                                elemento.style.transition =
-                                    "none";
-                            });
+                                    elemento.style.transition =
+                                        "none";
+                                }
+                            );
                         }
                     }
                 );
@@ -808,27 +1030,31 @@ botaoDownload.addEventListener(
                 canvas.height <= 0
             ) {
                 throw new Error(
-                    "Canvas vazio."
+                    "O PNG ficou vazio."
                 );
             }
 
             const blob =
-                await new Promise(resolve => {
-                    canvas.toBlob(
-                        resolve,
-                        "image/png",
-                        1
-                    );
-                });
+                await new Promise(
+                    resolve => {
+                        canvas.toBlob(
+                            resolve,
+                            "image/png",
+                            1
+                        );
+                    }
+                );
 
             if (!blob) {
                 throw new Error(
-                    "Não foi possível gerar o PNG."
+                    "Não foi possível criar o PNG."
                 );
             }
 
-            urlArquivo =
-                URL.createObjectURL(blob);
+            arquivoURL =
+                URL.createObjectURL(
+                    blob
+                );
 
             const nome =
                 campos.nick.value.trim() ||
@@ -846,44 +1072,57 @@ botaoDownload.addEventListener(
                         "-"
                     );
 
-            const arquivo =
+            const nomeArquivo =
                 `casa-dos-mbtis-${nomeLimpo || "meu-card"}.png`;
 
             const link =
-                document.createElement("a");
+                document.createElement(
+                    "a"
+                );
 
-            link.href = urlArquivo;
-            link.download = arquivo;
+            link.href =
+                arquivoURL;
+
+            link.download =
+                nomeArquivo;
+
+            link.style.display =
+                "none";
 
             document.body.appendChild(
                 link
             );
 
             link.click();
+
             link.remove();
 
             mostrarToast(
                 "✨ Card salvo em alta resolução!"
             );
 
-            setTimeout(() => {
-                if (urlArquivo) {
-                    URL.revokeObjectURL(
-                        urlArquivo
-                    );
+            setTimeout(
+                () => {
+                    if (arquivoURL) {
+                        URL.revokeObjectURL(
+                            arquivoURL
+                        );
 
-                    urlArquivo = null;
-                }
-            }, 2000);
+                        arquivoURL =
+                            null;
+                    }
+                },
+                2000
+            );
         } catch (erro) {
             console.error(
                 "Erro ao baixar:",
                 erro
             );
 
-            if (urlArquivo) {
+            if (arquivoURL) {
                 URL.revokeObjectURL(
-                    urlArquivo
+                    arquivoURL
                 );
             }
 
@@ -891,12 +1130,45 @@ botaoDownload.addEventListener(
                 "😿 Não consegui baixar o card."
             );
         } finally {
-            botaoDownload.disabled = false;
+            botaoDownload.disabled =
+                false;
+
             botaoDownload.textContent =
                 "↓ Baixar como imagem";
         }
     }
 );
 
+function atualizarLayoutCard() {
+    ajustarEscalaCard();
+}
+
+window.addEventListener(
+    "resize",
+    atualizarLayoutCard
+);
+
+window.addEventListener(
+    "orientationchange",
+    () => {
+        setTimeout(
+            atualizarLayoutCard,
+            100
+        );
+    }
+);
+
+window.addEventListener(
+    "load",
+    () => {
+        setTimeout(
+            atualizarLayoutCard,
+            50
+        );
+    }
+);
+
 aplicarCoresBotoes();
 carregarLink();
+atualizarCard();
+ajustarEscalaCard();
