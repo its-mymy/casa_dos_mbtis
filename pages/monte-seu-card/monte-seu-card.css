@@ -6,23 +6,21 @@
 
 html {
     scroll-behavior: smooth;
-}
-
-:root {
-    --bg: #08070c;
-    --text: #f7f3fa;
-    --muted: #91889c;
-    --primary: #c88dff;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 body {
+    width: 100%;
+    max-width: 100%;
     min-height: 100vh;
     overflow-x: hidden;
+    color: #f7f3fa;
     background:
-        radial-gradient(circle at 10% 10%, rgba(147, 77, 194, 0.11), transparent 30%),
-        radial-gradient(circle at 85% 20%, rgba(218, 83, 163, 0.08), transparent 30%),
-        linear-gradient(180deg, #08070c, #0d0911 60%, #08070c);
-    color: var(--text);
+        radial-gradient(circle at 10% 10%, rgba(143, 74, 190, 0.14), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(214, 75, 165, 0.1), transparent 30%),
+        linear-gradient(180deg, #08070c 0%, #100916 55%, #08070c 100%);
     font-family: "Baloo 2", sans-serif;
 }
 
@@ -33,9 +31,9 @@ body::before {
     z-index: -3;
     pointer-events: none;
     background:
-        linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-    background-size: 50px 50px;
+        linear-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+    background-size: 52px 52px;
     mask-image: linear-gradient(to bottom, black, transparent 90%);
     -webkit-mask-image: linear-gradient(to bottom, black, transparent 90%);
 }
@@ -43,15 +41,15 @@ body::before {
 body::after {
     content: "";
     position: fixed;
-    width: 500px;
-    height: 500px;
+    width: 520px;
+    height: 520px;
+    top: -220px;
     right: -220px;
-    top: -180px;
     z-index: -2;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(166, 90, 216, 0.15), transparent 70%);
-    filter: blur(50px);
     pointer-events: none;
+    background: radial-gradient(circle, rgba(171, 92, 220, 0.16), transparent 70%);
+    filter: blur(50px);
 }
 
 button,
@@ -71,7 +69,7 @@ a {
 
 .pagina-card {
     width: min(1450px, 100%);
-    margin: auto;
+    margin: 0 auto;
     padding: 35px clamp(16px, 4vw, 70px) 80px;
 }
 
@@ -80,13 +78,13 @@ a {
     align-items: center;
     gap: 8px;
     margin-bottom: 30px;
-    color: #8d8498;
+    color: #8f8797;
     font-size: 12px;
     transition: 0.25s ease;
 }
 
 .voltar-site:hover {
-    color: var(--primary);
+    color: #c88dff;
     transform: translateX(-4px);
 }
 
@@ -118,7 +116,7 @@ a {
 }
 
 .logo-texto span {
-    color: #918798;
+    color: #938a9a;
     font-size: 8px;
     font-weight: 700;
     letter-spacing: 3px;
@@ -138,13 +136,14 @@ a {
 .eyebrow {
     display: block;
     margin-bottom: 7px;
-    color: var(--primary);
+    color: #c88dff;
     font-size: 9px;
     font-weight: 800;
     letter-spacing: 3px;
 }
 
 .titulo-area h1 {
+    color: #f8f2fa;
     font-family: "Fredoka", sans-serif;
     font-size: clamp(30px, 4vw, 53px);
     line-height: 1;
@@ -152,9 +151,9 @@ a {
 }
 
 .titulo-area p {
-    margin-top: 13px;
     max-width: 650px;
-    color: var(--muted);
+    margin-top: 13px;
+    color: #91889c;
     font-size: 14px;
     line-height: 1.65;
 }
@@ -165,9 +164,9 @@ a {
     gap: 14px;
     margin-bottom: 30px;
     padding: 17px 20px;
-    border: 1px solid rgba(196, 132, 255, 0.13);
+    border: 1px solid rgba(200, 141, 255, 0.14);
     border-radius: 14px;
-    background: linear-gradient(135deg, rgba(117, 64, 151, 0.09), rgba(255, 255, 255, 0.015));
+    background: linear-gradient(135deg, rgba(117, 64, 151, 0.11), rgba(255, 255, 255, 0.015));
 }
 
 .aviso-icone {
@@ -177,8 +176,8 @@ a {
     height: 35px;
     flex-shrink: 0;
     border-radius: 10px;
-    color: var(--primary);
-    background: rgba(187, 112, 255, 0.09);
+    color: #c88dff;
+    background: rgba(200, 141, 255, 0.1);
 }
 
 .aviso-inicial strong {
@@ -208,12 +207,12 @@ a {
 
 .painel-form {
     width: 100%;
+    order: 2;
     padding: 25px;
     border: 1px solid rgba(196, 132, 255, 0.12);
     border-radius: 20px;
     background: linear-gradient(160deg, rgba(24, 20, 31, 0.97), rgba(13, 11, 18, 0.97));
     box-shadow: 0 20px 55px rgba(0, 0, 0, 0.27);
-    order: 2;
 }
 
 .secao-titulo {
@@ -229,10 +228,10 @@ a {
     width: 30px;
     height: 30px;
     flex-shrink: 0;
+    border: 1px solid rgba(200, 141, 255, 0.15);
     border-radius: 9px;
-    color: var(--primary);
+    color: #c88dff;
     background: rgba(200, 141, 255, 0.09);
-    border: 1px solid rgba(200, 141, 255, 0.13);
     font-size: 10px;
     font-weight: 800;
 }
@@ -372,10 +371,10 @@ a {
 
 .tema span {
     position: absolute;
-    left: 6px;
     right: 6px;
     bottom: 5px;
-    color: white;
+    left: 6px;
+    color: #fff;
     font-size: 8px;
     font-weight: 700;
     text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
@@ -387,7 +386,7 @@ a {
 }
 
 .tema.ativo {
-    border-color: var(--primary);
+    border-color: #c88dff;
     box-shadow: 0 0 0 1px rgba(200, 141, 255, 0.24);
 }
 
@@ -452,7 +451,7 @@ a {
 }
 
 .fundo-opcao.ativa {
-    border-color: white;
+    border-color: #fff;
     box-shadow: 0 0 0 2px rgba(200, 141, 255, 0.35);
 }
 
@@ -489,7 +488,7 @@ a {
 
 .cor-opcao.ativa,
 .cor-topo-opcao.ativa {
-    border-color: white;
+    border-color: #fff;
     box-shadow: 0 0 0 2px rgba(200, 141, 255, 0.28);
 }
 
@@ -533,7 +532,7 @@ a {
 
 .acessorio.ativo {
     border-color: rgba(200, 141, 255, 0.4);
-    color: var(--primary);
+    color: #c88dff;
     background: rgba(200, 141, 255, 0.07);
 }
 
@@ -557,7 +556,7 @@ a {
 }
 
 .btn.principal {
-    color: white;
+    color: #fff;
     border-color: transparent;
     background: linear-gradient(135deg, #9a5fca, #70469a);
     box-shadow: 0 10px 25px rgba(123, 69, 163, 0.18);
@@ -609,11 +608,14 @@ a {
     aspect-ratio: 1.52 / 1;
     min-height: 0;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.18);
     border-radius: 26px;
-    background-color: var(--card-background);
+    opacity: 1;
+    visibility: visible;
+    filter: none;
+    background-color: #17121f;
     background-size: cover;
-    background-position: center center;
+    background-position: center;
     background-repeat: no-repeat;
     box-shadow:
         0 30px 80px rgba(0, 0, 0, 0.55),
@@ -625,6 +627,7 @@ a {
     position: absolute;
     inset: 0;
     z-index: 1;
+    opacity: 1;
     background: linear-gradient(115deg, rgba(5, 4, 8, 0.84), rgba(5, 4, 8, 0.58) 55%, rgba(5, 4, 8, 0.8));
 }
 
@@ -647,9 +650,9 @@ a {
     height: 280px;
     z-index: 2;
     border-radius: 50%;
+    pointer-events: none;
     background: radial-gradient(circle, rgba(200, 141, 255, 0.18), transparent 68%);
     filter: blur(25px);
-    pointer-events: none;
 }
 
 .card-shell {
@@ -658,6 +661,8 @@ a {
     z-index: 5;
     display: flex;
     flex-direction: column;
+    opacity: 1;
+    visibility: visible;
 }
 
 .card-topo {
@@ -665,6 +670,7 @@ a {
     align-items: center;
     justify-content: space-between;
     height: 70px;
+    flex-shrink: 0;
     padding: 0 30px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     background: linear-gradient(90deg, var(--card-top), rgba(255, 255, 255, 0.06));
@@ -678,7 +684,7 @@ a {
 
 .marca span,
 .marca strong {
-    color: white;
+    color: #fff;
     font-family: "Fredoka", sans-serif;
     font-size: 19px;
     font-weight: 600;
@@ -709,7 +715,7 @@ a {
     height: 28px;
     border-radius: 8px;
     color: var(--card-top);
-    background: white;
+    background: #fff;
     font-size: 10px;
 }
 
@@ -718,6 +724,7 @@ a {
     grid-template-columns: minmax(0, 1fr) minmax(170px, 0.75fr);
     align-items: center;
     gap: 25px;
+    flex-shrink: 0;
     padding: 24px 30px 12px;
 }
 
@@ -759,9 +766,9 @@ a {
 .grupo-bloco::before {
     content: "";
     position: absolute;
-    left: 0;
     top: 0;
     bottom: 0;
+    left: 0;
     width: 6px;
     background: var(--grupo-color);
     box-shadow: 0 0 15px var(--grupo-color);
@@ -769,7 +776,7 @@ a {
 
 .grupo-bloco strong {
     display: block;
-    color: white;
+    color: #fff;
     font-family: "Fredoka", sans-serif;
     font-size: 22px;
     font-weight: 500;
@@ -780,7 +787,7 @@ a {
     display: grid;
     grid-template-columns: minmax(170px, 0.72fr) minmax(0, 1.28fr);
     gap: 28px;
-    flex: 1;
+    flex: 1 1 auto;
     min-height: 0;
     padding: 12px 30px 20px;
 }
@@ -803,6 +810,7 @@ a {
     place-items: center;
     width: min(100%, 190px);
     aspect-ratio: 0.82;
+    flex-shrink: 0;
     border: 3px solid rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     background: rgba(0, 0, 0, 0.3);
@@ -870,6 +878,7 @@ a {
     align-items: center;
     justify-content: space-between;
     min-height: 42px;
+    flex-shrink: 0;
     padding: 0 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
     background: rgba(0, 0, 0, 0.24);
@@ -943,7 +952,7 @@ a {
     padding: 11px 17px;
     border: 1px solid rgba(200, 141, 255, 0.25);
     border-radius: 12px;
-    color: white;
+    color: #fff;
     background: rgba(21, 16, 29, 0.95);
     box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
     font-size: 11px;
@@ -967,24 +976,24 @@ a {
     .card-identidade-topo {
         grid-template-columns: minmax(0, 1fr) 150px;
         gap: 15px;
-        padding-left: 24px;
         padding-right: 24px;
+        padding-left: 24px;
     }
 
     .card-conteudo {
         gap: 18px;
-        padding-left: 24px;
         padding-right: 24px;
+        padding-left: 24px;
     }
 
     .card-topo {
-        padding-left: 24px;
         padding-right: 24px;
+        padding-left: 24px;
     }
 
     .card-footer {
-        padding-left: 24px;
         padding-right: 24px;
+        padding-left: 24px;
     }
 }
 
@@ -992,173 +1001,6 @@ a {
     .cabecalho {
         align-items: flex-start;
         flex-direction: column;
-    }
-
-    .builder {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .preview-area {
-        width: 100%;
-        order: 1;
-    }
-
-    .painel-form {
-        width: 100%;
-        order: 2;
-    }
-
-    .card-wrapper {
-        width: 100%;
-        padding: 0;
-    }
-
-    .card-gerado {
-        width: 100%;
-        max-width: 520px;
-        height: auto;
-        min-height: 0;
-        aspect-ratio: 9 / 16;
-        margin: 0 auto;
-        background-size: cover;
-        background-position: center center;
-    }
-
-    .card-gerado::before {
-        inset: 7px;
-        border-radius: 15px;
-    }
-
-    .card-topo {
-        height: 56px;
-        padding: 0 18px;
-    }
-
-    .marca {
-        gap: 7px;
-    }
-
-    .marca span,
-    .marca strong {
-        font-size: 16px;
-    }
-
-    .identidade-chip span {
-        display: none;
-    }
-
-    .identidade-chip strong {
-        width: 25px;
-        height: 25px;
-    }
-
-    .card-identidade-topo {
-        grid-template-columns: minmax(0, 1fr) minmax(120px, 0.72fr);
-        gap: 12px;
-        padding: 16px 18px 9px;
-    }
-
-    .nome-bloco span,
-    .grupo-bloco span {
-        font-size: 7px;
-    }
-
-    .nome-bloco strong {
-        font-size: 32px;
-        line-height: 1;
-    }
-
-    .grupo-bloco {
-        padding: 10px 12px 10px 17px;
-        border-radius: 11px;
-    }
-
-    .grupo-bloco::before {
-        width: 4px;
-    }
-
-    .grupo-bloco strong {
-        font-size: 16px;
-    }
-
-    .card-conteudo {
-        grid-template-columns: 0.72fr 1.28fr;
-        gap: 12px;
-        padding: 8px 18px 14px;
-        align-items: start;
-    }
-
-    .lado-esquerdo {
-        align-items: flex-start;
-        justify-content: center;
-        padding-top: 5px;
-    }
-
-    .avatar-circulo {
-        width: 100%;
-        max-width: 145px;
-        aspect-ratio: 0.82;
-        flex-shrink: 0;
-        border-width: 2px;
-        border-radius: 11px;
-    }
-
-    #avatarIcon {
-        font-size: 28px;
-    }
-
-    .lado-direito {
-        align-content: start;
-        grid-auto-rows: minmax(50px, auto);
-        gap: 7px;
-    }
-
-    .info-item {
-        min-height: 50px;
-        padding: 8px 10px;
-        border-radius: 10px;
-    }
-
-    .info-item span {
-        font-size: 6px;
-        letter-spacing: 1px;
-    }
-
-    .info-item strong {
-        font-size: 15px;
-    }
-
-    .card-footer {
-        min-height: 36px;
-        padding: 0 18px;
-    }
-
-    .card-footer span {
-        font-size: 5px;
-    }
-
-    .acessorio-card.spark {
-        top: 68px;
-        right: 20px;
-        font-size: 20px;
-    }
-
-    .acessorio-card.flower,
-    .acessorio-card.heart {
-        right: 18px;
-        bottom: 44px;
-    }
-
-    .acessorio-card.star {
-        top: 68px;
-        right: 22px;
-    }
-
-    .acessorio-card.bow {
-        top: 61px;
-        right: 19px;
     }
 }
 
@@ -1199,53 +1041,15 @@ a {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .card-gerado {
-        max-width: 430px;
-    }
-
-    .card-identidade-topo {
-        grid-template-columns: minmax(0, 1fr) minmax(105px, 0.72fr);
-        gap: 10px;
-        padding: 14px 17px 8px;
-    }
-
-    .nome-bloco strong {
-        font-size: 30px;
-    }
-
-    .grupo-bloco strong {
-        font-size: 15px;
-    }
-
-    .card-conteudo {
-        grid-template-columns: 0.7fr 1.3fr;
-        gap: 9px;
-        padding: 7px 17px 14px;
-    }
-
-    .avatar-circulo {
-        max-width: 125px;
-    }
-
-    .lado-direito {
-        grid-auto-rows: minmax(46px, auto);
-        gap: 6px;
-    }
-
-    .info-item {
-        min-height: 46px;
-        padding: 7px 9px;
-    }
-
-    .info-item strong {
-        font-size: 14px;
+    .acessorios {
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
 @media (max-width: 390px) {
     .pagina-card {
-        padding-left: 8px;
         padding-right: 8px;
+        padding-left: 8px;
     }
 
     .painel-form {
@@ -1259,32 +1063,231 @@ a {
     .acessorios {
         grid-template-columns: repeat(2, 1fr);
     }
+}
 
-    .card-gerado {
+body.mobile-device .builder {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+body.mobile-device .preview-area {
+    width: 100%;
+    order: 1;
+}
+
+body.mobile-device .painel-form {
+    width: 100%;
+    order: 2;
+}
+
+body.mobile-device .card-wrapper {
+    width: 100%;
+    padding: 0;
+}
+
+body.mobile-device .card-gerado {
+    width: 100%;
+    max-width: 430px;
+    height: auto;
+    min-height: 0;
+    aspect-ratio: 9 / 16;
+    margin: 0 auto;
+    overflow: hidden;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+    background-color: #17121f !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+}
+
+body.mobile-device .card-shell {
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+body.mobile-device .card-topo {
+    height: 56px;
+    padding: 0 17px;
+}
+
+body.mobile-device .marca {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+body.mobile-device .marca span,
+body.mobile-device .marca strong {
+    color: #fff !important;
+    font-size: 15px;
+    line-height: 1;
+}
+
+body.mobile-device .identidade-chip span {
+    display: none;
+}
+
+body.mobile-device .identidade-chip strong {
+    width: 24px;
+    height: 24px;
+}
+
+body.mobile-device .card-identidade-topo {
+    grid-template-columns: minmax(0, 1fr) minmax(105px, 0.72fr);
+    gap: 10px;
+    padding: 14px 17px 8px;
+}
+
+body.mobile-device .nome-bloco span,
+body.mobile-device .grupo-bloco span {
+    font-size: 7px;
+}
+
+body.mobile-device .nome-bloco strong {
+    color: var(--card-primary) !important;
+    font-size: 30px;
+    line-height: 1;
+}
+
+body.mobile-device .grupo-bloco {
+    padding: 10px 12px 10px 16px;
+    border-radius: 11px;
+}
+
+body.mobile-device .grupo-bloco::before {
+    width: 4px;
+}
+
+body.mobile-device .grupo-bloco strong {
+    color: #fff !important;
+    font-size: 15px;
+}
+
+body.mobile-device .card-conteudo {
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 9px;
+    padding: 7px 17px 14px;
+    align-items: start;
+}
+
+body.mobile-device .lado-esquerdo {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 4px;
+}
+
+body.mobile-device .avatar-bloco {
+    width: 100%;
+}
+
+body.mobile-device .avatar-circulo {
+    width: 100%;
+    max-width: 125px;
+    aspect-ratio: 0.82;
+    border-width: 2px;
+    border-radius: 10px;
+}
+
+body.mobile-device #avatarIcon {
+    color: var(--card-primary) !important;
+    font-size: 27px;
+}
+
+body.mobile-device .lado-direito {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-auto-rows: minmax(46px, auto);
+    align-content: start;
+    gap: 6px;
+}
+
+body.mobile-device .info-item {
+    min-height: 46px;
+    padding: 7px 9px;
+    border-radius: 9px;
+}
+
+body.mobile-device .info-item span {
+    color: rgba(255, 255, 255, 0.58) !important;
+    font-size: 6px;
+    letter-spacing: 0.9px;
+}
+
+body.mobile-device .info-item strong {
+    color: #f8f3fa !important;
+    font-size: 14px;
+}
+
+body.mobile-device .info-item.psychophy {
+    grid-column: 1 / -1;
+}
+
+body.mobile-device .info-item.psychophy strong {
+    color: var(--card-primary) !important;
+}
+
+body.mobile-device .card-footer {
+    min-height: 34px;
+    padding: 0 17px;
+}
+
+body.mobile-device .card-footer span {
+    color: rgba(255, 255, 255, 0.48) !important;
+    font-size: 5px;
+}
+
+body.mobile-device .acessorio-card.spark {
+    top: 65px;
+    right: 18px;
+    font-size: 20px;
+}
+
+body.mobile-device .acessorio-card.star {
+    top: 64px;
+    right: 20px;
+}
+
+body.mobile-device .acessorio-card.bow {
+    top: 58px;
+    right: 18px;
+}
+
+body.mobile-device .acessorio-card.flower,
+body.mobile-device .acessorio-card.heart {
+    right: 17px;
+    bottom: 43px;
+}
+
+@media (max-width: 390px) {
+    body.mobile-device .card-gerado {
         max-width: 360px;
     }
 
-    .card-identidade-topo {
+    body.mobile-device .card-identidade-topo {
         grid-template-columns: 1fr 0.72fr;
-        padding-left: 14px;
         padding-right: 14px;
+        padding-left: 14px;
     }
 
-    .card-conteudo {
+    body.mobile-device .card-conteudo {
         grid-template-columns: 0.68fr 1.32fr;
-        padding-left: 14px;
         padding-right: 14px;
+        padding-left: 14px;
     }
 
-    .avatar-circulo {
+    body.mobile-device .avatar-circulo {
         max-width: 105px;
     }
 
-    .nome-bloco strong {
+    body.mobile-device .nome-bloco strong {
         font-size: 28px;
     }
 
-    .info-item strong {
+    body.mobile-device .info-item strong {
         font-size: 13px;
     }
 }

@@ -130,16 +130,30 @@ const coresGrupos = {
     Exploradores: "#f0bd35"
 };
 
+function detectarDispositivo() {
+    const userAgent = navigator.userAgent || navigator.vendor || window.opera || "";
+    const mobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(userAgent);
+    const toque = window.matchMedia ? window.matchMedia("(pointer: coarse)").matches : false;
+    const largura = window.innerWidth <= 900;
+
+    document.body.classList.toggle("mobile-device", mobileUserAgent || toque || largura);
+}
+
+detectarDispositivo();
+
+window.addEventListener("resize", detectarDispositivo);
+window.addEventListener("orientationchange", detectarDispositivo);
+
 botoesCor.forEach(botao => {
-    botao.style.background = botao.dataset.color;
+    botao.style.backgroundColor = botao.dataset.color;
 });
 
 botoesCorTopo.forEach(botao => {
-    botao.style.background = botao.dataset.color;
+    botao.style.backgroundColor = botao.dataset.color;
 });
 
 botoesFundo.forEach(botao => {
-    botao.style.background = botao.dataset.color;
+    botao.style.backgroundColor = botao.dataset.color;
 });
 
 function ajustarTamanhoNick() {
@@ -152,22 +166,36 @@ function ajustarTamanhoNick() {
         return;
     }
 
+    if (document.body.classList.contains("mobile-device")) {
+        if (tamanho <= 7) {
+            nick.style.fontSize = "30px";
+        } else if (tamanho <= 12) {
+            nick.style.fontSize = "25px";
+        } else if (tamanho <= 18) {
+            nick.style.fontSize = "21px";
+        } else {
+            nick.style.fontSize = "18px";
+        }
+        return;
+    }
+
     if (tamanho <= 5) {
-        nick.style.fontSize = "clamp(34px, 4.4vw, 54px)";
+        nick.style.fontSize = "54px";
     } else if (tamanho <= 9) {
-        nick.style.fontSize = "clamp(30px, 4vw, 48px)";
+        nick.style.fontSize = "48px";
     } else if (tamanho <= 14) {
-        nick.style.fontSize = "clamp(26px, 3.5vw, 42px)";
+        nick.style.fontSize = "42px";
     } else if (tamanho <= 20) {
-        nick.style.fontSize = "clamp(22px, 3vw, 36px)";
+        nick.style.fontSize = "36px";
     } else {
-        nick.style.fontSize = "clamp(18px, 2.5vw, 31px)";
+        nick.style.fontSize = "31px";
     }
 }
 
 function atualizarGrupoCard() {
     const grupo = campos.grupo.value || valoresPadrao.grupo;
     const cor = coresGrupos[grupo] || coresGrupos.Analistas;
+
     elementosCard.grupo.textContent = grupo;
     grupoFaixa.style.setProperty("--grupo-color", cor);
 }
@@ -201,7 +229,10 @@ Object.values(campos).forEach(campo => {
 
 function atualizarBotoesCor(botoes, cor) {
     botoes.forEach(botao => {
-        botao.classList.toggle("ativa", botao.dataset.color.toLowerCase() === cor.toLowerCase());
+        botao.classList.toggle(
+            "ativa",
+            botao.dataset.color.toLowerCase() === cor.toLowerCase()
+        );
     });
 }
 
@@ -209,8 +240,10 @@ function aplicarCorTexto(cor, salvar = true) {
     if (!cor) return;
 
     card.style.setProperty("--card-primary", cor);
+    card.style.setProperty("--card-text", cor);
     colorPicker.value = cor;
     valorCor.textContent = cor.toUpperCase();
+
     atualizarBotoesCor(botoesCor, cor);
 
     if (salvar) salvarNaURL();
@@ -222,6 +255,7 @@ function aplicarCorTopo(cor, salvar = true) {
     card.style.setProperty("--card-top", cor);
     corTopo.value = cor;
     valorCorTopo.textContent = cor.toUpperCase();
+
     atualizarBotoesCor(botoesCorTopo, cor);
 
     if (salvar) salvarNaURL();
@@ -249,7 +283,10 @@ corTopo.addEventListener("input", () => {
 
 function atualizarBotoesFundo(cor) {
     botoesFundo.forEach(botao => {
-        botao.classList.toggle("ativa", botao.dataset.color.toLowerCase() === cor.toLowerCase());
+        botao.classList.toggle(
+            "ativa",
+            botao.dataset.color.toLowerCase() === cor.toLowerCase()
+        );
     });
 }
 
@@ -257,9 +294,11 @@ function aplicarCorFundo(cor, salvar = true) {
     if (!cor) return;
 
     tipoFundo = "cor";
+
     card.style.backgroundImage = "none";
     card.style.backgroundColor = cor;
     card.style.setProperty("--card-background", cor);
+
     corFundo.value = cor;
     valorCorFundo.textContent = cor.toUpperCase();
 
@@ -287,14 +326,17 @@ function aplicarTema(nomeTema, salvar = true) {
     temaAtual = nomeTema;
     tipoFundo = "imagem";
 
-    card.style.backgroundColor = "transparent";
+    card.style.backgroundColor = "#17121f";
     card.style.backgroundImage = `url("${tema.imagem}")`;
     card.style.backgroundSize = "cover";
     card.style.backgroundPosition = "center center";
     card.style.backgroundRepeat = "no-repeat";
 
     botoesTema.forEach(botao => {
-        botao.classList.toggle("ativo", botao.dataset.theme === nomeTema);
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.theme === nomeTema
+        );
     });
 
     atualizarTipoFundoVisual();
@@ -310,7 +352,10 @@ botoesTema.forEach(botao => {
 
 function atualizarTipoFundoVisual() {
     botoesTipoFundo.forEach(botao => {
-        botao.classList.toggle("ativo", botao.dataset.tipo === tipoFundo);
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.tipo === tipoFundo
+        );
     });
 
     if (tipoFundo === "imagem") {
@@ -339,7 +384,10 @@ function atualizarAcessorio(nome, salvar = true) {
     acessorioAtual = nome;
 
     botoesAcessorio.forEach(botao => {
-        botao.classList.toggle("ativo", botao.dataset.acessorio === nome);
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.acessorio === nome
+        );
     });
 
     Object.values(decoracoes).forEach(decoracao => {
@@ -416,7 +464,9 @@ function codificarDados(dados) {
         throw new Error("LZString não foi carregado.");
     }
 
-    return LZString.compressToEncodedURIComponent(JSON.stringify(dados));
+    return LZString.compressToEncodedURIComponent(
+        JSON.stringify(dados)
+    );
 }
 
 function decodificarDados(codigo) {
@@ -441,7 +491,11 @@ function salvarNaURL() {
         const dados = pegarDadosCompactos();
         const codigo = codificarDados(dados);
 
-        history.replaceState(null, "", `${window.location.pathname}#${codigo}`);
+        history.replaceState(
+            null,
+            "",
+            `${window.location.pathname}#${codigo}`
+        );
     } catch (erro) {
         console.error("Erro ao salvar card:", erro);
     }
@@ -457,7 +511,10 @@ function carregarDadosDaURL() {
 
 function preencherCampos(dados) {
     Object.keys(campos).forEach(chave => {
-        if (dados[chave] !== undefined && dados[chave] !== null) {
+        if (
+            dados[chave] !== undefined &&
+            dados[chave] !== null
+        ) {
             campos[chave].value = dados[chave];
         }
     });
@@ -468,7 +525,12 @@ function carregarImagem(src) {
         const imagem = new Image();
 
         imagem.onload = () => resolve(imagem);
-        imagem.onerror = () => reject(new Error(`Não foi possível carregar a imagem: ${src}`));
+        imagem.onerror = () => {
+            reject(
+                new Error(`Não foi possível carregar a imagem: ${src}`)
+            );
+        };
+
         imagem.src = src;
     });
 }
@@ -504,6 +566,7 @@ async function carregarDaURL() {
         aplicarCorTexto("#c88dff", false);
         aplicarCorTopo("#9f63d9", false);
         aplicarTema("azul", false);
+        aplicarCorFundo("#17121f", false);
         atualizarAcessorio("none", false);
         atualizarTipoFundoVisual();
         return;
@@ -515,151 +578,241 @@ async function carregarDaURL() {
     temaAtual = dados.tema || "azul";
     acessorioAtual = dados.acessorio || "none";
 
-    aplicarCorTexto(dados.cor || "#c88dff", false);
-    aplicarCorTopo(dados.corTopo || "#9f63d9", false);
+    aplicarCorTexto(
+        dados.cor || "#c88dff",
+        false
+    );
+
+    aplicarCorTopo(
+        dados.corTopo || "#9f63d9",
+        false
+    );
 
     if (tipoFundo === "imagem") {
-        aplicarTema(temas[temaAtual] ? temaAtual : "azul", false);
+        aplicarTema(
+            temas[temaAtual] ? temaAtual : "azul",
+            false
+        );
     } else {
-        aplicarCorFundo(dados.corFundo || "#17121f", false);
+        aplicarCorFundo(
+            dados.corFundo || "#17121f",
+            false
+        );
     }
 
-    atualizarAcessorio(acessorioAtual, false);
+    atualizarAcessorio(
+        acessorioAtual,
+        false
+    );
+
     atualizarTipoFundoVisual();
     atualizarCard();
 }
 
-botaoCopiarLink.addEventListener("click", async () => {
-    salvarNaURL();
+botaoCopiarLink.addEventListener(
+    "click",
+    async () => {
+        salvarNaURL();
 
-    try {
-        await navigator.clipboard.writeText(window.location.href);
-        mostrarToast("🔗 Link curto do card copiado!");
-    } catch (erro) {
-        console.error(erro);
-        mostrarToast("Não foi possível copiar o link.");
+        try {
+            await navigator.clipboard.writeText(
+                window.location.href
+            );
+
+            mostrarToast(
+                "🔗 Link curto do card copiado!"
+            );
+        } catch (erro) {
+            console.error(erro);
+
+            mostrarToast(
+                "Não foi possível copiar o link."
+            );
+        }
     }
-});
+);
 
-botaoBaixarCard.addEventListener("click", async () => {
-    const confirmou = window.confirm("Baixar seu card como imagem?");
+botaoBaixarCard.addEventListener(
+    "click",
+    async () => {
+        const confirmou = window.confirm(
+            "Baixar seu card como imagem?"
+        );
 
-    if (!confirmou) return;
+        if (!confirmou) return;
 
-    let arquivoURL = null;
+        let arquivoURL = null;
 
-    botaoBaixarCard.disabled = true;
-    botaoBaixarCard.textContent = "Gerando card...";
+        botaoBaixarCard.disabled = true;
+        botaoBaixarCard.textContent = "Gerando card...";
 
-    try {
-        if (typeof html2canvas !== "function") {
-            throw new Error("html2canvas não foi carregado.");
-        }
-
-        if (document.fonts) {
-            await document.fonts.ready;
-        }
-
-        await prepararImagensDoCard();
-
-        await new Promise(resolve => {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(resolve);
-            });
-        });
-
-        const largura = card.clientWidth;
-        const altura = card.clientHeight;
-
-        if (!largura || !altura) {
-            throw new Error("Não foi possível identificar o tamanho do card.");
-        }
-
-        const escala = window.innerWidth <= 700 ? 3 : 4;
-
-        const canvas = await html2canvas(card, {
-            width: largura,
-            height: altura,
-            scale: escala,
-            useCORS: true,
-            allowTaint: false,
-            backgroundColor: null,
-            logging: false,
-            imageTimeout: 30000,
-            removeContainer: true,
-            foreignObjectRendering: false,
-            scrollX: 0,
-            scrollY: 0,
-            onclone: documento => {
-                const cardClone = documento.getElementById("cardGerado");
-
-                if (!cardClone) return;
-
-                cardClone.style.transform = "none";
-                cardClone.style.filter = "none";
-                cardClone.style.boxShadow = "none";
-
-                cardClone.querySelectorAll("*").forEach(elemento => {
-                    elemento.style.animation = "none";
-                    elemento.style.transition = "none";
-                });
+        try {
+            if (typeof html2canvas !== "function") {
+                throw new Error(
+                    "html2canvas não foi carregado."
+                );
             }
-        });
 
-        if (!canvas || canvas.width <= 0 || canvas.height <= 0) {
-            throw new Error("A imagem gerada ficou vazia.");
-        }
+            if (document.fonts) {
+                await document.fonts.ready;
+            }
 
-        const blob = await new Promise(resolve => {
-            canvas.toBlob(resolve, "image/png", 1);
-        });
+            await prepararImagensDoCard();
 
-        if (!blob) {
-            throw new Error("Não foi possível criar o PNG.");
-        }
+            await new Promise(resolve => {
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(resolve);
+                });
+            });
 
-        arquivoURL = URL.createObjectURL(blob);
+            const largura = card.clientWidth;
+            const altura = card.clientHeight;
 
-        const nick = campos.nick.value.trim() || "meu-card";
+            if (!largura || !altura) {
+                throw new Error(
+                    "Não foi possível identificar o tamanho do card."
+                );
+            }
 
-        const nomeArquivo = nick
-            .replace(/[^a-zA-Z0-9À-ÿ\s-_]/g, "")
-            .trim()
-            .replace(/\s+/g, "-");
+            const escala =
+                document.body.classList.contains("mobile-device")
+                    ? 3
+                    : 4;
 
-        const nomeFinal = `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
+            const canvas = await html2canvas(
+                card,
+                {
+                    width: largura,
+                    height: altura,
+                    scale: escala,
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: null,
+                    logging: false,
+                    imageTimeout: 30000,
+                    removeContainer: true,
+                    foreignObjectRendering: false,
+                    scrollX: 0,
+                    scrollY: 0,
+                    onclone: documento => {
+                        const cardClone =
+                            documento.getElementById(
+                                "cardGerado"
+                            );
 
-        const link = document.createElement("a");
-        link.href = arquivoURL;
-        link.download = nomeFinal;
-        link.setAttribute("download", nomeFinal);
-        link.style.display = "none";
+                        if (!cardClone) return;
 
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+                        cardClone.style.transform = "none";
+                        cardClone.style.filter = "none";
+                        cardClone.style.boxShadow = "none";
+                        cardClone.style.opacity = "1";
+                        cardClone.style.visibility = "visible";
 
-        mostrarToast("✨ Card salvo em alta resolução!");
+                        cardClone
+                            .querySelectorAll("*")
+                            .forEach(elemento => {
+                                elemento.style.animation = "none";
+                                elemento.style.transition = "none";
+                            });
+                    }
+                }
+            );
 
-        setTimeout(() => {
+            if (
+                !canvas ||
+                canvas.width <= 0 ||
+                canvas.height <= 0
+            ) {
+                throw new Error(
+                    "A imagem gerada ficou vazia."
+                );
+            }
+
+            const blob = await new Promise(resolve => {
+                canvas.toBlob(
+                    resolve,
+                    "image/png",
+                    1
+                );
+            });
+
+            if (!blob) {
+                throw new Error(
+                    "Não foi possível criar o PNG."
+                );
+            }
+
+            arquivoURL =
+                URL.createObjectURL(blob);
+
+            const nick =
+                campos.nick.value.trim() ||
+                "meu-card";
+
+            const nomeArquivo =
+                nick
+                    .replace(
+                        /[^a-zA-Z0-9À-ÿ\s-_]/g,
+                        ""
+                    )
+                    .trim()
+                    .replace(
+                        /\s+/g,
+                        "-"
+                    );
+
+            const nomeFinal =
+                `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
+
+            const link =
+                document.createElement("a");
+
+            link.href = arquivoURL;
+            link.download = nomeFinal;
+            link.setAttribute(
+                "download",
+                nomeFinal
+            );
+            link.style.display = "none";
+
+            document.body.appendChild(link);
+            link.click();
+            link.remove();
+
+            mostrarToast(
+                "✨ Card salvo em alta resolução!"
+            );
+
+            setTimeout(() => {
+                if (arquivoURL) {
+                    URL.revokeObjectURL(
+                        arquivoURL
+                    );
+                    arquivoURL = null;
+                }
+            }, 2000);
+        } catch (erro) {
+            console.error(
+                "ERRO AO BAIXAR O CARD:",
+                erro
+            );
+
             if (arquivoURL) {
-                URL.revokeObjectURL(arquivoURL);
+                URL.revokeObjectURL(
+                    arquivoURL
+                );
                 arquivoURL = null;
             }
-        }, 2000);
-    } catch (erro) {
-        console.error("ERRO AO BAIXAR O CARD:", erro);
 
-        if (arquivoURL) {
-            URL.revokeObjectURL(arquivoURL);
-            arquivoURL = null;
+            mostrarToast(
+                "😿 Não consegui salvar a imagem."
+            );
+        } finally {
+            botaoBaixarCard.disabled = false;
+            botaoBaixarCard.textContent =
+                "↓ Baixar como imagem";
         }
-
-        mostrarToast("😿 Não consegui salvar a imagem.");
-    } finally {
-        botaoBaixarCard.disabled = false;
-        botaoBaixarCard.textContent = "↓ Baixar como imagem";
     }
-});
+);
 
 carregarDaURL();
