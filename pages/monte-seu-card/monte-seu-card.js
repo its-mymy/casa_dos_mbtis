@@ -75,10 +75,8 @@ const grupos = {
     Sentinelas: "#4d82e8",
     Exploradores: "#f0bd35"
 };
-
 const temas = {
     azul: "img/azul.jpg",
-    azul2: "img/azul2.jpg",
     estrelado: "img/estrelado.jpg",
     preto: "img/preto.jpg",
     preto2: "img/preto2.jpg",
@@ -106,7 +104,17 @@ const temas = {
     rel: "img/rel.jpg",
     feliz: "img/feliz.jpg",
     yuta: "img/yuta.jpg",
-    mob: "img/mob.jpg"
+    mob: "img/mob.jpg",
+    gojo2: "img/gojo2.jpg",
+    gojo3: "img/gojo3.jpg",
+    choso: "img/choso.jpg",
+    molusco: "img/molusco.jpg",
+    coringa: "img/coringa.jpg",
+    spider: "img/spider.jpg",
+    L: "img/L.jpg",
+    reze3: "img/reze3.jpg",
+    reze4: "img/reze4.jpg",
+    saiki2: "img/saiki2.jpg",
 };
 const abreviacoes = {
     nick: "n",
