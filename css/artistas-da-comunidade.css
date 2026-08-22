@@ -1,0 +1,589 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --preto: #010204;
+    --preto-azulado: #03060b;
+    --azul: #6f8fff;
+    --azul-claro: #c8d6ff;
+    --branco: #f3f5fc;
+    --cinza: #a5adbd;
+    --dourado: #d7b46a;
+    --dourado-claro: #f5da91;
+    --dourado-escuro: #8e611d;
+    --borda: rgba(155, 178, 255, 0.16);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    color: var(--branco);
+    font-family: 'Inter', sans-serif;
+    background: #010204;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 12% 12%, rgba(255, 255, 255, 0.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 24% 24%, rgba(205, 220, 255, 0.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 39% 11%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 53% 19%, rgba(200, 216, 255, 0.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 67% 9%, rgba(255, 255, 255, 0.8) 0 1px, transparent 2px),
+        radial-gradient(circle at 81% 22%, rgba(210, 225, 255, 0.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 93% 13%, rgba(255, 255, 255, 0.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 17% 47%, rgba(215, 228, 255, 0.6) 0 1px, transparent 2px),
+        radial-gradient(circle at 35% 37%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 56% 43%, rgba(205, 220, 255, 0.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 35%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 89% 50%, rgba(210, 225, 255, 0.6) 0 1px, transparent 2px),
+        radial-gradient(circle at 9% 71%, rgba(255, 255, 255, 0.65) 0 1px, transparent 2px),
+        radial-gradient(circle at 29% 79%, rgba(205, 220, 255, 0.6) 0 1px, transparent 2px),
+        radial-gradient(circle at 49% 68%, rgba(255, 255, 255, 0.7) 0 1px, transparent 2px),
+        radial-gradient(circle at 72% 76%, rgba(210, 225, 255, 0.6) 0 1px, transparent 2px),
+        radial-gradient(circle at 91% 67%, rgba(255, 255, 255, 0.65) 0 1px, transparent 2px);
+    opacity: 0.65;
+    animation: estrelasBrilhar 9s ease-in-out infinite alternate;
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: -10%;
+    z-index: -2;
+    pointer-events: none;
+    background:
+        radial-gradient(ellipse at -5% 16%, rgba(241, 245, 255, 0.52) 0 5%, rgba(167, 184, 220, 0.26) 11%, transparent 24%),
+        radial-gradient(ellipse at 0% 35%, rgba(220, 228, 246, 0.46) 0 6%, rgba(133, 151, 190, 0.2) 13%, transparent 25%),
+        radial-gradient(ellipse at -4% 58%, rgba(246, 248, 255, 0.44) 0 5%, rgba(154, 171, 207, 0.18) 13%, transparent 26%),
+        radial-gradient(ellipse at 103% 20%, rgba(234, 240, 252, 0.48) 0 5%, rgba(151, 170, 209, 0.2) 13%, transparent 25%),
+        radial-gradient(ellipse at 104% 42%, rgba(246, 248, 255, 0.42) 0 6%, rgba(148, 166, 204, 0.2) 14%, transparent 26%),
+        radial-gradient(ellipse at 101% 66%, rgba(224, 232, 248, 0.42) 0 6%, rgba(137, 157, 198, 0.17) 14%, transparent 27%),
+        radial-gradient(ellipse at 18% 106%, rgba(229, 236, 250, 0.46) 0 7%, rgba(139, 158, 199, 0.16) 15%, transparent 28%),
+        radial-gradient(ellipse at 50% 104%, rgba(242, 246, 255, 0.4) 0 7%, rgba(151, 170, 208, 0.15) 16%, transparent 29%),
+        radial-gradient(ellipse at 83% 105%, rgba(225, 234, 249, 0.43) 0 7%, rgba(137, 157, 197, 0.16) 15%, transparent 29%);
+    filter: blur(35px);
+    opacity: 0.82;
+    animation: nuvens 24s ease-in-out infinite alternate;
+}
+
+main {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+}
+
+/* =========================================================
+   TOPO
+   ========================================================= */
+
+.artes-topo {
+    width: min(950px, 90%);
+    margin: 0 auto;
+    padding: 115px 0 90px;
+    text-align: center;
+}
+
+.voltar {
+    display: inline-flex;
+    margin-bottom: 70px;
+    color: #939caf;
+    font-size: 0.78rem;
+    text-decoration: none;
+    transition: 0.25s ease;
+}
+
+.voltar:hover {
+    color: var(--azul-claro);
+    transform: translateX(-5px);
+}
+
+.secao-label {
+    display: inline-block;
+    margin-bottom: 18px;
+    color: #b5c6ff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+}
+
+.artes-topo h1 {
+    max-width: 850px;
+    margin: auto;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5.5rem);
+    font-weight: 500;
+    line-height: 0.98;
+    letter-spacing: -1px;
+    text-shadow: 0 8px 35px rgba(0, 0, 0, 0.55);
+}
+
+.artes-topo p {
+    max-width: 760px;
+    margin: 25px auto 0;
+    color: var(--cinza);
+    font-size: 0.98rem;
+    line-height: 1.9;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+}
+
+/* =========================================================
+   GALERIA
+   ========================================================= */
+
+.galeria {
+    width: min(1180px, 90%);
+    margin: auto;
+    padding: 30px 0 120px;
+}
+
+.galeria-intro {
+    margin-bottom: 55px;
+}
+
+.galeria-intro h2 {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.4rem, 4vw, 3.8rem);
+    font-weight: 500;
+    line-height: 1;
+    text-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
+}
+
+.galeria-intro p {
+    max-width: 680px;
+    margin-top: 14px;
+    color: var(--cinza);
+    line-height: 1.8;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 70px 45px;
+}
+
+.obra {
+    min-width: 0;
+}
+
+.obra-moldura {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    margin: auto;
+    aspect-ratio: 1 / 1;
+    filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.62));
+}
+
+.obra-fundo {
+    position: absolute;
+    inset: 7%;
+    border-radius: 3px;
+    background:
+        radial-gradient(circle at 30% 25%, rgba(102, 136, 255, 0.1), transparent 34%),
+        radial-gradient(circle at 72% 78%, rgba(44, 77, 162, 0.12), transparent 35%),
+        rgba(2, 6, 14, 0.94);
+    box-shadow:
+        inset 0 0 45px rgba(0, 0, 0, 0.65),
+        0 0 35px rgba(57, 83, 162, 0.08);
+}
+
+.obra-imagem {
+    position: absolute;
+    inset: 10%;
+    overflow: hidden;
+    z-index: 2;
+    background: #05070b;
+}
+
+.obra-imagem img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transform: scale(1.04);
+    transition:
+        opacity 0.7s ease,
+        transform 1.8s ease;
+}
+
+.obra-imagem img[src] {
+    opacity: 1;
+}
+
+.obra:hover .obra-imagem img {
+    transform: scale(1.07) translateY(-3px);
+}
+
+/* =========================================================
+   MOLDURA CSS
+   ========================================================= */
+
+.moldura-css {
+    position: absolute;
+    inset: 0;
+    z-index: 4;
+    pointer-events: none;
+    border: 8px solid transparent;
+    border-radius: 20px;
+    background:
+        linear-gradient(
+            135deg,
+            #fff1b0 0%,
+            #b07b25 18%,
+            #f8dc8c 35%,
+            #9a671b 55%,
+            #f1cc72 72%,
+            #fff0b2 100%
+        ) border-box;
+    box-shadow:
+        inset 0 0 0 2px rgba(255, 248, 213, 0.65),
+        inset 0 0 18px rgba(255, 215, 126, 0.28),
+        0 0 18px rgba(255, 210, 117, 0.12);
+}
+
+.moldura-css::before {
+    content: "";
+    position: absolute;
+    inset: 12px;
+    border: 2px solid rgba(245, 216, 145, 0.82);
+    border-radius: 13px;
+    box-shadow:
+        inset 0 0 8px rgba(255, 223, 142, 0.18),
+        0 0 5px rgba(255, 215, 120, 0.12);
+}
+
+.moldura-css::after {
+    content: "";
+    position: absolute;
+    inset: 23px;
+    border: 1px solid rgba(255, 239, 190, 0.42);
+    border-radius: 9px;
+}
+
+.ornamento {
+    position: absolute;
+    z-index: 5;
+    color: #efd18a;
+    font-family: 'Cormorant Garamond', serif;
+    line-height: 1;
+    text-shadow:
+        0 1px 2px rgba(68, 42, 10, 0.9),
+        0 0 7px rgba(255, 220, 128, 0.22);
+}
+
+.ornamento-tl {
+    top: -8px;
+    left: -6px;
+    font-size: 3.2rem;
+    transform: rotate(-18deg);
+}
+
+.ornamento-tr {
+    top: -8px;
+    right: -6px;
+    font-size: 3.2rem;
+    transform: rotate(18deg);
+}
+
+.ornamento-bl {
+    bottom: -8px;
+    left: -6px;
+    font-size: 3.2rem;
+    transform: rotate(-108deg);
+}
+
+.ornamento-br {
+    right: -6px;
+    bottom: -8px;
+    font-size: 3.2rem;
+    transform: rotate(108deg);
+}
+
+.ornamento-top {
+    top: -16px;
+    left: 50%;
+    font-size: 2.5rem;
+    transform: translateX(-50%);
+}
+
+.ornamento-bottom {
+    bottom: -16px;
+    left: 50%;
+    font-size: 2.5rem;
+    transform: translateX(-50%) rotate(180deg);
+}
+
+/* =========================================================
+   INFORMAÇÕES DA OBRA
+   ========================================================= */
+
+.obra-info {
+    margin-top: 24px;
+    padding-left: 8px;
+}
+
+.obra-info span {
+    display: block;
+    margin-bottom: 5px;
+    color: #91abff;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.57rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.obra-info h3 {
+    color: #f6f8ff;
+    font-family: 'Caveat', cursive;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 1;
+    text-shadow: 0 3px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================================
+   MOVIMENTO DAS OBRAS
+   ========================================================= */
+
+.obra:nth-child(odd) .obra-moldura {
+    animation: arteFlutuar1 7s ease-in-out infinite;
+}
+
+.obra:nth-child(even) .obra-moldura {
+    animation: arteFlutuar2 8s ease-in-out infinite;
+}
+
+.obra:hover .obra-moldura {
+    animation-play-state: paused;
+}
+
+/* =========================================================
+   FINAL
+   ========================================================= */
+
+.artes-final {
+    width: min(850px, 90%);
+    margin: 20px auto 120px;
+    padding: 80px 30px;
+    text-align: center;
+    border-top: 1px solid rgba(111, 144, 255, 0.12);
+}
+
+.final-brilho {
+    display: block;
+    margin-bottom: 20px;
+    color: #c0ceff;
+    font-size: 1.8rem;
+    text-shadow: 0 0 20px rgba(136, 163, 255, 0.7);
+}
+
+.artes-final h2 {
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 4vw, 3.4rem);
+    font-weight: 500;
+    line-height: 1;
+}
+
+.artes-final p {
+    max-width: 650px;
+    margin: 18px auto 0;
+    color: var(--cinza);
+    line-height: 1.8;
+}
+
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    margin-top: 28px;
+    padding: 0 25px;
+    border: 1px solid rgba(112, 145, 255, 0.25);
+    border-radius: 12px;
+    color: #dce4ff;
+    background: rgba(76, 102, 196, 0.08);
+    font-size: 0.82rem;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+.btn-voltar:hover {
+    transform: translateY(-3px);
+    border-color: rgba(136, 163, 255, 0.45);
+    background: rgba(76, 102, 196, 0.15);
+}
+
+/* =========================================================
+   ANIMAÇÕES
+   ========================================================= */
+
+@keyframes arteFlutuar1 {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-0.6deg);
+    }
+
+    50% {
+        transform: translateY(-7px) rotate(0.6deg);
+    }
+}
+
+@keyframes arteFlutuar2 {
+    0%,
+    100% {
+        transform: translateY(-3px) rotate(0.5deg);
+    }
+
+    50% {
+        transform: translateY(6px) rotate(-0.5deg);
+    }
+}
+
+@keyframes nuvens {
+    from {
+        transform: translate3d(-2%, 0, 0) scale(1);
+    }
+
+    to {
+        transform: translate3d(2%, -1%, 0) scale(1.04);
+    }
+}
+
+@keyframes estrelasBrilhar {
+    from {
+        opacity: 0.52;
+    }
+
+    to {
+        opacity: 0.72;
+    }
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: 850px) {
+    .artes-topo {
+        padding-top: 90px;
+    }
+
+    .galeria-grid {
+        grid-template-columns: 1fr;
+        gap: 60px;
+    }
+
+    .obra-moldura {
+        max-width: 560px;
+    }
+}
+
+/* =========================================================
+   CELULAR
+   ========================================================= */
+
+@media (max-width: 560px) {
+    .artes-topo {
+        width: 90%;
+        padding: 75px 0 65px;
+    }
+
+    .voltar {
+        margin-bottom: 45px;
+    }
+
+    .artes-topo h1 {
+        font-size: 3rem;
+    }
+
+    .artes-topo p {
+        font-size: 0.88rem;
+        line-height: 1.8;
+    }
+
+    .galeria {
+        width: 90%;
+        padding-bottom: 80px;
+    }
+
+    .galeria-grid {
+        gap: 50px;
+    }
+
+    .obra-info {
+        margin-top: 18px;
+    }
+
+    .obra-info h3 {
+        font-size: 1.8rem;
+    }
+
+    .moldura-css {
+        border-width: 6px;
+        border-radius: 16px;
+    }
+
+    .moldura-css::before {
+        inset: 9px;
+        border-width: 1.5px;
+    }
+
+    .moldura-css::after {
+        inset: 17px;
+    }
+
+    .ornamento-tl,
+    .ornamento-tr,
+    .ornamento-bl,
+    .ornamento-br {
+        font-size: 2.4rem;
+    }
+
+    .ornamento-top,
+    .ornamento-bottom {
+        font-size: 2rem;
+    }
+
+    .artes-final {
+        width: 90%;
+        padding: 60px 10px;
+        margin-bottom: 80px;
+    }
+
+    .artes-final h2 {
+        font-size: 2.2rem;
+    }
+}
+
+/* =========================================================
+   REDUÇÃO DE MOVIMENTO
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    body::before,
+    body::after,
+    .obra:nth-child(odd) .obra-moldura,
+    .obra:nth-child(even) .obra-moldura {
+        animation: none;
+    }
+}
