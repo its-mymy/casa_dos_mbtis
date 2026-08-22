@@ -1155,3 +1155,156 @@ a {
         background-color: #1c1723 !important;
     }
 }
+
+@media (max-width: 820px), (pointer: coarse) {
+    .layout {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 24px;
+    }
+
+    .preview {
+        width: 100% !important;
+        order: 1 !important;
+    }
+
+    .painel {
+        width: 100% !important;
+        order: 2 !important;
+    }
+
+    .card-area {
+        width: 100% !important;
+        padding: 0 !important;
+        overflow: visible !important;
+    }
+
+    .card {
+        display: block !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        aspect-ratio: 1.52 / 1 !important;
+        margin: 0 !important;
+        overflow: hidden !important;
+        transform: none !important;
+    }
+
+    .card-interno {
+        position: absolute !important;
+        inset: 0 !important;
+        display: flex !important;
+        flex-direction: column !important;
+    }
+
+    .card-header {
+        flex: 0 0 12% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        padding: 0 17px !important;
+    }
+
+    .identidade-topo {
+        flex: 0 0 19% !important;
+        min-height: 0 !important;
+        padding: 12px 17px 6px !important;
+    }
+
+    .card-conteudo {
+        flex: 1 1 auto !important;
+        min-height: 0 !important;
+        padding: 7px 17px 11px !important;
+    }
+
+    .card-footer {
+        flex: 0 0 8% !important;
+        min-height: 0 !important;
+        padding: 0 17px !important;
+    }
+
+    .marca span,
+    .marca strong {
+        font-size: 15px !important;
+    }
+
+    .id-box span {
+        display: none !important;
+    }
+
+    .id-box strong {
+        width: 23px !important;
+        height: 23px !important;
+    }
+
+    .nome strong {
+        font-size: 30px !important;
+        line-height: 0.95 !important;
+    }
+
+    .grupo {
+        padding: 9px 11px 9px 15px !important;
+    }
+
+    .grupo::before {
+        width: 4px !important;
+    }
+
+    .grupo strong {
+        font-size: 14px !important;
+    }
+
+    .nome span,
+    .grupo span,
+    .tipologia span {
+        font-size: 6px !important;
+    }
+
+    .card-conteudo {
+        grid-template-columns: 0.68fr 1.32fr !important;
+        gap: 9px !important;
+    }
+
+    .coluna-esquerda {
+        min-height: 0 !important;
+    }
+
+    .foto-placeholder {
+        width: min(100%, 125px) !important;
+        aspect-ratio: 0.82 !important;
+        border-width: 2px !important;
+    }
+
+    .foto-placeholder span {
+        font-size: 28px !important;
+    }
+
+    .foto-placeholder small {
+        font-size: 6px !important;
+        text-align: center !important;
+    }
+
+    .coluna-direita {
+        align-content: center !important;
+        min-height: 0 !important;
+        gap: 6px !important;
+    }
+
+    .tipologia {
+        min-height: 43px !important;
+        padding: 6px 8px !important;
+        border-radius: 8px !important;
+    }
+
+    .tipologia strong {
+        font-size: 14px !important;
+    }
+
+    .tipologia.psychophy {
+        grid-column: 1 / -1 !important;
+    }
+
+    .card-footer span {
+        font-size: 5px !important;
+    }
+}
