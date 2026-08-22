@@ -1,8 +1,8 @@
 const campos = {
     nick: document.getElementById("nick"),
+    grupo: document.getElementById("grupo"),
     mbti: document.getElementById("mbti"),
     eneagrama: document.getElementById("eneagrama"),
-    grupo: document.getElementById("grupo"),
     instintos: document.getElementById("instintos"),
     temperamento: document.getElementById("temperamento"),
     tritype: document.getElementById("tritype"),
@@ -10,11 +10,13 @@ const campos = {
     psychophy: document.getElementById("psychophy")
 };
 
-const elementosCard = {
+const card = document.getElementById("cardGerado");
+
+const cardCampos = {
     nick: document.getElementById("cardNick"),
+    grupo: document.getElementById("cardGrupo"),
     mbti: document.getElementById("cardMbti"),
     eneagrama: document.getElementById("cardEneagrama"),
-    grupo: document.getElementById("cardGrupo"),
     instintos: document.getElementById("cardInstintos"),
     temperamento: document.getElementById("cardTemperamento"),
     tritype: document.getElementById("cardTritype"),
@@ -22,43 +24,37 @@ const elementosCard = {
     psychophy: document.getElementById("cardPsychophy")
 };
 
-const card = document.getElementById("cardGerado");
-const grupoFaixa = document.getElementById("grupoFaixa");
-const colorPicker = document.getElementById("cor");
+const grupoCard = document.getElementById("grupoCard");
+const abas = document.querySelectorAll(".aba");
+const painelImagens = document.getElementById("painelImagens");
+const painelCor = document.getElementById("painelCor");
+const temasBotoes = document.querySelectorAll(".tema");
+const botoesCorLetra = document.querySelectorAll(".cor.letra");
+const botoesCorTopo = document.querySelectorAll(".cor.topo");
+const botoesFundo = document.querySelectorAll(".cores-fundo button");
+const botoesAcessorio = document.querySelectorAll(".acessorio");
+const corLetra = document.getElementById("corLetra");
 const corTopo = document.getElementById("corTopo");
 const corFundo = document.getElementById("corFundo");
-const valorCor = document.getElementById("valorCor");
+const valorCorLetra = document.getElementById("valorCorLetra");
 const valorCorTopo = document.getElementById("valorCorTopo");
 const valorCorFundo = document.getElementById("valorCorFundo");
-const botoesCor = document.querySelectorAll(".cor-opcao");
-const botoesCorTopo = document.querySelectorAll(".cor-topo-opcao");
-const botoesFundo = document.querySelectorAll(".fundo-opcao");
-const botoesTema = document.querySelectorAll(".tema");
-const botoesTipoFundo = document.querySelectorAll(".tipo-fundo-btn");
-const botoesAcessorio = document.querySelectorAll(".acessorio");
-const fundoImagens = document.getElementById("fundoImagens");
-const fundoCor = document.getElementById("fundoCor");
-const botaoCopiarLink = document.getElementById("copiarLink");
-const botaoBaixarCard = document.getElementById("baixarCard");
+const botaoDownload = document.getElementById("baixarCard");
+const botaoLink = document.getElementById("copiarLink");
 
 const decoracoes = {
-    spark: document.getElementById("decorSpark"),
-    flower: document.getElementById("decorFlower"),
-    star: document.getElementById("decorStar"),
-    heart: document.getElementById("decorHeart"),
-    bow: document.getElementById("decorBow")
+    spark: document.querySelector(".decoracao-spark"),
+    flower: document.querySelector(".decoracao-flower"),
+    star: document.querySelector(".decoracao-star"),
+    heart: document.querySelector(".decoracao-heart"),
+    bow: document.querySelector(".decoracao-bow")
 };
-
-let tipoFundo = "imagem";
-let temaAtual = "azul";
-let acessorioAtual = "none";
-let timeoutURL = null;
 
 const valoresPadrao = {
     nick: "Seu Nick",
+    grupo: "Analistas",
     mbti: "ENTP",
     eneagrama: "7w6",
-    grupo: "Analistas",
     instintos: "sp/so",
     temperamento: "Sanguíneo",
     tritype: "739",
@@ -66,251 +62,235 @@ const valoresPadrao = {
     psychophy: "1L 2E 3V 4F"
 };
 
-const chavesCurtas = {
-    nick: "n",
-    mbti: "m",
-    eneagrama: "e",
-    grupo: "g",
-    instintos: "i",
-    temperamento: "t",
-    tritype: "r",
-    bigfive: "b",
-    psychophy: "p",
-    tipoFundo: "f",
-    tema: "h",
-    cor: "c",
-    corTopo: "q",
-    corFundo: "u",
-    acessorio: "a"
-};
-
-const chavesLongas = {
-    n: "nick",
-    m: "mbti",
-    e: "eneagrama",
-    g: "grupo",
-    i: "instintos",
-    t: "temperamento",
-    r: "tritype",
-    b: "bigfive",
-    p: "psychophy",
-    f: "tipoFundo",
-    h: "tema",
-    c: "cor",
-    q: "corTopo",
-    u: "corFundo",
-    a: "acessorio"
-};
-
-const temas = {
-    azul: { imagem: "img/azul.jpg" },
-    azul2: { imagem: "img/azul2.jpg" },
-    estrelado: { imagem: "img/estrelado.jpg" },
-    preto: { imagem: "img/preto.jpg" },
-    preto2: { imagem: "img/preto2.jpg" },
-    rosa: { imagem: "img/rosa.jpg" },
-    roxo: { imagem: "img/roxo.jpg" },
-    verde: { imagem: "img/verde.jpg" },
-    Giorno: { imagem: "img/giorno.jpg" },
-    "noite-azulada": { imagem: "img/noite azulada.jpg" },
-    DIO: { imagem: "img/dio.jpg" },
-    anime: { imagem: "img/anime.jpg" },
-    gojo: { imagem: "img/gojo.jpg" },
-    zoro: { imagem: "img/zoro.jpg" },
-    alucard: { imagem: "img/alucard.jpg" },
-    Saiki: { imagem: "img/Saiki.jpg" },
-    "Johnny-Joestar": { imagem: "img/Johnny-Joestar.jpg" },
-    reze: { imagem: "img/reze.jpg" }
-};
-
-const coresGrupos = {
+const grupos = {
     Analistas: "#8c52e8",
     Diplomatas: "#5c9b68",
     Sentinelas: "#4d82e8",
     Exploradores: "#f0bd35"
 };
 
-function detectarDispositivo() {
-    const userAgent = navigator.userAgent || navigator.vendor || window.opera || "";
-    const mobileUserAgent = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile/i.test(userAgent);
-    const toque = window.matchMedia ? window.matchMedia("(pointer: coarse)").matches : false;
-    const largura = window.innerWidth <= 900;
+const temas = {
+    azul: "img/azul.jpg",
+    azul2: "img/azul2.jpg",
+    estrelado: "img/estrelado.jpg",
+    preto: "img/preto.jpg",
+    preto2: "img/preto2.jpg",
+    rosa: "img/rosa.jpg",
+    roxo: "img/roxo.jpg",
+    verde: "img/verde.jpg",
+    Giorno: "img/giorno.jpg",
+    noite: "img/noite azulada.jpg",
+    DIO: "img/dio.jpg",
+    anime: "img/anime.jpg",
+    gojo: "img/gojo.jpg",
+    zoro: "img/zoro.jpg",
+    alucard: "img/alucard.jpg",
+    Saiki: "img/Saiki.jpg",
+    "Johnny-Joestar": "img/Johnny-Joestar.jpg",
+    reze: "img/reze.jpg"
+};
 
-    document.body.classList.toggle("mobile-device", mobileUserAgent || toque || largura);
-}
+const abreviacoes = {
+    nick: "n",
+    grupo: "g",
+    mbti: "m",
+    eneagrama: "e",
+    instintos: "i",
+    temperamento: "t",
+    tritype: "r",
+    bigfive: "b",
+    psychophy: "p",
+    fundo: "f",
+    tema: "h",
+    corLetra: "l",
+    corTopo: "q",
+    corFundo: "u",
+    acessorio: "a"
+};
 
-detectarDispositivo();
+const nomesAbreviados = {
+    n: "nick",
+    g: "grupo",
+    m: "mbti",
+    e: "eneagrama",
+    i: "instintos",
+    t: "temperamento",
+    r: "tritype",
+    b: "bigfive",
+    p: "psychophy",
+    f: "fundo",
+    h: "tema",
+    l: "corLetra",
+    q: "corTopo",
+    u: "corFundo",
+    a: "acessorio"
+};
 
-window.addEventListener("resize", detectarDispositivo);
-window.addEventListener("orientationchange", detectarDispositivo);
+let fundoAtual = "imagem";
+let temaAtual = "azul";
+let acessorioAtual = "none";
+let timeoutLink = null;
 
-botoesCor.forEach(botao => {
-    botao.style.backgroundColor = botao.dataset.color;
-});
+function aplicarCoresBotoes() {
+    botoesCorLetra.forEach(botao => {
+        botao.style.backgroundColor = botao.dataset.cor;
+    });
 
-botoesCorTopo.forEach(botao => {
-    botao.style.backgroundColor = botao.dataset.color;
-});
+    botoesCorTopo.forEach(botao => {
+        botao.style.backgroundColor = botao.dataset.cor;
+    });
 
-botoesFundo.forEach(botao => {
-    botao.style.backgroundColor = botao.dataset.color;
-});
-
-function ajustarTamanhoNick() {
-    const nick = elementosCard.nick;
-    const valor = campos.nick.value.trim();
-    const tamanho = valor.length;
-
-    if (!valor) {
-        nick.style.fontSize = "";
-        return;
-    }
-
-    if (document.body.classList.contains("mobile-device")) {
-        if (tamanho <= 7) {
-            nick.style.fontSize = "30px";
-        } else if (tamanho <= 12) {
-            nick.style.fontSize = "25px";
-        } else if (tamanho <= 18) {
-            nick.style.fontSize = "21px";
-        } else {
-            nick.style.fontSize = "18px";
-        }
-        return;
-    }
-
-    if (tamanho <= 5) {
-        nick.style.fontSize = "54px";
-    } else if (tamanho <= 9) {
-        nick.style.fontSize = "48px";
-    } else if (tamanho <= 14) {
-        nick.style.fontSize = "42px";
-    } else if (tamanho <= 20) {
-        nick.style.fontSize = "36px";
-    } else {
-        nick.style.fontSize = "31px";
-    }
-}
-
-function atualizarGrupoCard() {
-    const grupo = campos.grupo.value || valoresPadrao.grupo;
-    const cor = coresGrupos[grupo] || coresGrupos.Analistas;
-
-    elementosCard.grupo.textContent = grupo;
-    grupoFaixa.style.setProperty("--grupo-color", cor);
+    botoesFundo.forEach(botao => {
+        botao.style.backgroundColor = botao.dataset.cor;
+    });
 }
 
 function atualizarCard() {
     Object.keys(campos).forEach(chave => {
         const valor = campos[chave].value.trim();
-        elementosCard[chave].textContent = valor || valoresPadrao[chave];
+        cardCampos[chave].textContent = valor || valoresPadrao[chave];
     });
 
-    ajustarTamanhoNick();
-    atualizarGrupoCard();
+    atualizarGrupo();
 }
 
-function agendarSalvarURL() {
-    clearTimeout(timeoutURL);
-    timeoutURL = setTimeout(salvarNaURL, 300);
+function atualizarGrupo() {
+    const grupo = campos.grupo.value || valoresPadrao.grupo;
+    const cor = grupos[grupo] || grupos.Analistas;
+
+    grupoCard.style.setProperty("--group", cor);
+}
+
+function atualizarNick() {
+    const valor = campos.nick.value.trim();
+    const tamanho = valor.length;
+
+    if (!valor) {
+        cardCampos.nick.style.fontSize = "";
+        return;
+    }
+
+    if (window.matchMedia("(max-width: 820px)").matches) {
+        if (tamanho <= 7) {
+            cardCampos.nick.style.fontSize = "30px";
+        } else if (tamanho <= 12) {
+            cardCampos.nick.style.fontSize = "25px";
+        } else if (tamanho <= 18) {
+            cardCampos.nick.style.fontSize = "21px";
+        } else {
+            cardCampos.nick.style.fontSize = "18px";
+        }
+
+        return;
+    }
+
+    if (tamanho <= 5) {
+        cardCampos.nick.style.fontSize = "54px";
+    } else if (tamanho <= 9) {
+        cardCampos.nick.style.fontSize = "48px";
+    } else if (tamanho <= 14) {
+        cardCampos.nick.style.fontSize = "42px";
+    } else if (tamanho <= 20) {
+        cardCampos.nick.style.fontSize = "36px";
+    } else {
+        cardCampos.nick.style.fontSize = "31px";
+    }
+}
+
+function atualizarTudo() {
+    atualizarCard();
+    atualizarNick();
 }
 
 Object.values(campos).forEach(campo => {
     campo.addEventListener("input", () => {
-        atualizarCard();
-        agendarSalvarURL();
+        atualizarTudo();
+        agendarLink();
     });
 
     campo.addEventListener("change", () => {
-        atualizarCard();
-        salvarNaURL();
+        atualizarTudo();
+        salvarLink();
     });
 });
 
-function atualizarBotoesCor(botoes, cor) {
-    botoes.forEach(botao => {
-        botao.classList.toggle(
-            "ativa",
-            botao.dataset.color.toLowerCase() === cor.toLowerCase()
-        );
+function mostrarAba(tipo) {
+    abas.forEach(aba => {
+        aba.classList.toggle("ativo", aba.dataset.fundo === tipo);
     });
+
+    painelImagens.classList.toggle("ativo", tipo === "imagem");
+    painelCor.classList.toggle("ativo", tipo === "cor");
+
+    fundoAtual = tipo;
+    salvarLink();
 }
 
-function aplicarCorTexto(cor, salvar = true) {
-    if (!cor) return;
-
-    card.style.setProperty("--card-primary", cor);
-    card.style.setProperty("--card-text", cor);
-    colorPicker.value = cor;
-    valorCor.textContent = cor.toUpperCase();
-
-    atualizarBotoesCor(botoesCor, cor);
-
-    if (salvar) salvarNaURL();
-}
-
-function aplicarCorTopo(cor, salvar = true) {
-    if (!cor) return;
-
-    card.style.setProperty("--card-top", cor);
-    corTopo.value = cor;
-    valorCorTopo.textContent = cor.toUpperCase();
-
-    atualizarBotoesCor(botoesCorTopo, cor);
-
-    if (salvar) salvarNaURL();
-}
-
-botoesCor.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarCorTexto(botao.dataset.color);
+abas.forEach(aba => {
+    aba.addEventListener("click", () => {
+        mostrarAba(aba.dataset.fundo);
     });
 });
 
-botoesCorTopo.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarCorTopo(botao.dataset.color);
-    });
-});
+function aplicarTema(nome) {
+    if (!temas[nome]) return;
 
-colorPicker.addEventListener("input", () => {
-    aplicarCorTexto(colorPicker.value);
-});
-
-corTopo.addEventListener("input", () => {
-    aplicarCorTopo(corTopo.value);
-});
-
-function atualizarBotoesFundo(cor) {
-    botoesFundo.forEach(botao => {
-        botao.classList.toggle(
-            "ativa",
-            botao.dataset.color.toLowerCase() === cor.toLowerCase()
-        );
-    });
-}
-
-function aplicarCorFundo(cor, salvar = true) {
-    if (!cor) return;
-
-    tipoFundo = "cor";
+    temaAtual = nome;
+    fundoAtual = "imagem";
 
     card.style.backgroundImage = "none";
-    card.style.backgroundColor = cor;
-    card.style.setProperty("--card-background", cor);
+    document.querySelector(".card-fundo").style.backgroundImage = `url("${temas[nome]}")`;
+
+    temasBotoes.forEach(botao => {
+        botao.classList.toggle("ativo", botao.dataset.tema === nome);
+    });
+
+    abas.forEach(aba => {
+        aba.classList.toggle("ativo", aba.dataset.fundo === "imagem");
+    });
+
+    painelImagens.classList.add("ativo");
+    painelCor.classList.remove("ativo");
+
+    salvarLink();
+}
+
+temasBotoes.forEach(botao => {
+    botao.addEventListener("click", () => {
+        aplicarTema(botao.dataset.tema);
+    });
+});
+
+function aplicarCorFundo(cor) {
+    fundoAtual = "cor";
+
+    document.querySelector(".card-fundo").style.backgroundImage = "none";
+    card.style.background = cor;
+    card.style.setProperty("--background", cor);
 
     corFundo.value = cor;
     valorCorFundo.textContent = cor.toUpperCase();
 
-    atualizarBotoesFundo(cor);
-    atualizarTipoFundoVisual();
+    botoesFundo.forEach(botao => {
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+        );
+    });
 
-    if (salvar) salvarNaURL();
+    abas.forEach(aba => {
+        aba.classList.toggle("ativo", aba.dataset.fundo === "cor");
+    });
+
+    painelImagens.classList.remove("ativo");
+    painelCor.classList.add("ativo");
+
+    salvarLink();
 }
 
 botoesFundo.forEach(botao => {
     botao.addEventListener("click", () => {
-        aplicarCorFundo(botao.dataset.color);
+        aplicarCorFundo(botao.dataset.cor);
     });
 });
 
@@ -318,69 +298,57 @@ corFundo.addEventListener("input", () => {
     aplicarCorFundo(corFundo.value);
 });
 
-function aplicarTema(nomeTema, salvar = true) {
-    const tema = temas[nomeTema];
+function aplicarCorLetraFunc(cor) {
+    card.style.setProperty("--primary", cor);
+    corLetra.value = cor;
+    valorCorLetra.textContent = cor.toUpperCase();
 
-    if (!tema) return;
-
-    temaAtual = nomeTema;
-    tipoFundo = "imagem";
-
-    card.style.backgroundColor = "#17121f";
-    card.style.backgroundImage = `url("${tema.imagem}")`;
-    card.style.backgroundSize = "cover";
-    card.style.backgroundPosition = "center center";
-    card.style.backgroundRepeat = "no-repeat";
-
-    botoesTema.forEach(botao => {
+    botoesCorLetra.forEach(botao => {
         botao.classList.toggle(
-            "ativo",
-            botao.dataset.theme === nomeTema
+            "ativa",
+            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
         );
     });
 
-    atualizarTipoFundoVisual();
-
-    if (salvar) salvarNaURL();
+    salvarLink();
 }
 
-botoesTema.forEach(botao => {
+botoesCorLetra.forEach(botao => {
     botao.addEventListener("click", () => {
-        aplicarTema(botao.dataset.theme);
+        aplicarCorLetraFunc(botao.dataset.cor);
     });
 });
 
-function atualizarTipoFundoVisual() {
-    botoesTipoFundo.forEach(botao => {
+corLetra.addEventListener("input", () => {
+    aplicarCorLetraFunc(corLetra.value);
+});
+
+function aplicarCorTopoFunc(cor) {
+    card.style.setProperty("--top", cor);
+    corTopo.value = cor;
+    valorCorTopo.textContent = cor.toUpperCase();
+
+    botoesCorTopo.forEach(botao => {
         botao.classList.toggle(
-            "ativo",
-            botao.dataset.tipo === tipoFundo
+            "ativa",
+            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
         );
     });
 
-    if (tipoFundo === "imagem") {
-        fundoImagens.classList.add("ativo");
-        fundoCor.classList.remove("ativo");
-    } else {
-        fundoImagens.classList.remove("ativo");
-        fundoCor.classList.add("ativo");
-    }
+    salvarLink();
 }
 
-botoesTipoFundo.forEach(botao => {
+botoesCorTopo.forEach(botao => {
     botao.addEventListener("click", () => {
-        const tipo = botao.dataset.tipo;
-
-        if (tipo === "imagem") {
-            aplicarTema(temas[temaAtual] ? temaAtual : "azul");
-            return;
-        }
-
-        aplicarCorFundo(corFundo.value);
+        aplicarCorTopoFunc(botao.dataset.cor);
     });
 });
 
-function atualizarAcessorio(nome, salvar = true) {
+corTopo.addEventListener("input", () => {
+    aplicarCorTopoFunc(corTopo.value);
+});
+
+function aplicarAcessorio(nome) {
     acessorioAtual = nome;
 
     botoesAcessorio.forEach(botao => {
@@ -398,36 +366,36 @@ function atualizarAcessorio(nome, salvar = true) {
         decoracoes[nome].classList.add("visivel");
     }
 
-    if (salvar) salvarNaURL();
+    salvarLink();
 }
 
 botoesAcessorio.forEach(botao => {
     botao.addEventListener("click", () => {
-        atualizarAcessorio(botao.dataset.acessorio);
+        aplicarAcessorio(botao.dataset.acessorio);
     });
 });
 
-function pegarDadosCompactos() {
+function gerarDados() {
     const dados = {};
 
     Object.keys(campos).forEach(chave => {
         const valor = campos[chave].value.trim();
 
         if (valor && valor !== valoresPadrao[chave]) {
-            dados[chavesCurtas[chave]] = valor;
+            dados[abreviacoes[chave]] = valor;
         }
     });
 
-    if (tipoFundo !== "imagem") {
-        dados.f = tipoFundo;
+    if (fundoAtual !== "imagem") {
+        dados.f = fundoAtual;
     }
 
     if (temaAtual !== "azul") {
         dados.h = temaAtual;
     }
 
-    if (colorPicker.value.toLowerCase() !== "#c88dff") {
-        dados.c = colorPicker.value;
+    if (corLetra.value.toLowerCase() !== "#c88dff") {
+        dados.l = corLetra.value;
     }
 
     if (corTopo.value.toLowerCase() !== "#9f63d9") {
@@ -449,67 +417,76 @@ function expandirDados(dados) {
     const resultado = {};
 
     Object.keys(dados).forEach(chave => {
-        const chaveLonga = chavesLongas[chave];
+        const nome = nomesAbreviados[chave];
 
-        if (chaveLonga) {
-            resultado[chaveLonga] = dados[chave];
+        if (nome) {
+            resultado[nome] = dados[chave];
         }
     });
 
     return resultado;
 }
 
-function codificarDados(dados) {
-    if (typeof LZString === "undefined") {
-        throw new Error("LZString não foi carregado.");
-    }
-
+function compactar(dados) {
     return LZString.compressToEncodedURIComponent(
         JSON.stringify(dados)
     );
 }
 
-function decodificarDados(codigo) {
-    if (typeof LZString === "undefined") {
-        throw new Error("LZString não foi carregado.");
-    }
-
+function descompactar(codigo) {
     try {
-        const texto = LZString.decompressFromEncodedURIComponent(codigo);
+        const texto =
+            LZString.decompressFromEncodedURIComponent(codigo);
 
         if (!texto) return null;
 
-        return expandirDados(JSON.parse(texto));
+        return expandirDados(
+            JSON.parse(texto)
+        );
     } catch (erro) {
-        console.warn("Não foi possível carregar o card:", erro);
+        console.error(erro);
         return null;
     }
 }
 
-function salvarNaURL() {
-    try {
-        const dados = pegarDadosCompactos();
-        const codigo = codificarDados(dados);
+function salvarLink() {
+    clearTimeout(timeoutLink);
 
-        history.replaceState(
-            null,
-            "",
-            `${window.location.pathname}#${codigo}`
-        );
-    } catch (erro) {
-        console.error("Erro ao salvar card:", erro);
+    timeoutLink = setTimeout(() => {
+        try {
+            const dados = gerarDados();
+            const codigo = compactar(dados);
+
+            history.replaceState(
+                null,
+                "",
+                `${window.location.pathname}#${codigo}`
+            );
+        } catch (erro) {
+            console.error(
+                "Erro ao salvar link:",
+                erro
+            );
+        }
+    }, 250);
+}
+
+function carregarLink() {
+    const codigo =
+        window.location.hash.substring(1);
+
+    if (!codigo) {
+        inicializar();
+        return;
     }
-}
 
-function carregarDadosDaURL() {
-    const codigo = window.location.hash.substring(1);
+    const dados = descompactar(codigo);
 
-    if (!codigo) return null;
+    if (!dados) {
+        inicializar();
+        return;
+    }
 
-    return decodificarDados(codigo);
-}
-
-function preencherCampos(dados) {
     Object.keys(campos).forEach(chave => {
         if (
             dados[chave] !== undefined &&
@@ -518,109 +495,196 @@ function preencherCampos(dados) {
             campos[chave].value = dados[chave];
         }
     });
+
+    fundoAtual =
+        dados.fundo || "imagem";
+
+    temaAtual =
+        dados.tema || "azul";
+
+    acessorioAtual =
+        dados.acessorio || "none";
+
+    atualizarTudo();
+
+    if (fundoAtual === "imagem") {
+        aplicarTemaInicial(
+            temas[temaAtual]
+                ? temaAtual
+                : "azul"
+        );
+    } else {
+        aplicarCorFundoInicial(
+            dados.corFundo || "#17121f"
+        );
+    }
+
+    aplicarCorLetraInicial(
+        dados.corLetra || "#c88dff"
+    );
+
+    aplicarCorTopoInicial(
+        dados.corTopo || "#9f63d9"
+    );
+
+    aplicarAcessorioInicial(
+        acessorioAtual
+    );
 }
 
-function carregarImagem(src) {
-    return new Promise((resolve, reject) => {
-        const imagem = new Image();
+function aplicarTemaInicial(nome) {
+    temaAtual = nome;
+    fundoAtual = "imagem";
 
-        imagem.onload = () => resolve(imagem);
-        imagem.onerror = () => {
-            reject(
-                new Error(`Não foi possível carregar a imagem: ${src}`)
-            );
-        };
+    document.querySelector(".card-fundo").style.backgroundImage =
+        `url("${temas[nome]}")`;
 
-        imagem.src = src;
+    temasBotoes.forEach(botao => {
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.tema === nome
+        );
+    });
+
+    abas.forEach(aba => {
+        aba.classList.toggle(
+            "ativo",
+            aba.dataset.fundo === "imagem"
+        );
+    });
+
+    painelImagens.classList.add("ativo");
+    painelCor.classList.remove("ativo");
+}
+
+function aplicarCorFundoInicial(cor) {
+    fundoAtual = "cor";
+
+    document.querySelector(".card-fundo").style.backgroundImage =
+        "none";
+
+    card.style.background = cor;
+    card.style.setProperty(
+        "--background",
+        cor
+    );
+
+    corFundo.value = cor;
+    valorCorFundo.textContent =
+        cor.toUpperCase();
+
+    abas.forEach(aba => {
+        aba.classList.toggle(
+            "ativo",
+            aba.dataset.fundo === "cor"
+        );
+    });
+
+    painelImagens.classList.remove("ativo");
+    painelCor.classList.add("ativo");
+}
+
+function aplicarCorLetraInicial(cor) {
+    card.style.setProperty(
+        "--primary",
+        cor
+    );
+
+    corLetra.value = cor;
+    valorCorLetra.textContent =
+        cor.toUpperCase();
+
+    botoesCorLetra.forEach(botao => {
+        botao.classList.toggle(
+            "ativa",
+            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+        );
     });
 }
 
-async function prepararImagensDoCard() {
-    if (tipoFundo !== "imagem") return;
+function aplicarCorTopoInicial(cor) {
+    card.style.setProperty(
+        "--top",
+        cor
+    );
 
-    const tema = temas[temaAtual];
+    corTopo.value = cor;
+    valorCorTopo.textContent =
+        cor.toUpperCase();
 
-    if (!tema) return;
-
-    await carregarImagem(tema.imagem);
+    botoesCorTopo.forEach(botao => {
+        botao.classList.toggle(
+            "ativa",
+            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+        );
+    });
 }
 
-function mostrarToast(mensagem) {
-    const toast = document.getElementById("toast");
+function aplicarAcessorioInicial(nome) {
+    acessorioAtual = nome;
 
-    toast.textContent = mensagem;
+    botoesAcessorio.forEach(botao => {
+        botao.classList.toggle(
+            "ativo",
+            botao.dataset.acessorio === nome
+        );
+    });
+
+    Object.values(decoracoes).forEach(decoracao => {
+        decoracao.classList.remove("visivel");
+    });
+
+    if (decoracoes[nome]) {
+        decoracoes[nome].classList.add("visivel");
+    }
+}
+
+function inicializar() {
+    aplicarTemaInicial("azul");
+    aplicarCorLetraInicial("#c88dff");
+    aplicarCorTopoInicial("#9f63d9");
+    aplicarCorFundoInicial("#17121f");
+    aplicarAcessorioInicial("none");
+    atualizarTudo();
+}
+
+function mostrarToast(texto) {
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = texto;
     toast.classList.add("mostrar");
 
     clearTimeout(mostrarToast.timer);
 
-    mostrarToast.timer = setTimeout(() => {
-        toast.classList.remove("mostrar");
-    }, 2600);
+    mostrarToast.timer =
+        setTimeout(() => {
+            toast.classList.remove("mostrar");
+        }, 2500);
 }
 
-async function carregarDaURL() {
-    const dados = carregarDadosDaURL();
-
-    if (!dados) {
-        atualizarCard();
-        aplicarCorTexto("#c88dff", false);
-        aplicarCorTopo("#9f63d9", false);
-        aplicarTema("azul", false);
-        aplicarCorFundo("#17121f", false);
-        atualizarAcessorio("none", false);
-        atualizarTipoFundoVisual();
-        return;
-    }
-
-    preencherCampos(dados);
-
-    tipoFundo = dados.tipoFundo || "imagem";
-    temaAtual = dados.tema || "azul";
-    acessorioAtual = dados.acessorio || "none";
-
-    aplicarCorTexto(
-        dados.cor || "#c88dff",
-        false
-    );
-
-    aplicarCorTopo(
-        dados.corTopo || "#9f63d9",
-        false
-    );
-
-    if (tipoFundo === "imagem") {
-        aplicarTema(
-            temas[temaAtual] ? temaAtual : "azul",
-            false
-        );
-    } else {
-        aplicarCorFundo(
-            dados.corFundo || "#17121f",
-            false
-        );
-    }
-
-    atualizarAcessorio(
-        acessorioAtual,
-        false
-    );
-
-    atualizarTipoFundoVisual();
-    atualizarCard();
-}
-
-botaoCopiarLink.addEventListener(
+botaoLink.addEventListener(
     "click",
     async () => {
-        salvarNaURL();
-
         try {
-            await navigator.clipboard.writeText(
-                window.location.href
+            clearTimeout(timeoutLink);
+
+            const dados = gerarDados();
+            const codigo = compactar(dados);
+
+            const url =
+                `${window.location.origin}${window.location.pathname}#${codigo}`;
+
+            history.replaceState(
+                null,
+                "",
+                `#${codigo}`
             );
 
+            await navigator.clipboard.writeText(url);
+
             mostrarToast(
-                "🔗 Link curto do card copiado!"
+                "🔗 Link compacto copiado!"
             );
         } catch (erro) {
             console.error(erro);
@@ -632,24 +696,29 @@ botaoCopiarLink.addEventListener(
     }
 );
 
-botaoBaixarCard.addEventListener(
+botaoDownload.addEventListener(
     "click",
     async () => {
-        const confirmou = window.confirm(
-            "Baixar seu card como imagem?"
-        );
+        const confirmar =
+            window.confirm(
+                "Baixar seu card como imagem?"
+            );
 
-        if (!confirmou) return;
+        if (!confirmar) return;
 
-        let arquivoURL = null;
+        botaoDownload.disabled = true;
+        botaoDownload.textContent =
+            "Gerando card...";
 
-        botaoBaixarCard.disabled = true;
-        botaoBaixarCard.textContent = "Gerando card...";
+        let urlArquivo = null;
 
         try {
-            if (typeof html2canvas !== "function") {
+            if (
+                typeof html2canvas !==
+                "function"
+            ) {
                 throw new Error(
-                    "html2canvas não foi carregado."
+                    "html2canvas não carregou."
                 );
             }
 
@@ -657,66 +726,81 @@ botaoBaixarCard.addEventListener(
                 await document.fonts.ready;
             }
 
-            await prepararImagensDoCard();
-
             await new Promise(resolve => {
                 requestAnimationFrame(() => {
                     requestAnimationFrame(resolve);
                 });
             });
 
-            const largura = card.clientWidth;
-            const altura = card.clientHeight;
+            const largura =
+                card.clientWidth;
+
+            const altura =
+                card.clientHeight;
 
             if (!largura || !altura) {
                 throw new Error(
-                    "Não foi possível identificar o tamanho do card."
+                    "Tamanho inválido do card."
                 );
             }
 
+            const mobile =
+                window.innerWidth <= 820;
+
             const escala =
-                document.body.classList.contains("mobile-device")
-                    ? 3
-                    : 4;
+                mobile ? 3 : 4;
 
-            const canvas = await html2canvas(
-                card,
-                {
-                    width: largura,
-                    height: altura,
-                    scale: escala,
-                    useCORS: true,
-                    allowTaint: false,
-                    backgroundColor: null,
-                    logging: false,
-                    imageTimeout: 30000,
-                    removeContainer: true,
-                    foreignObjectRendering: false,
-                    scrollX: 0,
-                    scrollY: 0,
-                    onclone: documento => {
-                        const cardClone =
-                            documento.getElementById(
-                                "cardGerado"
-                            );
+            const canvas =
+                await html2canvas(
+                    card,
+                    {
+                        width: largura,
+                        height: altura,
+                        scale: escala,
+                        useCORS: true,
+                        allowTaint: false,
+                        backgroundColor: null,
+                        logging: false,
+                        imageTimeout: 30000,
+                        scrollX: 0,
+                        scrollY: 0,
+                        removeContainer: true,
+                        foreignObjectRendering: false,
+                        onclone: documento => {
+                            const clone =
+                                documento.getElementById(
+                                    "cardGerado"
+                                );
 
-                        if (!cardClone) return;
+                            if (!clone) return;
 
-                        cardClone.style.transform = "none";
-                        cardClone.style.filter = "none";
-                        cardClone.style.boxShadow = "none";
-                        cardClone.style.opacity = "1";
-                        cardClone.style.visibility = "visible";
+                            clone.style.transform =
+                                "none";
 
-                        cardClone
-                            .querySelectorAll("*")
-                            .forEach(elemento => {
-                                elemento.style.animation = "none";
-                                elemento.style.transition = "none";
+                            clone.style.filter =
+                                "none";
+
+                            clone.style.boxShadow =
+                                "none";
+
+                            clone.style.opacity =
+                                "1";
+
+                            clone.style.visibility =
+                                "visible";
+
+                            clone.querySelectorAll(
+                                "*"
+                            ).forEach(elemento => {
+                                elemento.style.animation =
+                                    "none";
+
+                                elemento.style.transition =
+                                    "none";
                             });
+                        }
                     }
-                }
-            );
+                );
 
             if (
                 !canvas ||
@@ -724,33 +808,34 @@ botaoBaixarCard.addEventListener(
                 canvas.height <= 0
             ) {
                 throw new Error(
-                    "A imagem gerada ficou vazia."
+                    "Canvas vazio."
                 );
             }
 
-            const blob = await new Promise(resolve => {
-                canvas.toBlob(
-                    resolve,
-                    "image/png",
-                    1
-                );
-            });
+            const blob =
+                await new Promise(resolve => {
+                    canvas.toBlob(
+                        resolve,
+                        "image/png",
+                        1
+                    );
+                });
 
             if (!blob) {
                 throw new Error(
-                    "Não foi possível criar o PNG."
+                    "Não foi possível gerar o PNG."
                 );
             }
 
-            arquivoURL =
+            urlArquivo =
                 URL.createObjectURL(blob);
 
-            const nick =
+            const nome =
                 campos.nick.value.trim() ||
                 "meu-card";
 
-            const nomeArquivo =
-                nick
+            const nomeLimpo =
+                nome
                     .replace(
                         /[^a-zA-Z0-9À-ÿ\s-_]/g,
                         ""
@@ -761,21 +846,19 @@ botaoBaixarCard.addEventListener(
                         "-"
                     );
 
-            const nomeFinal =
-                `casa-dos-mbtis-${nomeArquivo || "meu-card"}.png`;
+            const arquivo =
+                `casa-dos-mbtis-${nomeLimpo || "meu-card"}.png`;
 
             const link =
                 document.createElement("a");
 
-            link.href = arquivoURL;
-            link.download = nomeFinal;
-            link.setAttribute(
-                "download",
-                nomeFinal
-            );
-            link.style.display = "none";
+            link.href = urlArquivo;
+            link.download = arquivo;
 
-            document.body.appendChild(link);
+            document.body.appendChild(
+                link
+            );
+
             link.click();
             link.remove();
 
@@ -784,35 +867,36 @@ botaoBaixarCard.addEventListener(
             );
 
             setTimeout(() => {
-                if (arquivoURL) {
+                if (urlArquivo) {
                     URL.revokeObjectURL(
-                        arquivoURL
+                        urlArquivo
                     );
-                    arquivoURL = null;
+
+                    urlArquivo = null;
                 }
             }, 2000);
         } catch (erro) {
             console.error(
-                "ERRO AO BAIXAR O CARD:",
+                "Erro ao baixar:",
                 erro
             );
 
-            if (arquivoURL) {
+            if (urlArquivo) {
                 URL.revokeObjectURL(
-                    arquivoURL
+                    urlArquivo
                 );
-                arquivoURL = null;
             }
 
             mostrarToast(
-                "😿 Não consegui salvar a imagem."
+                "😿 Não consegui baixar o card."
             );
         } finally {
-            botaoBaixarCard.disabled = false;
-            botaoBaixarCard.textContent =
+            botaoDownload.disabled = false;
+            botaoDownload.textContent =
                 "↓ Baixar como imagem";
         }
     }
 );
 
-carregarDaURL();
+aplicarCoresBotoes();
+carregarLink();

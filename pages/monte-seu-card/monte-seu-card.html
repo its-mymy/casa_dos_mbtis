@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#0b0910">
     <title>Monte sua Identidade | Casa dos MBTIs</title>
     <link rel="stylesheet" href="monte-seu-card.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -12,350 +13,339 @@
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.5.0/libs/lz-string.min.js"></script>
 </head>
 <body>
-    <main class="pagina-card">
-        <a href="../../index.html" class="voltar-site">← 🏠 Voltar para a Casa</a>
+    <main class="pagina">
+        <a href="../../index.html" class="voltar">← 🏠 Voltar para a Casa</a>
 
-        <header class="cabecalho">
-            <div class="logo-area">
-                <img src="../../img/YU.png" alt="Casa dos MBTIs" class="logo">
-                <div class="logo-texto">
-                    <span>CASA DOS</span>
-                    <strong>MBTIs</strong>
-                </div>
-            </div>
-
-            <div class="titulo-area">
+        <header class="topo-pagina">
+            <div>
                 <span class="eyebrow">IDENTIDADE DA COMUNIDADE</span>
                 <h1>Monte sua identidade</h1>
-                <p>Crie seu cartão de identidade da Casa dos MBTIs com suas tipologias, grupo e estética favorita.</p>
+                <p>Crie seu card com seu nome, grupo e todas as suas tipologias.</p>
             </div>
         </header>
 
-        <div class="aviso-inicial">
-            <span class="aviso-icone">✦</span>
-            <div>
-                <strong>Crie sua identidade.</strong>
-                <p>Preencha suas tipologias, escolha uma estética e personalize cada detalhe do seu card.</p>
-            </div>
-        </div>
-
-        <section class="builder">
-            <section class="preview-area">
-                <div class="preview-topo">
-                    <span>PRÉ-VISUALIZAÇÃO</span>
-                    <small>Atualização em tempo real</small>
+        <section class="layout">
+            <section class="preview">
+                <div class="preview-cabecalho">
+                    <div>
+                        <span>PRÉ-VISUALIZAÇÃO</span>
+                        <small>Atualização em tempo real</small>
+                    </div>
                 </div>
 
-                <div class="card-wrapper">
-                    <div id="cardGerado" class="card-gerado">
-                        <div class="card-overlay"></div>
+                <div class="card-area">
+                    <article id="cardGerado" class="card">
+                        <div class="card-fundo"></div>
+                        <div class="card-sombra"></div>
 
-                        <div id="decorSpark" class="acessorio-card spark">✦</div>
-                        <div id="decorFlower" class="acessorio-card flower">✿</div>
-                        <div id="decorStar" class="acessorio-card star">★</div>
-                        <div id="decorHeart" class="acessorio-card heart">♡</div>
-                        <div id="decorBow" class="acessorio-card bow">🎀</div>
+                        <div class="decoracao decoracao-spark">✦</div>
+                        <div class="decoracao decoracao-flower">✿</div>
+                        <div class="decoracao decoracao-star">★</div>
+                        <div class="decoracao decoracao-heart">♡</div>
+                        <div class="decoracao decoracao-bow">🎀</div>
 
-                        <div class="card-shell">
-                            <div class="card-topo">
+                        <div class="card-interno">
+                            <header class="card-header">
                                 <div class="marca">
                                     <span>CASA DOS</span>
                                     <strong>MBTIs</strong>
                                 </div>
 
-                                <div class="identidade-chip">
+                                <div class="id-box">
                                     <span>COMMUNITY</span>
                                     <strong>ID</strong>
                                 </div>
-                            </div>
+                            </header>
 
-                            <div class="card-identidade-topo">
-                                <div class="nome-bloco">
+                            <section class="identidade-topo">
+                                <div class="nome">
                                     <span>NOME</span>
                                     <strong id="cardNick">Seu Nick</strong>
                                 </div>
 
-                                <div class="grupo-bloco" id="grupoFaixa">
+                                <div class="grupo" id="grupoCard">
                                     <span>GRUPO</span>
                                     <strong id="cardGrupo">Analistas</strong>
                                 </div>
-                            </div>
+                            </section>
 
-                            <div class="card-conteudo">
-                                <div class="lado-esquerdo">
-                                    <div class="avatar-bloco">
-                                        <div class="avatar-circulo">
-                                            <span id="avatarIcon">✦</span>
+                            <section class="card-conteudo">
+                                <div class="coluna-esquerda">
+                                    <div class="foto-slot">
+                                        <div class="foto-placeholder">
+                                            <span>✦</span>
+                                            <small>FOTO / FIGURINHA</small>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="lado-direito">
-                                    <div class="info-item">
+                                <div class="coluna-direita">
+                                    <div class="tipologia mbti">
                                         <span>MBTI</span>
                                         <strong id="cardMbti">ENTP</strong>
                                     </div>
 
-                                    <div class="info-item">
+                                    <div class="tipologia">
                                         <span>ENEAGRAMA</span>
                                         <strong id="cardEneagrama">7w6</strong>
                                     </div>
 
-                                    <div class="info-item">
+                                    <div class="tipologia">
                                         <span>INSTINTOS</span>
                                         <strong id="cardInstintos">sp/so</strong>
                                     </div>
 
-                                    <div class="info-item">
+                                    <div class="tipologia">
                                         <span>TRITYPE</span>
                                         <strong id="cardTritype">739</strong>
                                     </div>
 
-                                    <div class="info-item">
+                                    <div class="tipologia">
                                         <span>BIG FIVE</span>
                                         <strong id="cardBigfive">SCOEI</strong>
                                     </div>
 
-                                    <div class="info-item">
+                                    <div class="tipologia">
                                         <span>TEMPERAMENTO</span>
                                         <strong id="cardTemperamento">Sanguíneo</strong>
                                     </div>
 
-                                    <div class="info-item psychophy">
+                                    <div class="tipologia psychophy">
                                         <span>PSYCHOPHY</span>
                                         <strong id="cardPsychophy">1L 2E 3V 4F</strong>
                                     </div>
                                 </div>
-                            </div>
+                            </section>
 
-                            <div class="card-footer">
+                            <footer class="card-footer">
                                 <span>ESTA É MINHA IDENTIDADE.</span>
                                 <span>🏠 CASADOSMBTIS</span>
-                            </div>
+                            </footer>
                         </div>
-                    </div>
+                    </article>
                 </div>
-
-                <p class="preview-info">Digite suas informações e veja sua identidade nascer em tempo real.</p>
             </section>
 
-            <aside class="painel-form">
-                <div class="secao-titulo">
-                    <div class="numero">01</div>
-                    <div>
-                        <h2>Sua identidade</h2>
-                        <p>Informações da comunidade</p>
+            <aside class="painel">
+                <section class="bloco">
+                    <div class="bloco-titulo">
+                        <b>01</b>
+                        <div>
+                            <h2>Identidade</h2>
+                            <p>Suas informações</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="campo">
-                    <label for="nick">NOME / NICK</label>
-                    <input type="text" id="nick" maxlength="30" placeholder="ex: Astre">
-                </div>
-
-                <div class="campo">
-                    <label for="grupo">GRUPO DA COMUNIDADE</label>
-                    <select id="grupo">
-                        <option value="Analistas">Analistas</option>
-                        <option value="Diplomatas">Diplomatas</option>
-                        <option value="Sentinelas">Sentinelas</option>
-                        <option value="Exploradores">Exploradores</option>
-                    </select>
-                </div>
-
-                <div class="grid-2">
                     <div class="campo">
-                        <label for="mbti">MBTI</label>
-                        <select id="mbti">
-                            <option value="">Selecione</option>
-                            <option>INTJ</option>
-                            <option>INTP</option>
-                            <option>ENTJ</option>
-                            <option>ENTP</option>
-                            <option>INFJ</option>
-                            <option>INFP</option>
-                            <option>ENFJ</option>
-                            <option>ENFP</option>
-                            <option>ISTJ</option>
-                            <option>ISFJ</option>
-                            <option>ESTJ</option>
-                            <option>ESFJ</option>
-                            <option>ISTP</option>
-                            <option>ISFP</option>
-                            <option>ESTP</option>
-                            <option>ESFP</option>
+                        <label for="nick">NOME / NICK</label>
+                        <input id="nick" type="text" maxlength="30" placeholder="ex: Astre">
+                    </div>
+
+                    <div class="campo">
+                        <label for="grupo">GRUPO</label>
+                        <select id="grupo">
+                            <option value="Analistas">Analistas</option>
+                            <option value="Diplomatas">Diplomatas</option>
+                            <option value="Sentinelas">Sentinelas</option>
+                            <option value="Exploradores">Exploradores</option>
                         </select>
                     </div>
 
-                    <div class="campo">
-                        <label for="eneagrama">ENEAGRAMA</label>
-                        <input type="text" id="eneagrama" placeholder="7w6" maxlength="12">
-                    </div>
-                </div>
+                    <div class="dupla">
+                        <div class="campo">
+                            <label for="mbti">MBTI</label>
+                            <select id="mbti">
+                                <option value="">Selecione</option>
+                                <option>INTJ</option>
+                                <option>INTP</option>
+                                <option>ENTJ</option>
+                                <option>ENTP</option>
+                                <option>INFJ</option>
+                                <option>INFP</option>
+                                <option>ENFJ</option>
+                                <option>ENFP</option>
+                                <option>ISTJ</option>
+                                <option>ISFJ</option>
+                                <option>ESTJ</option>
+                                <option>ESFJ</option>
+                                <option>ISTP</option>
+                                <option>ISFP</option>
+                                <option>ESTP</option>
+                                <option>ESFP</option>
+                            </select>
+                        </div>
 
-                <div class="grid-2">
-                    <div class="campo">
-                        <label for="instintos">INSTINTOS</label>
-                        <input type="text" id="instintos" placeholder="sp/so" maxlength="15">
-                    </div>
-
-                    <div class="campo">
-                        <label for="temperamento">TEMPERAMENTO</label>
-                        <input type="text" id="temperamento" placeholder="Sanguíneo" maxlength="20">
-                    </div>
-                </div>
-
-                <div class="grid-2">
-                    <div class="campo">
-                        <label for="tritype">TRITYPE</label>
-                        <input type="text" id="tritype" placeholder="739" maxlength="8">
-                    </div>
-
-                    <div class="campo">
-                        <label for="bigfive">BIG FIVE</label>
-                        <input type="text" id="bigfive" placeholder="SCOEI" maxlength="15">
-                    </div>
-                </div>
-
-                <div class="campo">
-                    <label for="psychophy">PSYCHOPHY</label>
-                    <input type="text" id="psychophy" placeholder="1L 2E 3V 4F" maxlength="20">
-                </div>
-
-                <div class="linha-divisoria"></div>
-
-                <div class="secao-titulo">
-                    <div class="numero">02</div>
-                    <div>
-                        <h2>Fundo</h2>
-                        <p>Escolha a atmosfera do card</p>
-                    </div>
-                </div>
-
-                <div class="tipo-fundo">
-                    <button class="tipo-fundo-btn ativo" type="button" data-tipo="imagem">🖼️ Imagem</button>
-                    <button class="tipo-fundo-btn" type="button" data-tipo="cor">🎨 Cor</button>
-                </div>
-
-                <div class="fundo-imagens ativo" id="fundoImagens">
-                    <div class="temas">
-                        <button class="tema ativo" type="button" data-theme="azul"><img src="img/azul.jpg" alt="Azul"><span>Azul</span></button>
-                        <button class="tema" type="button" data-theme="azul2"><img src="img/azul2.jpg" alt="Blue Soft"><span>Blue Soft</span></button>
-                        <button class="tema" type="button" data-theme="estrelado"><img src="img/estrelado.jpg" alt="Estrelado"><span>Estrelado</span></button>
-                        <button class="tema" type="button" data-theme="preto"><img src="img/preto.jpg" alt="Preto"><span>Black</span></button>
-                        <button class="tema" type="button" data-theme="preto2"><img src="img/preto2.jpg" alt="Night"><span>Night</span></button>
-                        <button class="tema" type="button" data-theme="rosa"><img src="img/rosa.jpg" alt="Rosa"><span>Pink</span></button>
-                        <button class="tema" type="button" data-theme="roxo"><img src="img/roxo.jpg" alt="Roxo"><span>Roxo</span></button>
-                        <button class="tema" type="button" data-theme="verde"><img src="img/verde.jpg" alt="Verde"><span>Green</span></button>
-                        <button class="tema" type="button" data-theme="Giorno"><img src="img/giorno.jpg" alt="Giorno"><span>Giorno</span></button>
-                        <button class="tema" type="button" data-theme="noite-azulada"><img src="img/noite azulada.jpg" alt="Noite"><span>Noite</span></button>
-                        <button class="tema" type="button" data-theme="DIO"><img src="img/dio.jpg" alt="DIO"><span>DIO</span></button>
-                        <button class="tema" type="button" data-theme="anime"><img src="img/anime.jpg" alt="Anime"><span>Anime</span></button>
-                        <button class="tema" type="button" data-theme="gojo"><img src="img/gojo.jpg" alt="Gojo"><span>Gojo</span></button>
-                        <button class="tema" type="button" data-theme="zoro"><img src="img/zoro.jpg" alt="Zoro"><span>Zoro</span></button>
-                        <button class="tema" type="button" data-theme="alucard"><img src="img/alucard.jpg" alt="Alucard"><span>Alucard</span></button>
-                        <button class="tema" type="button" data-theme="Saiki"><img src="img/Saiki.jpg" alt="Saiki"><span>Saiki</span></button>
-                        <button class="tema" type="button" data-theme="Johnny-Joestar"><img src="img/Johnny-Joestar.jpg" alt="Johnny"><span>Johnny</span></button>
-                        <button class="tema" type="button" data-theme="reze"><img src="img/reze.jpg" alt="Reze"><span>Reze</span></button>
-                    </div>
-                </div>
-
-                <div class="fundo-cor" id="fundoCor">
-                    <div class="cor-fundo-controle">
-                        <label class="fundo-personalizado">
-                            <input type="color" id="corFundo" value="#17121f">
-                            <span>🎨</span>
-                        </label>
-                        <div class="fundo-cor-info">
-                            <span>Escolha a cor do fundo.</span>
-                            <strong id="valorCorFundo">#17121F</strong>
+                        <div class="campo">
+                            <label for="eneagrama">ENEAGRAMA</label>
+                            <input id="eneagrama" type="text" maxlength="12" placeholder="7w6">
                         </div>
                     </div>
 
-                    <div class="fundos-prontos">
-                        <button class="fundo-opcao ativa" type="button" data-color="#17121f"></button>
-                        <button class="fundo-opcao" type="button" data-color="#0b0910"></button>
-                        <button class="fundo-opcao" type="button" data-color="#24172d"></button>
-                        <button class="fundo-opcao" type="button" data-color="#32172a"></button>
-                        <button class="fundo-opcao" type="button" data-color="#17182b"></button>
-                        <button class="fundo-opcao" type="button" data-color="#251d35"></button>
+                    <div class="dupla">
+                        <div class="campo">
+                            <label for="instintos">INSTINTOS</label>
+                            <input id="instintos" type="text" maxlength="15" placeholder="sp/so">
+                        </div>
+
+                        <div class="campo">
+                            <label for="temperamento">TEMPERAMENTO</label>
+                            <input id="temperamento" type="text" maxlength="20" placeholder="Sanguíneo">
+                        </div>
                     </div>
-                </div>
 
-                <div class="campo">
-                    <label>COR DAS LETRAS</label>
-                    <div class="paleta-cores">
-                        <button class="cor-opcao ativa" type="button" data-color="#c88dff"></button>
-                        <button class="cor-opcao" type="button" data-color="#ff8fc6"></button>
-                        <button class="cor-opcao" type="button" data-color="#79a9ff"></button>
-                        <button class="cor-opcao" type="button" data-color="#8bd59b"></button>
-                        <button class="cor-opcao" type="button" data-color="#ffd46d"></button>
-                        <button class="cor-opcao" type="button" data-color="#ffffff"></button>
-                        <label class="cor-personalizada">
-                            <input type="color" id="cor" value="#c88dff">
-                            <span>+</span>
-                        </label>
+                    <div class="dupla">
+                        <div class="campo">
+                            <label for="tritype">TRITYPE</label>
+                            <input id="tritype" type="text" maxlength="8" placeholder="739">
+                        </div>
+
+                        <div class="campo">
+                            <label for="bigfive">BIG FIVE</label>
+                            <input id="bigfive" type="text" maxlength="15" placeholder="SCOEI">
+                        </div>
                     </div>
-                    <span id="valorCor" class="valor-cor">#C88DFF</span>
-                </div>
 
-                <div class="campo">
-                    <label>COR DO CABEÇALHO</label>
-                    <div class="paleta-cores">
-                        <button class="cor-topo-opcao ativa" type="button" data-color="#9f63d9"></button>
-                        <button class="cor-topo-opcao" type="button" data-color="#db72a7"></button>
-                        <button class="cor-topo-opcao" type="button" data-color="#5588db"></button>
-                        <button class="cor-topo-opcao" type="button" data-color="#639c6c"></button>
-                        <button class="cor-topo-opcao" type="button" data-color="#d69a31"></button>
-                        <button class="cor-topo-opcao" type="button" data-color="#ffffff"></button>
-                        <label class="cor-personalizada">
-                            <input type="color" id="corTopo" value="#9f63d9">
-                            <span>+</span>
-                        </label>
+                    <div class="campo">
+                        <label for="psychophy">PSYCHOPHY</label>
+                        <input id="psychophy" type="text" maxlength="20" placeholder="1L 2E 3V 4F">
                     </div>
-                    <span id="valorCorTopo" class="valor-cor">#9F63D9</span>
-                </div>
+                </section>
 
-                <div class="linha-divisoria"></div>
-
-                <div class="secao-titulo">
-                    <div class="numero">03</div>
-                    <div>
-                        <h2>Acessórios</h2>
-                        <p>Escolha um detalhe para o card</p>
+                <section class="bloco">
+                    <div class="bloco-titulo">
+                        <b>02</b>
+                        <div>
+                            <h2>Fundo</h2>
+                            <p>Escolha a aparência</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="acessorios">
-                    <button class="acessorio ativo" type="button" data-acessorio="none"><span>✕</span><small>Nenhum</small></button>
-                    <button class="acessorio" type="button" data-acessorio="spark"><span>✦</span><small>Brilho</small></button>
-                    <button class="acessorio" type="button" data-acessorio="flower"><span>✿</span><small>Flor</small></button>
-                    <button class="acessorio" type="button" data-acessorio="star"><span>★</span><small>Estrela</small></button>
-                    <button class="acessorio" type="button" data-acessorio="heart"><span>♡</span><small>Coração</small></button>
-                    <button class="acessorio" type="button" data-acessorio="bow"><span>🎀</span><small>Laço</small></button>
-                </div>
-
-                <div class="linha-divisoria"></div>
-
-                <div class="secao-titulo">
-                    <div class="numero">04</div>
-                    <div>
-                        <h2>Seu card</h2>
-                        <p>Salve ou compartilhe</p>
+                    <div class="abas">
+                        <button class="aba ativo" type="button" data-fundo="imagem">🖼️ Imagem</button>
+                        <button class="aba" type="button" data-fundo="cor">🎨 Cor</button>
                     </div>
-                </div>
 
-                <div class="acoes">
-                    <button class="btn principal" id="baixarCard" type="button">↓ Baixar como imagem</button>
-                    <button class="btn" id="copiarLink" type="button">🔗 Copiar link do card</button>
-                </div>
+                    <div id="painelImagens" class="fundo-painel ativo">
+                        <div class="temas">
+                            <button class="tema ativo" type="button" data-tema="azul"><img src="img/azul.jpg" alt="Azul"><span>Azul</span></button>
+                            <button class="tema" type="button" data-tema="azul2"><img src="img/azul2.jpg" alt="Blue Soft"><span>Blue Soft</span></button>
+                            <button class="tema" type="button" data-tema="estrelado"><img src="img/estrelado.jpg" alt="Estrelado"><span>Estrelado</span></button>
+                            <button class="tema" type="button" data-tema="preto"><img src="img/preto.jpg" alt="Preto"><span>Black</span></button>
+                            <button class="tema" type="button" data-tema="preto2"><img src="img/preto2.jpg" alt="Night"><span>Night</span></button>
+                            <button class="tema" type="button" data-tema="rosa"><img src="img/rosa.jpg" alt="Rosa"><span>Pink</span></button>
+                            <button class="tema" type="button" data-tema="roxo"><img src="img/roxo.jpg" alt="Roxo"><span>Roxo</span></button>
+                            <button class="tema" type="button" data-tema="verde"><img src="img/verde.jpg" alt="Verde"><span>Green</span></button>
+                            <button class="tema" type="button" data-tema="Giorno"><img src="img/giorno.jpg" alt="Giorno"><span>Giorno</span></button>
+                            <button class="tema" type="button" data-tema="noite"><img src="img/noite azulada.jpg" alt="Noite"><span>Noite</span></button>
+                            <button class="tema" type="button" data-tema="DIO"><img src="img/dio.jpg" alt="DIO"><span>DIO</span></button>
+                            <button class="tema" type="button" data-tema="anime"><img src="img/anime.jpg" alt="Anime"><span>Anime</span></button>
+                            <button class="tema" type="button" data-tema="gojo"><img src="img/gojo.jpg" alt="Gojo"><span>Gojo</span></button>
+                            <button class="tema" type="button" data-tema="zoro"><img src="img/zoro.jpg" alt="Zoro"><span>Zoro</span></button>
+                            <button class="tema" type="button" data-tema="alucard"><img src="img/alucard.jpg" alt="Alucard"><span>Alucard</span></button>
+                            <button class="tema" type="button" data-tema="Saiki"><img src="img/Saiki.jpg" alt="Saiki"><span>Saiki</span></button>
+                            <button class="tema" type="button" data-tema="Johnny-Joestar"><img src="img/Johnny-Joestar.jpg" alt="Johnny"><span>Johnny</span></button>
+                            <button class="tema" type="button" data-tema="reze"><img src="img/reze.jpg" alt="Reze"><span>Reze</span></button>
+                        </div>
+                    </div>
 
-                <p class="aviso">✦ Nenhum dado é salvo em banco de dados. As informações existem apenas no seu navegador ou no link compartilhado.</p>
+                    <div id="painelCor" class="fundo-painel">
+                        <div class="cor-fundo">
+                            <label class="cor-picker">
+                                <input id="corFundo" type="color" value="#17121f">
+                                <span>🎨</span>
+                            </label>
+                            <div>
+                                <strong id="valorCorFundo">#17121F</strong>
+                                <small>Escolha qualquer cor</small>
+                            </div>
+                        </div>
+
+                        <div class="cores-fundo">
+                            <button type="button" data-cor="#17121f"></button>
+                            <button type="button" data-cor="#0b0910"></button>
+                            <button type="button" data-cor="#24172d"></button>
+                            <button type="button" data-cor="#32172a"></button>
+                            <button type="button" data-cor="#17182b"></button>
+                            <button type="button" data-cor="#251d35"></button>
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label>COR DAS LETRAS</label>
+                        <div class="paleta">
+                            <button class="cor letra ativa" type="button" data-cor="#c88dff"></button>
+                            <button class="cor letra" type="button" data-cor="#ff8fc6"></button>
+                            <button class="cor letra" type="button" data-cor="#79a9ff"></button>
+                            <button class="cor letra" type="button" data-cor="#8bd59b"></button>
+                            <button class="cor letra" type="button" data-cor="#ffd46d"></button>
+                            <button class="cor letra" type="button" data-cor="#ffffff"></button>
+                            <label class="cor-custom">
+                                <input id="corLetra" type="color" value="#c88dff">
+                                <span>+</span>
+                            </label>
+                        </div>
+                        <small id="valorCorLetra" class="valor">#C88DFF</small>
+                    </div>
+
+                    <div class="campo">
+                        <label>COR DO CABEÇALHO</label>
+                        <div class="paleta">
+                            <button class="cor topo ativa" type="button" data-cor="#9f63d9"></button>
+                            <button class="cor topo" type="button" data-cor="#db72a7"></button>
+                            <button class="cor topo" type="button" data-cor="#5588db"></button>
+                            <button class="cor topo" type="button" data-cor="#639c6c"></button>
+                            <button class="cor topo" type="button" data-cor="#d69a31"></button>
+                            <button class="cor topo" type="button" data-cor="#ffffff"></button>
+                            <label class="cor-custom">
+                                <input id="corTopo" type="color" value="#9f63d9">
+                                <span>+</span>
+                            </label>
+                        </div>
+                        <small id="valorCorTopo" class="valor">#9F63D9</small>
+                    </div>
+                </section>
+
+                <section class="bloco">
+                    <div class="bloco-titulo">
+                        <b>03</b>
+                        <div>
+                            <h2>Acessórios</h2>
+                            <p>Escolha um detalhe</p>
+                        </div>
+                    </div>
+
+                    <div class="acessorios">
+                        <button class="acessorio ativo" type="button" data-acessorio="none"><span>✕</span><small>Nenhum</small></button>
+                        <button class="acessorio" type="button" data-acessorio="spark"><span>✦</span><small>Brilho</small></button>
+                        <button class="acessorio" type="button" data-acessorio="flower"><span>✿</span><small>Flor</small></button>
+                        <button class="acessorio" type="button" data-acessorio="star"><span>★</span><small>Estrela</small></button>
+                        <button class="acessorio" type="button" data-acessorio="heart"><span>♡</span><small>Coração</small></button>
+                        <button class="acessorio" type="button" data-acessorio="bow"><span>🎀</span><small>Laço</small></button>
+                    </div>
+                </section>
+
+                <section class="bloco">
+                    <div class="bloco-titulo">
+                        <b>04</b>
+                        <div>
+                            <h2>Salvar</h2>
+                            <p>Seu card e seu link</p>
+                        </div>
+                    </div>
+
+                    <div class="acoes">
+                        <button id="baixarCard" class="btn principal" type="button">↓ Baixar como imagem</button>
+                        <button id="copiarLink" class="btn" type="button">🔗 Copiar link do card</button>
+                    </div>
+
+                    <p class="aviso">✦ Nenhum dado é salvo em banco de dados. O card funciona pelo navegador e pelo link compartilhado.</p>
+                </section>
             </aside>
         </section>
     </main>
 
     <div id="toast" class="toast"></div>
+
     <script src="monte-seu-card.js"></script>
 </body>
 </html>
