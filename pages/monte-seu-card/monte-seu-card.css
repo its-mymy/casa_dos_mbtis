@@ -201,8 +201,8 @@ a {
 }
 
 .preview-area {
-    min-width: 0;
     width: 100%;
+    min-width: 0;
     order: 1;
 }
 
@@ -1011,11 +1011,158 @@ a {
     }
 
     .card-wrapper {
+        width: 100%;
         padding: 0;
+    }
+
+    .card-gerado {
+        width: 100%;
+        max-width: 520px;
+        height: auto;
+        min-height: 0;
+        aspect-ratio: 9 / 16;
+        margin: 0 auto;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .card-gerado::before {
+        inset: 7px;
+        border-radius: 15px;
+    }
+
+    .card-topo {
+        height: 56px;
+        padding: 0 18px;
+    }
+
+    .marca {
+        gap: 7px;
+    }
+
+    .marca span,
+    .marca strong {
+        font-size: 16px;
+    }
+
+    .identidade-chip span {
+        display: none;
+    }
+
+    .identidade-chip strong {
+        width: 25px;
+        height: 25px;
+    }
+
+    .card-identidade-topo {
+        grid-template-columns: minmax(0, 1fr) minmax(120px, 0.72fr);
+        gap: 12px;
+        padding: 16px 18px 9px;
+    }
+
+    .nome-bloco span,
+    .grupo-bloco span {
+        font-size: 7px;
+    }
+
+    .nome-bloco strong {
+        font-size: 32px;
+        line-height: 1;
+    }
+
+    .grupo-bloco {
+        padding: 10px 12px 10px 17px;
+        border-radius: 11px;
+    }
+
+    .grupo-bloco::before {
+        width: 4px;
+    }
+
+    .grupo-bloco strong {
+        font-size: 16px;
+    }
+
+    .card-conteudo {
+        grid-template-columns: 0.72fr 1.28fr;
+        gap: 12px;
+        padding: 8px 18px 14px;
+        align-items: start;
+    }
+
+    .lado-esquerdo {
+        align-items: flex-start;
+        justify-content: center;
+        padding-top: 5px;
+    }
+
+    .avatar-circulo {
+        width: 100%;
+        max-width: 145px;
+        aspect-ratio: 0.82;
+        flex-shrink: 0;
+        border-width: 2px;
+        border-radius: 11px;
+    }
+
+    #avatarIcon {
+        font-size: 28px;
+    }
+
+    .lado-direito {
+        align-content: start;
+        grid-auto-rows: minmax(50px, auto);
+        gap: 7px;
+    }
+
+    .info-item {
+        min-height: 50px;
+        padding: 8px 10px;
+        border-radius: 10px;
+    }
+
+    .info-item span {
+        font-size: 6px;
+        letter-spacing: 1px;
+    }
+
+    .info-item strong {
+        font-size: 15px;
+    }
+
+    .card-footer {
+        min-height: 36px;
+        padding: 0 18px;
+    }
+
+    .card-footer span {
+        font-size: 5px;
+    }
+
+    .acessorio-card.spark {
+        top: 68px;
+        right: 20px;
+        font-size: 20px;
+    }
+
+    .acessorio-card.flower,
+    .acessorio-card.heart {
+        right: 18px;
+        bottom: 44px;
+    }
+
+    .acessorio-card.star {
+        top: 68px;
+        right: 22px;
+    }
+
+    .acessorio-card.bow {
+        top: 61px;
+        right: 19px;
     }
 }
 
-@media (max-width: 640px) {
+@media (max-width: 600px) {
     .pagina-card {
         padding: 18px 11px 55px;
     }
@@ -1038,22 +1185,9 @@ a {
         padding: 14px;
     }
 
-    .builder {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-    }
-
-    .preview-area {
-        width: 100%;
-        order: 1;
-    }
-
     .painel-form {
-        width: 100%;
         padding: 18px;
         border-radius: 17px;
-        order: 2;
     }
 
     .grid-2 {
@@ -1065,70 +1199,18 @@ a {
         grid-template-columns: repeat(3, 1fr);
     }
 
-    .card-wrapper {
-        width: 100%;
-        padding: 0;
-    }
-
     .card-gerado {
-        width: 100%;
-        max-width: 420px;
-        height: auto;
-        min-height: 0;
-        aspect-ratio: 9 / 16;
-        margin: 0 auto;
-        border-radius: 20px;
-        background-size: cover;
-        background-position: center center;
-    }
-
-    .card-gerado::before {
-        inset: 7px;
-        border-radius: 15px;
-    }
-
-    .card-topo {
-        height: 56px;
-        padding: 0 17px;
-    }
-
-    .marca span,
-    .marca strong {
-        font-size: 15px;
-    }
-
-    .identidade-chip span {
-        display: none;
-    }
-
-    .identidade-chip strong {
-        width: 24px;
-        height: 24px;
+        max-width: 430px;
     }
 
     .card-identidade-topo {
         grid-template-columns: minmax(0, 1fr) minmax(105px, 0.72fr);
         gap: 10px;
-        padding: 12px 17px 8px;
-    }
-
-    .nome-bloco span,
-    .grupo-bloco span {
-        font-size: 7px;
+        padding: 14px 17px 8px;
     }
 
     .nome-bloco strong {
-        font-size: 32px;
-        line-height: 1;
-    }
-
-    .grupo-bloco {
-        padding: 10px 12px 10px 16px;
-        border-radius: 11px;
-    }
-
-    .grupo-bloco::before {
-        width: 4px;
+        font-size: 30px;
     }
 
     .grupo-bloco strong {
@@ -1136,81 +1218,27 @@ a {
     }
 
     .card-conteudo {
-        grid-template-columns: 0.72fr 1.28fr;
-        gap: 10px;
-        padding: 6px 17px 14px;
-        align-items: start;
-    }
-
-    .lado-esquerdo {
-        align-items: flex-start;
-        justify-content: center;
-        padding-top: 4px;
+        grid-template-columns: 0.7fr 1.3fr;
+        gap: 9px;
+        padding: 7px 17px 14px;
     }
 
     .avatar-circulo {
-        width: 100%;
-        max-width: 120px;
-        aspect-ratio: 0.82;
-        flex-shrink: 0;
-        border-width: 2px;
-        border-radius: 10px;
-    }
-
-    #avatarIcon {
-        font-size: 27px;
+        max-width: 125px;
     }
 
     .lado-direito {
-        align-content: start;
-        grid-auto-rows: minmax(45px, auto);
+        grid-auto-rows: minmax(46px, auto);
         gap: 6px;
     }
 
     .info-item {
-        min-height: 45px;
+        min-height: 46px;
         padding: 7px 9px;
-        border-radius: 9px;
-    }
-
-    .info-item span {
-        font-size: 6px;
-        letter-spacing: 0.9px;
     }
 
     .info-item strong {
         font-size: 14px;
-    }
-
-    .card-footer {
-        min-height: 34px;
-        padding: 0 17px;
-    }
-
-    .card-footer span {
-        font-size: 5px;
-    }
-
-    .acessorio-card.spark {
-        top: 65px;
-        right: 18px;
-        font-size: 20px;
-    }
-
-    .acessorio-card.flower,
-    .acessorio-card.heart {
-        right: 17px;
-        bottom: 43px;
-    }
-
-    .acessorio-card.star {
-        top: 64px;
-        right: 20px;
-    }
-
-    .acessorio-card.bow {
-        top: 58px;
-        right: 18px;
     }
 }
 
@@ -1234,7 +1262,6 @@ a {
 
     .card-gerado {
         max-width: 360px;
-        aspect-ratio: 9 / 16;
     }
 
     .card-identidade-topo {
@@ -1254,7 +1281,7 @@ a {
     }
 
     .nome-bloco strong {
-        font-size: 29px;
+        font-size: 28px;
     }
 
     .info-item strong {
