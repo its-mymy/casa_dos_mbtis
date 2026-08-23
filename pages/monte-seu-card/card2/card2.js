@@ -21,7 +21,9 @@ Object.entries(fields).forEach(([inputId, targetId]) => {
     }
 
     function updateField() {
-        const targets = Array.isArray(targetId) ? targetId : [targetId];
+        const targets = Array.isArray(targetId)
+            ? targetId
+            : [targetId];
 
         targets.forEach(id => {
             const target = document.getElementById(id);
@@ -52,7 +54,7 @@ vibeInput.addEventListener("change", () => {
 });
 
 vibeValueInput.addEventListener("input", () => {
-    const value = vibeValueInput.value;
+    const value = Number(vibeValueInput.value);
 
     vibeValueLabel.textContent = `${value}%`;
     cardVibeValue.textContent = `${value}%`;
@@ -82,7 +84,10 @@ function renderInterests() {
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.textContent = "×";
-        removeButton.setAttribute("aria-label", `Remover interesse ${interest}`);
+        removeButton.setAttribute(
+            "aria-label",
+            `Remover interesse ${interest}`
+        );
 
         removeButton.addEventListener("click", () => {
             interests.splice(index, 1);
@@ -113,6 +118,7 @@ function addInterest() {
 
     interests.push(value);
     interestInput.value = "";
+
     renderInterests();
 }
 
@@ -127,7 +133,7 @@ interestInput.addEventListener("keydown", event => {
 
 renderInterests();
 
-/* COR DO CARD */
+/* COR */
 
 const themeInput = document.getElementById("themeInput");
 
@@ -157,7 +163,10 @@ themeInput.addEventListener("input", () => {
         b: Math.round(rgb.b * 0.28)
     };
 
-    document.documentElement.style.setProperty("--accent", color);
+    document.documentElement.style.setProperty(
+        "--accent",
+        color
+    );
 
     document.documentElement.style.setProperty(
         "--accent-light",
@@ -202,8 +211,14 @@ function hexToRgb(hex) {
 
 function loadImage(inputId, targetIds, pickerIds) {
     const input = document.getElementById(inputId);
-    const targets = Array.isArray(targetIds) ? targetIds : [targetIds];
-    const pickers = Array.isArray(pickerIds) ? pickerIds : [pickerIds];
+
+    const targets = Array.isArray(targetIds)
+        ? targetIds
+        : [targetIds];
+
+    const pickers = Array.isArray(pickerIds)
+        ? pickerIds
+        : [pickerIds];
 
     if (!input) {
         return;
@@ -253,6 +268,8 @@ function loadImage(inputId, targetIds, pickerIds) {
         picker.addEventListener("click", event => {
             event.preventDefault();
             event.stopPropagation();
+
+            input.value = "";
             input.click();
         });
     });
@@ -279,16 +296,19 @@ loadImage(
 
 /* DOWNLOAD */
 
-document.getElementById("downloadButton").addEventListener("click", async () => {
-    const card = document.getElementById("profileCard");
-    const button = document.getElementById("downloadButton");
+const downloadButton = document.getElementById("downloadButton");
 
-    button.disabled = true;
-    button.textContent = "GERANDO CARD...";
+downloadButton.addEventListener("click", async () => {
+    const card = document.getElementById("profileCard");
+
+    downloadButton.disabled = true;
+    downloadButton.textContent = "GERANDO CARD...";
 
     try {
         if (typeof html2canvas !== "function") {
-            throw new Error("html2canvas não foi carregado.");
+            throw new Error(
+                "html2canvas não foi carregado."
+            );
         }
 
         await document.fonts.ready;
@@ -301,12 +321,24 @@ document.getElementById("downloadButton").addEventListener("click", async () => 
 
         const canvas = await html2canvas(card, {
             backgroundColor: null,
-            scale: 3,
+            scale: 4,
             useCORS: true,
             allowTaint: false,
             imageTimeout: 30000,
-            logging: false
+            logging: false,
+            scrollX: 0,
+            scrollY: 0
         });
+
+        if (
+            !canvas ||
+            canvas.width <= 0 ||
+            canvas.height <= 0
+        ) {
+            throw new Error(
+                "Canvas inválido."
+            );
+        }
 
         const blob = await new Promise(resolve => {
             canvas.toBlob(
@@ -317,7 +349,9 @@ document.getElementById("downloadButton").addEventListener("click", async () => 
         });
 
         if (!blob) {
-            throw new Error("Não foi possível gerar o PNG.");
+            throw new Error(
+                "Não foi possível gerar o PNG."
+            );
         }
 
         const url = URL.createObjectURL(blob);
@@ -334,10 +368,16 @@ document.getElementById("downloadButton").addEventListener("click", async () => 
             URL.revokeObjectURL(url);
         }, 2000);
     } catch (error) {
-        console.error(error);
-        alert("Não foi possível gerar o card. Tente novamente.");
+        console.error(
+            "Erro ao gerar o card:",
+            error
+        );
+
+        alert(
+            "Não foi possível gerar o card. Tente novamente."
+        );
     } finally {
-        button.disabled = false;
-        button.textContent = "✦ SALVAR COMO IMAGEM";
+        downloadButton.disabled = false;
+        downloadButton.textContent = "✦ SALVAR COMO IMAGEM";
     }
 });
