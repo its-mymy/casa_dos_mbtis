@@ -11,7 +11,10 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
-    <a href="/pages/monte-seu-card/" class="back-button">← VOLTAR PARA OS MODELOS</a>
+
+    <a href="/pages/monte-seu-card/" class="back-button">
+        ← VOLTAR PARA OS MODELOS
+    </a>
 
     <aside class="editor">
         <div class="editor-header">
@@ -99,13 +102,13 @@
         <div class="editor-group">
             <label>Personagem que me representa</label>
             <button type="button" class="image-button" id="avatarButton">🖼️ Escolher imagem</button>
-            <input type="file" id="avatarInput" accept="image/*" hidden>
+            <input type="file" id="avatarInput" class="file-input" accept="image/*">
         </div>
 
         <div class="editor-group">
             <label>Personagem da minha vibe</label>
             <button type="button" class="image-button" id="vibeCharacterButton">🖼️ Escolher imagem</button>
-            <input type="file" id="vibeCharacterInput" accept="image/*" hidden>
+            <input type="file" id="vibeCharacterInput" class="file-input" accept="image/*">
         </div>
 
         <div class="editor-group">
@@ -148,21 +151,13 @@
         </div>
 
         <div class="editor-group">
-            <label>Meus traços — até 4</label>
-            <div class="trait-editor">
-                <input type="text" id="traitInput" placeholder="Ex: Curioso">
-                <input type="number" id="traitValueInput" min="0" max="100" value="80">
-                <button type="button" id="addTraitButton">+</button>
-            </div>
-            <div class="editor-traits" id="editorTraits"></div>
-        </div>
-
-        <div class="editor-group">
             <label for="themeInput">Cor do cartão</label>
             <input type="color" id="themeInput" value="#9b62d7">
         </div>
 
-        <button class="save-button" id="downloadButton" type="button">✦ SALVAR COMO IMAGEM</button>
+        <button class="save-button" id="downloadButton" type="button">
+            ✦ SALVAR COMO IMAGEM
+        </button>
     </aside>
 
     <div class="background">
@@ -184,17 +179,21 @@
     </div>
 
     <main class="card-scene">
+
         <div class="lanyard">
             <div class="lanyard-strap">
                 <div class="lanyard-logo">✦</div>
             </div>
+
             <div class="metal-ring"></div>
+
             <div class="metal-clip">
                 <div class="clip-hole"></div>
             </div>
         </div>
 
         <article class="profile-card" id="profileCard">
+
             <div class="card-shine"></div>
 
             <div class="watermark">
@@ -203,10 +202,15 @@
             </div>
 
             <header class="card-header">
-                <div class="type-label">✦ <span id="cardMbti">ENTP</span></div>
+
+                <div class="type-label">
+                    ✦ <span id="cardMbti">ENTP</span>
+                </div>
+
                 <div class="header-decoration">☁</div>
 
                 <div class="header-content">
+
                     <div class="identity">
                         <h1 id="cardName">Astre</h1>
                         <p class="username" id="cardUsername">@uma_entp</p>
@@ -217,34 +221,49 @@
                         <img id="cardAvatar" src="../../assets/astre.png" alt="Personagem que representa o usuário">
                         <div class="avatar-star">✦</div>
                     </div>
+
                 </div>
+
             </header>
 
             <section class="main-types">
+
                 <div class="type-box">
                     <strong id="cardMbtiMain">ENTP</strong>
                     <span>MBTI</span>
                 </div>
+
                 <div class="type-box">
                     <strong id="cardEnneagram">7w6</strong>
                     <span>ENEAGRAMA</span>
                 </div>
+
                 <div class="type-box">
                     <strong id="cardTritype">739</strong>
                     <span>TRITYPE</span>
                 </div>
+
             </section>
 
             <section class="info-box about">
+
                 <div class="section-title">
                     <span>✦</span>
                     SOBRE MIM
                 </div>
-                <p id="cardAbout">Mente inquieta, curiosa por natureza e apaixonada por ideias. Provavelmente criando dez planos diferentes enquanto deveria estar fazendo outra coisa.</p>
+
+                <p id="cardAbout">
+                    Mente inquieta, curiosa por natureza e apaixonada por ideias.
+                    Provavelmente criando dez planos diferentes enquanto deveria
+                    estar fazendo outra coisa.
+                </p>
+
                 <span class="little-cat">ฅ^•ﻌ•^ฅ</span>
+
             </section>
 
             <section class="details-grid">
+
                 <div class="detail">
                     <div class="detail-icon">♡</div>
                     <div>
@@ -276,10 +295,13 @@
                         <strong id="cardBigFive">SCOEI</strong>
                     </div>
                 </div>
+
             </section>
 
             <section class="characters-grid">
+
                 <div class="character-box">
+
                     <div class="section-title">
                         <span>✦</span>
                         ME REPRESENTA
@@ -288,9 +310,11 @@
                     <div class="character-image image-picker" id="avatarCharacterPicker">
                         <img id="cardAvatarCharacter" src="../../assets/astre.png" alt="Personagem que representa o usuário">
                     </div>
+
                 </div>
 
                 <div class="character-box">
+
                     <div class="section-title">
                         <span>☁</span>
                         MINHA VIBE
@@ -299,24 +323,32 @@
                     <div class="character-image image-picker" id="vibeCharacterPicker">
                         <img id="cardVibeCharacter" src="../../assets/astre-vibe.png" alt="Personagem que representa a vibe">
                     </div>
+
                 </div>
+
             </section>
 
             <section class="info-box interests">
+
                 <div class="section-title">
                     <span>✦</span>
                     INTERESSES
                 </div>
+
                 <div class="tags" id="cardInterests"></div>
+
             </section>
 
             <section class="info-box vibe">
+
                 <div class="section-title">
                     <span>✦</span>
                     MINHA VIBE
                 </div>
 
-                <div class="selected-vibe" id="cardVibe">Curioso e caótico</div>
+                <div class="selected-vibe" id="cardVibe">
+                    Curioso e caótico
+                </div>
 
                 <div class="vibe-label">
                     <span>INTENSIDADE</span>
@@ -326,30 +358,41 @@
                 <div class="progress">
                     <div id="cardVibeBar" style="width: 80%;"></div>
                 </div>
-            </section>
 
-            <section class="info-box traits">
-                <div class="section-title">
-                    <span>✦</span>
-                    MEUS TRAÇOS
-                </div>
-                <div class="traits-list" id="cardTraits"></div>
             </section>
 
             <section class="quote-box">
-                <div class="quote-title">✦ FRASE QUE ME DEFINE</div>
-                <p id="cardPhrase">"Meu cérebro tem ideias. O resto é detalhe."</p>
+
+                <div class="quote-title">
+                    ✦ FRASE QUE ME DEFINE
+                </div>
+
+                <p id="cardPhrase">
+                    "Meu cérebro tem ideias. O resto é detalhe."
+                </p>
+
                 <span class="quote-mark">”</span>
+
             </section>
 
             <footer class="card-footer">
-                <div class="footer-cat">ฅ^•ﻌ•^ฅ</div>
+
+                <div class="footer-cat">
+                    ฅ^•ﻌ•^ฅ
+                </div>
+
                 <span>CASA DOS MBTIs</span>
-                <div class="barcode">|| ||| || |||| |</div>
+
+                <div class="barcode">
+                    || ||| || |||| |
+                </div>
+
             </footer>
+
         </article>
     </main>
 
     <script src="card2.js"></script>
+
 </body>
 </html>

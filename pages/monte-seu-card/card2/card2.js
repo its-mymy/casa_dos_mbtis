@@ -16,7 +16,9 @@ const fields = {
 Object.entries(fields).forEach(([inputId, targetId]) => {
     const input = document.getElementById(inputId);
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
     function updateField() {
         const targets = Array.isArray(targetId) ? targetId : [targetId];
@@ -32,8 +34,11 @@ Object.entries(fields).forEach(([inputId, targetId]) => {
 
     input.addEventListener("input", updateField);
     input.addEventListener("change", updateField);
+
     updateField();
 });
+
+/* VIBE */
 
 const vibeInput = document.getElementById("vibeInput");
 const vibeValueInput = document.getElementById("vibeValueInput");
@@ -53,6 +58,8 @@ vibeValueInput.addEventListener("input", () => {
     cardVibeValue.textContent = `${value}%`;
     cardVibeBar.style.width = `${value}%`;
 });
+
+/* INTERESSES */
 
 const interestInput = document.getElementById("interestInput");
 const addInterestButton = document.getElementById("addInterestButton");
@@ -75,13 +82,15 @@ function renderInterests() {
         const removeButton = document.createElement("button");
         removeButton.type = "button";
         removeButton.textContent = "×";
+        removeButton.setAttribute("aria-label", `Remover interesse ${interest}`);
 
         removeButton.addEventListener("click", () => {
             interests.splice(index, 1);
             renderInterests();
         });
 
-        editorTag.append(text, removeButton);
+        editorTag.appendChild(text);
+        editorTag.appendChild(removeButton);
         editorInterests.appendChild(editorTag);
 
         const cardTag = document.createElement("span");
@@ -93,10 +102,12 @@ function renderInterests() {
 function addInterest() {
     const value = interestInput.value.trim();
 
-    if (!value) return;
+    if (!value) {
+        return;
+    }
 
     if (interests.length >= 5) {
-        alert("Você pode escolher até 5 interesses.");
+        alert("Você pode adicionar até 5 interesses.");
         return;
     }
 
@@ -116,98 +127,7 @@ interestInput.addEventListener("keydown", event => {
 
 renderInterests();
 
-const traitInput = document.getElementById("traitInput");
-const traitValueInput = document.getElementById("traitValueInput");
-const addTraitButton = document.getElementById("addTraitButton");
-const editorTraits = document.getElementById("editorTraits");
-const cardTraits = document.getElementById("cardTraits");
-
-let traits = [];
-
-function renderTraits() {
-    editorTraits.innerHTML = "";
-    cardTraits.innerHTML = "";
-
-    traits.forEach((trait, index) => {
-        const editorTrait = document.createElement("div");
-        editorTrait.className = "editor-trait";
-
-        const text = document.createElement("span");
-        text.textContent = `${trait.name} ${trait.value}%`;
-
-        const removeButton = document.createElement("button");
-        removeButton.type = "button";
-        removeButton.textContent = "×";
-
-        removeButton.addEventListener("click", () => {
-            traits.splice(index, 1);
-            renderTraits();
-        });
-
-        editorTrait.append(text, removeButton);
-        editorTraits.appendChild(editorTrait);
-
-        const traitCard = document.createElement("div");
-        traitCard.className = "trait-item";
-
-        const traitLabel = document.createElement("div");
-        traitLabel.className = "trait-label";
-
-        const traitName = document.createElement("span");
-        traitName.textContent = trait.name;
-
-        const traitValue = document.createElement("span");
-        traitValue.textContent = `${trait.value}%`;
-
-        traitLabel.append(traitName, traitValue);
-
-        const traitBar = document.createElement("div");
-        traitBar.className = "trait-bar";
-
-        const traitFill = document.createElement("div");
-        traitFill.style.width = `${trait.value}%`;
-
-        traitBar.appendChild(traitFill);
-        traitCard.append(traitLabel, traitBar);
-        cardTraits.appendChild(traitCard);
-    });
-}
-
-function addTrait() {
-    const name = traitInput.value.trim();
-    const value = Math.max(
-        0,
-        Math.min(100, Number(traitValueInput.value))
-    );
-
-    if (!name) return;
-
-    if (traits.length >= 4) {
-        alert("Você pode adicionar até 4 traços.");
-        return;
-    }
-
-    traits.push({
-        name,
-        value
-    });
-
-    traitInput.value = "";
-    traitValueInput.value = 80;
-
-    renderTraits();
-}
-
-addTraitButton.addEventListener("click", addTrait);
-
-traitInput.addEventListener("keydown", event => {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        addTrait();
-    }
-});
-
-renderTraits();
+/* COR DO CARD */
 
 const themeInput = document.getElementById("themeInput");
 
@@ -215,7 +135,9 @@ themeInput.addEventListener("input", () => {
     const color = themeInput.value;
     const rgb = hexToRgb(color);
 
-    if (!rgb) return;
+    if (!rgb) {
+        return;
+    }
 
     const light = {
         r: Math.min(rgb.r + 70, 255),
@@ -236,19 +158,38 @@ themeInput.addEventListener("input", () => {
     };
 
     document.documentElement.style.setProperty("--accent", color);
-    document.documentElement.style.setProperty("--accent-light", `rgb(${light.r}, ${light.g}, ${light.b})`);
-    document.documentElement.style.setProperty("--accent-dark", `rgb(${dark.r}, ${dark.g}, ${dark.b})`);
-    document.documentElement.style.setProperty("--card-color", `rgb(${darker.r}, ${darker.g}, ${darker.b})`);
+
+    document.documentElement.style.setProperty(
+        "--accent-light",
+        `rgb(${light.r}, ${light.g}, ${light.b})`
+    );
+
+    document.documentElement.style.setProperty(
+        "--accent-dark",
+        `rgb(${dark.r}, ${dark.g}, ${dark.b})`
+    );
+
+    document.documentElement.style.setProperty(
+        "--card-color",
+        `rgb(${darker.r}, ${darker.g}, ${darker.b})`
+    );
+
     document.documentElement.style.setProperty(
         "--card-color-dark",
-        `rgb(${Math.max(darker.r - 15, 0)}, ${Math.max(darker.g - 15, 0)}, ${Math.max(darker.b - 15, 0)})`
+        `rgb(
+            ${Math.max(darker.r - 15, 0)},
+            ${Math.max(darker.g - 15, 0)},
+            ${Math.max(darker.b - 15, 0)}
+        )`
     );
 });
 
 function hexToRgb(hex) {
     const value = hex.replace("#", "");
 
-    if (value.length !== 6) return null;
+    if (value.length !== 6) {
+        return null;
+    }
 
     return {
         r: parseInt(value.substring(0, 2), 16),
@@ -257,33 +198,46 @@ function hexToRgb(hex) {
     };
 }
 
+/* IMAGENS */
+
 function loadImage(inputId, targetIds, pickerIds) {
     const input = document.getElementById(inputId);
     const targets = Array.isArray(targetIds) ? targetIds : [targetIds];
     const pickers = Array.isArray(pickerIds) ? pickerIds : [pickerIds];
 
-    if (!input) return;
+    if (!input) {
+        return;
+    }
 
     input.addEventListener("change", event => {
-        const file = event.target.files[0];
+        const file = event.target.files?.[0];
 
-        if (!file) return;
+        if (!file) {
+            return;
+        }
 
         if (!file.type.startsWith("image/")) {
             alert("Escolha uma imagem válida.");
+            input.value = "";
             return;
         }
 
         const reader = new FileReader();
 
         reader.onload = () => {
+            const imageData = reader.result;
+
             targets.forEach(id => {
                 const target = document.getElementById(id);
 
                 if (target) {
-                    target.src = reader.result;
+                    target.src = imageData;
                 }
             });
+        };
+
+        reader.onerror = () => {
+            alert("Não foi possível carregar a imagem.");
         };
 
         reader.readAsDataURL(file);
@@ -292,9 +246,13 @@ function loadImage(inputId, targetIds, pickerIds) {
     pickers.forEach(pickerId => {
         const picker = document.getElementById(pickerId);
 
-        if (!picker) return;
+        if (!picker) {
+            return;
+        }
 
-        picker.addEventListener("click", () => {
+        picker.addEventListener("click", event => {
+            event.preventDefault();
+            event.stopPropagation();
             input.click();
         });
     });
@@ -303,14 +261,23 @@ function loadImage(inputId, targetIds, pickerIds) {
 loadImage(
     "avatarInput",
     ["cardAvatar", "cardAvatarCharacter"],
-    ["avatarButton", "avatarPicker", "avatarCharacterPicker"]
+    [
+        "avatarButton",
+        "avatarPicker",
+        "avatarCharacterPicker"
+    ]
 );
 
 loadImage(
     "vibeCharacterInput",
     "cardVibeCharacter",
-    ["vibeCharacterButton", "vibeCharacterPicker"]
+    [
+        "vibeCharacterButton",
+        "vibeCharacterPicker"
+    ]
 );
+
+/* DOWNLOAD */
 
 document.getElementById("downloadButton").addEventListener("click", async () => {
     const card = document.getElementById("profileCard");
@@ -320,7 +287,17 @@ document.getElementById("downloadButton").addEventListener("click", async () => 
     button.textContent = "GERANDO CARD...";
 
     try {
+        if (typeof html2canvas !== "function") {
+            throw new Error("html2canvas não foi carregado.");
+        }
+
         await document.fonts.ready;
+
+        await new Promise(resolve => {
+            requestAnimationFrame(() => {
+                requestAnimationFrame(resolve);
+            });
+        });
 
         const canvas = await html2canvas(card, {
             backgroundColor: null,
@@ -332,11 +309,15 @@ document.getElementById("downloadButton").addEventListener("click", async () => 
         });
 
         const blob = await new Promise(resolve => {
-            canvas.toBlob(resolve, "image/png", 1);
+            canvas.toBlob(
+                resolve,
+                "image/png",
+                1
+            );
         });
 
         if (!blob) {
-            throw new Error("Não foi possível gerar a imagem.");
+            throw new Error("Não foi possível gerar o PNG.");
         }
 
         const url = URL.createObjectURL(blob);
@@ -354,9 +335,9 @@ document.getElementById("downloadButton").addEventListener("click", async () => 
         }, 2000);
     } catch (error) {
         console.error(error);
-        alert("Não foi possível gerar o card.");
+        alert("Não foi possível gerar o card. Tente novamente.");
+    } finally {
+        button.disabled = false;
+        button.textContent = "✦ SALVAR COMO IMAGEM";
     }
-
-    button.disabled = false;
-    button.textContent = "✦ SALVAR COMO IMAGEM";
 });
