@@ -12,387 +12,281 @@
 </head>
 <body>
 
-    <a href="/pages/monte-seu-card/" class="back-button">
-        ← VOLTAR PARA OS MODELOS
-    </a>
+<a href="/pages/monte-seu-card/" class="back-button">← VOLTAR PARA OS MODELOS</a>
 
-    <aside class="editor">
-        <div class="editor-header">
-            <h2>Personalizar card</h2>
-            <p>Monte seu próprio card da Casa dos MBTIs.</p>
-        </div>
-
-        <div class="editor-group">
-            <label for="nameInput">Nome</label>
-            <input type="text" id="nameInput" value="Astre" maxlength="30">
-        </div>
-
-        <div class="editor-group">
-            <label for="usernameInput">Usuário</label>
-            <input type="text" id="usernameInput" value="@uma_entp" maxlength="40">
-        </div>
-
-        <div class="editor-group">
-            <label for="mbtiInput">MBTI</label>
-            <select id="mbtiInput">
-                <option value="INTJ">INTJ</option>
-                <option value="INTP">INTP</option>
-                <option value="ENTJ">ENTJ</option>
-                <option value="ENTP" selected>ENTP</option>
-                <option value="INFJ">INFJ</option>
-                <option value="INFP">INFP</option>
-                <option value="ENFJ">ENFJ</option>
-                <option value="ENFP">ENFP</option>
-                <option value="ISTJ">ISTJ</option>
-                <option value="ISFJ">ISFJ</option>
-                <option value="ESTJ">ESTJ</option>
-                <option value="ESFJ">ESFJ</option>
-                <option value="ISTP">ISTP</option>
-                <option value="ISFP">ISFP</option>
-                <option value="ESTP">ESTP</option>
-                <option value="ESFP">ESFP</option>
-            </select>
-        </div>
-
-        <div class="editor-group">
-            <label for="enneagramInput">Eneagrama</label>
-            <input type="text" id="enneagramInput" value="7w6" maxlength="10">
-        </div>
-
-        <div class="editor-group">
-            <label for="tritypeInput">Tritype</label>
-            <input type="text" id="tritypeInput" value="739" maxlength="10">
-        </div>
-
-        <div class="editor-group">
-            <label for="subtypeInput">Subtipo</label>
-            <input type="text" id="subtypeInput" value="sp/so" maxlength="15">
-        </div>
-
-        <div class="editor-group">
-            <label for="temperamentInput">Temperamento</label>
-            <input type="text" id="temperamentInput" value="Sanguíneo" maxlength="20">
-        </div>
-
-        <div class="editor-group">
-            <label for="socionicsInput">Socionics</label>
-            <input type="text" id="socionicsInput" value="ILE" maxlength="10">
-        </div>
-
-        <div class="editor-group">
-            <label for="bigfiveInput">Big Five</label>
-            <input type="text" id="bigfiveInput" value="SCOEI" maxlength="15">
-        </div>
-
-        <div class="editor-group">
-            <label for="quoteInput">Frase curta</label>
-            <input type="text" id="quoteInput" value="causando problemas desde 2000" maxlength="70">
-        </div>
-
-        <div class="editor-group">
-            <label for="aboutInput">Sobre mim</label>
-            <textarea id="aboutInput" maxlength="260">Mente inquieta, curiosa por natureza e apaixonada por ideias. Provavelmente criando dez planos diferentes enquanto deveria estar fazendo outra coisa.</textarea>
-        </div>
-
-        <div class="editor-group">
-            <label for="phraseInput">Frase que me define</label>
-            <textarea id="phraseInput" maxlength="150">Meu cérebro tem ideias. O resto é detalhe.</textarea>
-        </div>
-
-        <div class="editor-group">
-            <label>Personagem que me representa</label>
-            <button type="button" class="image-button" id="avatarButton">🖼️ Escolher imagem</button>
-            <input type="file" id="avatarInput" class="file-input" accept="image/*">
-        </div>
-
-        <div class="editor-group">
-            <label>Personagem da minha vibe</label>
-            <button type="button" class="image-button" id="vibeCharacterButton">🖼️ Escolher imagem</button>
-            <input type="file" id="vibeCharacterInput" class="file-input" accept="image/*">
-        </div>
-
-        <div class="editor-group">
-            <label for="vibeInput">Minha vibe</label>
-            <select id="vibeInput">
-                <option>Curioso e caótico</option>
-                <option>Estrategista e calculista</option>
-                <option>Criativo e excêntrico</option>
-                <option>Intelectual e questionador</option>
-                <option>Sensível e sonhador</option>
-                <option>Idealista e profundo</option>
-                <option>Determinado e intenso</option>
-                <option>Leal e acolhedor</option>
-                <option>Prático e aventureiro</option>
-                <option>Divertido e espontâneo</option>
-                <option>Protetor e responsável</option>
-                <option>Calmo e observador</option>
-                <option>Carismático e energético</option>
-                <option>Organizado e eficiente</option>
-                <option>Empático e inspirador</option>
-                <option>Misterioso e independente</option>
-            </select>
-        </div>
-
-        <div class="editor-group">
-            <label for="vibeValueInput">Intensidade da vibe</label>
-            <div class="range-editor">
-                <input type="range" id="vibeValueInput" min="0" max="100" value="80">
-                <span id="vibeValueLabel">80%</span>
-            </div>
-        </div>
-
-        <div class="editor-group">
-            <label>Interesses — até 5</label>
-            <div class="interest-editor">
-                <input type="text" id="interestInput" placeholder="Ex: anime">
-                <button type="button" id="addInterestButton">+</button>
-            </div>
-            <div class="editor-interests" id="editorInterests"></div>
-        </div>
-
-        <div class="editor-group">
-            <label for="themeInput">Cor do cartão</label>
-            <input type="color" id="themeInput" value="#9b62d7">
-        </div>
-
-        <button class="save-button" id="downloadButton" type="button">
-            ✦ SALVAR COMO IMAGEM
-        </button>
-    </aside>
-
-    <div class="background">
-        <div class="stars">
-            <span>✦</span>
-            <span>✧</span>
-            <span>✦</span>
-            <span>·</span>
-            <span>✧</span>
-            <span>✦</span>
-            <span>·</span>
-            <span>✧</span>
-        </div>
-
-        <div class="cloud cloud-1"></div>
-        <div class="cloud cloud-2"></div>
-        <div class="cloud cloud-3"></div>
-        <div class="cloud cloud-4"></div>
+<aside class="editor">
+    <div class="editor-header">
+        <h2>Personalizar card</h2>
+        <p>Monte seu próprio card da Casa dos MBTIs.</p>
     </div>
 
-    <main class="card-scene">
+    <div class="editor-group">
+        <label for="nameInput">Nome</label>
+        <input type="text" id="nameInput" value="Astre" maxlength="30">
+    </div>
 
-        <div class="lanyard">
-            <div class="lanyard-strap">
-                <div class="lanyard-logo">✦</div>
-            </div>
+    <div class="editor-group">
+        <label for="usernameInput">Usuário</label>
+        <input type="text" id="usernameInput" value="@uma_entp" maxlength="40">
+    </div>
 
-            <div class="metal-ring"></div>
+    <div class="editor-group">
+        <label for="mbtiInput">MBTI</label>
+        <select id="mbtiInput">
+            <option value="INTJ">INTJ</option>
+            <option value="INTP">INTP</option>
+            <option value="ENTJ">ENTJ</option>
+            <option value="ENTP" selected>ENTP</option>
+            <option value="INFJ">INFJ</option>
+            <option value="INFP">INFP</option>
+            <option value="ENFJ">ENFJ</option>
+            <option value="ENFP">ENFP</option>
+            <option value="ISTJ">ISTJ</option>
+            <option value="ISFJ">ISFJ</option>
+            <option value="ESTJ">ESTJ</option>
+            <option value="ESFJ">ESFJ</option>
+            <option value="ISTP">ISTP</option>
+            <option value="ISFP">ISFP</option>
+            <option value="ESTP">ESTP</option>
+            <option value="ESFP">ESFP</option>
+        </select>
+    </div>
 
-            <div class="metal-clip">
-                <div class="clip-hole"></div>
-            </div>
+    <div class="editor-group">
+        <label for="enneagramInput">Eneagrama</label>
+        <input type="text" id="enneagramInput" value="7w6" maxlength="10">
+    </div>
+
+    <div class="editor-group">
+        <label for="tritypeInput">Tritype</label>
+        <input type="text" id="tritypeInput" value="739" maxlength="10">
+    </div>
+
+    <div class="editor-group">
+        <label for="subtypeInput">Subtipo</label>
+        <input type="text" id="subtypeInput" value="sp/so" maxlength="15">
+    </div>
+
+    <div class="editor-group">
+        <label for="temperamentInput">Temperamento</label>
+        <input type="text" id="temperamentInput" value="Sanguíneo" maxlength="20">
+    </div>
+
+    <div class="editor-group">
+        <label for="socionicsInput">Socionics</label>
+        <input type="text" id="socionicsInput" value="ILE" maxlength="10">
+    </div>
+
+    <div class="editor-group">
+        <label for="bigfiveInput">Big Five</label>
+        <input type="text" id="bigfiveInput" value="SCOEI" maxlength="15">
+    </div>
+
+    <div class="editor-group">
+        <label for="quoteInput">Frase curta</label>
+        <input type="text" id="quoteInput" value="causando problemas desde 2000" maxlength="70">
+    </div>
+
+    <div class="editor-group">
+        <label for="aboutInput">Sobre mim</label>
+        <textarea id="aboutInput" maxlength="260">Mente inquieta, curiosa por natureza e apaixonada por ideias. Provavelmente criando dez planos diferentes enquanto deveria estar fazendo outra coisa.</textarea>
+    </div>
+
+    <div class="editor-group">
+        <label for="phraseInput">Frase que me define</label>
+        <textarea id="phraseInput" maxlength="150">Meu cérebro tem ideias. O resto é detalhe.</textarea>
+    </div>
+
+    <div class="editor-group">
+        <label>Personagem que me representa</label>
+        <button type="button" class="image-button" id="avatarButton">🖼️ Escolher imagem</button>
+        <input type="file" id="avatarInput" class="file-input" accept="image/*">
+    </div>
+
+    <div class="editor-group">
+        <label>Personagem da minha vibe</label>
+        <button type="button" class="image-button" id="vibeCharacterButton">🖼️ Escolher imagem</button>
+        <input type="file" id="vibeCharacterInput" class="file-input" accept="image/*">
+    </div>
+
+    <div class="editor-group">
+        <label for="vibeInput">Minha vibe</label>
+        <select id="vibeInput">
+            <option>Curioso e caótico</option>
+            <option>Estrategista e calculista</option>
+            <option>Criativo e excêntrico</option>
+            <option>Intelectual e questionador</option>
+            <option>Sensível e sonhador</option>
+            <option>Idealista e profundo</option>
+            <option>Determinado e intenso</option>
+            <option>Leal e acolhedor</option>
+            <option>Prático e aventureiro</option>
+            <option>Divertido e espontâneo</option>
+            <option>Protetor e responsável</option>
+            <option>Calmo e observador</option>
+            <option>Carismático e energético</option>
+            <option>Organizado e eficiente</option>
+            <option>Empático e inspirador</option>
+            <option>Misterioso e independente</option>
+        </select>
+    </div>
+
+    <div class="editor-group">
+        <label for="vibeValueInput">Intensidade da vibe</label>
+        <div class="range-editor">
+            <input type="range" id="vibeValueInput" min="0" max="100" value="80">
+            <span id="vibeValueLabel">80%</span>
+        </div>
+    </div>
+
+    <div class="editor-group">
+        <label>Interesses — até 5</label>
+        <div class="interest-editor">
+            <input type="text" id="interestInput" placeholder="Ex: anime">
+            <button type="button" id="addInterestButton">+</button>
+        </div>
+        <div class="editor-interests" id="editorInterests"></div>
+    </div>
+
+    <div class="editor-group">
+        <label for="themeInput">Cor do cartão</label>
+        <input type="color" id="themeInput" value="#9b62d7">
+    </div>
+
+    <button class="save-button" id="downloadButton" type="button">✦ SALVAR COMO IMAGEM</button>
+</aside>
+
+<div class="background">
+    <div class="stars">
+        <span>✦</span><span>✧</span><span>✦</span><span>·</span>
+        <span>✧</span><span>✦</span><span>·</span><span>✧</span>
+    </div>
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="cloud cloud-4"></div>
+</div>
+
+<main class="card-scene">
+    <div class="lanyard">
+        <div class="lanyard-strap"><div class="lanyard-logo">✦</div></div>
+        <div class="metal-ring"></div>
+        <div class="metal-clip"><div class="clip-hole"></div></div>
+    </div>
+
+    <article class="profile-card" id="profileCard">
+        <div class="card-shine"></div>
+
+        <div class="watermark">
+            <span>MEMBRO DA CASA DOS MBTIs</span>
+            <strong id="cardWatermarkUser">@uma_entp</strong>
         </div>
 
-        <article class="profile-card" id="profileCard">
+        <header class="card-header">
+            <div class="type-label">✦ <span id="cardMbti">ENTP</span></div>
+            <div class="header-decoration">☁</div>
 
-            <div class="card-shine"></div>
+            <div class="header-content">
+                <div class="identity">
+                    <h1 id="cardName">Astre</h1>
+                    <p class="username" id="cardUsername">@uma_entp</p>
+                    <p class="mini-quote" id="cardQuote">"causando problemas desde 2000"</p>
+                </div>
 
-            <div class="watermark">
-                <span>MEMBRO DA CASA DOS MBTIs</span>
-                <strong id="cardWatermarkUser">@uma_entp</strong>
+                <div class="avatar-frame image-picker" id="avatarPicker">
+                    <img id="cardAvatar" src="../../assets/astre.png" alt="Personagem que representa o usuário">
+                    <div class="avatar-star">✦</div>
+                </div>
+            </div>
+        </header>
+
+        <section class="main-types">
+            <div class="type-box">
+                <strong id="cardMbtiMain">ENTP</strong>
+                <span>MBTI</span>
+            </div>
+            <div class="type-box">
+                <strong id="cardEnneagram">7w6</strong>
+                <span>ENEAGRAMA</span>
+            </div>
+            <div class="type-box">
+                <strong id="cardTritype">739</strong>
+                <span>TRITYPE</span>
+            </div>
+        </section>
+
+        <section class="info-box about">
+            <div class="section-title"><span>✦</span>SOBRE MIM</div>
+            <p id="cardAbout">Mente inquieta, curiosa por natureza e apaixonada por ideias. Provavelmente criando dez planos diferentes enquanto deveria estar fazendo outra coisa.</p>
+            <span class="little-cat">ฅ^•ﻌ•^ฅ</span>
+        </section>
+
+        <section class="details-grid">
+            <div class="detail">
+                <div class="detail-icon">♡</div>
+                <div><small>SUBTIPO</small><strong id="cardSubtype">sp/so</strong></div>
+            </div>
+            <div class="detail">
+                <div class="detail-icon">✦</div>
+                <div><small>TEMPERAMENTO</small><strong id="cardTemperament">Sanguíneo</strong></div>
+            </div>
+            <div class="detail">
+                <div class="detail-icon">◉</div>
+                <div><small>SOCIONICS</small><strong id="cardSocionics">ILE</strong></div>
+            </div>
+            <div class="detail">
+                <div class="detail-icon">▥</div>
+                <div><small>BIG FIVE</small><strong id="cardBigFive">SCOEI</strong></div>
+            </div>
+        </section>
+
+        <section class="characters-grid">
+            <div class="character-box">
+                <div class="section-title"><span>✦</span>ME REPRESENTA</div>
+                <div class="character-image image-picker" id="avatarCharacterPicker">
+                    <img id="cardAvatarCharacter" src="../../assets/astre.png" alt="Personagem que representa o usuário">
+                </div>
             </div>
 
-            <header class="card-header">
-
-                <div class="type-label">
-                    ✦ <span id="cardMbti">ENTP</span>
+            <div class="character-box">
+                <div class="section-title"><span>☁</span>MINHA VIBE</div>
+                <div class="character-image image-picker" id="vibeCharacterPicker">
+                    <img id="cardVibeCharacter" src="../../assets/astre-vibe.png" alt="Personagem que representa a vibe">
                 </div>
+            </div>
+        </section>
 
-                <div class="header-decoration">☁</div>
-
-                <div class="header-content">
-
-                    <div class="identity">
-                        <h1 id="cardName">Astre</h1>
-                        <p class="username" id="cardUsername">@uma_entp</p>
-                        <p class="mini-quote" id="cardQuote">"causando problemas desde 2000"</p>
-                    </div>
-
-                    <div class="avatar-frame image-picker" id="avatarPicker">
-                        <img id="cardAvatar" src="../../assets/astre.png" alt="Personagem que representa o usuário">
-                        <div class="avatar-star">✦</div>
-                    </div>
-
-                </div>
-
-            </header>
-
-            <section class="main-types">
-
-                <div class="type-box">
-                    <strong id="cardMbtiMain">ENTP</strong>
-                    <span>MBTI</span>
-                </div>
-
-                <div class="type-box">
-                    <strong id="cardEnneagram">7w6</strong>
-                    <span>ENEAGRAMA</span>
-                </div>
-
-                <div class="type-box">
-                    <strong id="cardTritype">739</strong>
-                    <span>TRITYPE</span>
-                </div>
-
-            </section>
-
-            <section class="info-box about">
-
-                <div class="section-title">
-                    <span>✦</span>
-                    SOBRE MIM
-                </div>
-
-                <p id="cardAbout">
-                    Mente inquieta, curiosa por natureza e apaixonada por ideias.
-                    Provavelmente criando dez planos diferentes enquanto deveria
-                    estar fazendo outra coisa.
-                </p>
-
-                <span class="little-cat">ฅ^•ﻌ•^ฅ</span>
-
-            </section>
-
-            <section class="details-grid">
-
-                <div class="detail">
-                    <div class="detail-icon">♡</div>
-                    <div>
-                        <small>SUBTIPO</small>
-                        <strong id="cardSubtype">sp/so</strong>
-                    </div>
-                </div>
-
-                <div class="detail">
-                    <div class="detail-icon">✦</div>
-                    <div>
-                        <small>TEMPERAMENTO</small>
-                        <strong id="cardTemperament">Sanguíneo</strong>
-                    </div>
-                </div>
-
-                <div class="detail">
-                    <div class="detail-icon">◉</div>
-                    <div>
-                        <small>SOCIONICS</small>
-                        <strong id="cardSocionics">ILE</strong>
-                    </div>
-                </div>
-
-                <div class="detail">
-                    <div class="detail-icon">▥</div>
-                    <div>
-                        <small>BIG FIVE</small>
-                        <strong id="cardBigFive">SCOEI</strong>
-                    </div>
-                </div>
-
-            </section>
-
-            <section class="characters-grid">
-
-                <div class="character-box">
-
-                    <div class="section-title">
-                        <span>✦</span>
-                        ME REPRESENTA
-                    </div>
-
-                    <div class="character-image image-picker" id="avatarCharacterPicker">
-                        <img id="cardAvatarCharacter" src="../../assets/astre.png" alt="Personagem que representa o usuário">
-                    </div>
-
-                </div>
-
-                <div class="character-box">
-
-                    <div class="section-title">
-                        <span>☁</span>
-                        MINHA VIBE
-                    </div>
-
-                    <div class="character-image image-picker" id="vibeCharacterPicker">
-                        <img id="cardVibeCharacter" src="../../assets/astre-vibe.png" alt="Personagem que representa a vibe">
-                    </div>
-
-                </div>
-
-            </section>
-
+        <section class="bottom-grid">
             <section class="info-box interests">
-
-                <div class="section-title">
-                    <span>✦</span>
-                    INTERESSES
-                </div>
-
+                <div class="section-title"><span>✦</span>INTERESSES</div>
                 <div class="tags" id="cardInterests"></div>
-
-            </section>
-
-            <section class="info-box vibe">
-
-                <div class="section-title">
-                    <span>✦</span>
-                    MINHA VIBE
-                </div>
-
-                <div class="selected-vibe" id="cardVibe">
-                    Curioso e caótico
-                </div>
-
-                <div class="vibe-label">
-                    <span>INTENSIDADE</span>
-                    <span id="cardVibeValue">80%</span>
-                </div>
-
-                <div class="progress">
-                    <div id="cardVibeBar" style="width: 80%;"></div>
-                </div>
-
             </section>
 
             <section class="quote-box">
-
-                <div class="quote-title">
-                    ✦ FRASE QUE ME DEFINE
-                </div>
-
-                <p id="cardPhrase">
-                    "Meu cérebro tem ideias. O resto é detalhe."
-                </p>
-
+                <div class="quote-title">✦ FRASE QUE ME DEFINE</div>
+                <p id="cardPhrase">"Meu cérebro tem ideias. O resto é detalhe."</p>
                 <span class="quote-mark">”</span>
-
             </section>
+        </section>
 
-            <footer class="card-footer">
+        <section class="info-box vibe">
+            <div class="section-title vibe-title"><span>✦</span>MINHA VIBE</div>
+            <div class="selected-vibe" id="cardVibe">Curioso e caótico</div>
+            <div class="vibe-label">
+                <span>INTENSIDADE</span>
+                <span id="cardVibeValue">80%</span>
+            </div>
+            <div class="progress"><div id="cardVibeBar" style="width:80%;"></div></div>
+        </section>
 
-                <div class="footer-cat">
-                    ฅ^•ﻌ•^ฅ
-                </div>
+        <footer class="card-footer">
+            <div class="footer-cat">ฅ^•ﻌ•^ฅ</div>
+            <span>CASA DOS MBTIs</span>
+            <div class="barcode">|| ||| || |||| |</div>
+        </footer>
+    </article>
+</main>
 
-                <span>CASA DOS MBTIs</span>
-
-                <div class="barcode">
-                    || ||| || |||| |
-                </div>
-
-            </footer>
-
-        </article>
-    </main>
-
-    <script src="card2.js"></script>
-
+<script src="card2.js"></script>
 </body>
 </html>
