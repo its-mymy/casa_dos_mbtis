@@ -133,7 +133,7 @@ interestInput.addEventListener("keydown", event => {
 
 renderInterests();
 
-/* COR */
+/* COR DO CARD */
 
 const themeInput = document.getElementById("themeInput");
 
@@ -294,7 +294,7 @@ loadImage(
     ]
 );
 
-/* DOWNLOAD */
+/* DOWNLOAD 9:16 / 1080x1920 */
 
 const downloadButton = document.getElementById("downloadButton");
 
@@ -319,15 +319,35 @@ downloadButton.addEventListener("click", async () => {
             });
         });
 
+        const cardRect = card.getBoundingClientRect();
+
+        if (
+            !cardRect.width ||
+            !cardRect.height
+        ) {
+            throw new Error(
+                "Não foi possível identificar o tamanho do card."
+            );
+        }
+
+        const exportWidth = 1080;
+        const exportHeight = 1920;
+
+        const scale = exportWidth / cardRect.width;
+
         const canvas = await html2canvas(card, {
+            width: cardRect.width,
+            height: cardRect.height,
+            scale,
             backgroundColor: null,
-            scale: 4,
             useCORS: true,
             allowTaint: false,
             imageTimeout: 30000,
             logging: false,
             scrollX: 0,
-            scrollY: 0
+            scrollY: 0,
+            windowWidth: document.documentElement.clientWidth,
+            windowHeight: document.documentElement.clientHeight
         });
 
         if (
@@ -340,8 +360,57 @@ downloadButton.addEventListener("click", async () => {
             );
         }
 
+        const finalCanvas = document.createElement("canvas");
+
+        finalCanvas.width = exportWidth;
+        finalCanvas.height = exportHeight;
+
+        const context = finalCanvas.getContext("2d");
+
+        if (!context) {
+            throw new Error(
+                "Não foi possível criar o canvas final."
+            );
+        }
+
+        context.imageSmoothingEnabled = true;
+        context.imageSmoothingQuality = "high";
+
+        const canvasRatio =
+            canvas.width / canvas.height;
+
+        const targetRatio =
+            exportWidth / exportHeight;
+
+        let drawWidth = exportWidth;
+        let drawHeight = exportWidth / canvasRatio;
+        let offsetX = 0;
+        let offsetY = (exportHeight - drawHeight) / 2;
+
+        if (canvasRatio > targetRatio) {
+            drawHeight = exportHeight;
+            drawWidth = exportHeight * canvasRatio;
+            offsetX = (exportWidth - drawWidth) / 2;
+            offsetY = 0;
+        }
+
+        context.clearRect(
+            0,
+            0,
+            exportWidth,
+            exportHeight
+        );
+
+        context.drawImage(
+            canvas,
+            offsetX,
+            offsetY,
+            drawWidth,
+            drawHeight
+        );
+
         const blob = await new Promise(resolve => {
-            canvas.toBlob(
+            finalCanvas.toBlob(
                 resolve,
                 "image/png",
                 1
@@ -358,7 +427,7 @@ downloadButton.addEventListener("click", async () => {
         const link = document.createElement("a");
 
         link.href = url;
-        link.download = "card-casa-dos-mbtis.png";
+        link.download = "card-casa-dos-mbtis-9x16.png";
 
         document.body.appendChild(link);
         link.click();
