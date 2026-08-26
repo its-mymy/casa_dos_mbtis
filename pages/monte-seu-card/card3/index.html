@@ -4,12 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Card 3 - Casa dos MBTIs</title>
-
 <link rel="stylesheet" href="card3.css">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
 </head>
 
@@ -18,11 +15,6 @@
 <main class="pagina">
 
 <a href="cards.html" class="voltar-cards">← VOLTAR PARA OS CARDS</a>
-
-
-<!-- =========================================================
-     DOCUMENTO
-     ========================================================= -->
 
 <section class="documento" id="documento">
 
@@ -36,7 +28,6 @@
     </div>
 
     <div class="borda-interna"></div>
-
 
     <!-- CABEÇALHO -->
     <header class="cabecalho">
@@ -56,11 +47,7 @@
 
     </header>
 
-
-    <!-- =====================================================
-         BANNER
-         ===================================================== -->
-
+    <!-- BANNER -->
     <section class="banner" id="banner">
 
         <div class="banner-placeholder" id="bannerPlaceholder">
@@ -94,28 +81,28 @@
             </span>
 
             <strong id="bannerNick">
-                Lunaris
+                POLARIS
             </strong>
 
         </div>
 
     </section>
 
-
-    <!-- =====================================================
-         PERFIL
-         ===================================================== -->
-
+    <!-- PERFIL -->
     <section class="perfil">
 
         <div class="nick-box">
 
             <div>
-                <span>NICK</span>
+
+                <span>
+                    NICK
+                </span>
 
                 <h1 id="nickVisual">
                     POLARIS
                 </h1>
+
             </div>
 
             <p id="grupoVisual">
@@ -123,7 +110,6 @@
             </p>
 
         </div>
-
 
         <div class="dados-grid">
 
@@ -151,11 +137,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         MÚSICA
-         ===================================================== -->
-
+    <!-- MÚSICA -->
     <section class="musica">
 
         <div class="musica-capa">
@@ -192,11 +174,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         VIBE ICONS
-         ===================================================== -->
-
+    <!-- VIBE ICONS -->
     <section class="vibes">
 
         <div class="vibe-titulo">
@@ -210,7 +188,6 @@
             </small>
 
         </div>
-
 
         <div class="vibe-grid">
 
@@ -231,7 +208,6 @@
 
             </div>
 
-
             <div class="vibe-item">
 
                 <div
@@ -248,7 +224,6 @@
                 >
 
             </div>
-
 
             <div class="vibe-item">
 
@@ -271,11 +246,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         FRASE
-         ===================================================== -->
-
+    <!-- FRASE -->
     <section class="frase">
 
         <div class="linha"></div>
@@ -288,11 +259,7 @@
 
     </section>
 
-
-    <!-- =====================================================
-         RODAPÉ
-         ===================================================== -->
-
+    <!-- RODAPÉ -->
     <footer class="rodape">
 
         <div class="selo">
@@ -315,7 +282,6 @@
 
         </div>
 
-
         <div class="status">
 
             <span>
@@ -332,7 +298,6 @@
 
 </section>
 
-
 <!-- =========================================================
      PERSONALIZAÇÃO
      ========================================================= -->
@@ -343,15 +308,10 @@
         PERSONALIZE SEU CARD
     </h2>
 
-
-    <!-- =====================================================
-         IMAGENS
-         ===================================================== -->
-
+    <!-- IMAGENS -->
     <div class="secao-titulo">
         IMAGENS
     </div>
-
 
     <div class="controle">
 
@@ -366,7 +326,6 @@
         >
 
     </div>
-
 
     <div class="vibe-upload-grid">
 
@@ -384,7 +343,6 @@
 
         </div>
 
-
         <div class="mini-upload">
 
             <label for="vibeInput2">
@@ -398,7 +356,6 @@
             >
 
         </div>
-
 
         <div class="mini-upload">
 
@@ -416,20 +373,14 @@
 
     </div>
 
-
-    <!-- =====================================================
-         CORES
-         ===================================================== -->
-
+    <!-- CORES -->
     <div class="secao-titulo">
         CORES
     </div>
 
-
     <div class="cores-grid">
 
-
-        <!-- BORDA -->
+        <!-- COR DA BORDA -->
         <div class="cor-box">
 
             <label>
@@ -441,17 +392,25 @@
                 class="color-picker"
             ></div>
 
-            <div
-                class="hex-cor"
-                id="hexBorda"
-            >
-                #E85B9C
+            <div class="hex-area">
+
+                <span>#</span>
+
+                <input
+                    type="text"
+                    id="hexBordaInput"
+                    value="E85B9C"
+                    maxlength="6"
+                    placeholder="FFFFFF"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
             </div>
 
         </div>
 
-
-        <!-- BOTÕES -->
+        <!-- COR DOS BOTÕES -->
         <div class="cor-box">
 
             <label>
@@ -463,15 +422,23 @@
                 class="color-picker"
             ></div>
 
-            <div
-                class="hex-cor"
-                id="hexBotoes"
-            >
-                #E85B9C
+            <div class="hex-area">
+
+                <span>#</span>
+
+                <input
+                    type="text"
+                    id="hexBotoesInput"
+                    value="E85B9C"
+                    maxlength="6"
+                    placeholder="FFFFFF"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
             </div>
 
         </div>
-
 
         <!-- TEXTO DOS BOTÕES -->
         <div class="cor-box">
@@ -485,17 +452,25 @@
                 class="color-picker"
             ></div>
 
-            <div
-                class="hex-cor"
-                id="hexTexto"
-            >
-                #FFFFFF
+            <div class="hex-area">
+
+                <span>#</span>
+
+                <input
+                    type="text"
+                    id="hexTextoInput"
+                    value="FFFFFF"
+                    maxlength="6"
+                    placeholder="FFFFFF"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
             </div>
 
         </div>
 
-
-        <!-- FUNDO -->
+        <!-- COR DO FUNDO -->
         <div class="cor-box">
 
             <label>
@@ -507,26 +482,30 @@
                 class="color-picker"
             ></div>
 
-            <div
-                class="hex-cor"
-                id="hexFundo"
-            >
-                #F8F5F7
+            <div class="hex-area">
+
+                <span>#</span>
+
+                <input
+                    type="text"
+                    id="hexFundoInput"
+                    value="F8F5F7"
+                    maxlength="6"
+                    placeholder="FFFFFF"
+                    autocomplete="off"
+                    spellcheck="false"
+                >
+
             </div>
 
         </div>
 
     </div>
 
-
-    <!-- =====================================================
-         TEXTO
-         ===================================================== -->
-
+    <!-- TEXTO -->
     <div class="secao-titulo">
         TEXTO
     </div>
-
 
     <div class="controle">
 
@@ -548,7 +527,6 @@
 
     </div>
 
-
     <div class="controle">
 
         <label for="corVibe">
@@ -569,15 +547,10 @@
 
     </div>
 
-
-    <!-- =====================================================
-         IDENTIDADE
-         ===================================================== -->
-
+    <!-- IDENTIDADE -->
     <div class="secao-titulo">
         IDENTIDADE
     </div>
-
 
     <div class="campo-input">
 
@@ -594,7 +567,6 @@
 
     </div>
 
-
     <div class="campo-input">
 
         <label for="grupoInput">
@@ -609,7 +581,6 @@
         >
 
     </div>
-
 
     <div class="campo-input">
 
@@ -626,7 +597,6 @@
 
     </div>
 
-
     <div class="campo-input">
 
         <label for="eneagramaInput">
@@ -641,7 +611,6 @@
         >
 
     </div>
-
 
     <div class="campo-input">
 
@@ -658,7 +627,6 @@
 
     </div>
 
-
     <div class="campo-input">
 
         <label for="temperamentoInput">
@@ -674,15 +642,10 @@
 
     </div>
 
-
-    <!-- =====================================================
-         MÚSICA
-         ===================================================== -->
-
+    <!-- MÚSICA -->
     <div class="secao-titulo">
         MÚSICA
     </div>
-
 
     <div class="campo-input">
 
@@ -699,7 +662,6 @@
 
     </div>
 
-
     <div class="campo-input">
 
         <label for="artistaInput">
@@ -715,15 +677,10 @@
 
     </div>
 
-
-    <!-- =====================================================
-         FRASE
-         ===================================================== -->
-
+    <!-- FRASE -->
     <div class="secao-titulo">
         FRASE
     </div>
-
 
     <div class="campo-input">
 
@@ -740,15 +697,10 @@
 
     </div>
 
-
-    <!-- =====================================================
-         ESTILO
-         ===================================================== -->
-
+    <!-- ESTILO -->
     <div class="secao-titulo">
         ESTILO
     </div>
-
 
     <div class="controle">
 
@@ -766,7 +718,6 @@
 
     </div>
 
-
     <div class="controle">
 
         <label for="overlayInput">
@@ -783,11 +734,7 @@
 
     </div>
 
-
-    <!-- =====================================================
-         BOTÕES
-         ===================================================== -->
-
+    <!-- BOTÕES -->
     <button id="aplicar">
         APLICAR PERSONALIZAÇÃO
     </button>
@@ -800,281 +747,352 @@
 
 </main>
 
-
-<!-- =========================================================
-     BIBLIOTECAS
-     ========================================================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5.5.2/dist/iro.min.js"></script>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-
-<!-- =========================================================
-     JAVASCRIPT
-     ========================================================= -->
 
 <script>
 
-const documento =
-    document.getElementById("documento");
+const documento = document.getElementById("documento");
+
+const fotoInput = document.getElementById("fotoInput");
+const bannerImagem = document.getElementById("bannerImagem");
+const bannerPlaceholder = document.getElementById("bannerPlaceholder");
+
+const corNick = document.getElementById("corNick");
+const corVibe = document.getElementById("corVibe");
+
+const nickInput = document.getElementById("nickInput");
+const grupoInput = document.getElementById("grupoInput");
+const mbtiInput = document.getElementById("mbtiInput");
+const eneagramaInput = document.getElementById("eneagramaInput");
+const instintoInput = document.getElementById("instintoInput");
+const temperamentoInput = document.getElementById("temperamentoInput");
+
+const musicaInput = document.getElementById("musicaInput");
+const artistaInput = document.getElementById("artistaInput");
+const fraseInput = document.getElementById("fraseInput");
+
+const raioInput = document.getElementById("raioInput");
+const overlayInput = document.getElementById("overlayInput");
+
+const aplicar = document.getElementById("aplicar");
+const baixar = document.getElementById("baixar");
+const playMusic = document.getElementById("playMusic");
+
+const hexBordaInput = document.getElementById("hexBordaInput");
+const hexBotoesInput = document.getElementById("hexBotoesInput");
+const hexTextoInput = document.getElementById("hexTextoInput");
+const hexFundoInput = document.getElementById("hexFundoInput");
 
 
 /* =========================================================
-   ELEMENTOS
+   RODAS DE CORES
    ========================================================= */
 
-const fotoInput =
-    document.getElementById("fotoInput");
+const pickerBorda = new iro.ColorPicker("#pickerBorda", {
+    width: 125,
+    color: "#E85B9C",
+    borderWidth: 1,
+    borderColor: "#444444"
+});
 
-const bannerImagem =
-    document.getElementById("bannerImagem");
+const pickerBotoes = new iro.ColorPicker("#pickerBotoes", {
+    width: 125,
+    color: "#E85B9C",
+    borderWidth: 1,
+    borderColor: "#444444"
+});
 
-const bannerPlaceholder =
-    document.getElementById("bannerPlaceholder");
+const pickerTexto = new iro.ColorPicker("#pickerTexto", {
+    width: 125,
+    color: "#FFFFFF",
+    borderWidth: 1,
+    borderColor: "#444444"
+});
 
-
-const corNick =
-    document.getElementById("corNick");
-
-const corVibe =
-    document.getElementById("corVibe");
-
-
-const nickInput =
-    document.getElementById("nickInput");
-
-const grupoInput =
-    document.getElementById("grupoInput");
-
-const mbtiInput =
-    document.getElementById("mbtiInput");
-
-const eneagramaInput =
-    document.getElementById("eneagramaInput");
-
-const instintoInput =
-    document.getElementById("instintoInput");
-
-const temperamentoInput =
-    document.getElementById("temperamentoInput");
-
-
-const musicaInput =
-    document.getElementById("musicaInput");
-
-const artistaInput =
-    document.getElementById("artistaInput");
-
-const fraseInput =
-    document.getElementById("fraseInput");
-
-
-const raioInput =
-    document.getElementById("raioInput");
-
-const overlayInput =
-    document.getElementById("overlayInput");
-
-
-const aplicar =
-    document.getElementById("aplicar");
-
-const baixar =
-    document.getElementById("baixar");
-
-const playMusic =
-    document.getElementById("playMusic");
+const pickerFundo = new iro.ColorPicker("#pickerFundo", {
+    width: 125,
+    color: "#F8F5F7",
+    borderWidth: 1,
+    borderColor: "#444444"
+});
 
 
 /* =========================================================
-   COLOR PICKERS
+   ATUALIZAR COR PELO HEX
    ========================================================= */
 
-const pickerBorda =
-    new iro.ColorPicker(
-        "#pickerBorda",
-        {
-            width: 145,
-            color: "#E85B9C",
-            borderWidth: 1,
-            borderColor: "#444444"
-        }
-    );
+function atualizarCorDoPicker(
+    picker,
+    input,
+    variavel
+) {
 
-
-const pickerBotoes =
-    new iro.ColorPicker(
-        "#pickerBotoes",
-        {
-            width: 145,
-            color: "#E85B9C",
-            borderWidth: 1,
-            borderColor: "#444444"
-        }
-    );
-
-
-const pickerTexto =
-    new iro.ColorPicker(
-        "#pickerTexto",
-        {
-            width: 145,
-            color: "#FFFFFF",
-            borderWidth: 1,
-            borderColor: "#444444"
-        }
-    );
-
-
-const pickerFundo =
-    new iro.ColorPicker(
-        "#pickerFundo",
-        {
-            width: 145,
-            color: "#F8F5F7",
-            borderWidth: 1,
-            borderColor: "#444444"
-        }
-    );
-
-
-/* =========================================================
-   FUNÇÃO DAS CORES
-   ========================================================= */
-
-function aplicarCores() {
-
-    const borda =
-        pickerBorda.color.hexString;
-
-    const botoes =
-        pickerBotoes.color.hexString;
-
-    const texto =
-        pickerTexto.color.hexString;
-
-    const fundo =
-        pickerFundo.color.hexString;
-
+    const cor =
+        picker.color.hexString.toUpperCase();
 
     documento.style.setProperty(
-        "--cor-borda",
-        borda
+        variavel,
+        cor
     );
 
-    documento.style.setProperty(
-        "--cor-botoes",
-        botoes
-    );
-
-    documento.style.setProperty(
-        "--cor-texto-botoes",
-        texto
-    );
-
-    documento.style.setProperty(
-        "--cor-fundo",
-        fundo
-    );
-
-
-    document.getElementById(
-        "hexBorda"
-    ).textContent = borda;
-
-
-    document.getElementById(
-        "hexBotoes"
-    ).textContent = botoes;
-
-
-    document.getElementById(
-        "hexTexto"
-    ).textContent = texto;
-
-
-    document.getElementById(
-        "hexFundo"
-    ).textContent = fundo;
+    input.value =
+        cor.replace("#", "");
 }
 
 
 /* =========================================================
-   TEXTO
+   EVENTOS DAS RODAS
+   ========================================================= */
+
+pickerBorda.on(
+    "color:change",
+    function(color) {
+
+        atualizarCorDoPicker(
+            pickerBorda,
+            hexBordaInput,
+            "--cor-borda"
+        );
+
+    }
+);
+
+pickerBotoes.on(
+    "color:change",
+    function(color) {
+
+        atualizarCorDoPicker(
+            pickerBotoes,
+            hexBotoesInput,
+            "--cor-botoes"
+        );
+
+    }
+);
+
+pickerTexto.on(
+    "color:change",
+    function(color) {
+
+        atualizarCorDoPicker(
+            pickerTexto,
+            hexTextoInput,
+            "--cor-texto-botoes"
+        );
+
+    }
+);
+
+pickerFundo.on(
+    "color:change",
+    function(color) {
+
+        atualizarCorDoPicker(
+            pickerFundo,
+            hexFundoInput,
+            "--cor-fundo"
+        );
+
+    }
+);
+
+
+/* =========================================================
+   HEX → RODA
+   ========================================================= */
+
+function configurarHex(
+    input,
+    picker
+) {
+
+    input.addEventListener(
+        "input",
+        function() {
+
+            let valor =
+                input.value
+                    .replace("#", "")
+                    .replace(
+                        /[^0-9a-fA-F]/g,
+                        ""
+                    )
+                    .slice(0, 6);
+
+            input.value =
+                valor.toUpperCase();
+
+            if (
+                valor.length === 6
+            ) {
+
+                picker.color.hexString =
+                    "#" + valor;
+
+            }
+
+        }
+    );
+
+
+    input.addEventListener(
+        "blur",
+        function() {
+
+            let valor =
+                input.value
+                    .replace("#", "")
+                    .replace(
+                        /[^0-9a-fA-F]/g,
+                        ""
+                    )
+                    .slice(0, 6);
+
+            if (
+                valor.length !== 6
+            ) {
+
+                input.value =
+                    picker.color.hexString
+                        .replace("#", "")
+                        .toUpperCase();
+
+                return;
+
+            }
+
+            picker.color.hexString =
+                "#" + valor;
+
+        }
+    );
+
+}
+
+
+configurarHex(
+    hexBordaInput,
+    pickerBorda
+);
+
+configurarHex(
+    hexBotoesInput,
+    pickerBotoes
+);
+
+configurarHex(
+    hexTextoInput,
+    pickerTexto
+);
+
+configurarHex(
+    hexFundoInput,
+    pickerFundo
+);
+
+
+/* =========================================================
+   ATUALIZAR INFORMAÇÕES
    ========================================================= */
 
 function atualizarInformacoes() {
 
+    const nick =
+        nickInput.value.trim() ||
+        "Seu Nick";
+
+    const grupo =
+        grupoInput.value.trim() ||
+        "SEU GRUPO";
+
+    const mbti =
+        mbtiInput.value.trim() ||
+        "MBTI";
+
+    const eneagrama =
+        eneagramaInput.value.trim() ||
+        "Eneagrama";
+
+    const instinto =
+        instintoInput.value.trim() ||
+        "Instinto";
+
+    const temperamento =
+        temperamentoInput.value.trim() ||
+        "Temperamento";
+
+    const musica =
+        musicaInput.value.trim() ||
+        "Escolha uma música";
+
+    const artista =
+        artistaInput.value.trim() ||
+        "Sua vibe em uma faixa";
+
+    const frase =
+        fraseInput.value.trim() ||
+        "Caos permitido.";
+
+
     document.getElementById(
         "nickVisual"
     ).textContent =
-        nickInput.value.trim() ||
-        "Seu Nick";
+        nick;
 
 
     document.getElementById(
         "bannerNick"
     ).textContent =
-        nickInput.value.trim() ||
-        "Seu Nick";
+        nick;
 
 
     document.getElementById(
         "grupoVisual"
     ).textContent =
-        (
-            grupoInput.value.trim() ||
-            "SEU GRUPO"
-        ).toUpperCase();
+        grupo.toUpperCase();
 
 
     document.getElementById(
         "mbtiVisual"
     ).textContent =
-        mbtiInput.value.trim() ||
-        "MBTI";
+        mbti;
 
 
     document.getElementById(
         "eneagramaVisual"
     ).textContent =
-        eneagramaInput.value.trim() ||
-        "Eneagrama";
+        eneagrama;
 
 
     document.getElementById(
         "instintoVisual"
     ).textContent =
-        instintoInput.value.trim() ||
-        "Instinto";
+        instinto;
 
 
     document.getElementById(
         "temperamentoVisual"
     ).textContent =
-        temperamentoInput.value.trim() ||
-        "Temperamento";
+        temperamento;
 
 
     document.getElementById(
         "musicaVisual"
     ).textContent =
-        musicaInput.value.trim() ||
-        "Escolha uma música";
+        musica;
 
 
     document.getElementById(
         "artistaVisual"
     ).textContent =
-        artistaInput.value.trim() ||
-        "Sua vibe em uma faixa";
+        artista;
 
 
     document.getElementById(
         "fraseVisual"
     ).textContent =
-        `"${fraseInput.value.trim() || "Caos permitido."}"`;
+        `"${frase}"`;
 
 
     documento.style.setProperty(
@@ -1104,7 +1122,7 @@ function atualizarInformacoes() {
 
 
 /* =========================================================
-   CARREGAR IMAGEM
+   CARREGAR IMAGENS
    ========================================================= */
 
 function carregarImagem(
@@ -1115,16 +1133,14 @@ function carregarImagem(
 
     input.addEventListener(
         "change",
-        evento => {
+        function(evento) {
 
             const arquivo =
                 evento.target.files[0];
 
-
             if (!arquivo) {
                 return;
             }
-
 
             if (
                 !arquivo.type.startsWith(
@@ -1139,23 +1155,20 @@ function carregarImagem(
                 input.value = "";
 
                 return;
-            }
 
+            }
 
             const leitor =
                 new FileReader();
 
-
             leitor.onload =
-                eventoLeitor => {
+                function(eventoLeitor) {
 
                     imagem.src =
                         eventoLeitor.target.result;
 
-
                     imagem.style.display =
                         "block";
-
 
                     if (placeholder) {
 
@@ -1165,7 +1178,6 @@ function carregarImagem(
                     }
 
                 };
-
 
             leitor.readAsDataURL(
                 arquivo
@@ -1187,73 +1199,27 @@ carregarImagem(
     bannerPlaceholder
 );
 
-
 carregarImagem(
-    document.getElementById(
-        "vibeInput1"
-    ),
-    document.getElementById(
-        "vibeImagem1"
-    ),
-    document.getElementById(
-        "vibePlaceholder1"
-    )
+    document.getElementById("vibeInput1"),
+    document.getElementById("vibeImagem1"),
+    document.getElementById("vibePlaceholder1")
 );
 
-
 carregarImagem(
-    document.getElementById(
-        "vibeInput2"
-    ),
-    document.getElementById(
-        "vibeImagem2"
-    ),
-    document.getElementById(
-        "vibePlaceholder2"
-    )
+    document.getElementById("vibeInput2"),
+    document.getElementById("vibeImagem2"),
+    document.getElementById("vibePlaceholder2")
 );
 
-
 carregarImagem(
-    document.getElementById(
-        "vibeInput3"
-    ),
-    document.getElementById(
-        "vibeImagem3"
-    ),
-    document.getElementById(
-        "vibePlaceholder3"
-    )
+    document.getElementById("vibeInput3"),
+    document.getElementById("vibeImagem3"),
+    document.getElementById("vibePlaceholder3")
 );
 
 
 /* =========================================================
-   EVENTOS DAS CORES
-   ========================================================= */
-
-pickerBorda.on(
-    "color:change",
-    aplicarCores
-);
-
-pickerBotoes.on(
-    "color:change",
-    aplicarCores
-);
-
-pickerTexto.on(
-    "color:change",
-    aplicarCores
-);
-
-pickerFundo.on(
-    "color:change",
-    aplicarCores
-);
-
-
-/* =========================================================
-   EVENTOS DE TEXTO
+   INPUTS
    ========================================================= */
 
 [
@@ -1271,7 +1237,7 @@ pickerFundo.on(
     raioInput,
     overlayInput
 ].forEach(
-    elemento => {
+    function(elemento) {
 
         elemento.addEventListener(
             "input",
@@ -1293,9 +1259,7 @@ pickerFundo.on(
 
 aplicar.addEventListener(
     "click",
-    () => {
-
-        aplicarCores();
+    function() {
 
         atualizarInformacoes();
 
@@ -1309,20 +1273,17 @@ aplicar.addEventListener(
 
 let tocando = false;
 
-
 playMusic.addEventListener(
     "click",
-    () => {
+    function() {
 
         tocando =
             !tocando;
-
 
         playMusic.textContent =
             tocando
                 ? "❚❚"
                 : "▶";
-
 
         document.querySelector(
             ".progresso i"
@@ -1341,34 +1302,28 @@ playMusic.addEventListener(
 
 baixar.addEventListener(
     "click",
-    async () => {
+    async function() {
 
         try {
 
             baixar.textContent =
                 "GERANDO...";
 
-
             baixar.disabled =
                 true;
 
-
-            aplicarCores();
-
             atualizarInformacoes();
-
 
             const imagens =
                 documento.querySelectorAll(
                     "img"
                 );
 
-
             await Promise.all(
                 [
                     ...imagens
                 ].map(
-                    imagem => {
+                    function(imagem) {
 
                         if (
                             imagem.complete
@@ -1378,9 +1333,8 @@ baixar.addEventListener(
 
                         }
 
-
                         return new Promise(
-                            resolve => {
+                            function(resolve) {
 
                                 imagem.onload =
                                     resolve;
@@ -1395,7 +1349,6 @@ baixar.addEventListener(
                 )
             );
 
-
             const canvas =
                 await html2canvas(
                     documento,
@@ -1409,25 +1362,18 @@ baixar.addEventListener(
                     }
                 );
 
-
             const link =
-                document.createElement(
-                    "a"
-                );
-
+                document.createElement("a");
 
             link.download =
                 "card3-casa-dos-mbtis.png";
-
 
             link.href =
                 canvas.toDataURL(
                     "image/png"
                 );
 
-
             link.click();
-
 
         } catch (erro) {
 
@@ -1444,7 +1390,6 @@ baixar.addEventListener(
             baixar.textContent =
                 "↓ BAIXAR COMO IMAGEM";
 
-
             baixar.disabled =
                 false;
 
@@ -1457,8 +1402,6 @@ baixar.addEventListener(
 /* =========================================================
    ESTADO INICIAL
    ========================================================= */
-
-aplicarCores();
 
 atualizarInformacoes();
 

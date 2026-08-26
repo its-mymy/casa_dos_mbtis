@@ -1,17 +1,16 @@
-
+/* =========================================================
+   CARD 3 — CASA DOS MBTIs
+   ========================================================= */
 
 :root {
     --cor-borda: #e85b9c;
     --cor-botoes: #e85b9c;
     --cor-texto-botoes: #ffffff;
     --cor-fundo: #f8f5f7;
-
     --cor-nick: #111111;
     --cor-vibe: #111111;
-
     --texto: #242026;
     --cinza: #777777;
-
     --raio: 20px;
     --overlay-opacidade: 0.35;
 }
@@ -34,18 +33,14 @@
 
 body {
     min-height: 100vh;
-
     padding: 25px 10px 40px;
-
     font-family: "Inter", sans-serif;
-
     background:
         radial-gradient(
             circle at top,
             #2b1631,
             #09070d 72%
         );
-
     display: flex;
     justify-content: center;
 }
@@ -57,11 +52,9 @@ body {
 
 .pagina {
     width: 100%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
-
     gap: 22px;
 }
 
@@ -73,30 +66,22 @@ body {
 .voltar-cards {
     width: 390px;
     max-width: 100%;
-
     padding: 11px 15px;
-
     border: 1px solid #444444;
     border-radius: 10px;
-
     background: #151515;
-
     color: #ffffff;
     text-decoration: none;
-
     text-align: center;
-
     font-size: 10px;
     font-weight: 800;
     letter-spacing: 1px;
-
     transition: 0.2s ease;
 }
 
 .voltar-cards:hover {
     background: var(--cor-borda);
     border-color: var(--cor-borda);
-
     transform: translateY(-2px);
 }
 
@@ -107,40 +92,24 @@ body {
 
 .documento {
     position: relative;
-
     width: 390px;
     height: 844px;
     max-width: 100%;
-
     overflow: hidden;
-
     padding: 12px;
-
     background: var(--cor-fundo);
-
     border: 5px solid var(--cor-borda);
     border-radius: var(--raio);
-
-    box-shadow:
-        0 20px 70px #0008;
-
+    box-shadow: 0 20px 70px #0008;
     display: flex;
     flex-direction: column;
-
     color: var(--texto);
 }
 
-
-/* =========================================================
-   TEXTURA
-   ========================================================= */
-
 .documento::before {
     content: "";
-
     position: absolute;
     inset: 0;
-
     background:
         repeating-linear-gradient(
             0deg,
@@ -148,9 +117,7 @@ body {
             transparent 4px,
             #00000004 5px
         );
-
     pointer-events: none;
-
     z-index: 0;
 }
 
@@ -161,18 +128,11 @@ body {
 
 .borda-interna {
     position: absolute;
-
     inset: 7px;
-
     border: 1px solid var(--cor-borda);
-
-    border-radius:
-        calc(var(--raio) - 8px);
-
+    border-radius: calc(var(--raio) - 8px);
     opacity: 0.38;
-
     pointer-events: none;
-
     z-index: 8;
 }
 
@@ -183,57 +143,42 @@ body {
 
 .marca-agua {
     position: absolute;
-
     inset: 0;
-
     display: flex;
     justify-content: center;
     align-items: center;
-
     pointer-events: none;
-
     z-index: 1;
-
     opacity: 0.045;
 }
 
 .brasao {
     width: 275px;
     height: 275px;
-
     border: 10px solid var(--cor-borda);
-
     border-radius: 50%;
-
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
     color: var(--cor-borda);
-
     font-family: "Playfair Display", serif;
-
     transform: rotate(-9deg);
 }
 
 .brasao span {
     font-size: 92px;
-
     line-height: 0.8;
 }
 
 .brasao strong {
     font-size: 30px;
-
     letter-spacing: 5px;
 }
 
 .brasao small {
     margin-top: 3px;
-
     font-size: 10px;
-
     letter-spacing: 4px;
 }
 
@@ -244,69 +189,49 @@ body {
 
 .cabecalho {
     position: relative;
-
     z-index: 5;
-
     height: 47px;
-
     display: grid;
-
     grid-template-columns: 38px 1fr 46px;
-
     align-items: center;
-
     gap: 8px;
 }
 
 .mini-logo {
     width: 32px;
     height: 32px;
-
     border: 2px solid var(--cor-borda);
-
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     color: var(--cor-borda);
-
     font-size: 18px;
-
     background: #ffffffb3;
 }
 
 .titulo-topo {
     display: flex;
     flex-direction: column;
-
     line-height: 1;
 }
 
 .titulo-topo small {
     font-size: 6px;
-
     letter-spacing: 3px;
-
     color: #888888;
 }
 
 .titulo-topo strong {
     font-family: "Playfair Display", serif;
-
     font-size: 14px;
-
     letter-spacing: 1px;
 }
 
 .id-card {
     text-align: right;
-
     font-size: 8px;
-
     font-weight: 800;
-
     color: var(--cor-borda);
 }
 
@@ -317,20 +242,13 @@ body {
 
 .banner {
     position: relative;
-
     z-index: 4;
-
     width: 100%;
     height: 252px;
-
     overflow: hidden;
-
     flex-shrink: 0;
-
     border: 2px solid var(--cor-borda);
-
     border-radius: var(--raio);
-
     background:
         linear-gradient(
             135deg,
@@ -341,21 +259,14 @@ body {
 
 .banner-placeholder {
     position: absolute;
-
     inset: 0;
-
     z-index: 2;
-
     display: flex;
     flex-direction: column;
-
     justify-content: center;
     align-items: center;
-
     gap: 7px;
-
     color: var(--cor-borda);
-
     background:
         linear-gradient(
             135deg,
@@ -367,54 +278,39 @@ body {
 .banner-plus {
     width: 54px;
     height: 54px;
-
     border: 2px solid var(--cor-borda);
-
     border-radius: 50%;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 30px;
 }
 
 .banner-placeholder strong {
     font-size: 11px;
-
     letter-spacing: 2px;
 }
 
 .banner-placeholder small {
     font-size: 7px;
-
     letter-spacing: 1px;
-
     color: #888888;
 }
 
 .banner img {
     position: absolute;
-
     inset: 0;
-
     width: 100%;
     height: 100%;
-
     display: none;
-
     object-fit: cover;
-
     z-index: 1;
 }
 
 .banner-overlay {
     position: absolute;
-
     inset: 0;
-
     z-index: 3;
-
     background:
         linear-gradient(
             to top,
@@ -426,35 +322,27 @@ body {
             ),
             transparent 55%
         );
-
     pointer-events: none;
 }
 
 .banner-info {
     position: absolute;
-
     left: 16px;
     bottom: 14px;
-
     z-index: 4;
-
     display: flex;
     flex-direction: column;
-
     color: #ffffff;
 }
 
 .banner-info span {
     font-size: 7px;
-
     letter-spacing: 3px;
 }
 
 .banner-info strong {
     font-family: "Playfair Display", serif;
-
     font-size: 24px;
-
     line-height: 1;
 }
 
@@ -465,50 +353,36 @@ body {
 
 .perfil {
     position: relative;
-
     z-index: 4;
-
     padding: 11px 6px 0;
 }
 
 .nick-box {
     display: flex;
-
     align-items: flex-end;
     justify-content: space-between;
-
     gap: 8px;
-
     margin-bottom: 10px;
 }
 
 .nick-box span {
     font-size: 7px;
-
     letter-spacing: 3px;
-
     color: #888888;
-
     font-weight: 800;
 }
 
 .nick-box h1 {
     font-family: "Playfair Display", serif;
-
     font-size: 26px;
-
     line-height: 1;
-
     color: var(--cor-nick);
 }
 
 .nick-box p {
     font-size: 7px;
-
     letter-spacing: 2px;
-
     color: var(--cor-borda);
-
     font-weight: 800;
 }
 
@@ -519,23 +393,16 @@ body {
 
 .dados-grid {
     display: grid;
-
     grid-template-columns: 1fr 1fr;
-
     gap: 7px;
 }
 
 .dado {
     min-height: 42px;
-
     padding: 7px 9px;
-
     border-radius: 11px;
-
     background: var(--cor-botoes);
-
     color: var(--cor-texto-botoes);
-
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -543,19 +410,14 @@ body {
 
 .dado span {
     font-size: 6px;
-
     letter-spacing: 2px;
-
     opacity: 0.75;
-
     font-weight: 800;
 }
 
 .dado strong {
     margin-top: 2px;
-
     font-size: 11px;
-
     font-weight: 800;
 }
 
@@ -566,131 +428,86 @@ body {
 
 .musica {
     position: relative;
-
     z-index: 4;
-
     display: flex;
-
     align-items: center;
-
     gap: 9px;
-
     margin-top: 9px;
-
     padding: 10px 7px;
-
     background: #ffffff99;
-
     border: 1px solid #0000000d;
-
     border-radius: 14px;
-
-    box-shadow:
-        0 6px 18px #00000008;
+    box-shadow: 0 6px 18px #00000008;
 }
 
 .musica-capa {
     width: 39px;
     height: 39px;
-
     border-radius: 10px;
-
     background: var(--cor-botoes);
-
     color: var(--cor-texto-botoes);
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     font-size: 18px;
-
     flex-shrink: 0;
 }
 
 .musica-info {
     flex: 1;
-
     min-width: 0;
 }
 
 .musica-info small {
     display: block;
-
     font-size: 5px;
-
     letter-spacing: 2px;
-
     color: #999999;
-
     font-weight: 800;
 }
 
 .musica-info strong {
     display: block;
-
     font-size: 9px;
-
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
 .musica-info span {
     display: block;
-
     margin-top: 1px;
-
     font-size: 7px;
-
     color: var(--cor-vibe);
-
     white-space: nowrap;
-
     overflow: hidden;
-
     text-overflow: ellipsis;
 }
 
 .progresso {
     height: 2px;
-
     margin-top: 5px;
-
     border-radius: 2px;
-
     background: #dddddd;
-
     overflow: hidden;
 }
 
 .progresso i {
     display: block;
-
     width: 18%;
     height: 100%;
-
     background: var(--cor-botoes);
-
     transition: 0.3s;
 }
 
 .play-btn {
     width: 28px;
     height: 28px;
-
     border: 0;
-
     border-radius: 50%;
-
     background: var(--cor-botoes);
-
     color: var(--cor-texto-botoes);
-
     font-size: 9px;
-
     cursor: pointer;
 }
 
@@ -701,87 +518,64 @@ body {
 
 .vibes {
     position: relative;
-
     z-index: 4;
-
     padding: 9px 7px 0;
 }
 
 .vibe-titulo {
     display: flex;
-
     align-items: center;
     justify-content: space-between;
-
     margin-bottom: 6px;
 }
 
 .vibe-titulo span {
     font-size: 7px;
-
     letter-spacing: 2px;
-
     font-weight: 800;
 }
 
 .vibe-titulo small {
     font-size: 6px;
-
     color: #999999;
-
     letter-spacing: 1px;
 }
 
 .vibe-grid {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 7px;
 }
 
 .vibe-item {
     position: relative;
-
     aspect-ratio: 1 / 1;
-
     overflow: hidden;
-
     border: 1px solid var(--cor-borda);
-
     border-radius: 13px;
-
     background: #eeeeee;
 }
 
 .vibe-item img {
     display: none;
-
     width: 100%;
     height: 100%;
-
     object-fit: cover;
 }
 
 .vibe-placeholder {
     position: absolute;
-
     inset: 0;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     background:
         linear-gradient(
             135deg,
             #f1e5ea,
             #e7dde3
         );
-
     color: var(--cor-borda);
-
     font-size: 24px;
 }
 
@@ -792,39 +586,26 @@ body {
 
 .frase {
     position: relative;
-
     z-index: 4;
-
     display: flex;
-
     align-items: center;
-
     gap: 8px;
-
     padding: 8px 5px 3px;
 }
 
 .frase .linha {
     flex: 1;
-
     height: 1px;
-
     background: var(--cor-borda);
-
     opacity: 0.4;
 }
 
 .frase p {
     max-width: 190px;
-
     font-family: "Playfair Display", serif;
-
     font-size: 10px;
-
     font-style: italic;
-
     text-align: center;
-
     color: #666666;
 }
 
@@ -835,121 +616,84 @@ body {
 
 .rodape {
     position: relative;
-
     z-index: 4;
-
     margin-top: auto;
-
     padding: 7px 4px 1px;
-
     border-top: 1px solid #00000012;
-
     display: flex;
-
     justify-content: space-between;
-
     align-items: center;
 }
 
 .selo {
     display: flex;
-
     align-items: center;
-
     gap: 6px;
 }
 
 .selo-icon {
     width: 27px;
     height: 27px;
-
     border: 2px solid var(--cor-borda);
-
     border-radius: 50%;
-
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     color: var(--cor-borda);
-
     font-size: 14px;
 }
 
 .selo strong {
     display: block;
-
     font-size: 7px;
-
     letter-spacing: 1px;
 }
 
 .selo small {
     display: block;
-
     margin-top: 2px;
-
     font-size: 5px;
-
     letter-spacing: 1px;
-
     color: #999999;
 }
 
 .status {
     display: flex;
-
     flex-direction: column;
-
     align-items: flex-end;
 }
 
 .status span {
     font-size: 5px;
-
     letter-spacing: 2px;
-
     color: #999999;
 }
 
 .status strong {
     font-size: 8px;
-
     letter-spacing: 1px;
-
     color: #198754;
 }
 
 
 /* =========================================================
-   PAINEL
+   PAINEL DE PERSONALIZAÇÃO
    ========================================================= */
 
 .personalizacao {
     width: 390px;
     max-width: 100%;
-
     padding: 20px;
-
     background: #111111;
-
     border: 1px solid #333333;
-
     border-radius: 18px;
-
     color: #ffffff;
-
-    box-shadow:
-        0 15px 50px #0009;
+    box-shadow: 0 15px 50px #0009;
 }
 
 .personalizacao h2 {
     margin-bottom: 18px;
-
     font-size: 15px;
-
     letter-spacing: 1px;
 }
 
@@ -960,13 +704,9 @@ body {
 
 .secao-titulo {
     margin: 18px 0 9px;
-
     font-size: 8px;
-
     letter-spacing: 2px;
-
     color: #777777;
-
     font-weight: 800;
 }
 
@@ -978,11 +718,8 @@ body {
 .controle,
 .campo-input {
     display: flex;
-
     flex-direction: column;
-
     gap: 5px;
-
     margin-bottom: 10px;
 }
 
@@ -990,13 +727,10 @@ body {
 .campo-input label,
 .cor-box label,
 .mini-upload label {
-    font-size: 9px;
-
+    font-size: 12px;
     letter-spacing: 1px;
-
     color: #aaaaaa;
-
-    font-weight: 700;
+    font-weight: 800;
 }
 
 
@@ -1006,19 +740,12 @@ body {
 
 .campo-input input {
     width: 100%;
-
     padding: 10px;
-
     border: 1px solid #3b3b3b;
-
     border-radius: 8px;
-
     background: #191919;
-
     color: #ffffff;
-
     outline: none;
-
     font-family: inherit;
 }
 
@@ -1028,48 +755,34 @@ body {
 
 
 /* =========================================================
-   INPUT IMAGEM
+   INPUT DE IMAGEM
    ========================================================= */
 
 .controle input[type="file"] {
     width: 100%;
-
     padding: 10px;
-
     border: 1px solid #3b3b3b;
-
     border-radius: 8px;
-
     background: #191919;
-
     color: #ffffff;
-
     outline: none;
-
     font-family: inherit;
 }
 
 .controle input[type="file"]::file-selector-button {
     margin-right: 8px;
-
     padding: 7px 10px;
-
     border: 0;
-
     border-radius: 6px;
-
     background: var(--cor-botoes);
-
     color: #ffffff;
-
     font-weight: 800;
-
     cursor: pointer;
 }
 
 
 /* =========================================================
-   RODA DE CORES
+   RODAS DE CORES
    ========================================================= */
 
 .cores-grid {
@@ -1107,25 +820,55 @@ body {
     height: 145px;
     min-height: 145px;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
     overflow: hidden;
 }
 
 .color-picker .IroColorPicker {
-    max-width: 145px;
+    max-width: 125px;
 }
 
-.hex-cor {
+
+/* =========================================================
+   CAMPO HEX
+   ========================================================= */
+
+.hex-area {
     width: 100%;
-    margin-top: 7px;
-    padding: 6px 8px;
-    border-radius: 6px;
+    height: 34px;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    border: 1px solid #333333;
+    border-radius: 7px;
     background: #0d0d0d;
-    text-align: center;
+    overflow: hidden;
+}
+
+.hex-area span {
+    padding-left: 9px;
+    color: #888888;
     font-family: monospace;
-    font-size: 9px;
-    color: #dddddd;
+    font-size: 11px;
+    user-select: none;
+}
+
+.hex-area input {
+    width: 100%;
+    height: 100%;
+    padding: 0 8px 0 2px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: #eeeeee;
+    font-family: monospace;
+    font-size: 10px;
+    letter-spacing: 1px;
+}
+
+.hex-area input:focus {
+    color: #ffffff;
 }
 
 
@@ -1135,21 +878,13 @@ body {
 
 .controle select {
     width: 100%;
-
     padding: 10px 12px;
-
     border: 1px solid #3b3b3b;
-
     border-radius: 8px;
-
     background: #191919;
-
     color: #ffffff;
-
     outline: none;
-
     font-family: inherit;
-
     cursor: pointer;
 }
 
@@ -1164,37 +899,25 @@ body {
 
 .vibe-upload-grid {
     display: grid;
-
     grid-template-columns: repeat(3, 1fr);
-
     gap: 7px;
 }
 
 .mini-upload input {
     width: 100%;
-
     font-size: 7px;
-
     color: #aaaaaa;
 }
 
 .mini-upload input::-webkit-file-upload-button {
     display: block;
-
     width: 100%;
-
-    padding: 7px 3px;
-
+    padding: 9px 4px;
     border: 0;
-
     border-radius: 6px;
-
     background: #191919;
-
     color: #aaaaaa;
-
     cursor: pointer;
-
     font-size: 7px;
 }
 
@@ -1205,7 +928,6 @@ body {
 
 .controle input[type="range"] {
     width: 100%;
-
     accent-color: var(--cor-botoes);
 }
 
@@ -1217,57 +939,40 @@ body {
 #aplicar,
 #baixar {
     width: 100%;
-
     padding: 12px;
-
     border-radius: 8px;
-
     font-family: inherit;
-
     font-size: 10px;
-
     font-weight: 800;
-
     letter-spacing: 1px;
-
     cursor: pointer;
-
     transition: 0.2s ease;
 }
 
 #aplicar {
     margin-top: 10px;
-
     border: 0;
-
     background: var(--cor-botoes);
-
     color: var(--cor-texto-botoes);
 }
 
 #baixar {
     margin-top: 8px;
-
     border: 1px solid #444444;
-
     background: #242424;
-
     color: #ffffff;
 }
 
 #aplicar:hover,
 #baixar:hover {
     transform: translateY(-2px);
-
     filter: brightness(1.08);
 }
 
 #aplicar:disabled,
 #baixar:disabled {
     opacity: 0.6;
-
     cursor: wait;
-
     transform: none;
 }
 
@@ -1284,23 +989,12 @@ body {
 
     .documento {
         width: 100%;
-
-        height:
-            calc(
-                (100vw - 10px) * 2.164
-            );
-
-        min-height:
-            calc(
-                (100vw - 10px) * 2.164
-            );
+        height: calc((100vw - 10px) * 2.164);
+        min-height: calc((100vw - 10px) * 2.164);
     }
 
     .banner {
-        height:
-            calc(
-                (100vw - 44px) * 0.66
-            );
+        height: calc((100vw - 44px) * 0.66);
     }
 
     .nick-box h1 {
@@ -1311,6 +1005,15 @@ body {
         width: 100%;
     }
 
+    .cores-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .color-picker {
+        height: 135px;
+        min-height: 135px;
+    }
 }
 
 
@@ -1353,7 +1056,20 @@ body {
     }
 
     .cores-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 7px;
     }
 
+    .color-picker {
+        height: 125px;
+        min-height: 125px;
+    }
+
+    .cor-box {
+        padding: 7px;
+    }
+
+    .cor-box label {
+        font-size: 7px;
+    }
 }
