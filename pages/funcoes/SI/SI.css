@@ -1,0 +1,341 @@
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    min-height: 100%;
+    scroll-behavior: smooth;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+
+    background: #000;
+    color: #e8e8e8;
+
+    font-family: "Inter", sans-serif;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   PÁGINA
+========================================================= */
+
+main {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 40px 20px 100px;
+
+    background:
+        radial-gradient(
+            circle at 50% 0%,
+            rgba(122, 55, 255, 0.10),
+            transparent 35%
+        ),
+        #000;
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.hero {
+    width: min(900px, 100%);
+
+    margin: 0 auto 45px;
+
+    padding: 70px 35px;
+
+    text-align: center;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(17, 17, 17, 0.96),
+            rgba(6, 6, 6, 0.96)
+        );
+
+    border: 1px solid rgba(157, 92, 255, 0.65);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 0 10px rgba(157, 92, 255, 0.18),
+        0 0 35px rgba(157, 92, 255, 0.10),
+        inset 0 0 25px rgba(157, 92, 255, 0.04);
+}
+
+
+/* =========================================================
+   SÍMBOLO SI
+========================================================= */
+
+.function-symbol {
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #a36cff;
+    border-radius: 50%;
+
+    color: #cba8ff;
+
+    font-family: "Orbitron", sans-serif;
+    font-size: 30px;
+    font-weight: 600;
+
+    background: rgba(125, 65, 255, 0.05);
+
+    box-shadow:
+        0 0 8px rgba(163, 108, 255, 0.55),
+        0 0 25px rgba(163, 108, 255, 0.25),
+        inset 0 0 15px rgba(163, 108, 255, 0.08);
+}
+
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.hero h1 {
+    margin-bottom: 20px;
+
+    color: #ffffff;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: clamp(34px, 6vw, 58px);
+    font-weight: 600;
+
+    line-height: 1.15;
+
+    text-shadow:
+        0 0 10px rgba(255, 255, 255, 0.10);
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+    width: min(680px, 100%);
+
+    margin: 0 auto;
+
+    color: #9b9b9b;
+
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   ÁREA DO TEXTO
+========================================================= */
+
+.content {
+    width: min(920px, 100%);
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   BLOCO PRINCIPAL
+========================================================= */
+
+.content > p,
+.content > h2,
+.content > h3 {
+    width: 100%;
+}
+
+
+/* =========================================================
+   TEXTO
+========================================================= */
+
+.content p {
+    margin-bottom: 24px;
+
+    color: #c2c2c2;
+
+    font-size: 16px;
+    line-height: 1.85;
+}
+
+
+/* =========================================================
+   SEÇÕES NEON
+========================================================= */
+
+.content h2 {
+    margin-top: 55px;
+    margin-bottom: 30px;
+
+    padding: 30px 30px 24px;
+
+    color: #ffffff;
+
+    font-family: "Orbitron", sans-serif;
+
+    font-size: 24px;
+    font-weight: 600;
+
+    line-height: 1.35;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(16, 16, 16, 0.98),
+            rgba(8, 8, 8, 0.98)
+        );
+
+    border: 1px solid rgba(153, 87, 255, 0.55);
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 0 8px rgba(153, 87, 255, 0.22),
+        0 0 28px rgba(153, 87, 255, 0.08),
+        inset 0 0 18px rgba(153, 87, 255, 0.03);
+
+    text-shadow:
+        0 0 12px rgba(170, 120, 255, 0.20);
+}
+
+
+/* =========================================================
+   SUBTÍTULOS
+========================================================= */
+
+.content h3 {
+    margin-top: 38px;
+    margin-bottom: 15px;
+
+    padding-left: 18px;
+
+    color: #b98aff;
+
+    font-size: 19px;
+    font-weight: 600;
+
+    border-left: 2px solid #985eff;
+
+    text-shadow:
+        0 0 8px rgba(152, 94, 255, 0.25);
+}
+
+
+/* =========================================================
+   EFEITO NOS TEXTOS APÓS O TÍTULO
+========================================================= */
+
+.content h2 + p {
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   DESTAQUES
+========================================================= */
+
+strong {
+    color: #ffffff;
+}
+
+.content p:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================================
+   HOVER DOS BLOCOS
+========================================================= */
+
+.content h2 {
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease,
+        transform 0.25s ease;
+}
+
+.content h2:hover {
+    border-color: rgba(181, 126, 255, 0.85);
+
+    box-shadow:
+        0 0 10px rgba(153, 87, 255, 0.35),
+        0 0 35px rgba(153, 87, 255, 0.13),
+        inset 0 0 20px rgba(153, 87, 255, 0.05);
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   RESPONSIVO
+========================================================= */
+
+@media (max-width: 700px) {
+
+    main {
+        padding: 25px 14px 70px;
+    }
+
+    .hero {
+        padding: 55px 22px;
+
+        border-radius: 20px;
+    }
+
+    .function-symbol {
+        width: 75px;
+        height: 75px;
+
+        font-size: 25px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .intro {
+        font-size: 15px;
+    }
+
+    .content p {
+        font-size: 15px;
+        line-height: 1.8;
+    }
+
+    .content h2 {
+        margin-top: 45px;
+
+        padding: 23px 20px 19px;
+
+        font-size: 20px;
+
+        border-radius: 15px;
+    }
+
+    .content h3 {
+        font-size: 18px;
+    }
+}

@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Card 3 - Casa dos MBTIs</title>
+<link rel="stylesheet" href="card3.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="pagina">
+<a href="cards.html" class="voltar-cards">← VOLTAR PARA OS CARDS</a>
+
+<section class="documento tema-soft" id="documento">
+<div class="marca-agua">
+<div class="brasao"><span>⌂</span><strong>CASA</strong><small>DOS MBTIs</small></div>
+</div>
+
+<div class="borda-interna"></div>
+
+<header class="cabecalho">
+<div class="mini-logo">⌂</div>
+<div class="titulo-topo"><small>REPÚBLICA DA</small><strong>CASA DOS MBTIs</strong></div>
+<div class="id-card">#00248</div>
+</header>
+
+<section class="banner" id="banner">
+<div class="banner-placeholder" id="bannerPlaceholder">
+<div class="banner-plus">+</div>
+<strong>ESCOLHA SUA FOTO</strong>
+<small>BANNER DA SUA VIBE</small>
+</div>
+<img id="bannerImagem" src="" alt="">
+<div class="banner-overlay"></div>
+<div class="banner-info">
+<span>MEMBRO OFICIAL</span>
+<strong id="bannerNick">Lunaris</strong>
+</div>
+</section>
+
+<section class="perfil">
+<div class="nick-box">
+<span>NICK</span>
+<h1 id="nickVisual">Lunaris</h1>
+<p id="grupoVisual">EXPLORADORES</p>
+</div>
+
+<div class="dados-grid">
+<div class="dado"><span>MBTI</span><strong id="mbtiVisual">ENTP</strong></div>
+<div class="dado"><span>ENEAGRAMA</span><strong id="eneagramaVisual">7w6</strong></div>
+<div class="dado"><span>INSTINTO</span><strong id="instintoVisual">sp/so</strong></div>
+<div class="dado"><span>TEMPERAMENTO</span><strong id="temperamentoVisual">Colérico</strong></div>
+</div>
+</section>
+
+<section class="musica">
+<div class="musica-capa" id="musicaCapa">♪</div>
+<div class="musica-info">
+<small>NOW PLAYING</small>
+<strong id="musicaVisual">Escolha uma música</strong>
+<span id="artistaVisual">Sua vibe em uma faixa</span>
+<div class="progresso"><i></i></div>
+</div>
+<button type="button" id="playMusic" class="play-btn">▶</button>
+</section>
+
+<section class="vibes">
+<div class="vibe-titulo"><span>VIBE ICONS</span><small>3 MOMENTS</small></div>
+<div class="vibe-grid">
+<div class="vibe-item"><div class="vibe-placeholder" id="vibePlaceholder1">+</div><img id="vibeImagem1" src="" alt=""></div>
+<div class="vibe-item"><div class="vibe-placeholder" id="vibePlaceholder2">+</div><img id="vibeImagem2" src="" alt=""></div>
+<div class="vibe-item"><div class="vibe-placeholder" id="vibePlaceholder3">+</div><img id="vibeImagem3" src="" alt=""></div>
+</div>
+</section>
+
+<section class="frase">
+<div class="linha"></div>
+<p id="fraseVisual">"Caos permitido."</p>
+<div class="linha"></div>
+</section>
+
+<footer class="rodape">
+<div class="selo"><div class="selo-icon">⌂</div><div><strong>CASA DOS MBTIs</strong><small>MEMBRO OFICIAL</small></div></div>
+<div class="status"><span>STATUS</span><strong>ATIVO</strong></div>
+</footer>
+</section>
+
+<section class="personalizacao">
+<h2>PERSONALIZE SEU CARD</h2>
+
+<div class="secao-titulo">IMAGENS</div>
+<div class="controle"><label for="fotoInput">Banner principal</label><input type="file" id="fotoInput" accept="image/png,image/jpeg,image/webp"></div>
+<div class="vibe-upload-grid">
+<div class="mini-upload"><label for="vibeInput1">Vibe 01</label><input type="file" id="vibeInput1" accept="image/png,image/jpeg,image/webp"></div>
+<div class="mini-upload"><label for="vibeInput2">Vibe 02</label><input type="file" id="vibeInput2" accept="image/png,image/jpeg,image/webp"></div>
+<div class="mini-upload"><label for="vibeInput3">Vibe 03</label><input type="file" id="vibeInput3" accept="image/png,image/jpeg,image/webp"></div>
+</div>
+
+<div class="secao-titulo">CORES</div>
+<div class="cores-grid">
+<div class="controle-cor"><label for="corBorda">Borda</label><input type="color" id="corBorda" value="#e85b9c"></div>
+<div class="controle-cor"><label for="corBotoes">Botões</label><input type="color" id="corBotoes" value="#e85b9c"></div>
+<div class="controle-cor"><label for="corTexto">Texto</label><input type="color" id="corTexto" value="#ffffff"></div>
+<div class="controle-cor"><label for="corFundo">Fundo</label><input type="color" id="corFundo" value="#f8f5f7"></div>
+</div>
+
+<div class="secao-titulo">IDENTIDADE</div>
+<div class="campo-input"><label for="nickInput">Nick</label><input type="text" id="nickInput" value="Lunaris" maxlength="18"></div>
+<div class="campo-input"><label for="grupoInput">Grupo</label><input type="text" id="grupoInput" value="Exploradores" maxlength="18"></div>
+<div class="campo-input"><label for="mbtiInput">MBTI</label><input type="text" id="mbtiInput" value="ENTP" maxlength="8"></div>
+<div class="campo-input"><label for="eneagramaInput">Eneagrama</label><input type="text" id="eneagramaInput" value="7w6" maxlength="10"></div>
+<div class="campo-input"><label for="instintoInput">Instinto</label><input type="text" id="instintoInput" value="sp/so" maxlength="10"></div>
+<div class="campo-input"><label for="temperamentoInput">Temperamento</label><input type="text" id="temperamentoInput" value="Colérico" maxlength="20"></div>
+
+<div class="secao-titulo">MÚSICA</div>
+<div class="campo-input"><label for="musicaInput">Nome da música</label><input type="text" id="musicaInput" value="Escolha uma música" maxlength="30"></div>
+<div class="campo-input"><label for="artistaInput">Artista</label><input type="text" id="artistaInput" value="Sua vibe em uma faixa" maxlength="30"></div>
+
+<div class="secao-titulo">FRASE</div>
+<div class="campo-input"><label for="fraseInput">Frase</label><input type="text" id="fraseInput" value="Caos permitido." maxlength="40"></div>
+
+<div class="secao-titulo">ESTILO</div>
+<div class="controle"><label for="raioInput">Arredondamento</label><input type="range" id="raioInput" min="8" max="32" value="20"></div>
+<div class="controle"><label for="overlayInput">Overlay da foto</label><input type="range" id="overlayInput" min="0" max="80" value="35"></div>
+
+<button id="aplicar">APLICAR PERSONALIZAÇÃO</button>
+<button id="baixar">↓ BAIXAR COMO IMAGEM</button>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script>
+const documento=document.getElementById("documento");
+const fotoInput=document.getElementById("fotoInput");
+const bannerImagem=document.getElementById("bannerImagem");
+const bannerPlaceholder=document.getElementById("bannerPlaceholder");
+const corBorda=document.getElementById("corBorda");
+const corBotoes=document.getElementById("corBotoes");
+const corTexto=document.getElementById("corTexto");
+const corFundo=document.getElementById("corFundo");
+const nickInput=document.getElementById("nickInput");
+const grupoInput=document.getElementById("grupoInput");
+const mbtiInput=document.getElementById("mbtiInput");
+const eneagramaInput=document.getElementById("eneagramaInput");
+const instintoInput=document.getElementById("instintoInput");
+const temperamentoInput=document.getElementById("temperamentoInput");
+const musicaInput=document.getElementById("musicaInput");
+const artistaInput=document.getElementById("artistaInput");
+const fraseInput=document.getElementById("fraseInput");
+const raioInput=document.getElementById("raioInput");
+const overlayInput=document.getElementById("overlayInput");
+const aplicar=document.getElementById("aplicar");
+const baixar=document.getElementById("baixar");
+const playMusic=document.getElementById("playMusic");
+
+function carregarImagem(input,img,placeholder){
+input.addEventListener("change",e=>{
+const arquivo=e.target.files[0];
+if(!arquivo)return;
+if(!arquivo.type.startsWith("image/")){
+alert("Escolha uma imagem válida.");
+input.value="";
+return;
+}
+const leitor=new FileReader();
+leitor.onload=ev=>{
+img.src=ev.target.result;
+img.style.display="block";
+if(placeholder)placeholder.style.display="none";
+};
+leitor.readAsDataURL(arquivo);
+});
+}
+
+carregarImagem(fotoInput,bannerImagem,bannerPlaceholder);
+carregarImagem(document.getElementById("vibeInput1"),document.getElementById("vibeImagem1"),document.getElementById("vibePlaceholder1"));
+carregarImagem(document.getElementById("vibeInput2"),document.getElementById("vibeImagem2"),document.getElementById("vibePlaceholder2"));
+carregarImagem(document.getElementById("vibeInput3"),document.getElementById("vibeImagem3"),document.getElementById("vibePlaceholder3"));
+
+function atualizar(){
+documento.style.setProperty("--cor-borda",corBorda.value);
+documento.style.setProperty("--cor-botoes",corBotoes.value);
+documento.style.setProperty("--cor-texto-botoes",corTexto.value);
+documento.style.setProperty("--cor-fundo",corFundo.value);
+documento.style.setProperty("--raio",raioInput.value+"px");
+documento.style.setProperty("--overlay-opacidade",(overlayInput.value/100).toString());
+
+document.getElementById("nickVisual").textContent=nickInput.value.trim()||"Seu Nick";
+document.getElementById("bannerNick").textContent=nickInput.value.trim()||"Seu Nick";
+document.getElementById("grupoVisual").textContent=(grupoInput.value.trim()||"SEU GRUPO").toUpperCase();
+document.getElementById("mbtiVisual").textContent=mbtiInput.value.trim()||"MBTI";
+document.getElementById("eneagramaVisual").textContent=eneagramaInput.value.trim()||"Eneagrama";
+document.getElementById("instintoVisual").textContent=instintoInput.value.trim()||"Instinto";
+document.getElementById("temperamentoVisual").textContent=temperamentoInput.value.trim()||"Temperamento";
+document.getElementById("musicaVisual").textContent=musicaInput.value.trim()||"Escolha uma música";
+document.getElementById("artistaVisual").textContent=artistaInput.value.trim()||"Sua vibe em uma faixa";
+document.getElementById("fraseVisual").textContent=`"${fraseInput.value.trim()||"Caos permitido."}"`;
+}
+
+[corBorda,corBotoes,corTexto,corFundo,raioInput,overlayInput].forEach(el=>el.addEventListener("input",atualizar));
+aplicar.addEventListener("click",atualizar);
+atualizar();
+
+let tocando=false;
+playMusic.addEventListener("click",()=>{
+tocando=!tocando;
+playMusic.textContent=tocando?"❚❚":"▶";
+document.querySelector(".progresso i").style.width=tocando?"62%":"18%";
+});
+
+baixar.addEventListener("click",async()=>{
+try{
+baixar.textContent="GERANDO...";
+baixar.disabled=true;
+atualizar();
+const imagens=documento.querySelectorAll("img");
+await Promise.all([...imagens].map(img=>{
+if(img.complete)return Promise.resolve();
+return new Promise(resolve=>{
+img.onload=resolve;
+img.onerror=resolve;
+});
+}));
+const canvas=await html2canvas(documento,{scale:3,useCORS:true,allowTaint:false,backgroundColor:null,logging:false,imageTimeout:15000});
+const link=document.createElement("a");
+link.download="card3-casa-dos-mbtis.png";
+link.href=canvas.toDataURL("image/png");
+link.click();
+}catch(erro){
+console.error(erro);
+alert("Não foi possível gerar a imagem.");
+}finally{
+baixar.textContent="↓ BAIXAR COMO IMAGEM";
+baixar.disabled=false;
+}
+});
+</script>
+</body>
+</html>
