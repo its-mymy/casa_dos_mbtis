@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membros | Casa dos MBTIs</title>
+    <link rel="stylesheet" href="membros.css">
+</head>
+<body>
+
+    <main class="members-page">
+
+        <header class="members-header">
+            <div>
+                <span class="eyebrow">CASA DOS MBTIs</span>
+                <h1>Membros</h1>
+                <p>Encontre outros membros da comunidade.</p>
+            </div>
+
+            <a href="../perfil/index.html" class="my-profile-button">
+                MEU PERFIL
+            </a>
+        </header>
+
+        <div class="search-area">
+            <input
+                type="search"
+                id="search-members"
+                placeholder="Pesquisar por nome ou username..."
+            >
+        </div>
+
+        <p id="members-message" class="members-message">
+            Carregando membros...
+        </p>
+
+        <section id="members-grid" class="members-grid"></section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="membros.js"></script>
+
+</body>
+</html>

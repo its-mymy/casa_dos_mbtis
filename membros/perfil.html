@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Casa dos MBTIs</title>
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+
+    <main class="public-profile-page">
+
+        <section id="profile-card" class="public-profile-card">
+
+            <div id="profile-banner" class="profile-banner">
+                <img id="banner-image" src="" alt="Banner">
+            </div>
+
+            <div class="profile-content">
+
+                <div class="profile-top">
+                    <div id="avatar" class="public-avatar">
+                        👤
+                    </div>
+
+                    <div class="profile-info">
+                        <h1 id="profile-name">Carregando...</h1>
+                        <p id="profile-username">@usuario</p>
+
+                        <div class="tags">
+                            <span id="profile-mbti">MBTI</span>
+                            <span id="profile-eneagrama">Eneagrama</span>
+                            <span id="profile-tritype">Tritype</span>
+                        </div>
+                    </div>
+
+                    <button
+                        id="follow-button"
+                        class="follow-button"
+                        type="button"
+                    >
+                        SEGUIR
+                    </button>
+
+                    <button id="create-profile-button" class="create-profile-button" type="button">
+                     ✦ QUERO MEU PERFIL
+                    </button>
+                </div>
+
+              <div class="stats">
+
+    <button
+        id="followers-button"
+        class="stat-button"
+        type="button"
+    >
+        <strong id="followers-count">0</strong>
+        <span>Seguidores</span>
+    </button>
+
+    <button
+        id="following-button"
+        class="stat-button"
+        type="button"
+    >
+        <strong id="following-count">0</strong>
+        <span>Seguindo</span>
+    </button>
+
+</div>
+
+                <section class="profile-section">
+                    <h2>Sobre mim</h2>
+                    <p id="profile-bio">
+                        Nenhuma bio adicionada.
+                    </p>
+                </section>
+
+                <section class="profile-section">
+                    <h2>Tipologia</h2>
+
+                    <div class="info-grid">
+
+                        <div>
+                            <span>MBTI</span>
+                            <strong id="info-mbti">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Eneagrama</span>
+                            <strong id="info-eneagrama">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Tritype</span>
+                            <strong id="info-tritype">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Subtipo</span>
+                            <strong id="info-subtipo">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Temperamento</span>
+                            <strong id="info-temperamento">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Socionics</span>
+                            <strong id="info-socionics">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Big Five</span>
+                            <strong id="info-big-five">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Grupo</span>
+                            <strong id="info-grupo">—</strong>
+                        </div>
+
+                    </div>
+                </section>
+
+                <section class="profile-section">
+                    <h2>Gostos</h2>
+
+                    <div class="likes-grid">
+                        <div>
+                            <span>🎵 Música</span>
+                            <strong id="profile-music">—</strong>
+                        </div>
+
+                        <div>
+                            <span>🎤 Artista</span>
+                            <strong id="profile-artist">—</strong>
+                        </div>
+
+                        <div>
+                            <span>🎮 Jogo</span>
+                            <strong id="profile-game">—</strong>
+                        </div>
+
+                        <div>
+                            <span>📺 Série</span>
+                            <strong id="profile-series">—</strong>
+                        </div>
+
+                        <div>
+                            <span>⭐ Personagem</span>
+                            <strong id="profile-character">—</strong>
+                        </div>
+                    </div>
+                </section>
+
+                <a
+                    href="index.html"
+                    class="back-button"
+                >
+                    ← VOLTAR AOS MEMBROS
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+    <div id="follow-modal" class="follow-modal hidden">
+
+    <div class="follow-modal-box">
+
+        <div class="follow-modal-header">
+
+            <h2 id="follow-modal-title">
+                Seguidores
+            </h2>
+
+            <button
+                id="close-follow-modal"
+                class="close-follow-modal"
+                type="button"
+            >
+                ×
+            </button>
+
+        </div>
+
+        <div
+            id="follow-list"
+            class="follow-list"
+        >
+            Carregando...
+        </div>
+
+    </div>
+
+</div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="perfil.js"></script>
+
+</body>
+</html>

@@ -15,28 +15,46 @@ body {
     padding-top: 70px;
 }
 
+/* ==============================
+   NAVBAR
+============================== */
+
 .navbar {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 70px;
+
     display: flex;
     align-items: center;
     justify-content: space-between;
+
     padding: 0 40px;
-    background: #111111;
-    border-bottom: 1px solid #292929;
+
+    background: rgba(17, 17, 17, 0.90);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+
     font-family: Arial, Helvetica, sans-serif;
+
     z-index: 9999;
 }
+
+/* ==============================
+   LOGO
+============================== */
 
 .nav-logo {
     color: #9b59ff;
     text-decoration: none;
+
     font-size: 20px;
     font-weight: bold;
     letter-spacing: 3px;
+
     transition: 0.3s;
 }
 
@@ -44,69 +62,34 @@ body {
     color: #c084ff;
 }
 
-.nav-list {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 35px;
-}
-
-.nav-list li {
-    list-style: none;
-}
-
-.nav-list a {
-    position: relative;
-    color: #eeeeee;
-    text-decoration: none;
-    font-size: 15px;
-    letter-spacing: 1px;
-    transition: 0.3s;
-}
-
-.nav-list a:hover {
-    color: #9b59ff;
-}
-
-.nav-list a::after {
-    content: "";
-    position: absolute;
-    width: 0;
-    height: 2px;
-    left: 0;
-    bottom: -7px;
-    background: #9b59ff;
-    transition: 0.3s;
-}
-
-.nav-list a:hover::after {
-    width: 100%;
-}
+/* ==============================
+   HAMBÚRGUER
+============================== */
 
 .mobile-menu {
-    display: none;
+    display: block;
     cursor: pointer;
+
+    position: relative;
+    z-index: 10001;
+
+    padding: 8px;
 }
 
 .mobile-menu div {
     width: 30px;
     height: 2px;
+
     background: #ffffff;
+
     margin: 7px;
+
+    border-radius: 10px;
+
     transition: 0.3s;
 }
 
-@keyframes navLinkFade {
-    from {
-        opacity: 0;
-        transform: translateX(50px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
+/* X */
 
 .mobile-menu.active .line1 {
     transform: rotate(-45deg) translate(-7px, 6px);
@@ -120,7 +103,173 @@ body {
     transform: rotate(45deg) translate(-6px, -6px);
 }
 
+/* ==============================
+   MENU LATERAL
+============================== */
+
+.nav-list {
+    position: fixed;
+
+    top: 70px;
+    right: 0;
+
+    width: 360px;
+    max-width: 90vw;
+
+    height: calc(100vh - 70px);
+
+    background: rgba(17, 17, 17, 0.82);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 30px;
+
+    padding: 35px 25px 50px;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    list-style: none;
+
+    visibility: hidden;
+    opacity: 0;
+
+    transform: translateX(100%);
+
+    transition:
+        opacity 0.3s ease,
+        visibility 0.3s ease,
+        transform 0.35s ease;
+
+    z-index: 10000;
+}
+
+/* MENU ABERTO */
+
+.nav-list.active {
+    visibility: visible;
+    opacity: 1;
+
+    transform: translateX(0);
+}
+
+/* ==============================
+   LINKS
+============================== */
+
+.nav-list li {
+    width: 100%;
+
+    text-align: center;
+
+    list-style: none;
+
+    opacity: 0;
+
+    flex-shrink: 0;
+}
+
+.nav-list.active li {
+    animation: navLinkFade 0.45s ease forwards;
+}
+
+.nav-list a {
+    position: relative;
+
+    display: inline-block;
+
+    color: #eeeeee;
+
+    text-decoration: none;
+
+    font-size: 17px;
+
+    letter-spacing: 1px;
+
+    padding: 5px 0;
+
+    transition: 0.3s;
+}
+
+.nav-list a:hover {
+    color: #9b59ff;
+}
+
+/* linha embaixo */
+
+.nav-list a::after {
+    content: "";
+
+    position: absolute;
+
+    width: 0;
+    height: 2px;
+
+    left: 0;
+    bottom: -5px;
+
+    background: #9b59ff;
+
+    transition: 0.3s;
+}
+
+.nav-list a:hover::after {
+    width: 100%;
+}
+
+/* ==============================
+   ANIMAÇÃO DOS LINKS
+============================== */
+
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==============================
+   SCROLLBAR
+============================== */
+
+.nav-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.nav-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.nav-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.18);
+    border-radius: 10px;
+}
+
+.nav-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(155, 89, 255, 0.6);
+}
+
+/* ==============================
+   MOBILE
+============================== */
+
 @media (max-width: 768px) {
+
     body {
         padding-top: 65px;
     }
@@ -135,85 +284,48 @@ body {
         letter-spacing: 2px;
     }
 
-    .mobile-menu {
-        display: block;
-        position: relative;
-        z-index: 10001;
-    }
-
     .nav-list {
-        position: fixed;
         top: 65px;
-        right: 0;
-        width: 70%;
+
+        width: 78%;
+        max-width: 400px;
+
         height: calc(100vh - 65px);
-        background: #111111;
-        border-left: 1px solid #292929;
 
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
+        gap: 38px;
 
-        gap: 45px;
-        padding: 45px 20px;
-
-        overflow-y: auto;
-        overflow-x: hidden;
-
-        visibility: hidden;
-        opacity: 0;
-
-        transition:
-            opacity 0.3s ease,
-            visibility 0.3s ease;
-
-        z-index: 10000;
-    }
-
-    .nav-list.active {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .nav-list li {
-        width: 100%;
-        text-align: center;
-        opacity: 0;
-        flex-shrink: 0;
-    }
-
-    .nav-list.active li {
-        opacity: 1;
-        animation: navLinkFade 0.5s ease forwards;
+        padding: 40px 20px 50px;
     }
 
     .nav-list a {
         font-size: 17px;
     }
-
-    .nav-list::-webkit-scrollbar {
-        width: 6px;
-    }
-
-    .nav-list::-webkit-scrollbar-track {
-        background: #111111;
-    }
-
-    .nav-list::-webkit-scrollbar-thumb {
-        background: #333333;
-        border-radius: 10px;
-    }
 }
 
+/* ==============================
+   TELAS PEQUENAS
+============================== */
+
 @media (max-width: 480px) {
-    .nav-list {
-        width: 80%;
-        gap: 40px;
-        padding: 40px 15px;
-    }
 
     .nav-logo {
         font-size: 14px;
+        letter-spacing: 2px;
+    }
+
+    .nav-list {
+        width: 82%;
+
+        gap: 34px;
+
+        padding: 35px 15px 45px;
+    }
+
+    .nav-list a {
+        font-size: 16px;
+    }
+
+    .mobile-menu div {
+        width: 27px;
     }
 }

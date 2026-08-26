@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil | Casa dos MBTIs</title>
+    <link rel="stylesheet" href="perfil.css">
+</head>
+<body>
+
+    <main class="profile-page">
+
+        <section class="profile-card" id="profile-card">
+
+            <div class="banner" id="banner">
+                <img id="profile-banner" src="" alt="Banner do perfil">
+
+                <div class="banner-overlay"></div>
+
+                <button class="banner-edit" id="banner-edit" type="button">
+                    ✎
+                </button>
+
+                <input
+                    type="file"
+                    id="banner-input"
+                    accept="image/*"
+                    hidden
+                >
+            </div>
+
+            <div class="profile-header">
+                <div class="avatar-area">
+                    <div class="avatar-frame">
+                        <img id="profile-avatar" src="" alt="Foto de perfil">
+                        <div id="avatar-placeholder" class="avatar-placeholder">👤</div>
+                    </div>
+
+                    <button id="avatar-edit" class="avatar-edit" type="button">✎</button>
+
+                    <input
+                        type="file"
+                        id="avatar-input"
+                        accept="image/*"
+                        hidden
+                    >
+                </div>
+
+                <div class="profile-main-info">
+                    <h1 id="profile-name">Carregando...</h1>
+                    <p id="profile-username">@usuario</p>
+
+                    <div class="profile-tags">
+                        <span id="profile-mbti">MBTI</span>
+                        <span id="profile-eneagrama">Eneagrama</span>
+                        <span id="profile-tritype">Tritype</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="profile-actions">
+                <button id="edit-profile" class="primary-button" type="button">
+                    EDITAR PERFIL
+                </button>
+
+                <button id="logout-button" class="secondary-button" type="button">
+                    SAIR
+                </button>
+            </div>
+
+            <section class="content-grid">
+
+                <div class="profile-section about-section">
+                    <div class="section-title">
+                        <span>✦</span>
+                        <h2>Sobre mim</h2>
+                    </div>
+
+                    <p id="profile-bio" class="bio">
+                        Nenhuma bio adicionada ainda.
+                    </p>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">
+                        <span>🧠</span>
+                        <h2>Tipologia</h2>
+                    </div>
+
+                    <div class="info-grid">
+                        <div class="info-box">
+                            <span>MBTI</span>
+                            <strong id="info-mbti">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Eneagrama</span>
+                            <strong id="info-eneagrama">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Tritype</span>
+                            <strong id="info-tritype">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Subtipo</span>
+                            <strong id="info-subtipo">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Temperamento</span>
+                            <strong id="info-temperamento">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Socionics</span>
+                            <strong id="info-socionics">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Big Five</span>
+                            <strong id="info-big-five">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Grupo da Casa</span>
+                            <strong id="info-grupo">—</strong>
+                        </div>
+
+                        <div class="info-box">
+                            <span>Pronomes</span>
+                            <strong id="info-pronomes">—</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">
+                        <span>🎵</span>
+                        <h2>Música</h2>
+                    </div>
+
+                    <div class="music-card">
+                        <div class="music-icon">♫</div>
+
+                        <div>
+                            <strong id="profile-music">Nenhuma música adicionada</strong>
+                            <span id="profile-artist">—</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section">
+                    <div class="section-title">
+                        <span>⭐</span>
+                        <h2>Favoritos</h2>
+                    </div>
+
+                    <div class="favorites-grid">
+                        <div class="favorite-card">
+                            <span>🎮 Jogo</span>
+                            <strong id="profile-game">—</strong>
+                        </div>
+
+                        <div class="favorite-card">
+                            <span>📺 Série</span>
+                            <strong id="profile-series">—</strong>
+                        </div>
+
+                        <div class="favorite-card">
+                            <span>⭐ Personagem</span>
+                            <strong id="profile-character">—</strong>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-section colors-section">
+                    <div class="section-title">
+                        <span>🎨</span>
+                        <h2>Minha estética</h2>
+                    </div>
+
+                    <div class="color-wheel-area">
+                        <div class="color-wheel">
+                            <div class="color-wheel-center"></div>
+                        </div>
+
+                        <div class="color-values">
+                            <div>
+                                <span>Principal</span>
+                                <strong id="show-primary">#8B5CF6</strong>
+                            </div>
+
+                            <div>
+                                <span>Secundária</span>
+                                <strong id="show-secondary">#C084FC</strong>
+                            </div>
+
+                            <div>
+                                <span>Destaque</span>
+                                <strong id="show-accent">#60A5FA</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </section>
+    </main>
+
+    <div id="edit-modal" class="modal hidden">
+
+        <div class="modal-box">
+
+            <div class="modal-header">
+                <div>
+                    <span class="modal-small-title">PERSONALIZAÇÃO</span>
+                    <h2>Editar perfil</h2>
+                </div>
+
+                <button id="close-modal" class="close-modal" type="button">
+                    ×
+                </button>
+            </div>
+
+            <form id="edit-form">
+
+                <div class="edit-avatar-area">
+                    <div class="edit-avatar">
+                        <img id="edit-avatar-preview" src="" alt="Prévia da foto">
+                        <div id="edit-avatar-placeholder">👤</div>
+                    </div>
+
+                    <div>
+                        <input
+                            type="file"
+                            id="edit-avatar-input"
+                            accept="image/*"
+                            hidden
+                        >
+
+                        <button
+                            id="choose-avatar"
+                            class="secondary-button"
+                            type="button"
+                        >
+                            ESCOLHER FOTO
+                        </button>
+
+                        <p class="input-help">
+                            Você pode usar sua própria foto.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="avatar-selector-section">
+                    <h3>Escolha seu avatar</h3>
+
+                    <div class="avatar-options">
+                        <button
+                            type="button"
+                            class="avatar-option"
+                            data-avatar="🌙"
+                        >
+                            🌙
+                        </button>
+
+                        <button
+                            type="button"
+                            class="avatar-option"
+                            data-avatar="🐈"
+                        >
+                            🐈
+                        </button>
+
+                        <button
+                            type="button"
+                            class="avatar-option"
+                            data-avatar="🎧"
+                        >
+                            🎧
+                        </button>
+
+                        <button
+                            type="button"
+                            class="avatar-option"
+                            data-avatar="🪽"
+                        >
+                            🪽
+                        </button>
+
+                        <button
+                            type="button"
+                            class="avatar-option"
+                            data-avatar="⭐"
+                        >
+                            ⭐
+                        </button>
+
+                        <button
+                            type="button"
+                            class="avatar-option"
+                            data-avatar="🌸"
+                        >
+                            🌸
+                        </button>
+                    </div>
+
+                    <p class="input-help">
+                        Ou envie sua própria foto acima.
+                    </p>
+                </div>
+
+                <div class="form-section">
+                    <h3>Informações</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="edit-name">Nome</label>
+                            <input id="edit-name" type="text" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-username">Username</label>
+                            <input id="edit-username" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-pronomes">Pronomes</label>
+                            <input id="edit-pronomes" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-grupo">Grupo da Casa</label>
+                            <select id="edit-grupo">
+                                <option value="">Escolher</option>
+                                <option value="Analistas">Analistas</option>
+                                <option value="Diplomatas">Diplomatas</option>
+                                <option value="Sentinelas">Sentinelas</option>
+                                <option value="Exploradores">Exploradores</option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="edit-bio">Sobre mim</label>
+                        <textarea id="edit-bio" maxlength="500"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Tipologia</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="edit-mbti">MBTI</label>
+                            <input id="edit-mbti" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-eneagrama">Eneagrama</label>
+                            <input id="edit-eneagrama" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-tritype">Tritype</label>
+                            <input id="edit-tritype" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-subtipo">Subtipo</label>
+                            <input id="edit-subtipo" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-temperamento">Temperamento</label>
+                            <input id="edit-temperamento" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-socionics">Socionics</label>
+                            <input id="edit-socionics" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-big-five">Big Five</label>
+                            <input id="edit-big-five" type="text">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Gostos</h3>
+
+                    <div class="form-grid">
+
+                        <div class="form-group">
+                            <label for="edit-music">Música favorita</label>
+                            <input id="edit-music" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-artist">Artista favorito</label>
+                            <input id="edit-artist" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-game">Jogo favorito</label>
+                            <input id="edit-game" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-series">Série favorita</label>
+                            <input id="edit-series" type="text">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-character">Personagem favorito</label>
+                            <input id="edit-character" type="text">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h3>Cores do perfil</h3>
+
+                    <div class="color-editor">
+
+                        <div class="color-mode-buttons">
+
+                            <button
+                                type="button"
+                                class="color-mode active"
+                                data-color="primary"
+                            >
+                                PRINCIPAL
+                            </button>
+
+                            <button
+                                type="button"
+                                class="color-mode"
+                                data-color="secondary"
+                            >
+                                SECUNDÁRIA
+                            </button>
+
+                            <button
+                                type="button"
+                                class="color-mode"
+                                data-color="accent"
+                            >
+                                DESTAQUE
+                            </button>
+
+                        </div>
+
+                        <div class="interactive-wheel-area">
+
+                            <div class="interactive-wheel">
+                                <canvas
+                                    id="color-wheel"
+                                    width="320"
+                                    height="320"
+                                ></canvas>
+
+                                <div
+                                    id="color-picker-dot"
+                                    class="color-picker-dot"
+                                ></div>
+                            </div>
+
+                            <div class="selected-color-info">
+
+                                <div
+                                    id="selected-color-preview"
+                                    class="selected-color-preview"
+                                ></div>
+
+                                <div>
+                                    <span>Cor selecionada</span>
+                                    <strong id="selected-color-hex">
+                                        #8B5CF6
+                                    </strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div class="color-preview-card">
+
+                            <span>PREVIEW</span>
+
+                            <div
+                                id="theme-preview"
+                                class="theme-preview"
+                            >
+                                <div class="preview-circle"></div>
+
+                                <div>
+                                    <strong>Casa dos MBTIs</strong>
+                                    <small>Seu perfil personalizado</small>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <input
+                            id="edit-primary"
+                            type="hidden"
+                            value="#8B5CF6"
+                        >
+
+                        <input
+                            id="edit-secondary"
+                            type="hidden"
+                            value="#C084FC"
+                        >
+
+                        <input
+                            id="edit-accent"
+                            type="hidden"
+                            value="#60A5FA"
+                        >
+
+                    </div>
+                </div>
+
+                <p id="edit-message" class="edit-message"></p>
+
+                <button
+                    type="submit"
+                    class="primary-button save-button"
+                >
+                    SALVAR PERFIL
+                </button>
+
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="perfil.js"></script>
+
+</body>
+</html>

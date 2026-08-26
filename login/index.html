@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa dos MBTIs | Login</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+    <main class="login-container">
+        <section class="login-box">
+            <div class="logo-area">
+                <h1>CASA DOS MBTIs</h1>
+                <p>Área de membros</p>
+            </div>
+
+            <div id="login-section">
+                <h2>Entrar</h2>
+
+                <form id="login-form">
+                    <div class="input-group">
+                        <label for="login-email">E-mail</label>
+                        <input type="email" id="login-email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="login-password">Senha</label>
+                        <input type="password" id="login-password" placeholder="Sua senha" required>
+                    </div>
+
+                    <button type="submit" class="main-button">ENTRAR</button>
+
+                    <p id="login-message" class="message"></p>
+                </form>
+
+                <div class="switch-area">
+                    <span>Não tem cadastro?</span>
+                    <button type="button" id="show-register" class="switch-button">CADASTRAR</button>
+                </div>
+            </div>
+
+            <div id="register-section" class="hidden">
+                <h2>Criar conta</h2>
+
+                <form id="register-form">
+                    <div class="input-group">
+                        <label for="register-code">Código de acesso</label>
+                        <input type="text" id="register-code" placeholder="Digite seu código" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="register-email">E-mail</label>
+                        <input type="email" id="register-email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="register-password">Senha</label>
+                        <input type="password" id="register-password" placeholder="Crie sua senha" minlength="6" required>
+                    </div>
+
+                    <button type="submit" class="main-button">CRIAR CONTA</button>
+
+                    <p id="register-message" class="message"></p>
+                </form>
+
+                <div class="switch-area">
+                    <span>Já tem cadastro?</span>
+                    <button type="button" id="show-login" class="switch-button">ENTRAR</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="login.js"></script>
+</body>
+</html>
