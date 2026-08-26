@@ -13,6 +13,9 @@
     --cor-texto-botoes: #ffffff;
     --cor-fundo: #f8f5f7;
 
+    --cor-nick: #111111;
+    --cor-vibe: #111111;
+
     --texto: #242026;
     --cinza: #777777;
 
@@ -80,7 +83,7 @@ body {
 
     padding: 11px 15px;
 
-    border: 1px solid #444;
+    border: 1px solid #444444;
     border-radius: 10px;
 
     background: #151515;
@@ -106,7 +109,7 @@ body {
 
 
 /* =========================================================
-   DOCUMENTO PRINCIPAL
+   DOCUMENTO
    ========================================================= */
 
 .documento {
@@ -136,7 +139,7 @@ body {
 
 
 /* =========================================================
-   TEXTURA DO DOCUMENTO
+   TEXTURA
    ========================================================= */
 
 .documento::before {
@@ -170,7 +173,8 @@ body {
 
     border: 1px solid var(--cor-borda);
 
-    border-radius: calc(var(--raio) - 8px);
+    border-radius:
+        calc(var(--raio) - 8px);
 
     opacity: 0.38;
 
@@ -261,9 +265,6 @@ body {
     gap: 8px;
 }
 
-
-/* LOGO */
-
 .mini-logo {
     width: 32px;
     height: 32px;
@@ -282,9 +283,6 @@ body {
 
     background: #ffffffb3;
 }
-
-
-/* TÍTULO */
 
 .titulo-topo {
     display: flex;
@@ -309,9 +307,6 @@ body {
     letter-spacing: 1px;
 }
 
-
-/* ID */
-
 .id-card {
     text-align: right;
 
@@ -324,7 +319,7 @@ body {
 
 
 /* =========================================================
-   BANNER PRINCIPAL
+   BANNER
    ========================================================= */
 
 .banner {
@@ -351,9 +346,6 @@ body {
         );
 }
 
-
-/* PLACEHOLDER */
-
 .banner-placeholder {
     position: absolute;
 
@@ -363,6 +355,7 @@ body {
 
     display: flex;
     flex-direction: column;
+
     justify-content: center;
     align-items: center;
 
@@ -407,9 +400,6 @@ body {
     color: #888888;
 }
 
-
-/* IMAGEM */
-
 .banner img {
     position: absolute;
 
@@ -424,9 +414,6 @@ body {
 
     z-index: 1;
 }
-
-
-/* OVERLAY */
 
 .banner-overlay {
     position: absolute;
@@ -449,9 +436,6 @@ body {
 
     pointer-events: none;
 }
-
-
-/* TEXTO SOBRE A FOTO */
 
 .banner-info {
     position: absolute;
@@ -494,11 +478,9 @@ body {
     padding: 11px 6px 0;
 }
 
-
-/* NICK */
-
 .nick-box {
     display: flex;
+
     align-items: flex-end;
     justify-content: space-between;
 
@@ -523,6 +505,8 @@ body {
     font-size: 26px;
 
     line-height: 1;
+
+    color: var(--cor-nick);
 }
 
 .nick-box p {
@@ -537,7 +521,7 @@ body {
 
 
 /* =========================================================
-   DADOS DO PERFIL
+   DADOS
    ========================================================= */
 
 .dados-grid {
@@ -612,9 +596,6 @@ body {
         0 6px 18px #00000008;
 }
 
-
-/* CAPA DA MÚSICA */
-
 .musica-capa {
     width: 39px;
     height: 39px;
@@ -633,9 +614,6 @@ body {
 
     flex-shrink: 0;
 }
-
-
-/* INFORMAÇÕES */
 
 .musica-info {
     flex: 1;
@@ -674,7 +652,7 @@ body {
 
     font-size: 7px;
 
-    color: #888888;
+    color: var(--cor-vibe);
 
     white-space: nowrap;
 
@@ -682,9 +660,6 @@ body {
 
     text-overflow: ellipsis;
 }
-
-
-/* BARRA DE PROGRESSO */
 
 .progresso {
     height: 2px;
@@ -708,9 +683,6 @@ body {
 
     transition: 0.3s;
 }
-
-
-/* PLAY */
 
 .play-btn {
     width: 28px;
@@ -742,9 +714,6 @@ body {
     padding: 9px 7px 0;
 }
 
-
-/* TÍTULO */
-
 .vibe-titulo {
     display: flex;
 
@@ -770,9 +739,6 @@ body {
     letter-spacing: 1px;
 }
 
-
-/* GRID */
-
 .vibe-grid {
     display: grid;
 
@@ -780,9 +746,6 @@ body {
 
     gap: 7px;
 }
-
-
-/* ITEM */
 
 .vibe-item {
     position: relative;
@@ -798,9 +761,6 @@ body {
     background: #eeeeee;
 }
 
-
-/* FOTO */
-
 .vibe-item img {
     display: none;
 
@@ -809,9 +769,6 @@ body {
 
     object-fit: cover;
 }
-
-
-/* PLACEHOLDER */
 
 .vibe-placeholder {
     position: absolute;
@@ -901,9 +858,6 @@ body {
     align-items: center;
 }
 
-
-/* SELO */
-
 .selo {
     display: flex;
 
@@ -951,9 +905,6 @@ body {
     color: #999999;
 }
 
-
-/* STATUS */
-
 .status {
     display: flex;
 
@@ -980,7 +931,7 @@ body {
 
 
 /* =========================================================
-   PAINEL DE PERSONALIZAÇÃO
+   PAINEL
    ========================================================= */
 
 .personalizacao {
@@ -1011,7 +962,7 @@ body {
 
 
 /* =========================================================
-   TÍTULOS DAS SEÇÕES
+   TÍTULOS
    ========================================================= */
 
 .secao-titulo {
@@ -1028,12 +979,13 @@ body {
 
 
 /* =========================================================
-   INPUTS
+   CONTROLES
    ========================================================= */
 
 .controle,
 .campo-input {
     display: flex;
+
     flex-direction: column;
 
     gap: 5px;
@@ -1043,7 +995,7 @@ body {
 
 .controle label,
 .campo-input label,
-.controle-cor label,
+.cor-box label,
 .mini-upload label {
     font-size: 9px;
 
@@ -1055,7 +1007,9 @@ body {
 }
 
 
-/* INPUT DE TEXTO */
+/* =========================================================
+   INPUT TEXTO
+   ========================================================= */
 
 .campo-input input {
     width: 100%;
@@ -1080,7 +1034,9 @@ body {
 }
 
 
-/* INPUT DE IMAGEM */
+/* =========================================================
+   INPUT IMAGEM
+   ========================================================= */
 
 .controle input[type="file"] {
     width: 100%;
@@ -1120,43 +1076,102 @@ body {
 
 
 /* =========================================================
-   CORES
+   RODA DE CORES
    ========================================================= */
 
 .cores-grid {
     display: grid;
 
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: 1fr 1fr;
 
-    gap: 7px;
+    gap: 12px;
 }
 
-.controle-cor {
+.cor-box {
+    min-width: 0;
+
+    padding: 10px;
+
+    border: 1px solid #292929;
+
+    border-radius: 12px;
+
+    background: #151515;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cor-box label {
+    align-self: flex-start;
+
+    margin-bottom: 8px;
+}
+
+.color-picker {
+    width: 100%;
+
+    min-height: 145px;
+
     display: flex;
 
-    flex-direction: column;
-
-    gap: 5px;
+    align-items: center;
+    justify-content: center;
 }
 
-.controle-cor input[type="color"] {
+.hex-cor {
     width: 100%;
-    height: 38px;
 
-    padding: 3px;
+    margin-top: 7px;
 
-    border: 1px solid #444444;
+    padding: 6px 8px;
+
+    border-radius: 6px;
+
+    background: #0d0d0d;
+
+    text-align: center;
+
+    font-family: monospace;
+
+    font-size: 9px;
+
+    color: #dddddd;
+}
+
+
+/* =========================================================
+   SELECT PRETO / BRANCO
+   ========================================================= */
+
+.controle select {
+    width: 100%;
+
+    padding: 10px 12px;
+
+    border: 1px solid #3b3b3b;
 
     border-radius: 8px;
 
     background: #191919;
 
+    color: #ffffff;
+
+    outline: none;
+
+    font-family: inherit;
+
     cursor: pointer;
+}
+
+.controle select:focus {
+    border-color: var(--cor-borda);
 }
 
 
 /* =========================================================
-   UPLOAD DOS VIBE ICONS
+   VIBE UPLOAD
    ========================================================= */
 
 .vibe-upload-grid {
@@ -1208,7 +1223,7 @@ body {
 
 
 /* =========================================================
-   BOTÕES DO PAINEL
+   BOTÕES
    ========================================================= */
 
 #aplicar,
@@ -1232,9 +1247,6 @@ body {
     transition: 0.2s ease;
 }
 
-
-/* APLICAR */
-
 #aplicar {
     margin-top: 10px;
 
@@ -1244,9 +1256,6 @@ body {
 
     color: var(--cor-texto-botoes);
 }
-
-
-/* BAIXAR */
 
 #baixar {
     margin-top: 8px;
@@ -1258,18 +1267,12 @@ body {
     color: #ffffff;
 }
 
-
-/* HOVER */
-
 #aplicar:hover,
 #baixar:hover {
     transform: translateY(-2px);
 
     filter: brightness(1.08);
 }
-
-
-/* DESABILITADO */
 
 #aplicar:disabled,
 #baixar:disabled {
@@ -1294,13 +1297,22 @@ body {
     .documento {
         width: 100%;
 
-        height: calc((100vw - 10px) * 2.164);
+        height:
+            calc(
+                (100vw - 10px) * 2.164
+            );
 
-        min-height: calc((100vw - 10px) * 2.164);
+        min-height:
+            calc(
+                (100vw - 10px) * 2.164
+            );
     }
 
     .banner {
-        height: calc((100vw - 44px) * 0.66);
+        height:
+            calc(
+                (100vw - 44px) * 0.66
+            );
     }
 
     .nick-box h1 {
@@ -1350,6 +1362,10 @@ body {
 
     .vibe-item {
         border-radius: 9px;
+    }
+
+    .cores-grid {
+        grid-template-columns: 1fr;
     }
 
 }
