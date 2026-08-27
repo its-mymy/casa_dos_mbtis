@@ -21,6 +21,7 @@ async function carregarMembros() {
             nome,
             username,
             cargo,
+            vip,
             mbti,
             eneagrama,
             tritype,
@@ -129,14 +130,35 @@ function renderizarMembros(lista) {
             accent
         );
 
-       article.innerHTML = `
-    ${
-        membro.cargo === "adm"
-            ? `<div class="member-admin-badge">🛡️ ADM</div>`
-            : ""
-    }
+        const isAdm = membro.cargo === "adm";
+        const isVip = membro.vip === true;
 
-    <div class="member-card-top"></div>
+        let badgeHTML = "";
+
+        if (isAdm && isVip) {
+            badgeHTML = `
+                <div class="member-admin-badge">
+                    🛡️ ADM · 💎 VIP
+                </div>
+            `;
+        } else if (isAdm) {
+            badgeHTML = `
+                <div class="member-admin-badge">
+                    🛡️ ADM
+                </div>
+            `;
+        } else if (isVip) {
+            badgeHTML = `
+                <div class="member-admin-badge">
+                    💎 VIP
+                </div>
+            `;
+        }
+
+        article.innerHTML = `
+            ${badgeHTML}
+
+            <div class="member-card-top"></div>
 
             <div class="member-card-content">
                 ${obterAvatarHTML(membro)}
