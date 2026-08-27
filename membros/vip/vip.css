@@ -1,0 +1,1096 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap');
+
+:root {
+    --primary: #8B5CF6;
+    --secondary: #C084FC;
+    --accent: #60A5FA;
+
+    --background: #08070D;
+    --card-dark: #100C17;
+
+    --text: #ffffff;
+    --muted: #aaa1b5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family: "Baloo 2", sans-serif;
+
+    color: var(--text);
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            color-mix(
+                in srgb,
+                var(--primary) 20%,
+                transparent
+            ),
+            transparent 35%
+        ),
+
+        radial-gradient(
+            circle at 85% 85%,
+            color-mix(
+                in srgb,
+                var(--accent) 15%,
+                transparent
+            ),
+            transparent 35%
+        ),
+
+        var(--background);
+
+    overflow-x: hidden;
+}
+
+
+/* ==========================================
+   PÁGINA
+========================================== */
+
+.vip-page {
+    width: min(1100px, 100%);
+
+    margin: 0 auto;
+
+    padding:
+        55px 20px 70px;
+
+    text-align: center;
+}
+
+.vip-header {
+    margin-bottom: 45px;
+}
+
+.vip-eyebrow {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: var(--secondary);
+
+    font-family: "Fredoka", sans-serif;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.18em;
+}
+
+.vip-header h1 {
+    font-family: "Fredoka", sans-serif;
+
+    font-size: clamp(
+        2rem,
+        5vw,
+        3.4rem
+    );
+
+    line-height: 1.05;
+}
+
+.vip-header p {
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 1rem;
+}
+
+
+/* ==========================================
+   CARD AREA
+========================================== */
+
+.card-area {
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    perspective: 1600px;
+
+    overflow: visible;
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+.identity-card {
+    width: 760px;
+
+    height: calc(760px / 1.62);
+
+    max-width: calc(100vw - 28px);
+
+    position: relative;
+
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.8s cubic-bezier(
+            0.2,
+            0.7,
+            0.2,
+            1
+        );
+
+    cursor: pointer;
+}
+
+.identity-card.flipped {
+    transform: rotateY(180deg);
+}
+
+.identity-card-inner {
+    width: 100%;
+    height: 100%;
+
+    position: relative;
+
+    transform-style: preserve-3d;
+}
+
+
+/* ==========================================
+   FACES
+========================================== */
+
+.identity-face {
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    border-radius: 26px;
+
+    border:
+        2px solid
+        rgba(255,255,255,0.14);
+
+    backface-visibility: hidden;
+
+    -webkit-backface-visibility: hidden;
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.5),
+
+        0 0 50px
+        color-mix(
+            in srgb,
+            var(--primary) 10%,
+            transparent
+        );
+}
+
+.identity-front {
+    background:
+        linear-gradient(
+            140deg,
+            color-mix(
+                in srgb,
+                var(--primary) 75%,
+                #170d22
+            ),
+            #120d18 42%,
+            color-mix(
+                in srgb,
+                var(--accent) 35%,
+                #0c0911
+            )
+        );
+}
+
+.identity-back {
+    transform: rotateY(180deg);
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            color-mix(
+                in srgb,
+                var(--primary) 25%,
+                transparent
+            ),
+            transparent 35%
+        ),
+
+        linear-gradient(
+            140deg,
+            #120d18,
+            color-mix(
+                in srgb,
+                var(--secondary) 20%,
+                #0c0911
+            )
+        );
+}
+
+
+/* ==========================================
+   TOPO
+========================================== */
+
+.card-top {
+    height: 25%;
+
+    padding:
+        24px 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(
+                in srgb,
+                var(--primary) 90%,
+                #000
+            ),
+            color-mix(
+                in srgb,
+                var(--secondary) 70%,
+                var(--primary)
+            )
+        );
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.16);
+
+    text-align: left;
+}
+
+.brand-area {
+    display: flex;
+
+    flex-direction: column;
+}
+
+.card-small {
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.16em;
+
+    opacity: 0.85;
+}
+
+.card-top strong {
+    font-family: "Fredoka", sans-serif;
+
+    font-size: clamp(
+        1.5rem,
+        4vw,
+        2.5rem
+    );
+
+    line-height: 0.95;
+}
+
+.card-type {
+    font-family: "Fredoka", sans-serif;
+
+    font-size: clamp(
+        0.7rem,
+        2vw,
+        0.95rem
+    );
+
+    font-weight: 700;
+
+    letter-spacing: 0.12em;
+
+    opacity: 0.92;
+}
+
+
+/* ==========================================
+   CORPO
+========================================== */
+
+.card-body {
+    height: 58%;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+    padding:
+        25px 30px;
+}
+
+.photo-area {
+    flex:
+        0 0 31%;
+
+    display: flex;
+
+    justify-content: center;
+}
+
+
+/* ==========================================
+   AVATAR
+========================================== */
+
+.member-avatar {
+    width: 180px;
+    height: 180px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    padding: 5px;
+
+    border-radius: 22px;
+
+    background:
+        conic-gradient(
+            from 180deg,
+            var(--primary),
+            var(--secondary),
+            var(--accent),
+            var(--primary)
+        );
+
+    box-shadow:
+        0 0 35px
+        color-mix(
+            in srgb,
+            var(--primary) 30%,
+            transparent
+        );
+
+    font-size: 4rem;
+}
+
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    border-radius: 18px;
+
+    border:
+        4px solid
+        #100c17;
+}
+
+.avatar-emoji {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 18px;
+
+    background: #1b1426;
+
+    border:
+        4px solid
+        #100c17;
+
+    font-size: 5rem;
+}
+
+
+/* ==========================================
+   INFORMAÇÕES
+========================================== */
+
+.main-information {
+    flex: 1;
+
+    min-width: 0;
+
+    text-align: left;
+}
+
+.label {
+    display: block;
+
+    margin-bottom: 3px;
+
+    font-size: 0.7rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.16em;
+
+    opacity: 0.55;
+}
+
+.main-information h2 {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-family: "Fredoka", sans-serif;
+
+    font-size: clamp(
+        1.7rem,
+        5vw,
+        3rem
+    );
+
+    line-height: 1;
+}
+
+.username {
+    display: block;
+
+    margin-top: 5px;
+
+    color: rgba(255,255,255,0.65);
+
+    font-size: clamp(
+        0.85rem,
+        2vw,
+        1rem
+    );
+}
+
+
+/* ==========================================
+   TAGS
+========================================== */
+
+.main-tags {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 25px;
+}
+
+.main-tag {
+    min-width: 90px;
+
+    padding:
+        9px 12px;
+
+    border-radius: 11px;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.07);
+}
+
+.main-tag span {
+    display: block;
+
+    margin-bottom: 2px;
+
+    color: rgba(255,255,255,0.55);
+
+    font-size: 0.6rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.1em;
+}
+
+.main-tag strong {
+    font-family: "Fredoka", sans-serif;
+
+    font-size: 0.95rem;
+}
+
+
+/* ==========================================
+   RODAPÉ
+========================================== */
+
+.card-footer {
+    height: 17%;
+
+    padding:
+        0 30px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    color:
+        rgba(255,255,255,0.68);
+
+    font-size: 0.75rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.08em;
+}
+
+
+/* ==========================================
+   VERSO
+========================================== */
+
+.back-content {
+    height: 100%;
+
+    padding:
+        35px 40px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.back-title {
+    font-size: 0.7rem;
+
+    letter-spacing: 0.2em;
+
+    opacity: 0.55;
+
+    font-weight: 800;
+}
+
+.back-content h2 {
+    margin-top: 7px;
+
+    font-family: "Fredoka", sans-serif;
+
+    font-size: clamp(
+        1.7rem,
+        4vw,
+        2.6rem
+    );
+}
+
+.back-line {
+    width: 75%;
+
+    height: 1px;
+
+    margin:
+        18px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(255,255,255,0.35),
+            transparent
+        );
+}
+
+.back-information {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.back-information div {
+    padding: 12px;
+
+    text-align: left;
+
+    border-radius: 12px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.06);
+}
+
+.back-information span {
+    display: block;
+
+    margin-bottom: 4px;
+
+    color:
+        rgba(255,255,255,0.5);
+
+    font-size: 0.58rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+}
+
+.back-information strong {
+    font-family: "Fredoka", sans-serif;
+
+    font-size: 0.9rem;
+
+    word-break: break-word;
+}
+
+.member-since {
+    margin-top: auto;
+
+    text-align: center;
+}
+
+.member-since span {
+    display: block;
+
+    color:
+        rgba(255,255,255,0.48);
+
+    font-size: 0.62rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+}
+
+.member-since strong {
+    font-family: "Fredoka", sans-serif;
+
+    font-size: 1rem;
+}
+
+.back-status {
+    margin-top: 10px;
+
+    color: white;
+
+    font-family: "Fredoka", sans-serif;
+
+    font-size: 0.72rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    opacity: 0.8;
+}
+
+
+/* ==========================================
+   BOTÕES
+========================================== */
+
+.vip-actions {
+    margin-top: 30px;
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    flex-wrap: wrap;
+}
+
+.vip-button {
+    border: none;
+
+    border-radius: 13px;
+
+    padding:
+        13px 20px;
+
+    font-family: "Fredoka", sans-serif;
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.vip-button:hover {
+    transform: translateY(-2px);
+}
+
+.vip-button:active {
+    transform: translateY(0);
+}
+
+.vip-button.primary {
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--secondary)
+        );
+
+    box-shadow:
+        0 8px 25px
+        color-mix(
+            in srgb,
+            var(--primary) 20%,
+            transparent
+        );
+}
+
+.vip-button.secondary {
+    color: white;
+
+    background:
+        rgba(255,255,255,0.07);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.1);
+}
+
+.vip-message {
+    min-height: 22px;
+
+    margin-top: 17px;
+
+    color: var(--muted);
+
+    font-size: 0.85rem;
+}
+
+
+/* ==========================================
+   RESPONSIVO
+========================================== */
+
+@media (max-width: 700px) {
+
+    .vip-page {
+        padding:
+            30px 13px 50px;
+    }
+
+    /*
+       O cartão continua horizontal.
+       Só reduz proporcionalmente para caber na tela.
+    */
+
+    .identity-card {
+        width: calc(100vw - 28px);
+
+        height: calc(
+            (100vw - 28px) / 1.62
+        );
+    }
+
+    .card-body {
+        gap: 17px;
+
+        padding:
+            18px;
+    }
+
+    .card-top {
+        padding:
+            17px 19px;
+    }
+
+    .card-footer {
+        padding:
+            0 19px;
+
+        font-size: 0.62rem;
+    }
+
+    .main-tags {
+        gap: 6px;
+
+        margin-top: 15px;
+    }
+
+    .main-tag {
+        min-width: 0;
+
+        padding:
+            6px 8px;
+    }
+
+    .main-tag strong {
+        font-size: 0.78rem;
+    }
+
+    .back-content {
+        padding:
+            24px 20px;
+    }
+
+    .back-information {
+        gap: 7px;
+    }
+
+    .back-information div {
+        padding: 7px;
+    }
+
+    .back-information span {
+        font-size: 0.48rem;
+    }
+
+    .back-information strong {
+        font-size: 0.7rem;
+    }
+
+    .member-avatar {
+        width: 110px;
+        height: 110px;
+    }
+
+    .avatar-emoji {
+        font-size: 3rem;
+    }
+}
+
+
+/* ==========================================
+   CELULAR PEQUENO
+========================================== */
+
+@media (max-width: 480px) {
+
+    .vip-page {
+        padding:
+            24px 8px 40px;
+    }
+
+    .identity-card {
+        width: calc(100vw - 16px);
+
+        height: calc(
+            (100vw - 16px) / 1.62
+        );
+    }
+
+    /*
+       IMPORTANTE:
+       O corpo continua horizontal.
+       O cartão não vira vertical.
+    */
+
+    .card-body {
+        height: 58%;
+
+        flex-direction: row;
+
+        align-items: center;
+
+        gap: 10px;
+
+        padding:
+            10px 12px;
+    }
+
+    .photo-area {
+        flex:
+            0 0 30%;
+    }
+
+    .member-avatar {
+        width: 78px;
+        height: 78px;
+
+        border-radius: 15px;
+    }
+
+    .avatar-emoji {
+        border-radius: 12px;
+
+        font-size: 2.2rem;
+    }
+
+    .main-information {
+        width: auto;
+
+        flex: 1;
+
+        text-align: left;
+    }
+
+    .main-information h2 {
+        font-size: 1.2rem;
+    }
+
+    .username {
+        font-size: 0.68rem;
+    }
+
+    .label {
+        font-size: 0.5rem;
+    }
+
+    .main-tags {
+        justify-content: flex-start;
+
+        gap: 4px;
+
+        margin-top: 8px;
+    }
+
+    .main-tag {
+        min-width: 0;
+
+        padding:
+            4px 6px;
+    }
+
+    .main-tag span {
+        font-size: 0.4rem;
+    }
+
+    .main-tag strong {
+        font-size: 0.58rem;
+    }
+
+    .card-top {
+        height: 25%;
+
+        padding:
+            10px 12px;
+    }
+
+    .card-small {
+        font-size: 0.45rem;
+    }
+
+    .card-top strong {
+        font-size: 1.2rem;
+    }
+
+    .card-type {
+        font-size: 0.48rem;
+    }
+
+    .card-footer {
+        height: 17%;
+
+        padding:
+            0 12px;
+
+        font-size: 0.46rem;
+    }
+
+    .back-content {
+        padding:
+            12px 10px;
+    }
+
+    .back-title {
+        font-size: 0.45rem;
+    }
+
+    .back-content h2 {
+        margin-top: 3px;
+
+        font-size: 1.15rem;
+    }
+
+    .back-line {
+        width: 90%;
+
+        margin:
+            7px auto;
+    }
+
+    .back-information {
+        gap: 4px;
+    }
+
+    .back-information div {
+        padding: 5px;
+    }
+
+    .back-information span {
+        margin-bottom: 2px;
+
+        font-size: 0.34rem;
+    }
+
+    .back-information strong {
+        font-size: 0.52rem;
+    }
+
+    .member-since span {
+        font-size: 0.4rem;
+    }
+
+    .member-since strong {
+        font-size: 0.65rem;
+    }
+
+    .back-status {
+        margin-top: 4px;
+
+        font-size: 0.4rem;
+    }
+
+    .vip-actions {
+        gap: 7px;
+
+        margin-top: 18px;
+    }
+
+    .vip-button {
+        padding:
+            9px 12px;
+
+        font-size: 0.68rem;
+    }
+}

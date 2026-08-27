@@ -288,3 +288,43 @@ a {
             transparent
         );
 }
+
+.vip-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #8B5CF6,
+            #C084FC
+        );
+
+    color: white;
+
+    font-family: "Fredoka", sans-serif;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 0 20px rgba(139, 92, 246, 0.25);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.vip-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 30px rgba(139, 92, 246, 0.4);
+}
