@@ -85,74 +85,132 @@ registerForm.addEventListener("submit", async function (event) {
     }
 
     try {
-         console.log("Código digitado:", JSON.stringify(codigo));
+        console.log(
+            "Código digitado:",
+            JSON.stringify(codigo)
+        );
 
-const { data: codigoValido, error: codigoError } =
-    await supabaseClient.rpc("verificar_codigo_convite", {
-        codigo_informado: codigo
-    });
+        const {
+            data: codigoValido,
+            error: codigoError
+        } =
+            await supabaseClient.rpc(
+                "verificar_codigo_convite",
+                {
+                    codigo_informado: codigo
+                }
+            );
 
-console.log("Resultado da RPC:", codigoValido);
-console.log("Erro da RPC:", codigoError);
+        console.log(
+            "Resultado da RPC:",
+            codigoValido
+        );
+
+        console.log(
+            "Erro da RPC:",
+            codigoError
+        );
 
         if (codigoError) {
-            console.error("Erro ao verificar código:", codigoError);
-            registerMessage.textContent = "Não foi possível verificar o código.";
+            console.error(
+                "Erro ao verificar código:",
+                codigoError
+            );
+
+            registerMessage.textContent =
+                "Não foi possível verificar o código.";
+
             return;
         }
 
         if (!codigoValido) {
-            registerMessage.textContent = "Código inválido ou já utilizado.";
+            registerMessage.textContent =
+                "Código inválido ou já utilizado.";
+
             return;
         }
 
-        registerMessage.textContent = "Código válido! Criando conta...";
+        registerMessage.textContent =
+            "Código válido! Criando conta...";
 
-       const { data, error } = await supabaseClient.auth.signUp({
-         email,
-         password,
-         options: {
-         data: {
-            codigo_convite: codigo
-        }
-    }
-});
+        const { data, error } =
+            await supabaseClient.auth.signUp({
+                email,
+                password,
+                options: {
+                    data: {
+                        codigo_convite: codigo
+                    }
+                }
+            });
 
         if (error) {
-            console.error("Erro ao criar conta:", error);
-            registerMessage.textContent = error.message;
+            console.error(
+                "Erro ao criar conta:",
+                error
+            );
+
+            registerMessage.textContent =
+                error.message;
+
             return;
         }
 
         if (!data.user) {
-            registerMessage.textContent = "Não foi possível criar a conta.";
+            registerMessage.textContent =
+                "Não foi possível criar a conta.";
+
             return;
         }
 
-       
-        const { data: conviteUsado, error: conviteError } =
-            await supabaseClient.rpc("usar_codigo_convite", {
-                codigo_informado: codigo,
-                usuario_id: data.user.id
-            });
+        const {
+            data: conviteUsado,
+            error: conviteError
+        } =
+            await supabaseClient.rpc(
+                "usar_codigo_convite",
+                {
+                    codigo_informado: codigo,
+                    usuario_id: data.user.id
+                }
+            );
 
         if (conviteError) {
-            console.error("Erro ao usar convite:", conviteError);
-            registerMessage.textContent = "Conta criada, mas não foi possível registrar o convite.";
+            console.error(
+                "Erro ao usar convite:",
+                conviteError
+            );
+
+            registerMessage.textContent =
+                "Conta criada, mas não foi possível registrar o convite.";
+
             return;
         }
 
         if (!conviteUsado) {
-            registerMessage.textContent = "Esse código já foi usado.";
+            registerMessage.textContent =
+                "Esse código já foi usado.";
+
             return;
         }
 
-        registerMessage.textContent = "Conta criada com sucesso!";
+        registerMessage.textContent =
+            "Conta criada com sucesso!";
+
         registerForm.reset();
 
-        console.log("Usuário criado:", data.user);
+        console.log(
+            "Usuário criado:",
+            data.user
+        );
+
     } catch (error) {
-        console.error("Erro:", error);
-        registerMessage.textContent = "Ocorreu um erro ao criar a conta.";
+        console.error(
+            "Erro:",
+            error
+        );
+
+        registerMessage.textContent =
+            "Ocorreu um erro ao criar a conta.";
     }
 });

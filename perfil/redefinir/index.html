@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Redefinir senha | Casa dos MBTIs</title>
+
+    <link rel="stylesheet" href="redefinir.css">
+</head>
+
+<body>
+
+    <main class="reset-page">
+
+        <section class="reset-card">
+
+            <div class="logo">
+                CASA DOS <span>MBTIs</span>
+            </div>
+
+            <div class="icon">
+                🔐
+            </div>
+
+            <h1>Redefinir senha</h1>
+
+            <p class="description">
+                Crie uma nova senha para sua conta.
+            </p>
+
+            <form id="reset-form">
+
+                <div class="input-group">
+                    <label for="new-password">
+                        Nova senha
+                    </label>
+
+                    <input
+                        id="new-password"
+                        type="password"
+                        placeholder="Digite sua nova senha"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+                <div class="input-group">
+                    <label for="confirm-password">
+                        Confirmar senha
+                    </label>
+
+                    <input
+                        id="confirm-password"
+                        type="password"
+                        placeholder="Digite a senha novamente"
+                        minlength="6"
+                        required
+                    >
+                </div>
+
+                <button
+                    type="submit"
+                    id="reset-button"
+                >
+                    ALTERAR SENHA
+                </button>
+
+                <p
+                    id="reset-message"
+                    class="reset-message"
+                ></p>
+
+            </form>
+
+            <a
+                href="../../index.html"
+                class="back-link"
+            >
+                ← Voltar para meu perfil
+            </a>
+
+        </section>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="redefinir.js"></script>
+
+</body>
+</html>

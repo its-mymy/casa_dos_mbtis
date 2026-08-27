@@ -22,6 +22,7 @@ const bannerInput = document.getElementById("banner-input");
 
 const profileName = document.getElementById("profile-name");
 const profileUsername = document.getElementById("profile-username");
+const profileBadge = document.getElementById("profile-badge");
 
 const profileMbti = document.getElementById("profile-mbti");
 const profileEneagrama = document.getElementById("profile-eneagrama");
@@ -458,6 +459,11 @@ function mostrarPerfil(perfil) {
         perfil.username
             ? `@${perfil.username.replace(/^@/, "")}`
             : "@usuario";
+
+    if (profileBadge) {
+        const cargo = String(perfil.cargo || "membro").toLowerCase().trim();
+        profileBadge.hidden = cargo !== "adm";
+    }
 
     profileMbti.textContent =
         perfil.mbti || "MBTI";
