@@ -450,102 +450,114 @@ function mostrarBanner(url) {
         `;
     }
 }
-
-function mostrarPerfil(perfil) {
-    profileName.textContent =
-        perfil.nome || "Sem nome";
-
-    profileUsername.textContent =
-        perfil.username
-            ? `@${perfil.username.replace(/^@/, "")}`
-            : "@usuario";
-
-    if (profileBadge) {
+function mostrarPerfil(perfil) { 
+    profileName.textContent = 
+        perfil.nome || "Sem nome"; 
+ 
+    profileUsername.textContent = 
+        perfil.username 
+            ? `@${perfil.username.replace(/^@/, "")}` 
+            : "@usuario"; 
+ 
+    if (profileBadge) { 
         const cargo = String(perfil.cargo || "membro").toLowerCase().trim();
-        profileBadge.hidden = cargo !== "adm";
-    }
+        const isAdm = cargo === "adm";
+        const isVip = perfil.vip === true;
 
-    profileMbti.textContent =
-        perfil.mbti || "MBTI";
-
-    profileEneagrama.textContent =
-        perfil.eneagrama || "Eneagrama";
-
-    profileTritype.textContent =
-        perfil.tritype || "Tritype";
-
-    profileBio.textContent =
-        perfil.bio ||
-        "Nenhuma bio adicionada ainda.";
-
-    infoMbti.textContent =
-        perfil.mbti || "—";
-
-    infoEneagrama.textContent =
-        perfil.eneagrama || "—";
-
-    infoTritype.textContent =
-        perfil.tritype || "—";
-
-    infoSubtipo.textContent =
-        perfil.subtipo || "—";
-
-    infoTemperamento.textContent =
-        perfil.temperamento || "—";
-
-    infoSocionics.textContent =
-        perfil.socionics || "—";
-
-    infoBigFive.textContent =
-        perfil.big_five || "—";
-
-    infoGrupo.textContent =
-        perfil.grupo_casa || "—";
-
-    infoPronomes.textContent =
-        perfil.pronomes || "—";
-
-    profileMusic.textContent =
-        perfil.musica_favorita ||
-        "Nenhuma música adicionada";
-
-    profileArtist.textContent =
-        perfil.artista_favorito || "—";
-
-    profileGame.textContent =
-        perfil.jogo_favorito || "—";
-
-    profileSeries.textContent =
-        perfil.serie_favorita || "—";
-
-    profileCharacter.textContent =
-        perfil.personagem_favorito || "—";
-
-    const primary =
-        perfil.cor_principal || "#8B5CF6";
-
-    const secondary =
-        perfil.cor_secundaria || "#C084FC";
-
-    const accent =
-        perfil.cor_destaque || "#60A5FA";
-
-    aplicarCoresPagina(
-        primary,
-        secondary,
-        accent
-    );
-
-    mostrarAvatar(
-        perfil.avatar_url,
-        perfil.avatar_tipo || "foto"
-    );
-
-    mostrarBanner(
-        perfil.banner_url
-    );
+        if (isAdm && isVip) {
+            profileBadge.textContent = "🛡️ ADM · 💎 VIP";
+            profileBadge.hidden = false;
+        } else if (isAdm) {
+            profileBadge.textContent = "🛡️ ADM";
+            profileBadge.hidden = false;
+        } else if (isVip) {
+            profileBadge.textContent = "💎 VIP";
+            profileBadge.hidden = false;
+        } else {
+            profileBadge.hidden = true;
+        }
+    } 
+ 
+    profileMbti.textContent = 
+        perfil.mbti || "MBTI"; 
+ 
+    profileEneagrama.textContent = 
+        perfil.eneagrama || "Eneagrama"; 
+ 
+    profileTritype.textContent = 
+        perfil.tritype || "Tritype"; 
+ 
+    profileBio.textContent = 
+        perfil.bio || 
+        "Nenhuma bio adicionada ainda."; 
+ 
+    infoMbti.textContent = 
+        perfil.mbti || "—"; 
+ 
+    infoEneagrama.textContent = 
+        perfil.eneagrama || "—"; 
+ 
+    infoTritype.textContent = 
+        perfil.tritype || "—"; 
+ 
+    infoSubtipo.textContent = 
+        perfil.subtipo || "—"; 
+ 
+    infoTemperamento.textContent = 
+        perfil.temperamento || "—"; 
+ 
+    infoSocionics.textContent = 
+        perfil.socionics || "—"; 
+ 
+    infoBigFive.textContent = 
+        perfil.big_five || "—"; 
+ 
+    infoGrupo.textContent = 
+        perfil.grupo_casa || "—"; 
+ 
+    infoPronomes.textContent = 
+        perfil.pronomes || "—"; 
+ 
+    profileMusic.textContent = 
+        perfil.musica_favorita || 
+        "Nenhuma música adicionada"; 
+ 
+    profileArtist.textContent = 
+        perfil.artista_favorito || "—"; 
+ 
+    profileGame.textContent = 
+        perfil.jogo_favorito || "—"; 
+ 
+    profileSeries.textContent = 
+        perfil.serie_favorita || "—"; 
+ 
+    profileCharacter.textContent = 
+        perfil.personagem_favorito || "—"; 
+ 
+    const primary = 
+        perfil.cor_principal || "#8B5CF6"; 
+ 
+    const secondary = 
+        perfil.cor_secundaria || "#C084FC"; 
+ 
+    const accent = 
+        perfil.cor_destaque || "#60A5FA"; 
+ 
+    aplicarCoresPagina( 
+        primary, 
+        secondary, 
+        accent 
+    ); 
+ 
+    mostrarAvatar( 
+        perfil.avatar_url, 
+        perfil.avatar_tipo || "foto" 
+    ); 
+ 
+    mostrarBanner( 
+        perfil.banner_url 
+    ); 
 }
-
 function preencherFormulario(perfil) {
     editName.value =
         perfil.nome || "";
