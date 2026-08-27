@@ -20,6 +20,7 @@ async function carregarMembros() {
             id,
             nome,
             username,
+            cargo,
             mbti,
             eneagrama,
             tritype,
@@ -128,8 +129,14 @@ function renderizarMembros(lista) {
             accent
         );
 
-        article.innerHTML = `
-            <div class="member-card-top"></div>
+       article.innerHTML = `
+    ${
+        membro.cargo === "adm"
+            ? `<div class="member-admin-badge">🛡️ ADM</div>`
+            : ""
+    }
+
+    <div class="member-card-top"></div>
 
             <div class="member-card-content">
                 ${obterAvatarHTML(membro)}
