@@ -1,3 +1,4 @@
+
 const SUPABASE_URL =
     "https://lhhoqahzpuohhhnbwgfp.supabase.co";
 
@@ -82,10 +83,9 @@ const backStatus =
    AVATAR
 ========================================== */
 
-function mostrarAvatar(
-    url,
-    tipo
-) {
+let avatarParaDownload = null;
+
+function mostrarAvatar(url, tipo) {
 
     if (
         tipo &&
@@ -98,13 +98,10 @@ function mostrarAvatar(
                 ""
             );
 
-        memberAvatar.innerHTML =
-            "";
+        memberAvatar.innerHTML = "";
 
         const placeholder =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
         placeholder.className =
             "avatar-emoji";
@@ -116,29 +113,38 @@ function mostrarAvatar(
             placeholder
         );
 
+        avatarParaDownload = {
+            tipo: "emoji",
+            valor: emoji
+        };
+
         return;
     }
 
 
     if (url) {
 
-        memberAvatar.innerHTML =
-            "";
+        memberAvatar.innerHTML = "";
 
         const img =
-            document.createElement(
-                "img"
-            );
+            document.createElement("img");
 
-        img.src =
-            url;
+        img.src = url;
 
         img.alt =
             "Avatar do membro";
 
+        img.crossOrigin =
+            "anonymous";
+
         memberAvatar.appendChild(
             img
         );
+
+        avatarParaDownload = {
+            tipo: "imagem",
+            valor: url
+        };
 
         return;
     }
@@ -146,6 +152,11 @@ function mostrarAvatar(
 
     memberAvatar.innerHTML =
         '<div class="avatar-emoji">👤</div>';
+
+    avatarParaDownload = {
+        tipo: "emoji",
+        valor: "👤"
+    };
 }
 
 
@@ -203,6 +214,18 @@ function formatarData(data) {
             month: "2-digit",
             year: "numeric"
         }
+    );
+}
+
+
+/* ==========================================
+   ESCAPE
+========================================== */
+
+function escaparTexto(texto) {
+
+    return String(
+        texto ?? ""
     );
 }
 
@@ -285,7 +308,7 @@ async function carregarIdentidade() {
 
 
     /* ======================================
-       CORES DO PERFIL
+       CORES
     ====================================== */
 
     const primary =
@@ -316,6 +339,7 @@ async function carregarIdentidade() {
         perfil.nome ||
         "Sem nome";
 
+
     const username =
         perfil.username
             ? "@" +
@@ -340,26 +364,34 @@ async function carregarIdentidade() {
     ====================================== */
 
     memberName.textContent =
-        nome;
+        escaparTexto(nome);
 
     memberUsername.textContent =
-        username;
+        escaparTexto(username);
 
     memberMbti.textContent =
-        perfil.mbti ||
-        "—";
+        escaparTexto(
+            perfil.mbti ||
+            "—"
+        );
 
     memberEneagrama.textContent =
-        perfil.eneagrama ||
-        "—";
+        escaparTexto(
+            perfil.eneagrama ||
+            "—"
+        );
 
     memberTritype.textContent =
-        perfil.tritype ||
-        "—";
+        escaparTexto(
+            perfil.tritype ||
+            "—"
+        );
 
     memberGroup.textContent =
-        perfil.grupo_casa ||
-        "CASA DOS MBTIs";
+        escaparTexto(
+            perfil.grupo_casa ||
+            "CASA DOS MBTIs"
+        );
 
 
     if (
@@ -412,7 +444,7 @@ async function carregarIdentidade() {
 
 
     /* ======================================
-       DATA DE ENTRADA
+       DATA
     ====================================== */
 
     memberSince.textContent =
@@ -504,7 +536,734 @@ if (identityCard) {
 
 
 /* ==========================================
-   BAIXAR CARD
+   DOWNLOAD POR CANVAS
+========================================== */
+
+function arredondarRetangulo(
+    ctx,
+    x,
+    y,
+    largura,
+    altura,
+    raio
+) {
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        x + raio,
+        y
+    );
+
+    ctx.lineTo(
+        x + largura - raio,
+        y
+    );
+
+    ctx.quadraticCurveTo(
+        x + largura,
+        y,
+        x + largura,
+        y + raio
+    );
+
+    ctx.lineTo(
+        x + largura,
+        y + altura - raio
+    );
+
+    ctx.quadraticCurveTo(
+        x + largura,
+        y + altura,
+        x + largura - raio,
+        y + altura
+    );
+
+    ctx.lineTo(
+        x + raio,
+        y + altura
+    );
+
+    ctx.quadraticCurveTo(
+        x,
+        y + altura,
+        x,
+        y + altura - raio
+    );
+
+    ctx.lineTo(
+        x,
+        y + raio
+    );
+
+    ctx.quadraticCurveTo(
+        x,
+        y,
+        x + raio,
+        y
+    );
+
+    ctx.closePath();
+}
+
+
+function desenharTexto(
+    ctx,
+    texto,
+    x,
+    y,
+    tamanho,
+    peso = "400",
+    alinhamento = "left"
+) {
+
+    ctx.font =
+        `${peso} ${tamanho}px Arial`;
+
+    ctx.textAlign =
+        alinhamento;
+
+    ctx.textBaseline =
+        "middle";
+
+    ctx.fillStyle =
+        "#FFFFFF";
+
+    ctx.fillText(
+        texto,
+        x,
+        y
+    );
+}
+
+
+function desenharEtiqueta(
+    ctx,
+    titulo,
+    valor,
+    x,
+    y,
+    largura,
+    altura
+) {
+
+    ctx.fillStyle =
+        "rgba(255,255,255,0.07)";
+
+    arredondarRetangulo(
+        ctx,
+        x,
+        y,
+        largura,
+        altura,
+        14
+    );
+
+    ctx.fill();
+
+
+    ctx.fillStyle =
+        "rgba(255,255,255,0.55)";
+
+    ctx.font =
+        "700 12px Arial";
+
+    ctx.textAlign =
+        "left";
+
+    ctx.textBaseline =
+        "middle";
+
+    ctx.fillText(
+        titulo,
+        x + 14,
+        y + 18
+    );
+
+
+    ctx.fillStyle =
+        "#FFFFFF";
+
+    ctx.font =
+        "700 18px Arial";
+
+    ctx.fillText(
+        valor,
+        x + 14,
+        y + 42
+    );
+}
+
+
+async function carregarImagem(
+    url
+) {
+
+    return new Promise(
+        (resolve, reject) => {
+
+            const img =
+                new Image();
+
+            img.crossOrigin =
+                "anonymous";
+
+            img.onload =
+                function () {
+                    resolve(img);
+                };
+
+            img.onerror =
+                function () {
+                    reject(
+                        new Error(
+                            "Não foi possível carregar o avatar."
+                        )
+                    );
+                };
+
+            img.src =
+                url;
+        }
+    );
+}
+
+
+async function criarImagemDoCard() {
+
+    const largura = 1520;
+    const altura = Math.round(
+        largura / 1.62
+    );
+
+    const escala =
+        largura / 760;
+
+    const canvas =
+        document.createElement(
+            "canvas"
+        );
+
+    canvas.width =
+        largura;
+
+    canvas.height =
+        altura;
+
+    const ctx =
+        canvas.getContext(
+            "2d"
+        );
+
+
+    /* ======================================
+       FUNDO
+    ====================================== */
+
+    const fundo =
+        ctx.createLinearGradient(
+            0,
+            0,
+            largura,
+            altura
+        );
+
+    fundo.addColorStop(
+        0,
+        "#160D22"
+    );
+
+    fundo.addColorStop(
+        0.45,
+        "#120D18"
+    );
+
+    fundo.addColorStop(
+        1,
+        "#0D1928"
+    );
+
+
+    ctx.fillStyle =
+        fundo;
+
+    arredondarRetangulo(
+        ctx,
+        0,
+        0,
+        largura,
+        altura,
+        52
+    );
+
+    ctx.fill();
+
+
+    /* ======================================
+       BORDA
+    ====================================== */
+
+    ctx.strokeStyle =
+        "rgba(255,255,255,0.16)";
+
+    ctx.lineWidth =
+        4;
+
+    arredondarRetangulo(
+        ctx,
+        2,
+        2,
+        largura - 4,
+        altura - 4,
+        52
+    );
+
+    ctx.stroke();
+
+
+    /* ======================================
+       TOPO
+    ====================================== */
+
+    const alturaTopo =
+        Math.round(
+            altura * 0.25
+        );
+
+    const gradienteTopo =
+        ctx.createLinearGradient(
+            0,
+            0,
+            largura,
+            alturaTopo
+        );
+
+    gradienteTopo.addColorStop(
+        0,
+        getComputedStyle(
+            document.documentElement
+        ).getPropertyValue(
+            "--primary"
+        ).trim() || "#8B5CF6"
+    );
+
+    gradienteTopo.addColorStop(
+        1,
+        getComputedStyle(
+            document.documentElement
+        ).getPropertyValue(
+            "--secondary"
+        ).trim() || "#C084FC"
+    );
+
+
+    ctx.fillStyle =
+        gradienteTopo;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        26
+    );
+
+    ctx.quadraticCurveTo(
+        0,
+        0,
+        26,
+        0
+    );
+
+    ctx.lineTo(
+        largura - 26,
+        0
+    );
+
+    ctx.quadraticCurveTo(
+        largura,
+        0,
+        largura,
+        26
+    );
+
+    ctx.lineTo(
+        largura,
+        alturaTopo
+    );
+
+    ctx.lineTo(
+        0,
+        alturaTopo
+    );
+
+    ctx.closePath();
+
+    ctx.fill();
+
+
+    /* ======================================
+       TÍTULO
+    ====================================== */
+
+    desenharTexto(
+        ctx,
+        "CASA DOS",
+        60,
+        43,
+        24,
+        "700",
+        "left"
+    );
+
+    desenharTexto(
+        ctx,
+        "MBTIs",
+        60,
+        78,
+        58,
+        "700",
+        "left"
+    );
+
+
+    desenharTexto(
+        ctx,
+        "IDENTIDADE VIP",
+        largura - 60,
+        60,
+        23,
+        "700",
+        "right"
+    );
+
+
+    /* ======================================
+       CORPO
+    ====================================== */
+
+    const centroY =
+        alturaTopo +
+        Math.round(
+            altura * 0.29
+        );
+
+
+    const avatarX =
+        70;
+
+    const avatarY =
+        centroY - 5;
+
+    const avatarTamanho =
+        360;
+
+
+    ctx.save();
+
+    arredondarRetangulo(
+        ctx,
+        avatarX,
+        avatarY,
+        avatarTamanho,
+        avatarTamanho,
+        44
+    );
+
+    ctx.clip();
+
+
+    ctx.fillStyle =
+        "#17101F";
+
+    ctx.fillRect(
+        avatarX,
+        avatarY,
+        avatarTamanho,
+        avatarTamanho
+    );
+
+
+    try {
+
+        if (
+            avatarParaDownload?.tipo ===
+            "imagem"
+        ) {
+
+            const imagem =
+                await carregarImagem(
+                    avatarParaDownload.valor
+                );
+
+            const proporcao =
+                Math.max(
+                    avatarTamanho /
+                    imagem.width,
+                    avatarTamanho /
+                    imagem.height
+                );
+
+            const larguraImagem =
+                imagem.width *
+                proporcao;
+
+            const alturaImagem =
+                imagem.height *
+                proporcao;
+
+            ctx.drawImage(
+                imagem,
+                avatarX +
+                    (
+                        avatarTamanho -
+                        larguraImagem
+                    ) / 2,
+                avatarY +
+                    (
+                        avatarTamanho -
+                        alturaImagem
+                    ) / 2,
+                larguraImagem,
+                alturaImagem
+            );
+
+        } else {
+
+            desenharTexto(
+                ctx,
+                avatarParaDownload?.valor ||
+                    "👤",
+                avatarX +
+                    avatarTamanho / 2,
+                avatarY +
+                    avatarTamanho / 2,
+                150,
+                "400",
+                "center"
+            );
+
+        }
+
+    } catch (error) {
+
+        desenharTexto(
+            ctx,
+            "👤",
+            avatarX +
+                avatarTamanho / 2,
+            avatarY +
+                avatarTamanho / 2,
+            150,
+            "400",
+            "center"
+        );
+    }
+
+    ctx.restore();
+
+
+    /* ======================================
+       BORDA AVATAR
+    ====================================== */
+
+    const primary =
+        getComputedStyle(
+            document.documentElement
+        ).getPropertyValue(
+            "--primary"
+        ).trim() || "#8B5CF6";
+
+    ctx.strokeStyle =
+        primary;
+
+    ctx.lineWidth =
+        12;
+
+    arredondarRetangulo(
+        ctx,
+        avatarX,
+        avatarY,
+        avatarTamanho,
+        avatarTamanho,
+        44
+    );
+
+    ctx.stroke();
+
+
+    /* ======================================
+       INFORMAÇÕES
+    ====================================== */
+
+    const infoX =
+        490;
+
+    const nome =
+        memberName.textContent ||
+        "Sem nome";
+
+    const username =
+        memberUsername.textContent ||
+        "@usuario";
+
+
+    ctx.fillStyle =
+        "rgba(255,255,255,0.55)";
+
+    ctx.font =
+        "700 20px Arial";
+
+    ctx.textAlign =
+        "left";
+
+    ctx.fillText(
+        "NOME",
+        infoX,
+        centroY + 35
+    );
+
+
+    ctx.fillStyle =
+        "#FFFFFF";
+
+    ctx.font =
+        "700 52px Arial";
+
+    ctx.fillText(
+        nome,
+        infoX,
+        centroY + 95
+    );
+
+
+    ctx.fillStyle =
+        "rgba(255,255,255,0.65)";
+
+    ctx.font =
+        "400 25px Arial";
+
+    ctx.fillText(
+        username,
+        infoX,
+        centroY + 137
+    );
+
+
+    /* ======================================
+       TAGS
+    ====================================== */
+
+    const tagY =
+        centroY + 190;
+
+    const tagLargura =
+        200;
+
+    const tagAltura =
+        75;
+
+    desenharEtiqueta(
+        ctx,
+        "MBTI",
+        memberMbti.textContent || "—",
+        infoX,
+        tagY,
+        tagLargura,
+        tagAltura
+    );
+
+
+    desenharEtiqueta(
+        ctx,
+        "ENEAGRAMA",
+        memberEneagrama.textContent || "—",
+        infoX + 220,
+        tagY,
+        tagLargura,
+        tagAltura
+    );
+
+
+    desenharEtiqueta(
+        ctx,
+        "TRITYPE",
+        memberTritype.textContent || "—",
+        infoX + 440,
+        tagY,
+        tagLargura,
+        tagAltura
+    );
+
+
+    /* ======================================
+       RODAPÉ
+    ====================================== */
+
+    const rodapeY =
+        altura -
+        Math.round(
+            altura * 0.11
+        );
+
+
+    ctx.strokeStyle =
+        "rgba(255,255,255,0.10)";
+
+    ctx.lineWidth =
+        2;
+
+    ctx.beginPath();
+
+    ctx.moveTo(
+        0,
+        rodapeY
+    );
+
+    ctx.lineTo(
+        largura,
+        rodapeY
+    );
+
+    ctx.stroke();
+
+
+    ctx.fillStyle =
+        "rgba(255,255,255,0.70)";
+
+    ctx.font =
+        "700 20px Arial";
+
+    ctx.textAlign =
+        "left";
+
+    ctx.fillText(
+        memberGroup.textContent ||
+            "CASA DOS MBTIs",
+        60,
+        rodapeY + 45
+    );
+
+
+    ctx.textAlign =
+        "right";
+
+    ctx.fillStyle =
+        "#FFFFFF";
+
+    ctx.fillText(
+        memberCargo.textContent ||
+            "MEMBRO",
+        largura - 60,
+        rodapeY + 45
+    );
+
+
+    return canvas;
+}
+
+
+/* ==========================================
+   BOTÃO DE DOWNLOAD
 ========================================== */
 
 if (downloadButton) {
@@ -513,112 +1272,93 @@ if (downloadButton) {
         "click",
         async function () {
 
-            if (
-                typeof html2canvas ===
-                "undefined"
-            ) {
-
-                vipMessage.textContent =
-                    "Não foi possível preparar o download.";
-
-                return;
-            }
-
+            downloadButton.disabled =
+                true;
 
             vipMessage.textContent =
                 "Preparando sua identidade...";
 
-
-            const estavaVirado =
-                identityCard.classList.contains(
-                    "flipped"
-                );
-
-
-            /* ----------------------------------
-               Para baixar a frente
-            ---------------------------------- */
-
-            if (estavaVirado) {
-
-                identityCard.classList.remove(
-                    "flipped"
-                );
-
-                await new Promise(
-                    resolve =>
-                        setTimeout(
-                            resolve,
-                            500
-                        )
-                );
-            }
-
-
             try {
 
                 const canvas =
-                    await html2canvas(
-                        identityCard,
-                        {
-                            backgroundColor:
-                                null,
+                    await criarImagemDoCard();
 
-                            scale:
-                                2,
 
-                            useCORS:
-                                true,
+                canvas.toBlob(
+                    function (blob) {
 
-                            allowTaint:
-                                false
+                        if (!blob) {
+
+                            throw new Error(
+                                "Não foi possível criar o arquivo."
+                            );
                         }
-                    );
 
 
-                const link =
-                    document.createElement(
-                        "a"
-                    );
+                        const url =
+                            URL.createObjectURL(
+                                blob
+                            );
 
 
-                link.download =
-                    "identidade-vip-casa-dos-mbtis.png";
+                        const link =
+                            document.createElement(
+                                "a"
+                            );
 
 
-                link.href =
-                    canvas.toDataURL(
-                        "image/png"
-                    );
+                        link.href =
+                            url;
+
+                        link.download =
+                            "identidade-vip-casa-dos-mbtis.png";
+
+                        document.body.appendChild(
+                            link
+                        );
+
+                        link.click();
+
+                        link.remove();
 
 
-                link.click();
+                        setTimeout(
+                            function () {
+
+                                URL.revokeObjectURL(
+                                    url
+                                );
+
+                            },
+                            3000
+                        );
 
 
-                vipMessage.textContent =
-                    "Identidade baixada com sucesso!";
+                        vipMessage.textContent =
+                            "Identidade baixada com sucesso!";
+
+                    },
+                    "image/png"
+                );
 
 
             } catch (error) {
 
                 console.error(
-                    "Erro ao gerar identidade:",
+                    "Erro no download:",
                     error
                 );
 
                 vipMessage.textContent =
-                    "Não foi possível gerar a imagem.";
-
+                    "Não foi possível baixar o card.";
 
             } finally {
 
-                if (estavaVirado) {
+                downloadButton.disabled =
+                    false;
 
-                    identityCard.classList.add(
-                        "flipped"
-                    );
-                }
             }
+
         }
     );
 }
@@ -629,3 +1369,4 @@ if (downloadButton) {
 ========================================== */
 
 carregarIdentidade();
+
