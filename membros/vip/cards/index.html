@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carteirinha do Membro — Casa dos MBTIs</title>
+    <link rel="stylesheet" href="membro.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<main class="pagina">
+
+    <a href="../" class="voltar-membros">
+    ← VOLTAR PARA OS MEMBROS
+</a>
+
+    <!-- =====================================================
+         CARD
+         ===================================================== -->
+
+    <section
+        class="membro-card"
+        id="membroCard"
+    >
+
+        <!-- textura -->
+        <div class="textura"></div>
+
+        <!-- borda interna -->
+        <div class="borda-interna"></div>
+
+        <!-- marca d'água -->
+        <div class="marca-agua">
+
+            <div class="brasao">
+
+                <span>⌂</span>
+
+                <strong>CASA</strong>
+
+                <small>DOS MBTIs</small>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             CABEÇALHO
+             ================================================= -->
+
+        <header class="cabecalho">
+
+            <div class="logo">
+
+                ⌂
+
+            </div>
+
+
+            <div class="titulo">
+
+                <small>DOCUMENTO OFICIAL</small>
+
+                <strong>
+                    CASA DOS MBTIs
+                </strong>
+
+            </div>
+
+
+            <div class="numero">
+
+                <span>ID</span>
+
+                <strong id="idMembro">
+                    #00000
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- =================================================
+             BANNER
+             ================================================= -->
+
+        <section class="banner">
+
+            <img
+                id="bannerMembro"
+                src=""
+                alt=""
+            >
+
+            <div class="banner-filtro"></div>
+
+            <div class="banner-sem-imagem">
+
+                <span>⌂</span>
+
+                <small>
+                    CASA DOS MBTIs
+                </small>
+
+            </div>
+
+
+            <div class="banner-informacoes">
+
+                <span id="cargoBanner">
+                    MEMBRO
+                </span>
+
+                <strong id="nomeBanner">
+                    CARREGANDO...
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             IDENTIDADE
+             ================================================= -->
+
+        <section class="identidade">
+
+            <div class="avatar-area">
+
+                <div class="avatar">
+
+                    <img
+                        id="avatarMembro"
+                        src=""
+                        alt="Avatar"
+                    >
+
+                    <span id="avatarFallback">
+                        ⌂
+                    </span>
+
+                </div>
+
+                <div
+                    class="badge cargo-badge"
+                    id="cargoBadge"
+                >
+                    MEMBRO
+                </div>
+
+                <div
+                    class="badge vip-badge"
+                    id="vipBadge"
+                >
+                    VIP
+                </div>
+
+            </div>
+
+
+            <div class="identidade-texto">
+
+                <span class="label">
+                    MEMBRO
+                </span>
+
+                <h1 id="nomeMembro">
+                    Carregando...
+                </h1>
+
+                <p id="usernameMembro">
+                    @carregando
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PRINCIPAIS DADOS
+             ================================================= -->
+
+        <section class="dados-principais">
+
+            <div class="dado destaque">
+
+                <span>MBTI</span>
+
+                <strong id="mbti">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="dado">
+
+                <span>ENEAGRAMA</span>
+
+                <strong id="eneagrama">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="dado">
+
+                <span>TRITYPE</span>
+
+                <strong id="tritype">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="dado">
+
+                <span>SUBTIPO</span>
+
+                <strong id="subtipo">
+                    —
+                </strong>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             PERFIL PSICOLÓGICO
+             ================================================= -->
+
+        <section class="perfil">
+
+            <div class="secao-titulo">
+
+                <span>
+                    PERFIL PSICOLÓGICO
+                </span>
+
+                <i></i>
+
+            </div>
+
+
+            <div class="perfil-grid">
+
+                <div class="perfil-item">
+
+                    <span>
+                        TEMPERAMENTO
+                    </span>
+
+                    <strong id="temperamento">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="perfil-item">
+
+                    <span>
+                        SOCIONICS
+                    </span>
+
+                    <strong id="socionics">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="perfil-item grande">
+
+                    <span>
+                        BIG FIVE
+                    </span>
+
+                    <strong id="bigFive">
+                        —
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             FRASE
+             ================================================= -->
+
+        <section class="frase">
+
+            <div class="linha"></div>
+
+            <p id="fraseMembro">
+                "Membro oficial da Casa dos MBTIs."
+            </p>
+
+            <div class="linha"></div>
+
+        </section>
+
+
+        <!-- =================================================
+             RODAPÉ
+             ================================================= -->
+
+        <footer class="rodape">
+
+            <div>
+
+                <strong>
+                    CASA DOS MBTIs
+                </strong>
+
+                <small>
+                    MEMBRO OFICIAL
+                </small>
+
+            </div>
+
+
+            <div class="status">
+
+                <span>
+                    STATUS
+                </span>
+
+                <strong id="statusMembro">
+                    ATIVO
+                </strong>
+
+            </div>
+
+        </footer>
+
+    </section>
+
+    <div class="secao-cores">
+
+    <h3>CORES DA CARTEIRINHA</h3>
+
+    <div class="cor-controle">
+
+        <label for="corPrincipal">
+            COR PRINCIPAL
+        </label>
+
+        <div class="cor-linha">
+
+            <input
+                type="color"
+                id="corPrincipal"
+                value="#E85B9C"
+            >
+
+            <input
+                type="text"
+                id="hexPrincipal"
+                value="#E85B9C"
+                maxlength="7"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div class="cor-controle">
+
+        <label for="corSecundaria">
+            COR SECUNDÁRIA
+        </label>
+
+        <div class="cor-linha">
+
+            <input
+                type="color"
+                id="corSecundaria"
+                value="#F8F5F7"
+            >
+
+            <input
+                type="text"
+                id="hexSecundaria"
+                value="#F8F5F7"
+                maxlength="7"
+            >
+
+        </div>
+
+    </div>
+
+
+  
+
+    
+
+</div>
+
+
+    <!-- =====================================================
+         CONTROLES
+         ===================================================== -->
+
+    <section class="painel">
+
+        <h2>
+            PERSONALIZAÇÃO DO MEMBRO
+        </h2>
+
+
+        <div class="grupo">
+
+            <label>
+                Banner
+            </label>
+
+            <input
+                type="file"
+                id="bannerInput"
+                accept="image/png,image/jpeg,image/webp"
+            >
+
+        </div>
+
+
+        <div class="grupo">
+
+            <label>
+                Avatar
+            </label>
+
+            <input
+                type="file"
+                id="avatarInput"
+                accept="image/png,image/jpeg,image/webp"
+            >
+
+        </div>
+
+
+        <div class="grupo">
+
+            <label>
+                Frase
+            </label>
+
+            <input
+                type="text"
+                id="fraseInput"
+                maxlength="80"
+                placeholder="Sua frase..."
+            >
+
+        </div>
+
+
+        <button
+            id="salvarPersonalizacao"
+            type="button"
+        >
+            SALVAR PERSONALIZAÇÃO
+        </button>
+
+
+        <button
+            id="baixarCard"
+            type="button"
+        >
+            ↓ BAIXAR CARTEIRINHA
+        </button>
+
+
+        <p
+            class="mensagem"
+            id="mensagem"
+        ></p>
+
+    </section>
+
+</main>
+
+
+<!-- SUPABASE -->
+
+
+
+<script
+    src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
+></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="membro.js"></script>
+
+</body>
+</html>

@@ -328,3 +328,121 @@ a {
     box-shadow:
         0 0 30px rgba(139, 92, 246, 0.4);
 }
+
+/* =========================================================
+   AÇÕES DO MEMBRO
+   ========================================================= */
+
+.member-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+
+.member-card-button,
+.vip-button {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 12px 18px;
+
+    border-radius: 12px;
+
+    color: white;
+
+    font-family: "Fredoka", sans-serif;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* =========================================================
+   MINHA CARTEIRINHA
+   ========================================================= */
+
+.member-card-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #e85b9c,
+            #f08ab8
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(232, 91, 156, 0.25);
+
+}
+
+
+.member-card-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 30px
+        rgba(232, 91, 156, 0.4);
+
+}
+
+
+/* =========================================================
+   IDENTIDADE VIP
+   ========================================================= */
+
+.vip-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #8B5CF6,
+            #C084FC
+        );
+
+    box-shadow:
+        0 0 20px
+        rgba(139, 92, 246, 0.25);
+
+}
+
+
+.vip-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    box-shadow:
+        0 0 30px
+        rgba(139, 92, 246, 0.4);
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    .member-actions {
+        flex-direction: column;
+    }
+
+    .member-card-button,
+    .vip-button {
+        width: 100%;
+    }
+
+}
