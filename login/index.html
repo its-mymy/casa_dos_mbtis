@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -5,74 +6,204 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Casa dos MBTIs | Login</title>
     <link rel="stylesheet" href="login.css">
+
+    <style>
+        .password-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .password-wrapper input {
+            width: 100%;
+            box-sizing: border-box;
+            padding-right: 50px;
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+
+            border: none;
+            background: transparent;
+
+            cursor: pointer;
+            font-size: 20px;
+            padding: 5px;
+            line-height: 1;
+        }
+
+        .password-toggle:hover {
+            opacity: 0.7;
+        }
+    </style>
 </head>
+
 <body>
     <main class="login-container">
         <section class="login-box">
+
             <div class="logo-area">
                 <h1>CASA DOS MBTIs</h1>
                 <p>Área de membros</p>
             </div>
 
+            <!-- LOGIN -->
             <div id="login-section">
                 <h2>Entrar</h2>
 
                 <form id="login-form">
+
                     <div class="input-group">
-                        <label for="login-email">E-mail</label>
-                        <input type="email" id="login-email" placeholder="seu@email.com" required>
+                        <label for="login-username">Nick</label>
+
+                        <input
+                            type="text"
+                            id="login-username"
+                            placeholder="@seu_nick"
+                            required
+                        >
                     </div>
 
                     <div class="input-group">
                         <label for="login-password">Senha</label>
-                        <input type="password" id="login-password" placeholder="Sua senha" required>
+
+                        <div class="password-wrapper">
+                            <input
+                                type="password"
+                                id="login-password"
+                                placeholder="Sua senha"
+                                required
+                            >
+
+                            <button
+                                type="button"
+                                id="toggle-login-password"
+                                class="password-toggle"
+                                aria-label="Mostrar senha"
+                                onclick="mostrarSenha()"
+                            >👁️</button>
+                        </div>
                     </div>
 
-                    <button type="submit" class="main-button">ENTRAR</button>
+                    <button type="submit" class="main-button">
+                        ENTRAR
+                    </button>
+
                     <p id="login-message" class="message"></p>
-                   
+
                 </form>
 
-        
                 <div class="switch-area">
                     <span>Não tem cadastro?</span>
-                    <button type="button" id="show-register" class="switch-button">CADASTRAR</button>
+
+                    <button
+                        type="button"
+                        id="show-register"
+                        class="switch-button"
+                    >
+                        CADASTRAR
+                    </button>
                 </div>
             </div>
 
+            <!-- CADASTRO -->
             <div id="register-section" class="hidden">
                 <h2>Criar conta</h2>
 
                 <form id="register-form">
+
                     <div class="input-group">
-                        <label for="register-code">Código de acesso</label>
-                        <input type="text" id="register-code" placeholder="Digite seu código" required>
+                        <label for="register-code">
+                            Código de acesso
+                        </label>
+
+                        <input
+                            type="text"
+                            id="register-code"
+                            placeholder="Digite seu código"
+                            required
+                        >
                     </div>
 
                     <div class="input-group">
-                        <label for="register-email">E-mail</label>
-                        <input type="email" id="register-email" placeholder="seu@email.com" required>
+                        <label for="register-email">
+                            E-mail
+                        </label>
+
+                        <input
+                            type="email"
+                            id="register-email"
+                            placeholder="seu@email.com"
+                            required
+                        >
                     </div>
 
                     <div class="input-group">
-                        <label for="register-password">Senha</label>
-                        <input type="password" id="register-password" placeholder="Crie sua senha" minlength="6" required>
+                        <label for="register-password">
+                            Senha
+                        </label>
+
+                        <input
+                            type="password"
+                            id="register-password"
+                            placeholder="Crie sua senha"
+                            minlength="6"
+                            required
+                        >
                     </div>
 
-                    <button type="submit" class="main-button">CRIAR CONTA</button>
+                    <button
+                        type="submit"
+                        class="main-button"
+                    >
+                        CRIAR CONTA
+                    </button>
 
                     <p id="register-message" class="message"></p>
+
                 </form>
 
                 <div class="switch-area">
                     <span>Já tem cadastro?</span>
-                    <button type="button" id="show-login" class="switch-button">ENTRAR</button>
+
+                    <button
+                        type="button"
+                        id="show-login"
+                        class="switch-button"
+                    >
+                        ENTRAR
+                    </button>
                 </div>
             </div>
+
         </section>
     </main>
 
-   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="login.js"></script>
+
+    <script>
+        function mostrarSenha() {
+            const senha = document.getElementById("login-password");
+            const botao = document.getElementById("toggle-login-password");
+
+            if (!senha || !botao) {
+                return;
+            }
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                botao.textContent = "🙈";
+                botao.setAttribute("aria-label", "Ocultar senha");
+            } else {
+                senha.type = "password";
+                botao.textContent = "👁️";
+                botao.setAttribute("aria-label", "Mostrar senha");
+            }
+        }
+    </script>
 </body>
 </html>
+
