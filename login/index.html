@@ -41,7 +41,9 @@
 </head>
 
 <body>
+
     <main class="login-container">
+
         <section class="login-box">
 
             <div class="logo-area">
@@ -49,14 +51,20 @@
                 <p>Área de membros</p>
             </div>
 
+
             <!-- LOGIN -->
+
             <div id="login-section">
+
                 <h2>Entrar</h2>
 
                 <form id="login-form">
 
                     <div class="input-group">
-                        <label for="login-username">Nick</label>
+
+                        <label for="login-username">
+                            Nick
+                        </label>
 
                         <input
                             type="text"
@@ -64,12 +72,18 @@
                             placeholder="@seu_nick"
                             required
                         >
+
                     </div>
 
+
                     <div class="input-group">
-                        <label for="login-password">Senha</label>
+
+                        <label for="login-password">
+                            Senha
+                        </label>
 
                         <div class="password-wrapper">
+
                             <input
                                 type="password"
                                 id="login-password"
@@ -84,19 +98,32 @@
                                 aria-label="Mostrar senha"
                                 onclick="mostrarSenha()"
                             >👁️</button>
+
                         </div>
+
                     </div>
 
-                    <button type="submit" class="main-button">
+
+                    <button
+                        type="submit"
+                        class="main-button"
+                    >
                         ENTRAR
                     </button>
 
-                    <p id="login-message" class="message"></p>
+                    <p
+                        id="login-message"
+                        class="message"
+                    ></p>
 
                 </form>
 
+
                 <div class="switch-area">
-                    <span>Não tem cadastro?</span>
+
+                    <span>
+                        Não tem cadastro?
+                    </span>
 
                     <button
                         type="button"
@@ -105,16 +132,26 @@
                     >
                         CADASTRAR
                     </button>
+
                 </div>
+
             </div>
 
+
             <!-- CADASTRO -->
-            <div id="register-section" class="hidden">
+
+            <div
+                id="register-section"
+                class="hidden"
+            >
+
                 <h2>Criar conta</h2>
 
                 <form id="register-form">
 
+
                     <div class="input-group">
+
                         <label for="register-code">
                             Código de acesso
                         </label>
@@ -125,9 +162,33 @@
                             placeholder="Digite seu código"
                             required
                         >
+
                     </div>
 
+
                     <div class="input-group">
+
+                        <label for="register-username">
+                            Nick
+                        </label>
+
+                        <input
+                            type="text"
+                            id="register-username"
+                            placeholder="@seu_nick"
+                            maxlength="30"
+                            required
+                        >
+
+                        <small>
+                            Esse será seu @username.
+                        </small>
+
+                    </div>
+
+
+                    <div class="input-group">
+
                         <label for="register-email">
                             E-mail
                         </label>
@@ -138,9 +199,12 @@
                             placeholder="seu@email.com"
                             required
                         >
+
                     </div>
 
+
                     <div class="input-group">
+
                         <label for="register-password">
                             Senha
                         </label>
@@ -152,7 +216,9 @@
                             minlength="6"
                             required
                         >
+
                     </div>
+
 
                     <button
                         type="submit"
@@ -161,12 +227,20 @@
                         CRIAR CONTA
                     </button>
 
-                    <p id="register-message" class="message"></p>
+
+                    <p
+                        id="register-message"
+                        class="message"
+                    ></p>
 
                 </form>
 
+
                 <div class="switch-area">
-                    <span>Já tem cadastro?</span>
+
+                    <span>
+                        Já tem cadastro?
+                    </span>
 
                     <button
                         type="button"
@@ -175,35 +249,66 @@
                     >
                         ENTRAR
                     </button>
+
                 </div>
+
             </div>
 
         </section>
+
     </main>
 
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
     <script src="login.js"></script>
 
+
     <script>
+
         function mostrarSenha() {
-            const senha = document.getElementById("login-password");
-            const botao = document.getElementById("toggle-login-password");
+
+            const senha =
+                document.getElementById("login-password");
+
+            const botao =
+                document.getElementById(
+                    "toggle-login-password"
+                );
+
 
             if (!senha || !botao) {
                 return;
             }
 
+
             if (senha.type === "password") {
+
                 senha.type = "text";
+
                 botao.textContent = "🙈";
-                botao.setAttribute("aria-label", "Ocultar senha");
+
+                botao.setAttribute(
+                    "aria-label",
+                    "Ocultar senha"
+                );
+
             } else {
+
                 senha.type = "password";
+
                 botao.textContent = "👁️";
-                botao.setAttribute("aria-label", "Mostrar senha");
+
+                botao.setAttribute(
+                    "aria-label",
+                    "Mostrar senha"
+                );
+
             }
+
         }
+
     </script>
+
 </body>
 </html>
-

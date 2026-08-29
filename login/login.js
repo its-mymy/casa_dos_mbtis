@@ -7,17 +7,33 @@ const supabaseClient = window.supabase.createClient(
     SUPABASE_KEY
 );
 
-const loginSection = document.getElementById("login-section");
-const registerSection = document.getElementById("register-section");
 
-const showRegisterButton = document.getElementById("show-register");
-const showLoginButton = document.getElementById("show-login");
+const loginSection =
+    document.getElementById("login-section");
 
-const loginForm = document.getElementById("login-form");
-const registerForm = document.getElementById("register-form");
+const registerSection =
+    document.getElementById("register-section");
 
-const loginMessage = document.getElementById("login-message");
-const registerMessage = document.getElementById("register-message");
+
+const showRegisterButton =
+    document.getElementById("show-register");
+
+const showLoginButton =
+    document.getElementById("show-login");
+
+
+const loginForm =
+    document.getElementById("login-form");
+
+const registerForm =
+    document.getElementById("register-form");
+
+
+const loginMessage =
+    document.getElementById("login-message");
+
+const registerMessage =
+    document.getElementById("register-message");
 
 
 /* =========================
@@ -25,18 +41,24 @@ const registerMessage = document.getElementById("register-message");
 ========================= */
 
 showRegisterButton.addEventListener("click", function () {
+
     loginSection.classList.add("hidden");
+
     registerSection.classList.remove("hidden");
 
     loginMessage.textContent = "";
+
 });
 
 
 showLoginButton.addEventListener("click", function () {
+
     registerSection.classList.add("hidden");
+
     loginSection.classList.remove("hidden");
 
     registerMessage.textContent = "";
+
 });
 
 
@@ -44,330 +66,530 @@ showLoginButton.addEventListener("click", function () {
    LOGIN COM NICK
 ========================= */
 
-loginForm.addEventListener("submit", async function (event) {
-    event.preventDefault();
+loginForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    loginMessage.textContent = "Entrando...";
+        event.preventDefault();
 
-    const username = document
-        .getElementById("login-username")
-        .value
-        .trim();
-
-    const password = document
-        .getElementById("login-password")
-        .value;
+        loginMessage.textContent =
+            "Entrando...";
 
 
-    if (!username) {
-        loginMessage.textContent = "Digite seu nick.";
-        return;
-    }
+        const username =
+            document
+                .getElementById("login-username")
+                .value
+                .trim();
 
 
-    if (!password) {
-        loginMessage.textContent = "Digite sua senha.";
-        return;
-    }
+        const password =
+            document
+                .getElementById("login-password")
+                .value;
 
 
-    try {
+        if (!username) {
 
-        const response = await fetch(
-            `${SUPABASE_URL}/functions/v1/login-com-nick`,
-            {
-                method: "POST",
+            loginMessage.textContent =
+                "Digite seu nick.";
 
-                headers: {
-                    "Content-Type": "application/json",
-                    "apikey": SUPABASE_KEY
-                },
+            return;
 
-                body: JSON.stringify({
-                    username: username,
-                    password: password
-                })
+        }
+
+
+        if (!password) {
+
+            loginMessage.textContent =
+                "Digite sua senha.";
+
+            return;
+
+        }
+
+
+        try {
+
+            const response = await fetch(
+                `${SUPABASE_URL}/functions/v1/login-com-nick`,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Content-Type": "application/json",
+                        "apikey": SUPABASE_KEY
+                    },
+
+                    body: JSON.stringify({
+                        username: username,
+                        password: password
+                    })
+                }
+            );
+
+
+            const result =
+                await response.json();
+
+
+            if (!response.ok) {
+
+                console.error(
+                    "Erro no login:",
+                    result
+                );
+
+                loginMessage.textContent =
+                    result.error ||
+                    "Nick ou senha incorretos.";
+
+                return;
+
             }
-        );
 
 
-        const result = await response.json();
+            const {
+                error: sessionError
+            } =
+                await supabaseClient.auth.setSession({
+
+                    access_token:
+                        result.access_token,
+
+                    refresh_token:
+                        result.refresh_token
+
+                });
 
 
-        if (!response.ok) {
+            if (sessionError) {
+
+                console.error(
+                    "Erro ao criar sessão:",
+                    sessionError
+                );
+
+                loginMessage.textContent =
+                    "Não foi possível iniciar a sessão.";
+
+                return;
+
+            }
+
+
+            console.log(
+                "Login realizado com nick!"
+            );
+
+
+            loginMessage.textContent =
+                "Login realizado com sucesso!";
+
+
+            window.location.href =
+                "../perfil/index.html";
+
+
+        } catch (error) {
 
             console.error(
-                "Erro no login:",
-                result
+                "Erro ao conectar:",
+                error
             );
 
             loginMessage.textContent =
-                result.error ||
-                "Nick ou senha incorretos.";
+                "Erro ao conectar com o Supabase.";
 
-            return;
         }
 
-
-        /* =========================
-           CRIAR SESSÃO DO SUPABASE
-        ========================= */
-
-        const { error: sessionError } =
-            await supabaseClient.auth.setSession({
-                access_token: result.access_token,
-                refresh_token: result.refresh_token
-            });
-
-
-        if (sessionError) {
-
-            console.error(
-                "Erro ao criar sessão:",
-                sessionError
-            );
-
-            loginMessage.textContent =
-                "Não foi possível iniciar a sessão.";
-
-            return;
-        }
-
-
-        console.log(
-            "Login realizado com nick!"
-        );
-
-
-        loginMessage.textContent =
-            "Login realizado com sucesso!";
-
-
-        window.location.href =
-            "../perfil/index.html";
-
-
-    } catch (error) {
-
-        console.error(
-            "Erro ao conectar:",
-            error
-        );
-
-        loginMessage.textContent =
-            "Erro ao conectar com o Supabase.";
     }
-});
+);
 
 
 /* =========================
    CADASTRO
 ========================= */
 
-registerForm.addEventListener("submit", async function (event) {
+registerForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    event.preventDefault();
+        event.preventDefault();
 
-    registerMessage.textContent =
-        "Verificando código...";
-
-
-    const codigo = document
-        .getElementById("register-code")
-        .value
-        .trim();
-
-
-    const email = document
-        .getElementById("register-email")
-        .value
-        .trim();
-
-
-    const password = document
-        .getElementById("register-password")
-        .value;
-
-
-    if (!codigo) {
 
         registerMessage.textContent =
-            "Digite o código de acesso.";
-
-        return;
-    }
+            "Verificando informações...";
 
 
-    if (!email) {
-
-        registerMessage.textContent =
-            "Digite seu e-mail.";
-
-        return;
-    }
+        const codigo =
+            document
+                .getElementById("register-code")
+                .value
+                .trim();
 
 
-    if (password.length < 6) {
-
-        registerMessage.textContent =
-            "A senha precisa ter pelo menos 6 caracteres.";
-
-        return;
-    }
+        let username =
+            document
+                .getElementById("register-username")
+                .value
+                .trim();
 
 
-    try {
+        const email =
+            document
+                .getElementById("register-email")
+                .value
+                .trim();
 
-        console.log(
-            "Código digitado:",
-            JSON.stringify(codigo)
-        );
+
+        const password =
+            document
+                .getElementById("register-password")
+                .value;
 
 
-        const {
-            data: codigoValido,
-            error: codigoError
-        } = await supabaseClient.rpc(
-            "verificar_codigo_convite",
-            {
-                codigo_informado: codigo
+        /* =========================
+           VALIDAR NICK
+        ========================= */
+
+
+        if (!username) {
+
+            registerMessage.textContent =
+                "Digite seu @username.";
+
+            return;
+
+        }
+
+
+        // Remove @ do começo
+
+        username =
+            username.replace(/^@+/, "");
+
+
+        // Remove espaços
+
+        username =
+            username.trim();
+
+
+        if (!username) {
+
+            registerMessage.textContent =
+                "Digite um username válido.";
+
+            return;
+
+        }
+
+
+        // Limite
+
+        if (username.length < 2) {
+
+            registerMessage.textContent =
+                "O username precisa ter pelo menos 2 caracteres.";
+
+            return;
+
+        }
+
+
+        // Apenas caracteres seguros
+
+        if (!/^[a-zA-Z0-9_.-]+$/.test(username)) {
+
+            registerMessage.textContent =
+                "O username só pode ter letras, números, _, . e -.";
+
+            return;
+
+        }
+
+
+        /* =========================
+           VALIDAR CÓDIGO
+        ========================= */
+
+        if (!codigo) {
+
+            registerMessage.textContent =
+                "Digite o código de acesso.";
+
+            return;
+
+        }
+
+
+        /* =========================
+           VALIDAR E-MAIL
+        ========================= */
+
+        if (!email) {
+
+            registerMessage.textContent =
+                "Digite seu e-mail.";
+
+            return;
+
+        }
+
+
+        /* =========================
+           VALIDAR SENHA
+        ========================= */
+
+        if (password.length < 6) {
+
+            registerMessage.textContent =
+                "A senha precisa ter pelo menos 6 caracteres.";
+
+            return;
+
+        }
+
+
+        try {
+
+            /* =========================
+               VERIFICAR USERNAME
+            ========================= */
+
+            registerMessage.textContent =
+                "Verificando @username...";
+
+
+            const {
+                data: usernameDisponivel,
+                error: usernameError
+            } =
+                await supabaseClient.rpc(
+                    "verificar_username_disponivel",
+                    {
+                        p_username: username
+                    }
+                );
+
+
+            if (usernameError) {
+
+                console.error(
+                    "Erro ao verificar username:",
+                    usernameError
+                );
+
+                registerMessage.textContent =
+                    "Não foi possível verificar o username.";
+
+                return;
+
             }
-        );
 
 
-        console.log(
-            "Resultado da RPC:",
-            codigoValido
-        );
+            if (!usernameDisponivel) {
+
+                registerMessage.textContent =
+                    `O @${username} já está em uso. Escolha outro.`;
+
+                return;
+
+            }
 
 
-        console.log(
-            "Erro da RPC:",
-            codigoError
-        );
+            /* =========================
+               VERIFICAR CÓDIGO
+            ========================= */
+
+            registerMessage.textContent =
+                "Verificando código...";
 
 
-        if (codigoError) {
+            const {
+                data: codigoValido,
+                error: codigoError
+            } =
+                await supabaseClient.rpc(
+                    "verificar_codigo_convite",
+                    {
+                        codigo_informado: codigo
+                    }
+                );
 
-            console.error(
-                "Erro ao verificar código:",
-                codigoError
+
+            if (codigoError) {
+
+                console.error(
+                    "Erro ao verificar código:",
+                    codigoError
+                );
+
+                registerMessage.textContent =
+                    "Não foi possível verificar o código.";
+
+                return;
+
+            }
+
+
+            if (!codigoValido) {
+
+                registerMessage.textContent =
+                    "Código inválido ou já utilizado.";
+
+                return;
+
+            }
+
+
+            /* =========================
+               CRIAR CONTA
+            ========================= */
+
+            registerMessage.textContent =
+                "Criando conta...";
+
+
+            const {
+                data,
+                error
+            } =
+                await supabaseClient.auth.signUp({
+
+                    email: email,
+
+                    password: password,
+
+                    options: {
+
+                        data: {
+
+                            username: username,
+
+                            codigo_convite: codigo
+
+                        }
+
+                    }
+
+                });
+
+
+            if (error) {
+
+                console.error(
+                    "Erro ao criar conta:",
+                    error
+                );
+
+
+                // Caso duas pessoas tentem
+                // pegar o mesmo nick ao mesmo tempo
+
+                if (
+                    error.message
+                        .toLowerCase()
+                        .includes("username")
+                ) {
+
+                    registerMessage.textContent =
+                        "Esse @username já está em uso.";
+
+                } else {
+
+                    registerMessage.textContent =
+                        error.message;
+
+                }
+
+                return;
+
+            }
+
+
+            if (!data.user) {
+
+                registerMessage.textContent =
+                    "Não foi possível criar a conta.";
+
+                return;
+
+            }
+
+
+            /* =========================
+               USAR CÓDIGO
+            ========================= */
+
+            const {
+                data: conviteUsado,
+                error: conviteError
+            } =
+                await supabaseClient.rpc(
+                    "usar_codigo_convite",
+                    {
+                        codigo_informado: codigo,
+
+                        usuario_id:
+                            data.user.id
+                    }
+                );
+
+
+            if (conviteError) {
+
+                console.error(
+                    "Erro ao usar convite:",
+                    conviteError
+                );
+
+                registerMessage.textContent =
+                    "Conta criada, mas não foi possível registrar o convite.";
+
+                return;
+
+            }
+
+
+            if (!conviteUsado) {
+
+                registerMessage.textContent =
+                    "Esse código já foi usado.";
+
+                return;
+
+            }
+
+
+            /* =========================
+               SUCESSO
+            ========================= */
+
+            registerMessage.textContent =
+                `Conta criada com sucesso! @${username}`;
+
+
+            registerForm.reset();
+
+
+            console.log(
+                "Usuário criado:",
+                data.user
             );
 
-            registerMessage.textContent =
-                "Não foi possível verificar o código.";
-
-            return;
-        }
-
-
-        if (!codigoValido) {
-
-            registerMessage.textContent =
-                "Código inválido ou já utilizado.";
-
-            return;
-        }
-
-
-        registerMessage.textContent =
-            "Código válido! Criando conta...";
-
-
-        const {
-            data,
-            error
-        } = await supabaseClient.auth.signUp({
-            email,
-            password,
-
-            options: {
-                data: {
-                    codigo_convite: codigo
-                }
-            }
-        });
-
-
-        if (error) {
+        } catch (error) {
 
             console.error(
-                "Erro ao criar conta:",
+                "Erro:",
                 error
             );
 
             registerMessage.textContent =
-                error.message;
+                "Ocorreu um erro ao criar a conta.";
 
-            return;
         }
 
-
-        if (!data.user) {
-
-            registerMessage.textContent =
-                "Não foi possível criar a conta.";
-
-            return;
-        }
-
-
-        const {
-            data: conviteUsado,
-            error: conviteError
-        } = await supabaseClient.rpc(
-            "usar_codigo_convite",
-            {
-                codigo_informado: codigo,
-                usuario_id: data.user.id
-            }
-        );
-
-
-        if (conviteError) {
-
-            console.error(
-                "Erro ao usar convite:",
-                conviteError
-            );
-
-            registerMessage.textContent =
-                "Conta criada, mas não foi possível registrar o convite.";
-
-            return;
-        }
-
-
-        if (!conviteUsado) {
-
-            registerMessage.textContent =
-                "Esse código já foi usado.";
-
-            return;
-        }
-
-
-        registerMessage.textContent =
-            "Conta criada com sucesso!";
-
-
-        registerForm.reset();
-
-
-        console.log(
-            "Usuário criado:",
-            data.user
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Erro:",
-            error
-        );
-
-        registerMessage.textContent =
-            "Ocorreu um erro ao criar a conta.";
     }
-});
+);
