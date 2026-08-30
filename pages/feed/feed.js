@@ -517,6 +517,7 @@ function atualizarIdentidadeTopo() {
 
     const isAdm = String(perfilAtual.cargo || "").toLowerCase().trim() === "adm";
     const isVip = perfilAtual.vip === true;
+    const podeApagar = usuarioAtual && perfilAtual && perfilAtual.feed_admin === true;
 
     if (!menuBadge) {
         return;
@@ -665,6 +666,44 @@ function criarCardMembro(membro) {
             </button>
         </div>
     `;
+
+    const deleteButton = article.querySelector(".delete-post-button");
+
+if (deleteButton) {
+    deleteButton.addEventListener("click", async () => {
+        const confirmar = confirm("Tem certeza que deseja apagar esta publicação?");
+
+        if (!confirmar) {
+            return;
+        }
+
+        deleteButton.disabled = true;
+        deleteButton.textContent = "APAGANDO...";
+
+        try {
+            const { error } = await supabaseClient
+                .from("feed_posts")
+                .delete()
+                .eq("id", post.id);
+
+            if (error) {
+                throw error;
+            }
+
+            posts = posts.filter(item => item.id !== post.id);
+            renderizarFeed();
+            mostrarToast("🗑️ Publicação apagada!");
+
+        } catch (error) {
+            console.error("Erro ao apagar publicação:", error);
+
+            deleteButton.disabled = false;
+            deleteButton.textContent = "🗑️ APAGAR";
+
+            mostrarToast("Não foi possível apagar a publicação.");
+        }
+    });
+}
 
     const button = article.querySelector(".member-card-button");
 
@@ -1262,6 +1301,7 @@ function criarPost(post) {
     const avatar = autor.avatar_url || "";
     const isAdm =
         String(autor.cargo || "").toLowerCase().trim() === "adm";
+    const podeApagar = usuarioAtual && perfilAtual && perfilAtual.feed_admin === true;
 
     article.innerHTML = `
         <div class="post-top">
@@ -1282,7 +1322,7 @@ function criarPost(post) {
                                 : "👤"
                     }
                 </div>
-
+${podeApagar ? `<button class="delete-post-button" type="button">🗑️ APAGAR</button>` : ""}
                 <div class="author-info">
 
                     <strong>
@@ -1339,6 +1379,38 @@ function criarPost(post) {
 
     bottom.appendChild(time);
     article.appendChild(bottom);
+
+    const deleteButton = article.querySelector(".delete-post-button");
+
+if (deleteButton) {
+    deleteButton.addEventListener("click", async () => {
+        const confirmar = confirm("Tem certeza que deseja apagar esta publicação?");
+
+        if (!confirmar) {
+            return;
+        }
+
+        deleteButton.disabled = true;
+        deleteButton.textContent = "APAGANDO...";
+
+        try {
+            const { error } = await supabaseClient.from("feed_posts").delete().eq("id", post.id);
+
+            if (error) {
+                throw error;
+            }
+
+            posts = posts.filter(item => item.id !== post.id);
+            renderizarFeed();
+            mostrarToast("🗑️ Publicação apagada!");
+        } catch (error) {
+            console.error("Erro ao apagar publicação:", error);
+            deleteButton.disabled = false;
+            deleteButton.textContent = "🗑️ APAGAR";
+            mostrarToast("Não foi possível apagar a publicação.");
+        }
+    });
+}
 
     return article;
 }

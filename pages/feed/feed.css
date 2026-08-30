@@ -2622,3 +2622,20 @@ a {
         font-size: 1.4rem;
     }
 }
+
+.delete-post-button {
+    margin-left: auto;
+    padding: 7px 11px;
+    border: 1px solid rgba(255,80,120,0.25);
+    border-radius: 9px;
+    background: rgba(255,80,120,0.08);
+    color: #ff9ab5;
+    font-family: "Fredoka", sans-serif;
+    font-size: 0.78rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.delete-post-button:hover {
+    background: rgba(255,80,120,0.15);
+}
