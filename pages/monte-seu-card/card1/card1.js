@@ -31,7 +31,6 @@ const cardCampos = {
 const abas = document.querySelectorAll(".aba");
 const painelImagens = document.getElementById("painelImagens");
 const painelCor = document.getElementById("painelCor");
-const temasBotoes = document.querySelectorAll(".tema");
 const botoesCorLetra = document.querySelectorAll(".cor.letra");
 const botoesCorTopo = document.querySelectorAll(".cor.topo");
 const botoesFundo = document.querySelectorAll(".cores-fundo button");
@@ -43,11 +42,17 @@ const corTopo = document.getElementById("corTopo");
 const corFundo = document.getElementById("corFundo");
 
 const valorCorLetra = document.getElementById("valorCorLetra");
-const valorCorTopo = document.getElementById("valorCorTopo");
+const valorCorTopo = document.getElementById("valorCorFundo");
 const valorCorFundo = document.getElementById("valorCorFundo");
 
 const botaoDownload = document.getElementById("baixarCard");
 const botaoLink = document.getElementById("copiarLink");
+
+const inputImagem = document.getElementById("imagemGaleria");
+const valorNomeImagem = document.getElementById("nomeImagem");
+
+const overlayOpacity = document.getElementById("overlayOpacity");
+const valorOverlay = document.getElementById("valorOverlay");
 
 const decoracoes = {
     spark: document.querySelector(".decoracao-spark"),
@@ -75,47 +80,7 @@ const grupos = {
     Sentinelas: "#4d82e8",
     Exploradores: "#f0bd35"
 };
-const temas = {
-    azul: "../img/azul.jpg",
-    estrelado: "../img/estrelado.jpg",
-    preto: "../img/preto.jpg",
-    preto2: "../img/preto2.jpg",
-    rosa: "../img/rosa.jpg",
-    roxo: "../img/roxo.jpg",
-    verde: "../img/verde.jpg",
-    Giorno: "../img/giorno.jpg",
-    noite: "../img/noite azulada.jpg",
-    DIO: "../img/dio.jpg",
-    anime: "../img/anime.jpg",
-    gojo: "../img/gojo.jpg",
-    zoro: "../img/zoro.jpg",
-    alucard: "../img/alucard.jpg",
-    Saiki: "../img/Saiki.jpg",
-    "Johnny-Joestar": "../img/Johnny-Joestar.jpg",
-    reze: "../img/reze.jpg",
-    jinx: "../img/jinx.jpg",
-    reze2: "../img/reze2.jpg",
-    toji: "../img/toji.jpg",
-    megumi: "../img/megumi.jpg",
-    lobo: "../img/lobo.jpg",
-    levi: "../img/levi.jpg",
-    toji2: "../img/toji2.jpg",
-    geto: "../img/geto.jpg",
-    rel: "../img/rel.jpg",
-    feliz: "../img/feliz.jpg",
-    yuta: "../img/yuta.jpg",
-    mob: "../img/mob.jpg",
-    gojo2: "../img/gojo2.jpg",
-    gojo3: "../img/gojo3.jpg",
-    choso: "../img/choso.jpg",
-    molusco: "../img/molusco.jpg",
-    coringa: "../img/coringa.jpg",
-    spider: "../img/spider.jpg",
-    L: "../img/L.jpg",
-    reze3: "../img/reze3.jpg",
-    reze4: "../img/reze4.jpg",
-    saiki2: "../img/saiki2.jpg"
-};
+
 const abreviacoes = {
     nick: "n",
     grupo: "g",
@@ -132,7 +97,8 @@ const abreviacoes = {
     corTopo: "q",
     corFundo: "u",
     acessorio: "a",
-    formatoFoto: "z"
+    formatoFoto: "z",
+    overlayOpacity: "o"
 };
 
 const nomesAbreviados = {
@@ -151,13 +117,16 @@ const nomesAbreviados = {
     q: "corTopo",
     u: "corFundo",
     a: "acessorio",
-    z: "formatoFoto"
+    z: "formatoFoto",
+    o: "overlayOpacity"
 };
 
 let fundoAtual = "imagem";
-let temaAtual = "azul";
 let acessorioAtual = "none";
 let formatoFotoAtual = "original";
+let overlayAtual = 72;
+let imagemGaleriaAtual = null;
+let imagemGaleriaURL = null;
 let timeoutLink = null;
 
 function aplicarCoresBotoes() {
@@ -214,7 +183,8 @@ function atualizarGrupo() {
 function atualizarCard() {
     Object.keys(campos).forEach(chave => {
         const valor = campos[chave].value.trim();
-        cardCampos[chave].textContent = valor || valoresPadrao[chave];
+        cardCampos[chave].textContent =
+            valor || valoresPadrao[chave];
     });
 
     atualizarGrupo();
@@ -234,18 +204,31 @@ Object.values(campos).forEach(campo => {
 
 function agendarLink() {
     clearTimeout(timeoutLink);
-    timeoutLink = setTimeout(salvarLink, 250);
+
+    timeoutLink = setTimeout(() => {
+        salvarLink();
+    }, 250);
 }
 
 function mostrarAba(tipo) {
     fundoAtual = tipo;
 
     abas.forEach(aba => {
-        aba.classList.toggle("ativo", aba.dataset.fundo === tipo);
+        aba.classList.toggle(
+            "ativo",
+            aba.dataset.fundo === tipo
+        );
     });
 
-    painelImagens.classList.toggle("ativo", tipo === "imagem");
-    painelCor.classList.toggle("ativo", tipo === "cor");
+    painelImagens.classList.toggle(
+        "ativo",
+        tipo === "imagem"
+    );
+
+    painelCor.classList.toggle(
+        "ativo",
+        tipo === "cor"
+    );
 
     salvarLink();
 }
@@ -256,40 +239,111 @@ abas.forEach(aba => {
     });
 });
 
-function aplicarTema(nome, salvar = true) {
-    if (!temas[nome]) {
+/* =========================
+   IMAGEM DA GALERIA
+========================= */
+
+function aplicarImagemGaleria(file, salvar = true) {
+    if (!file) {
         return;
     }
 
-    temaAtual = nome;
+    if (!file.type.startsWith("image/")) {
+        mostrarToast("Escolha uma imagem válida.");
+        return;
+    }
+
+    if (imagemGaleriaURL) {
+        URL.revokeObjectURL(imagemGaleriaURL);
+    }
+
+    imagemGaleriaAtual = file;
+    imagemGaleriaURL = URL.createObjectURL(file);
+
     fundoAtual = "imagem";
 
-    cardFundo.style.backgroundImage = `url("${temas[nome]}")`;
+    cardFundo.style.backgroundImage =
+        `url("${imagemGaleriaURL}")`;
 
-    temasBotoes.forEach(botao => {
-        botao.classList.toggle("ativo", botao.dataset.tema === nome);
-    });
+    card.style.setProperty("--background", "#17121f");
 
     abas.forEach(aba => {
-        aba.classList.toggle("ativo", aba.dataset.fundo === "imagem");
+        aba.classList.toggle(
+            "ativo",
+            aba.dataset.fundo === "imagem"
+        );
     });
 
     painelImagens.classList.add("ativo");
     painelCor.classList.remove("ativo");
+
+    if (valorNomeImagem) {
+        valorNomeImagem.textContent = file.name;
+    }
 
     if (salvar) {
         salvarLink();
     }
 }
 
-temasBotoes.forEach(botao => {
-    botao.addEventListener("click", () => {
-        aplicarTema(botao.dataset.tema);
+if (inputImagem) {
+    inputImagem.addEventListener("change", event => {
+        const file = event.target.files?.[0];
+
+        if (file) {
+            aplicarImagemGaleria(file);
+        }
     });
-});
+}
+
+/* =========================
+   OVERLAY
+========================= */
+
+function aplicarOverlay(valor, salvar = true) {
+    let numero = Number(valor);
+
+    if (!Number.isFinite(numero)) {
+        numero = 72;
+    }
+
+    numero = Math.max(0, Math.min(100, numero));
+
+    overlayAtual = numero;
+
+    const opacidade = numero / 100;
+
+    card.style.setProperty(
+        "--overlay-opacity",
+        opacidade
+    );
+
+    if (overlayOpacity) {
+        overlayOpacity.value = String(numero);
+    }
+
+    if (valorOverlay) {
+        valorOverlay.textContent = `${numero}%`;
+    }
+
+    if (salvar) {
+        salvarLink();
+    }
+}
+
+if (overlayOpacity) {
+    overlayOpacity.addEventListener("input", () => {
+        aplicarOverlay(overlayOpacity.value);
+    });
+}
+
+/* =========================
+   COR DO FUNDO
+========================= */
 
 function aplicarCorFundo(cor, salvar = true) {
     fundoAtual = "cor";
+
     cardFundo.style.backgroundImage = "none";
     card.style.setProperty("--background", cor);
 
@@ -299,12 +353,16 @@ function aplicarCorFundo(cor, salvar = true) {
     botoesFundo.forEach(botao => {
         botao.classList.toggle(
             "ativo",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+            botao.dataset.cor.toLowerCase() ===
+            cor.toLowerCase()
         );
     });
 
     abas.forEach(aba => {
-        aba.classList.toggle("ativo", aba.dataset.fundo === "cor");
+        aba.classList.toggle(
+            "ativo",
+            aba.dataset.fundo === "cor"
+        );
     });
 
     painelImagens.classList.remove("ativo");
@@ -325,15 +383,23 @@ corFundo.addEventListener("input", () => {
     aplicarCorFundo(corFundo.value);
 });
 
+/* =========================
+   CORES
+========================= */
+
 function aplicarCorLetra(cor, salvar = true) {
     card.style.setProperty("--primary", cor);
+
     corLetra.value = cor;
-    valorCorLetra.textContent = cor.toUpperCase();
+
+    valorCorLetra.textContent =
+        cor.toUpperCase();
 
     botoesCorLetra.forEach(botao => {
         botao.classList.toggle(
             "ativa",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+            botao.dataset.cor.toLowerCase() ===
+            cor.toLowerCase()
         );
     });
 
@@ -354,13 +420,17 @@ corLetra.addEventListener("input", () => {
 
 function aplicarCorTopo(cor, salvar = true) {
     card.style.setProperty("--top", cor);
+
     corTopo.value = cor;
-    valorCorTopo.textContent = cor.toUpperCase();
+
+    valorCorTopo.textContent =
+        cor.toUpperCase();
 
     botoesCorTopo.forEach(botao => {
         botao.classList.toggle(
             "ativa",
-            botao.dataset.cor.toLowerCase() === cor.toLowerCase()
+            botao.dataset.cor.toLowerCase() ===
+            cor.toLowerCase()
         );
     });
 
@@ -378,6 +448,10 @@ botoesCorTopo.forEach(botao => {
 corTopo.addEventListener("input", () => {
     aplicarCorTopo(corTopo.value);
 });
+
+/* =========================
+   ACESSÓRIOS
+========================= */
 
 function aplicarAcessorio(nome, salvar = true) {
     acessorioAtual = nome;
@@ -404,9 +478,15 @@ function aplicarAcessorio(nome, salvar = true) {
 
 botoesAcessorio.forEach(botao => {
     botao.addEventListener("click", () => {
-        aplicarAcessorio(botao.dataset.acessorio);
+        aplicarAcessorio(
+            botao.dataset.acessorio
+        );
     });
 });
+
+/* =========================
+   FORMATO DA FOTO
+========================= */
 
 function aplicarFormatoFoto(nome, salvar = true) {
     const formatos = [
@@ -431,7 +511,9 @@ function aplicarFormatoFoto(nome, salvar = true) {
         );
 
         if (nome !== "original") {
-            fotoPlaceholder.classList.add(`formato-${nome}`);
+            fotoPlaceholder.classList.add(
+                `formato-${nome}`
+            );
         }
     }
 
@@ -449,9 +531,15 @@ function aplicarFormatoFoto(nome, salvar = true) {
 
 botoesFormatoFoto.forEach(botao => {
     botao.addEventListener("click", () => {
-        aplicarFormatoFoto(botao.dataset.formato);
+        aplicarFormatoFoto(
+            botao.dataset.formato
+        );
     });
 });
+
+/* =========================
+   DADOS / LINK
+========================= */
 
 function gerarDados() {
     const dados = {};
@@ -459,7 +547,10 @@ function gerarDados() {
     Object.keys(campos).forEach(chave => {
         const valor = campos[chave].value.trim();
 
-        if (valor && valor !== valoresPadrao[chave]) {
+        if (
+            valor &&
+            valor !== valoresPadrao[chave]
+        ) {
             dados[abreviacoes[chave]] = valor;
         }
     });
@@ -468,19 +559,21 @@ function gerarDados() {
         dados.f = fundoAtual;
     }
 
-    if (temaAtual !== "azul") {
-        dados.h = temaAtual;
-    }
-
-    if (corLetra.value.toLowerCase() !== "#c88dff") {
+    if (
+        corLetra.value.toLowerCase() !== "#c88dff"
+    ) {
         dados.l = corLetra.value;
     }
 
-    if (corTopo.value.toLowerCase() !== "#9f63d9") {
+    if (
+        corTopo.value.toLowerCase() !== "#9f63d9"
+    ) {
         dados.q = corTopo.value;
     }
 
-    if (corFundo.value.toLowerCase() !== "#17121f") {
+    if (
+        corFundo.value.toLowerCase() !== "#17121f"
+    ) {
         dados.u = corFundo.value;
     }
 
@@ -490,6 +583,10 @@ function gerarDados() {
 
     if (formatoFotoAtual !== "original") {
         dados.z = formatoFotoAtual;
+    }
+
+    if (overlayAtual !== 72) {
+        dados.o = overlayAtual;
     }
 
     return dados;
@@ -511,7 +608,9 @@ function expandirDados(dados) {
 
 function compactar(dados) {
     if (typeof LZString === "undefined") {
-        throw new Error("LZString não foi carregado.");
+        throw new Error(
+            "LZString não foi carregado."
+        );
     }
 
     return LZString.compressToEncodedURIComponent(
@@ -521,15 +620,25 @@ function compactar(dados) {
 
 function descompactar(codigo) {
     try {
-        const texto = LZString.decompressFromEncodedURIComponent(codigo);
+        const texto =
+            LZString.decompressFromEncodedURIComponent(
+                codigo
+            );
 
         if (!texto) {
             return null;
         }
 
-        return expandirDados(JSON.parse(texto));
+        return expandirDados(
+            JSON.parse(texto)
+        );
+
     } catch (erro) {
-        console.error("Erro ao ler link:", erro);
+        console.error(
+            "Erro ao ler link:",
+            erro
+        );
+
         return null;
     }
 }
@@ -547,23 +656,39 @@ function salvarLink() {
                 "",
                 `${window.location.pathname}#${codigo}`
             );
+
         } catch (erro) {
-            console.error("Erro ao salvar link:", erro);
+            console.error(
+                "Erro ao salvar link:",
+                erro
+            );
         }
     }, 100);
 }
 
+/* =========================
+   CARREGAR DADOS
+========================= */
+
 function aplicarDadosDoLink(dados) {
     Object.keys(campos).forEach(chave => {
-        if (dados[chave] !== undefined && dados[chave] !== null) {
-            campos[chave].value = dados[chave];
+        if (
+            dados[chave] !== undefined &&
+            dados[chave] !== null
+        ) {
+            campos[chave].value =
+                dados[chave];
         }
     });
 
-    fundoAtual = dados.fundo || "imagem";
-    temaAtual = dados.tema || "azul";
-    acessorioAtual = dados.acessorio || "none";
-    formatoFotoAtual = dados.formatoFoto || "original";
+    fundoAtual =
+        dados.fundo || "imagem";
+
+    acessorioAtual =
+        dados.acessorio || "none";
+
+    formatoFotoAtual =
+        dados.formatoFoto || "original";
 
     aplicarCorLetra(
         dados.corLetra || "#c88dff",
@@ -575,42 +700,90 @@ function aplicarDadosDoLink(dados) {
         false
     );
 
-    if (fundoAtual === "imagem") {
-        aplicarTema(
-            temas[temaAtual] ? temaAtual : "azul",
-            false
-        );
-    } else {
+    aplicarOverlay(
+        dados.overlayOpacity ?? 72,
+        false
+    );
+
+    if (fundoAtual === "cor") {
         aplicarCorFundo(
             dados.corFundo || "#17121f",
             false
         );
+    } else {
+        painelImagens.classList.add("ativo");
+        painelCor.classList.remove("ativo");
+
+        abas.forEach(aba => {
+            aba.classList.toggle(
+                "ativo",
+                aba.dataset.fundo === "imagem"
+            );
+        });
     }
 
-    aplicarAcessorio(acessorioAtual, false);
-    aplicarFormatoFoto(formatoFotoAtual, false);
+    aplicarAcessorio(
+        acessorioAtual,
+        false
+    );
+
+    aplicarFormatoFoto(
+        formatoFotoAtual,
+        false
+    );
+
     atualizarCard();
 }
 
+/* =========================
+   INICIALIZAÇÃO
+========================= */
+
 function inicializar() {
-    aplicarTema("azul", false);
-    aplicarCorFundo("#17121f", false);
-    aplicarCorLetra("#c88dff", false);
-    aplicarCorTopo("#9f63d9", false);
-    aplicarAcessorio("none", false);
-    aplicarFormatoFoto("original", false);
+    aplicarCorFundo(
+        "#17121f",
+        false
+    );
+
+    aplicarCorLetra(
+        "#c88dff",
+        false
+    );
+
+    aplicarCorTopo(
+        "#9f63d9",
+        false
+    );
+
+    aplicarOverlay(
+        72,
+        false
+    );
+
+    aplicarAcessorio(
+        "none",
+        false
+    );
+
+    aplicarFormatoFoto(
+        "original",
+        false
+    );
+
     atualizarCard();
 }
 
 function carregarLink() {
-    const codigo = window.location.hash.substring(1);
+    const codigo =
+        window.location.hash.substring(1);
 
     if (!codigo) {
         inicializar();
         return;
     }
 
-    const dados = descompactar(codigo);
+    const dados =
+        descompactar(codigo);
 
     if (!dados) {
         inicializar();
@@ -620,225 +793,255 @@ function carregarLink() {
     aplicarDadosDoLink(dados);
 }
 
+/* =========================
+   TOAST
+========================= */
+
 function mostrarToast(mensagem) {
-    const toast = document.getElementById("toast");
+    const toast =
+        document.getElementById("toast");
+
+    if (!toast) {
+        return;
+    }
 
     toast.textContent = mensagem;
+
     toast.classList.add("mostrar");
 
-    clearTimeout(mostrarToast.timer);
+    clearTimeout(
+        mostrarToast.timer
+    );
 
     mostrarToast.timer = setTimeout(() => {
-        toast.classList.remove("mostrar");
+        toast.classList.remove(
+            "mostrar"
+        );
     }, 2500);
 }
 
-botaoLink.addEventListener("click", async () => {
-    try {
-        clearTimeout(timeoutLink);
+/* =========================
+   COPIAR LINK
+========================= */
 
-        const dados = gerarDados();
-        const codigo = compactar(dados);
-        const url = `${window.location.origin}${window.location.pathname}#${codigo}`;
+if (botaoLink) {
+    botaoLink.addEventListener(
+        "click",
+        async () => {
+            try {
+                clearTimeout(timeoutLink);
 
-        history.replaceState(
-            null,
-            "",
-            `${window.location.pathname}#${codigo}`
-        );
+                const dados =
+                    gerarDados();
 
-        await navigator.clipboard.writeText(url);
+                const codigo =
+                    compactar(dados);
 
-        mostrarToast("🔗 Link compacto copiado!");
-    } catch (erro) {
-        console.error(erro);
-        mostrarToast("Não foi possível copiar o link.");
-    }
-});
+                const url =
+                    `${window.location.origin}${window.location.pathname}#${codigo}`;
+
+                history.replaceState(
+                    null,
+                    "",
+                    `${window.location.pathname}#${codigo}`
+                );
+
+                await navigator.clipboard
+                    .writeText(url);
+
+                mostrarToast(
+                    "🔗 Link compacto copiado!"
+                );
+
+            } catch (erro) {
+                console.error(erro);
+
+                mostrarToast(
+                    "Não foi possível copiar o link."
+                );
+            }
+        }
+    );
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
 
 async function prepararImagemAtual() {
     if (fundoAtual !== "imagem") {
         return;
     }
 
-    const imagem = temas[temaAtual];
-
-    if (!imagem) {
+    if (
+        !cardFundo.style.backgroundImage ||
+        cardFundo.style.backgroundImage === "none"
+    ) {
         return;
     }
 
-    await new Promise((resolve, reject) => {
-        const img = new Image();
+    if (
+        imagemGaleriaURL &&
+        cardFundo.style.backgroundImage.includes(
+            imagemGaleriaURL
+        )
+    ) {
+        const img =
+            new Image();
 
-        img.onload = resolve;
-        img.onerror = reject;
-        img.src = imagem;
+        img.src =
+            imagemGaleriaURL;
+
+        await new Promise(resolve => {
+            if (img.complete) {
+                resolve();
+                return;
+            }
+
+            img.onload = resolve;
+            img.onerror = resolve;
+        });
+
+        return;
+    }
+
+    await new Promise(resolve => {
+        resolve();
     });
 }
 
-botaoDownload.addEventListener("click", async () => {
-    const confirmar = window.confirm(
-        "Baixar seu card como imagem?"
-    );
+if (botaoDownload) {
+    botaoDownload.addEventListener(
+        "click",
+        async () => {
 
-    if (!confirmar) {
-        return;
-    }
+            const confirmar =
+                window.confirm(
+                    "Baixar seu card como imagem?"
+                );
 
-    let arquivoURL = null;
+            if (!confirmar) {
+                return;
+            }
 
-    botaoDownload.disabled = true;
-    botaoDownload.textContent = "Gerando card...";
+            botaoDownload.disabled = true;
+            botaoDownload.textContent =
+                "Gerando card...";
 
-    try {
-        if (typeof html2canvas !== "function") {
-            throw new Error(
-                "html2canvas não foi carregado."
-            );
-        }
+            try {
 
-        if (document.fonts) {
-            await document.fonts.ready;
-        }
-
-        await prepararImagemAtual();
-
-        await new Promise(resolve => {
-            requestAnimationFrame(() => {
-                requestAnimationFrame(resolve);
-            });
-        });
-
-        const canvas = await html2canvas(card, {
-            width: 760,
-            height: 500,
-            scale: 4,
-            useCORS: true,
-            allowTaint: false,
-            backgroundColor: null,
-            logging: false,
-            imageTimeout: 30000,
-            removeContainer: true,
-            foreignObjectRendering: false,
-            scrollX: 0,
-            scrollY: 0,
-
-            onclone: documento => {
-                const clone =
-                    documento.getElementById("cardGerado");
-
-                if (!clone) {
-                    return;
+                if (
+                    typeof html2canvas !==
+                    "function"
+                ) {
+                    throw new Error(
+                        "html2canvas não foi carregado."
+                    );
                 }
 
-                clone.style.transform = "none";
-                clone.style.width = "760px";
-                clone.style.height = "500px";
-                clone.style.minWidth = "760px";
-                clone.style.minHeight = "500px";
-                clone.style.boxShadow = "none";
-                clone.style.filter = "none";
-                clone.style.opacity = "1";
-                clone.style.visibility = "visible";
+                if (document.fonts) {
+                    await document.fonts.ready;
+                }
 
-                clone.querySelectorAll("*").forEach(elemento => {
-                    elemento.style.animation = "none";
-                    elemento.style.transition = "none";
+                await prepararImagemAtual();
+
+                await new Promise(resolve => {
+                    requestAnimationFrame(() => {
+                        requestAnimationFrame(
+                            resolve
+                        );
+                    });
                 });
+
+                const canvas =
+                    await html2canvas(
+                        card,
+                        {
+                            width: 760,
+                            height: 500,
+                            scale: 4,
+                            useCORS: true,
+                            allowTaint: false,
+                            backgroundColor: null,
+                            logging: false,
+                            imageTimeout: 30000,
+                            removeContainer: true,
+                            foreignObjectRendering: false,
+                            scrollX: 0,
+                            scrollY: 0,
+
+                            onclone: documento => {
+                                const clone =
+                                    documento.getElementById(
+                                        "cardGerado"
+                                    );
+
+                                if (!clone) {
+                                    return;
+                                }
+
+                                clone.style.transform =
+                                    "none";
+
+                                clone.style.setProperty(
+                                    "--card-scale",
+                                    "1"
+                                );
+                            }
+                        }
+                    );
+
+                const link =
+                    document.createElement("a");
+
+                link.download =
+                    "casa-dos-mbtis-card.png";
+
+                link.href =
+                    canvas.toDataURL(
+                        "image/png"
+                    );
+
+                link.click();
+
+                mostrarToast(
+                    "✅ Card baixado!"
+                );
+
+            } catch (erro) {
+                console.error(
+                    "Erro ao gerar card:",
+                    erro
+                );
+
+                mostrarToast(
+                    "❌ Não foi possível gerar o card."
+                );
+
+            } finally {
+                botaoDownload.disabled =
+                    false;
+
+                botaoDownload.textContent =
+                    "Baixar Card";
             }
-        });
-
-        if (!canvas || canvas.width <= 0 || canvas.height <= 0) {
-            throw new Error("O PNG ficou vazio.");
         }
-
-        const blob = await new Promise(resolve => {
-            canvas.toBlob(
-                resolve,
-                "image/png",
-                1
-            );
-        });
-
-        if (!blob) {
-            throw new Error("Não foi possível criar o PNG.");
-        }
-
-        arquivoURL = URL.createObjectURL(blob);
-
-        const nome =
-            campos.nick.value.trim() || "meu-card";
-
-        const nomeLimpo = nome
-            .replace(/[^a-zA-Z0-9À-ÿ\s-_]/g, "")
-            .trim()
-            .replace(/\s+/g, "-");
-
-        const nomeArquivo =
-            `casa-dos-mbtis-${nomeLimpo || "meu-card"}.png`;
-
-        const link = document.createElement("a");
-
-        link.href = arquivoURL;
-        link.download = nomeArquivo;
-        link.style.display = "none";
-
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-
-        mostrarToast("✨ Card salvo em alta resolução!");
-
-        setTimeout(() => {
-            if (arquivoURL) {
-                URL.revokeObjectURL(arquivoURL);
-                arquivoURL = null;
-            }
-        }, 2000);
-    } catch (erro) {
-        console.error("Erro ao baixar:", erro);
-
-        if (arquivoURL) {
-            URL.revokeObjectURL(arquivoURL);
-        }
-
-        mostrarToast("😿 Não consegui baixar o card.");
-    } finally {
-        botaoDownload.disabled = false;
-        botaoDownload.textContent = "↓ Baixar como imagem";
-    }
-});
-
-function atualizarLayoutCard() {
-    ajustarEscalaCard();
+    );
 }
+
+/* =========================
+   RESIZE
+========================= */
 
 window.addEventListener(
     "resize",
-    atualizarLayoutCard
+    ajustarEscalaCard
 );
 
-window.addEventListener(
-    "orientationchange",
-    () => {
-        setTimeout(
-            atualizarLayoutCard,
-            100
-        );
-    }
-);
-
-window.addEventListener(
-    "load",
-    () => {
-        setTimeout(
-            atualizarLayoutCard,
-            50
-        );
-    }
-);
+/* =========================
+   START
+========================= */
 
 aplicarCoresBotoes();
 carregarLink();
-atualizarCard();
 ajustarEscalaCard();
