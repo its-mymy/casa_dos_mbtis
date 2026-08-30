@@ -326,6 +326,48 @@ function configurarEventos() {
         postForm.addEventListener("submit", publicarPost);
     }
 
+
+    ///ENQUETE
+    if (newPostButton) {
+    newPostButton.addEventListener("click", abrirModalPublicacao);
+}
+
+if (closePostModal) {
+    closePostModal.addEventListener("click", fecharModalPublicacao);
+}
+
+if (postModalBackdrop) {
+    postModalBackdrop.addEventListener("click", fecharModalPublicacao);
+}
+
+postTypeButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        postTipoAtual = button.dataset.postType || "texto";
+
+        postTypeButtons.forEach(item => {
+            item.classList.toggle("active", item === button);
+        });
+
+        if (postTipoAtual === "enquete") {
+            textPostFields?.classList.add("hidden");
+            pollPostFields?.classList.remove("hidden");
+            postContent?.removeAttribute("required");
+        } else {
+            textPostFields?.classList.remove("hidden");
+            pollPostFields?.classList.add("hidden");
+            postContent?.setAttribute("required", "required");
+        }
+    });
+});
+
+if (addPollOption) {
+    addPollOption.addEventListener("click", adicionarOpcaoEnquete);
+}
+
+if (postForm) {
+    postForm.addEventListener("submit", publicarPost);
+}
+
     document.addEventListener("keydown", event => {
         if (event.key === "Escape") {
             fecharMenu();
@@ -628,6 +670,7 @@ function criarCardMembro(membro) {
     article.style.setProperty("--accent", accent);
 
     const isAdm = String(membro.cargo || "").toLowerCase().trim() === "adm";
+    const isFundadora = normalizarUsername(membro.username).toLowerCase() === "yu";
     const isVip = membro.vip === true;
 
     let badges = "";
@@ -650,9 +693,10 @@ function criarCardMembro(membro) {
                 ${escaparHTML(membro.nome || "Sem nome")}
             </h3>
 
-            <p class="member-username">
-                ${membro.username ? `@${escaparHTML(normalizarUsername(membro.username))}` : "@usuario"}
-            </p>
+           <div class="member-username-row">
+    <p class="member-username">${membro.username ? `@${escaparHTML(normalizarUsername(membro.username))}` : "@usuario"}</p>
+    ${isFundadora ? `<span class="founder-badge">🃏 FUNDADORA</span>` : ""}
+</div>
 
             <div class="member-badges">
                 ${badges}
@@ -717,31 +761,18 @@ if (deleteButton) {
 }
 
 function criarAvatarMembroHTML(membro) {
+    const isAdm = String(membro.cargo || "").toLowerCase().trim() === "adm";
+    const classeAvatar = isAdm ? "avatar-frame-adm" : "";
+
     if (membro.avatar_url) {
-        return `
-            <div class="member-avatar">
-                <img src="${escaparAtributo(membro.avatar_url)}" alt="Foto de perfil">
-            </div>
-        `;
+        return `<div class="member-avatar ${classeAvatar}"><img src="${escaparAtributo(membro.avatar_url)}" alt="Foto de perfil"></div>`;
     }
 
     if (membro.avatar_tipo?.startsWith("preset:")) {
-        return `
-            <div class="member-avatar">
-                <div class="member-avatar-placeholder">
-                    ${escaparHTML(membro.avatar_tipo.replace("preset:", ""))}
-                </div>
-            </div>
-        `;
+        return `<div class="member-avatar ${classeAvatar}"><div class="member-avatar-placeholder">${escaparHTML(membro.avatar_tipo.replace("preset:", ""))}</div></div>`;
     }
 
-    return `
-        <div class="member-avatar">
-            <div class="member-avatar-placeholder">
-                👤
-            </div>
-        </div>
-    `;
+    return `<div class="member-avatar ${classeAvatar}"><div class="member-avatar-placeholder">👤</div></div>`;
 }
 
 async function abrirPerfilMembro(id) {
@@ -1157,6 +1188,86 @@ function atualizarEstadoBotaoFollow(button, seguindo) {
         button.textContent = "SEGUIR";
         button.classList.remove("following");
     }
+}
+
+//publicação enquete
+
+function abrirModalPublicacao() {
+    if (!usuarioAtual || !perfilAtual || perfilAtual.feed_admin !== true) {
+        irParaLogin();
+        return;
+    }
+
+    if (!postModal) {
+        return;
+    }
+
+    postModal.classList.remove("hidden");
+    postTipoAtual = "texto";
+
+    postTypeButtons.forEach(button => {
+        button.classList.toggle("active", button.dataset.postType === "texto");
+    });
+
+    textPostFields?.classList.remove("hidden");
+    pollPostFields?.classList.add("hidden");
+
+    postContent?.setAttribute("required", "required");
+
+    if (postTitle) {
+        postTitle.value = "";
+    }
+
+    if (postContent) {
+        postContent.value = "";
+    }
+
+    if (pollQuestion) {
+        pollQuestion.value = "";
+    }
+
+    if (pollOptionsInputs) {
+        pollOptionsInputs.innerHTML = `
+            <input class="poll-option-input" type="text" maxlength="100" placeholder="Opção 1">
+            <input class="poll-option-input" type="text" maxlength="100" placeholder="Opção 2">
+        `;
+    }
+
+    if (postMessage) {
+        postMessage.textContent = "";
+    }
+
+    document.body.style.overflow = "hidden";
+}
+
+function fecharModalPublicacao() {
+    if (!postModal) {
+        return;
+    }
+
+    postModal.classList.add("hidden");
+    document.body.style.overflow = "";
+}
+
+function adicionarOpcaoEnquete() {
+    if (!pollOptionsInputs) {
+        return;
+    }
+
+    const quantidade = pollOptionsInputs.querySelectorAll(".poll-option-input").length;
+
+    if (quantidade >= 6) {
+        mostrarToast("Máximo de 6 opções.");
+        return;
+    }
+
+    const input = document.createElement("input");
+    input.className = "poll-option-input";
+    input.type = "text";
+    input.maxLength = 100;
+    input.placeholder = `Opção ${quantidade + 1}`;
+
+    pollOptionsInputs.appendChild(input);
 }
 
 async function carregarFeed() {
@@ -1795,6 +1906,98 @@ async function publicarPost(event) {
 
         return;
     }
+
+    if (postMessage) {
+    postMessage.textContent = "Publicando...";
+}
+
+try {
+    if (postTipoAtual === "texto") {
+        const titulo = postTitle ? postTitle.value.trim() : "";
+        const conteudo = postContent ? postContent.value.trim() : "";
+
+        if (!conteudo) {
+            if (postMessage) postMessage.textContent = "Digite o texto da publicação.";
+            return;
+        }
+
+        const { error } = await supabaseClient.from("feed_posts").insert({
+            author_id: usuarioAtual.id,
+            tipo: "texto",
+            titulo: titulo || null,
+            conteudo: conteudo
+        });
+
+        if (error) {
+            throw error;
+        }
+
+        mostrarToast("✅ Publicação publicada!");
+
+        if (postForm) {
+            postForm.reset();
+        }
+
+        fecharModalPublicacao();
+        await carregarFeed();
+        return;
+    }
+
+    if (postTipoAtual === "enquete") {
+        const pergunta = pollQuestion ? pollQuestion.value.trim() : "";
+        const inputs = pollOptionsInputs ? [...pollOptionsInputs.querySelectorAll(".poll-option-input")] : [];
+        const opcoes = inputs.map(input => input.value.trim()).filter(Boolean);
+
+        if (!pergunta) {
+            if (postMessage) postMessage.textContent = "Digite a pergunta da enquete.";
+            return;
+        }
+
+        if (opcoes.length < 2) {
+            if (postMessage) postMessage.textContent = "A enquete precisa ter pelo menos 2 opções.";
+            return;
+        }
+
+        const { data: novoPost, error: postError } = await supabaseClient.from("feed_posts").insert({
+            author_id: usuarioAtual.id,
+            tipo: "enquete",
+            titulo: null,
+            conteudo: pergunta
+        }).select().single();
+
+        if (postError) {
+            throw postError;
+        }
+
+        const opcoesParaInserir = opcoes.map((texto, index) => ({
+            post_id: novoPost.id,
+            texto: texto,
+            ordem: index
+        }));
+
+        const { error: opcoesError } = await supabaseClient.from("feed_poll_options").insert(opcoesParaInserir);
+
+        if (opcoesError) {
+            await supabaseClient.from("feed_posts").delete().eq("id", novoPost.id);
+            throw opcoesError;
+        }
+
+        mostrarToast("📊 Enquete publicada!");
+
+        if (postForm) {
+            postForm.reset();
+        }
+
+        fecharModalPublicacao();
+        await carregarFeed();
+    }
+} catch (error) {
+    console.error("Erro ao publicar:", error);
+
+    if (postMessage) {
+        postMessage.textContent = error?.message || "Não foi possível publicar.";
+    }
+}
 
     if (postMessage) {
         postMessage.textContent =

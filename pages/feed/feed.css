@@ -2639,3 +2639,246 @@ a {
 .delete-post-button:hover {
     background: rgba(255,80,120,0.15);
 }
+
+body {
+    font-size: 18px;
+}
+
+.topbar,
+.community-page,
+.member-menu,
+.post-modal,
+.edit-modal,
+.profile-overlay {
+    font-size: 18px;
+}
+
+.brand-text strong {
+    font-size: 1.15rem;
+}
+
+.brand-text span {
+    font-size: 0.95rem;
+}
+
+.nav-button {
+    font-size: 1rem;
+}
+
+.mini-profile-info strong {
+    font-size: 1rem;
+}
+
+.mini-profile-info span {
+    font-size: 0.9rem;
+}
+
+.community-heading h1 {
+    font-size: 2.8rem;
+}
+
+.community-heading p {
+    font-size: 1.1rem;
+}
+
+.section-heading h2 {
+    font-size: 1.7rem;
+}
+
+.section-heading p {
+    font-size: 1rem;
+}
+
+.section-eyebrow,
+.eyebrow {
+    font-size: 0.85rem;
+}
+
+.search-box input {
+    font-size: 1rem;
+}
+
+.search-box span {
+    font-size: 1.1rem;
+}
+
+.filter-button {
+    font-size: 0.95rem;
+}
+
+.member-name {
+    font-size: 1.35rem;
+}
+
+.member-username {
+    font-size: 1rem;
+}
+
+.member-badges span {
+    font-size: 0.88rem;
+}
+
+.member-card-button {
+    font-size: 1rem;
+}
+
+.members-message {
+    font-size: 1rem;
+}
+
+.post-author strong {
+    font-size: 1.05rem;
+}
+
+.author-meta {
+    font-size: 0.9rem;
+}
+
+.post-type-label {
+    font-size: 0.8rem;
+}
+
+.post-title {
+    font-size: 1.3rem;
+}
+
+.post-text,
+.poll-question {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+.poll-option-text {
+    font-size: 1rem;
+}
+
+.poll-percent {
+    font-size: 0.9rem;
+}
+
+.post-time {
+    font-size: 0.9rem;
+}
+
+.loading-card {
+    font-size: 1rem;
+}
+
+.member-menu-link {
+    font-size: 1rem;
+}
+
+.menu-profile-data strong {
+    font-size: 1.1rem;
+}
+
+.menu-profile-data span {
+    font-size: 0.9rem;
+}
+
+.new-post-button {
+    font-size: 1rem;
+}
+
+.profile-view-info h2 {
+    font-size: 1.8rem;
+}
+
+.profile-view-info p {
+    font-size: 1rem;
+}
+
+.profile-view-tags span {
+    font-size: 0.9rem;
+}
+
+.profile-view-section h3 {
+    font-size: 1.1rem;
+}
+
+.profile-view-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.profile-info-box span {
+    font-size: 0.85rem;
+}
+
+.profile-info-box strong {
+    font-size: 1rem;
+}
+
+.social-profile-main h2 {
+    font-size: 1.8rem;
+}
+
+.social-username-row {
+    font-size: 1rem;
+}
+
+.social-profile-tags span {
+    font-size: 0.9rem;
+}
+
+.social-profile-section h3 {
+    font-size: 1.1rem;
+}
+
+.social-profile-section p {
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+.edit-modal-header h2 {
+    font-size: 1.8rem;
+}
+
+.edit-modal-header p {
+    font-size: 1rem;
+}
+
+.edit-section h3 {
+    font-size: 1.1rem;
+}
+
+.edit-grid label,
+.edit-full-field {
+    font-size: 0.95rem;
+}
+
+.edit-grid input,
+.edit-grid select,
+.edit-full-field textarea {
+    font-size: 1rem;
+}
+
+.save-profile-button,
+.secondary-edit-button {
+    font-size: 1rem;
+}
+
+.post-modal-header h2 {
+    font-size: 1.8rem;
+}
+
+.post-modal-header span {
+    font-size: 0.85rem;
+}
+
+.post-modal .form-group label {
+    font-size: 1rem;
+}
+
+.post-modal .form-group input,
+.post-modal .form-group textarea,
+.poll-option-input {
+    font-size: 1rem;
+}
+
+.publish-post-button {
+    font-size: 1rem;
+}
+
+.member-avatar.avatar-frame-adm{position:relative;overflow:visible;isolation:isolate}.member-avatar.avatar-frame-adm::before{content:"";position:absolute;inset:-4px;border-radius:50%;pointer-events:none;z-index:1;background:conic-gradient(from 0deg,transparent 0deg,transparent 8deg,#8bdcff 10deg,#fff 12deg,transparent 15deg,transparent 28deg,#5fc7ff 30deg,#dff8ff 33deg,transparent 36deg,transparent 53deg,#77d2ff 55deg,#fff 57deg,transparent 60deg,transparent 78deg,#63c9ff 80deg,transparent 84deg,transparent 103deg,#a5e4ff 105deg,#fff 108deg,transparent 111deg,transparent 132deg,#65caff 134deg,#e4f9ff 137deg,transparent 141deg,transparent 160deg,#70ceff 162deg,transparent 166deg,transparent 184deg,#c8f0ff 186deg,#63c7ff 189deg,transparent 193deg,transparent 214deg,#76d1ff 216deg,#fff 218deg,transparent 222deg,transparent 242deg,#62c8ff 244deg,transparent 248deg,transparent 270deg,#b4eaff 272deg,#fff 275deg,transparent 279deg,transparent 297deg,#69caff 299deg,#e5f9ff 302deg,transparent 306deg,transparent 323deg,#62c7ff 325deg,transparent 329deg,transparent 346deg,#9addff 348deg,#fff 351deg,transparent 354deg,transparent 360deg);filter:drop-shadow(0 0 4px rgba(100,200,255,.9)) drop-shadow(0 0 10px rgba(70,160,255,.6));mask:radial-gradient(circle,transparent 68%,#000 70%,#000 82%,transparent 84%);-webkit-mask:radial-gradient(circle,transparent 68%,#000 70%,#000 82%,transparent 84%);animation:admRaio 1.2s linear infinite}.member-avatar.avatar-frame-adm::after{content:"";position:absolute;inset:-2px;border:2px solid rgba(190,235,255,.8);border-radius:50%;pointer-events:none;z-index:2;box-shadow:0 0 6px rgba(170,230,255,.9),0 0 14px rgba(80,175,255,.75),0 0 24px rgba(50,130,255,.4);animation:admBrilho .8s ease-in-out infinite}.member-avatar.avatar-frame-adm img,.member-avatar.avatar-frame-adm .member-avatar-placeholder{position:relative;z-index:3}@keyframes admRaio{0%{transform:rotate(0deg);opacity:.7}25%{transform:rotate(90deg);opacity:1}50%{transform:rotate(180deg);opacity:.75}75%{transform:rotate(270deg);opacity:1}100%{transform:rotate(360deg);opacity:.7}}@keyframes admBrilho{0%,100%{opacity:.6}50%{opacity:1}}
+.founder-badge{display:inline-flex;align-items:center;justify-content:center;padding:7px 13px;border-radius:8px;background:#080808;color:#fff;border:1px solid rgba(255,255,255,.14);font-family:"Fredoka",sans-serif;font-size:1.15rem;font-weight:700;line-height:1;white-space:nowrap;box-shadow:0 3px 12px rgba(0,0,0,.3)}
