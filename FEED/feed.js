@@ -13,6 +13,7 @@ let perfilAtual = null;
 let posts = [];
 let filtroAtual = "todos";
 let tipoPublicacao = "texto";
+let ranking = [];
 
 const miniProfile = document.getElementById("mini-profile");
 const miniAvatar = document.getElementById("mini-avatar");
@@ -22,6 +23,21 @@ const miniUsername = document.getElementById("mini-username");
 const feedList = document.getElementById("feed-list");
 const feedSearch = document.getElementById("feed-search");
 const filterButtons = document.querySelectorAll(".filter-button");
+
+const rankingList = document.getElementById("ranking-list");
+const rankingManageButton = document.getElementById("ranking-manage-button");
+const rankingManager = document.getElementById("ranking-manager");
+const closeRankingManager = document.getElementById("close-ranking-manager");
+const rankingMemberType = document.getElementById("ranking-member-type");
+const rankingRegisteredGroup = document.getElementById("ranking-registered-group");
+const rankingGuestGroup = document.getElementById("ranking-guest-group");
+const rankingGuestName = document.getElementById("ranking-guest-name");
+const rankingPointsInput = document.getElementById("ranking-points-input");
+const rankingAddPoints = document.getElementById("ranking-add-points");
+const rankingSetPoints = document.getElementById("ranking-set-points");
+const rankingTotalInput = document.getElementById("ranking-total-input");
+const rankingMemberSelect = document.getElementById("ranking-member-select");
+
 
 const newPostButton = document.getElementById("new-post-button");
 
@@ -110,6 +126,7 @@ function irParaLogin() {
 async function iniciar() {
     configurarEventos();
     await carregarUsuario();
+    await carregarRanking();
     await carregarFeed();
 }
 
@@ -167,6 +184,41 @@ function configurarEventos() {
         );
     }
 
+    if (rankingManageButton) {
+    rankingManageButton.addEventListener(
+        "click",
+        abrirGerenciadorRanking
+    );
+}
+
+if (closeRankingManager) {
+    closeRankingManager.addEventListener(
+        "click",
+        fecharGerenciadorRanking
+    );
+}
+
+if (rankingMemberType) {
+    rankingMemberType.addEventListener(
+        "change",
+        alternarTipoParticipanteRanking
+    );
+}
+
+if (rankingAddPoints) {
+    rankingAddPoints.addEventListener(
+        "click",
+        adicionarPontosRanking
+    );
+}
+
+
+if (feedSearch) {
+    feedSearch.addEventListener(
+        "input",
+        renderizarFeed
+    );
+}
     if (feedSearch) {
         feedSearch.addEventListener(
             "input",
@@ -318,7 +370,8 @@ async function carregarUsuario() {
                 vip,
                 avatar_url,
                 avatar_tipo,
-                feed_admin
+                feed_admin,
+                ranking_admin
             `)
             .eq("id", usuarioAtual.id)
             .maybeSingle();
@@ -329,6 +382,14 @@ async function carregarUsuario() {
 
         perfilAtual =
             perfil || null;
+
+            const podeGerenciarRanking =
+    perfilAtual.ranking_admin === true;
+
+     rankingManageButton?.classList.toggle(
+    "hidden",
+    !podeGerenciarRanking
+);
 
         if (!perfilAtual) {
             configurarVisitante();
@@ -1909,6 +1970,397 @@ function formatarData(data) {
             year: "numeric"
         }
     );
+}
+
+async function carregarRanking() {
+
+    if (!rankingList) {
+        return;
+    }
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("ranking_membros")
+            .select(`
+                id,
+                user_id,
+                nome_exibicao,
+                pontuacao,
+                profiles:user_id (
+                    id,
+                    nome,
+                    username,
+                    avatar_url,
+                    avatar_tipo
+                )
+            `)
+            .order("pontuacao", {
+                ascending: false
+            });
+
+        if (error) {
+            throw error;
+        }
+
+        ranking = data || [];
+        renderizarRanking();
+
+        if (perfilAtual?.ranking_admin === true) {
+    await carregarMembrosRanking();
+}
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar ranking:",
+            error
+        );
+
+        ranking = [];
+    }
+}
+
+function renderizarRanking() {
+
+    if (!rankingList) {
+        return;
+    }
+
+    if (!ranking.length) {
+        rankingList.innerHTML = `
+            <div class="ranking-empty">
+                🌟 O ranking ainda está vazio.
+            </div>
+        `;
+        return;
+    }
+
+    rankingList.innerHTML = "";
+
+    ranking.forEach((item, index) => {
+
+        const posicao = index + 1;
+        const perfil = item.profiles || {};
+
+       const nome =
+    item.nome_exibicao ||
+    perfil.nome ||
+    perfil.username ||
+    "Membro";
+
+        const username =
+            normalizarUsername(
+                perfil.username
+            );
+
+        const avatar =
+            perfil.avatar_url ||
+            "";
+
+        const avatarHtml =
+            avatar
+                ? `
+                    <img
+                        src="${escaparAtributo(avatar)}"
+                        alt="Perfil"
+                    >
+                `
+                : perfil.avatar_tipo?.startsWith("preset:")
+                    ? escaparHTML(
+                        perfil.avatar_tipo.replace(
+                            "preset:",
+                            ""
+                        )
+                    )
+                    : "👤";
+
+        const itemElement =
+            document.createElement("div");
+
+        itemElement.className =
+            `ranking-item ranking-position-${posicao}`;
+
+        if (posicao <= 3) {
+            itemElement.classList.add("top-three");
+        }
+
+        let medalha = `${posicao}º`;
+
+        if (posicao === 1) {
+            medalha = "🥇";
+        } else if (posicao === 2) {
+            medalha = "🥈";
+        } else if (posicao === 3) {
+            medalha = "🥉";
+        }
+
+        itemElement.innerHTML = `
+            <div class="ranking-position">
+                ${medalha}
+            </div>
+
+            <div class="ranking-avatar">
+                ${avatarHtml}
+            </div>
+
+            <div class="ranking-member-info">
+                <strong>
+                    ${escaparHTML(nome)}
+                </strong>
+
+                <span>
+                    ${
+                        username
+                            ? `@${escaparHTML(username)}`
+                            : "Membro da Casa"
+                    }
+                </span>
+            </div>
+
+            <div class="ranking-score">
+                <strong>
+                    ${Number(item.pontuacao || 0).toLocaleString("pt-BR")}
+                </strong>
+
+                <span>PTS</span>
+            </div>
+        `;
+
+        rankingList.appendChild(itemElement);
+    });
+}
+
+function abrirGerenciadorRanking() {
+
+    if (
+        !usuarioAtual ||
+        perfilAtual?.ranking_admin !== true
+    ) {
+        mostrarToast(
+            "Você não tem permissão para gerenciar o ranking."
+        );
+
+        return;
+    }
+
+    rankingManager?.classList.remove(
+        "hidden"
+    );
+}
+
+function fecharGerenciadorRanking() {
+
+    rankingManager?.classList.add(
+        "hidden"
+    );
+}
+
+function alternarTipoParticipanteRanking() {
+
+    const tipo =
+        rankingMemberType?.value || "cadastrado";
+
+    const ehAvulso =
+        tipo === "avulso";
+
+    rankingRegisteredGroup?.classList.toggle(
+        "hidden",
+        ehAvulso
+    );
+
+    rankingGuestGroup?.classList.toggle(
+        "hidden",
+        !ehAvulso
+    );
+
+    if (ehAvulso) {
+        rankingMemberSelect.value = "";
+        rankingGuestName?.focus();
+    } else if (rankingGuestName) {
+        rankingGuestName.value = "";
+    }
+}
+
+async function adicionarPontosRanking() {
+
+    if (
+        !usuarioAtual ||
+        perfilAtual?.ranking_admin !== true
+    ) {
+        mostrarToast(
+            "Você não tem permissão para alterar o ranking."
+        );
+
+        return;
+    }
+
+    const tipo =
+        rankingMemberType?.value || "cadastrado";
+
+    const pontos =
+        Number(rankingPointsInput?.value);
+
+    if (!Number.isInteger(pontos) || pontos <= 0) {
+        mostrarToast(
+            "Digite uma quantidade de pontos válida."
+        );
+
+        return;
+    }
+
+    let userId = null;
+    let nomeExibicao = null;
+
+    if (tipo === "cadastrado") {
+
+        userId =
+            rankingMemberSelect?.value || null;
+
+        if (!userId) {
+            mostrarToast(
+                "Selecione um membro."
+            );
+
+            return;
+        }
+
+    } else {
+
+        nomeExibicao =
+            rankingGuestName?.value.trim() || "";
+
+        if (!nomeExibicao) {
+            mostrarToast(
+                "Digite o nome da pessoa."
+            );
+
+            return;
+        }
+    }
+
+    rankingAddPoints.disabled = true;
+    rankingAddPoints.textContent = "ADICIONANDO...";
+
+    try {
+
+        const {
+            error
+        } = await supabaseClient.rpc(
+            "adicionar_pontos_ranking",
+            {
+                p_user_id: userId,
+                p_pontos: pontos,
+                p_nome_exibicao: nomeExibicao
+            }
+        );
+
+        if (error) {
+            throw error;
+        }
+
+        rankingPointsInput.value = "";
+
+        if (rankingGuestName) {
+            rankingGuestName.value = "";
+        }
+
+        if (rankingMemberSelect) {
+            rankingMemberSelect.value = "";
+        }
+
+        await carregarRanking();
+
+        mostrarToast(
+            `🏆 +${pontos} pontos adicionados!`
+        );
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao adicionar pontos:",
+            error
+        );
+
+        mostrarToast(
+            error?.message ||
+            "Não foi possível adicionar os pontos."
+        );
+
+    } finally {
+
+        rankingAddPoints.disabled = false;
+        rankingAddPoints.textContent = "＋ ADICIONAR";
+    }
+}
+
+async function carregarMembrosRanking() {
+
+    if (!rankingMemberSelect) {
+        return;
+    }
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("profiles")
+            .select(`
+                id,
+                nome,
+                username
+            `)
+            .order("nome", {
+                ascending: true
+            });
+
+        if (error) {
+            throw error;
+        }
+
+        rankingMemberSelect.innerHTML = `
+            <option value="">Selecione um membro...</option>
+        `;
+
+        (data || []).forEach(membro => {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                membro.id;
+
+            const username =
+                normalizarUsername(
+                    membro.username
+                );
+
+            option.textContent =
+                username
+                    ? `${membro.nome || "Membro"} (@${username})`
+                    : membro.nome || "Membro";
+
+            rankingMemberSelect.appendChild(
+                option
+            );
+        });
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao carregar membros:",
+            error
+        );
+
+        mostrarToast(
+            "Não foi possível carregar os membros."
+        );
+    }
 }
 
 iniciar();

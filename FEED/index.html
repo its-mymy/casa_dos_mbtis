@@ -95,6 +95,92 @@
             <button id="new-post-button" class="new-post-button hidden" type="button">＋ NOVA PUBLICAÇÃO</button>
         </div>
 
+
+        <section id="ranking-card" class="ranking-card">
+    <div class="ranking-header">
+        <div>
+            <span class="ranking-eyebrow">CASA DOS MBTIs</span>
+            <h2>🏆 Ranking da Casa</h2>
+            <p>Os membros que estão brilhando nos jogos da comunidade.</p>
+        </div>
+
+        <div class="ranking-trophy">🏆</div>
+    </div>
+
+    <div id="ranking-list" class="ranking-list">
+        <div class="ranking-loading">
+            <div class="loading-spinner"></div>
+            <span>Carregando ranking...</span>
+        </div>
+    </div>
+
+    <button id="ranking-manage-button" class="ranking-manage-button hidden" type="button">
+        ⚙️ GERENCIAR RANKING
+    </button>
+</section>
+
+<div id="ranking-manager" class="ranking-manager hidden">
+    <div class="ranking-manager-header">
+        <div>
+            <span>ADMINISTRAÇÃO</span>
+            <h3>⚙️ Gerenciar Ranking</h3>
+        </div>
+
+        <button id="close-ranking-manager" class="close-ranking-manager" type="button">×</button>
+    </div>
+
+   <div class="ranking-form-group">
+    <label for="ranking-member-type">Tipo de participante</label>
+    <select id="ranking-member-type">
+        <option value="cadastrado">👤 Membro cadastrado</option>
+        <option value="avulso">✏️ Pessoa sem cadastro</option>
+    </select>
+</div>
+
+<div id="ranking-registered-group" class="ranking-form-group">
+    <label for="ranking-member-select">Membro</label>
+    <select id="ranking-member-select">
+        <option value="">Selecione um membro...</option>
+    </select>
+</div>
+
+<div id="ranking-guest-group" class="ranking-form-group hidden">
+    <label for="ranking-guest-name">Nome</label>
+    <input id="ranking-guest-name" type="text" maxlength="60" placeholder="Digite o nome da pessoa...">
+</div>
+
+        <div class="ranking-form-group">
+            <label for="ranking-points-input">Pontos</label>
+            <input id="ranking-points-input" type="number" min="1" step="1" placeholder="Ex.: 50">
+        </div>
+
+        <div class="ranking-actions">
+            <button id="ranking-add-points" class="ranking-action add" type="button">
+                ＋ ADICIONAR
+            </button>
+
+            <button id="ranking-remove-points" class="ranking-action remove" type="button">
+                − REMOVER
+            </button>
+        </div>
+
+        <div class="ranking-form-divider"></div>
+
+        <div class="ranking-form-group">
+            <label for="ranking-total-input">Definir pontuação exata</label>
+            <input id="ranking-total-input" type="number" min="0" step="1" placeholder="Ex.: 500">
+        </div>
+
+        <button id="ranking-set-points" class="ranking-action set" type="button">
+            ✏️ DEFINIR PONTUAÇÃO
+        </button>
+
+        <button id="ranking-remove-member" class="ranking-remove-member" type="button">
+            🗑️ REMOVER DO RANKING
+        </button>
+    </div>
+</div>
+
         <div class="feed-tools">
             <div class="search-box">
                 <span>🔎</span>
