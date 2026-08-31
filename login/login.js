@@ -147,64 +147,66 @@ loginForm.addEventListener(
                 return;
 
             }
+const {
+    error: sessionError
+} = await supabaseClient.auth.setSession({
+    access_token: result.access_token,
+    refresh_token: result.refresh_token
+});
 
+if (sessionError) {
+    console.error(
+        "Erro ao criar sessão:",
+        sessionError
+    );
 
-            const {
-                error: sessionError
-            } =
-                await supabaseClient.auth.setSession({
+    loginMessage.textContent =
+        "Não foi possível iniciar a sessão.";
 
-                    access_token:
-                        result.access_token,
+    return;
+}
 
-                    refresh_token:
-                        result.refresh_token
-
-                });
-
-
-            if (sessionError) {
-
-                console.error(
-                    "Erro ao criar sessão:",
-                    sessionError
-                );
-
-                loginMessage.textContent =
-                    "Não foi possível iniciar a sessão.";
-
-                return;
-
-            }
-
-
-            console.log(
-                "Login realizado com nick!"
-            );
-
-
-            loginMessage.textContent =
-                "Login realizado com sucesso!";
-
-
-            window.location.href =
-                "../perfil/index.html";
-
-
-        } catch (error) {
-
-            console.error(
-                "Erro ao conectar:",
-                error
-            );
-
-            loginMessage.textContent =
-                "Erro ao conectar com o Supabase.";
-
-        }
-
-    }
+console.log(
+    "Login realizado com nick!"
 );
+
+loginMessage.textContent =
+    "Conectando...";
+
+const botaoLogin =
+    loginForm.querySelector(
+        ".main-button"
+    );
+
+if (botaoLogin) {
+    botaoLogin.disabled = true;
+    botaoLogin.textContent =
+        "CONECTANDO...";
+}
+
+setTimeout(
+    () => {
+        window.location.href =
+            "../../FEED/";
+    },
+    500
+);
+
+} catch (error) {
+
+    console.error(
+        "Erro ao conectar:",
+        error
+    );
+
+    loginMessage.textContent =
+        "Erro ao conectar com o Supabase.";
+
+}
+
+}
+);
+
 
 
 /* =========================

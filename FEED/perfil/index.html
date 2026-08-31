@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Meu Perfil | Casa dos MBTIs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="perfil.css">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="background-glow purple"></div>
+    <div class="background-glow pink"></div>
+    <div class="background-glow blue"></div>
+
+    <div class="stars">
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+    </div>
+</div>
+
+<header class="topbar">
+
+    <a href="../" class="brand">
+        <div class="brand-icon">🏠</div>
+
+        <div class="brand-text">
+            <strong>Casa dos MBTIs</strong>
+            <span>Área da comunidade</span>
+        </div>
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="../" class="nav-button">📰 Feed</a>
+        <a href="../membros/" class="nav-button">👥 Membros</a>
+        <a href="./" class="nav-button ativo">👤 Meu perfil</a>
+    </nav>
+
+    <div class="topbar-right">
+
+        <div id="mini-profile" class="mini-profile">
+            <div id="mini-avatar" class="mini-avatar">👤</div>
+
+            <div class="mini-profile-info">
+                <strong id="mini-name">Carregando...</strong>
+                <span id="mini-username">@usuario</span>
+            </div>
+        </div>
+
+        <button id="menu-button" class="menu-button" type="button" aria-label="Abrir menu">☰</button>
+
+    </div>
+
+</header>
+
+<main class="profile-page">
+
+    <section id="profile-card" class="profile-card">
+
+        <div class="profile-banner" id="profile-banner">
+            <img id="banner-image" src="" alt="Banner do perfil">
+        </div>
+
+        <div class="profile-content">
+
+            <div class="profile-top">
+
+                <div class="avatar-area">
+
+                    <div id="avatar" class="public-avatar">👤</div>
+
+                    <div id="profile-status-cloud" class="profile-status-cloud hidden">
+                        <span id="profile-status">...</span>
+                    </div>
+
+                </div>
+
+                <div class="profile-info">
+
+                    <h1 id="profile-name">Carregando...</h1>
+
+                    <div class="profile-username-row">
+                        <p id="profile-username">@usuario</p>
+                        <span id="profile-badge" class="profile-badge hidden"></span>
+                    </div>
+
+                    <div class="tags">
+                        <span id="profile-mbti">MBTI</span>
+                        <span id="profile-eneagrama">Eneagrama</span>
+                        <span id="profile-tritype">Tritype</span>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="profile-actions">
+
+                <button id="edit-profile" class="primary-button" type="button">
+                    ✏️ EDITAR PERFIL
+                </button>
+
+                <a href="../membros/perfil.html" id="view-profile-button" class="secondary-button">
+                    👀 VER PERFIL PÚBLICO
+                </a>
+
+                <button id="logout-button" class="secondary-button" type="button">
+                    🚪 SAIR
+                </button>
+
+            </div>
+
+            <section class="profile-section about-section">
+
+                <div class="section-title">
+                    <span>✦</span>
+                    <h2>Sobre mim</h2>
+                </div>
+
+                <p id="profile-bio">
+                    Nenhuma bio adicionada ainda.
+                </p>
+
+            </section>
+
+            <div class="profile-grid">
+
+                <section class="profile-section">
+
+                    <div class="section-title">
+                        <span>🧠</span>
+                        <h2>Tipologia</h2>
+                    </div>
+
+                    <div class="info-grid">
+
+                        <div>
+                            <span>MBTI</span>
+                            <strong id="info-mbti">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Eneagrama</span>
+                            <strong id="info-eneagrama">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Tritype</span>
+                            <strong id="info-tritype">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Subtipo</span>
+                            <strong id="info-subtipo">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Grupo da Casa</span>
+                            <strong id="info-grupo">—</strong>
+                        </div>
+
+                        <div>
+                            <span>Pronomes</span>
+                            <strong id="info-pronomes">—</strong>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section id="basic-card-section" class="profile-section member-card-section">
+
+                    <div class="section-title">
+                        <span>🪪</span>
+                        <h2>Minha carteirinha</h2>
+                    </div>
+
+                    <button id="become-vip-button" class="section-button vip-subscribe-button" type="button">
+                        💎 TORNAR-SE VIP
+                    </button>
+
+                    <p>
+                        Quer ser VIP? Entre em contato com a administração para combinar o pagamento e liberar seu acesso.
+                    </p>
+
+                    <a href="../membros/vip/" class="section-button">
+                        🪪 ABRIR CARTEIRINHA
+                    </a>
+
+                </section>
+
+            </div>
+
+            <section id="vip-preview-section" class="profile-section vip-section hidden">
+
+                <div class="section-title">
+                    <span>💎</span>
+                    <h2>Minha identidade VIP</h2>
+                </div>
+
+                <p id="vip-preview-description">
+                    Seus recursos VIP estão liberados.
+                </p>
+
+                <div class="vip-preview-grid">
+
+                    <div>
+                        <span>💎 Status</span>
+                        <strong id="vip-status">VIP</strong>
+                    </div>
+
+                    <div>
+                        <span>🌡️ Temperamento</span>
+                        <strong id="vip-temperamento">—</strong>
+                    </div>
+
+                    <div>
+                        <span>🧠 Big Five</span>
+                        <strong id="vip-big-five">—</strong>
+                    </div>
+
+                    <div>
+                        <span>🎵 Música</span>
+                        <strong id="vip-music">—</strong>
+                    </div>
+
+                    <div>
+                        <span>🎮 Hobby</span>
+                        <strong id="vip-hobby">—</strong>
+                    </div>
+
+                    <div>
+                        <span>⭐ Personagem</span>
+                        <strong id="vip-character">—</strong>
+                    </div>
+
+                </div>
+
+                <a href="../membros/vip/cards/" class="section-button vip-button">
+                    👑 ABRIR IDENTIDADE VIP
+                </a>
+
+            </section>
+
+            <section class="profile-section aesthetics-section">
+
+                <div class="section-title">
+                    <span>🎨</span>
+                    <h2>Minha estética</h2>
+                </div>
+
+                <div class="colors-grid">
+
+                    <div class="color-card">
+                        <span>Principal</span>
+                        <strong id="show-primary">#8B5CF6</strong>
+                        <i id="color-primary"></i>
+                    </div>
+
+                    <div class="color-card">
+                        <span>Secundária</span>
+                        <strong id="show-secondary">#C084FC</strong>
+                        <i id="color-secondary"></i>
+                    </div>
+
+                    <div class="color-card">
+                        <span>Destaque</span>
+                        <strong id="show-accent">#60A5FA</strong>
+                        <i id="color-accent"></i>
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </section>
+
+</main>
+
+<div id="member-menu-overlay" class="member-menu-overlay"></div>
+
+<aside id="member-menu" class="member-menu">
+
+    <div class="member-menu-header">
+
+        <div>
+            <span>CASA DOS MBTIs</span>
+            <h2>Meu espaço</h2>
+        </div>
+
+        <button id="close-menu-button" class="close-menu-button" type="button">
+            ×
+        </button>
+
+    </div>
+
+    <div class="menu-profile-card">
+
+        <div id="menu-avatar" class="menu-avatar">👤</div>
+
+        <div class="menu-profile-data">
+            <strong id="menu-name">Membro</strong>
+            <span id="menu-username">@usuario</span>
+            <span id="menu-badge" class="menu-badge hidden"></span>
+        </div>
+
+    </div>
+
+    <div class="menu-divider"></div>
+
+    <nav class="member-menu-navigation">
+
+        <a href="../" class="member-menu-link">
+            <span class="menu-link-icon">📰</span>
+            <span>Feed</span>
+            <b>›</b>
+        </a>
+
+        <a href="../membros/" class="member-menu-link">
+            <span class="menu-link-icon">👥</span>
+            <span>Membros</span>
+            <b>›</b>
+        </a>
+
+               <a href="./" class="member-menu-link ativo">
+            <span class="menu-link-icon">👤</span>
+            <span>Meu perfil</span>
+            <b>›</b>
+        </a>
+
+        <button id="edit-profile-menu-button" class="member-menu-link" type="button">
+            <span class="menu-link-icon">✏️</span>
+            <span>Editar perfil</span>
+            <b>›</b>
+        </button>
+
+        <a href="../membros/vip/" id="my-card-button" class="member-menu-link">
+            <span class="menu-link-icon">🪪</span>
+            <span>Minha carteirinha</span>
+            <b>›</b>
+        </a>
+
+        <a href="../membros/vip/cards/" id="my-vip-button" class="member-menu-link vip-menu-link hidden">
+            <span class="menu-link-icon">👑</span>
+            <span>Minha identidade VIP</span>
+            <b>›</b>
+        </a>
+
+        <a href="../../admin/" id="admin-menu-link" class="member-menu-link hidden">
+            <span class="menu-link-icon"></span>
+            <span>Administração</span>
+            <b>›</b>
+        </a>
+
+    </nav>
+
+    <div class="member-menu-bottom">
+
+        <button id="logout-menu-button" class="logout-button" type="button">
+            🚪 Sair da conta
+        </button>
+
+    </div>
+
+</aside>
+
+<div id="edit-modal" class="edit-modal hidden">
+
+    <div class="edit-modal-backdrop"></div>
+
+    <section class="edit-modal-box">
+
+        <button id="close-edit-modal" class="close-edit-modal" type="button">
+            ×
+        </button>
+
+        <div class="edit-modal-header">
+            <span>PERSONALIZAÇÃO</span>
+            <h2>Editar perfil</h2>
+            <p>Altere apenas os recursos liberados para sua conta.</p>
+        </div>
+
+        <form id="edit-form">
+
+            <section class="edit-section">
+
+                <h3>👤 Identidade</h3>
+
+                <div class="edit-avatar-row">
+
+                    <div id="edit-avatar-preview" class="edit-avatar-preview">
+                        👤
+                    </div>
+
+                    <div class="edit-avatar-actions">
+
+                        <input id="edit-avatar-input" type="file" accept="image/*" hidden>
+
+                        <button id="choose-avatar-button" class="secondary-edit-button" type="button">
+                            ESCOLHER FOTO
+                        </button>
+
+                        <div class="preset-avatars">
+
+                            <button class="preset-avatar" type="button" data-avatar="🌙">🌙</button>
+                            <button class="preset-avatar" type="button" data-avatar="🐈">🐈</button>
+                            <button class="preset-avatar" type="button" data-avatar="🎧">🎧</button>
+                            <button class="preset-avatar" type="button" data-avatar="🪽">🪽</button>
+                            <button class="preset-avatar" type="button" data-avatar="⭐">⭐</button>
+                            <button class="preset-avatar" type="button" data-avatar="🌸">🌸</button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="edit-grid">
+
+                    <label>
+                        Nome
+                        <input id="edit-name" type="text" required>
+                    </label>
+
+                    <label>
+                        Username
+                        <input id="edit-username" type="text">
+                    </label>
+
+                    <label>
+                        Pronomes
+                        <input id="edit-pronomes" type="text">
+                    </label>
+
+                    <label>
+                        Grupo da Casa
+                        <select id="edit-grupo">
+                            <option value="">Escolher</option>
+                            <option value="Analistas">Analistas</option>
+                            <option value="Diplomatas">Diplomatas</option>
+                            <option value="Sentinelas">Sentinelas</option>
+                            <option value="Exploradores">Exploradores</option>
+                        </select>
+                    </label>
+
+                </div>
+
+                <label class="edit-full-field">
+                    Sobre mim
+                    <textarea id="edit-bio" maxlength="500"></textarea>
+                </label>
+
+            </section>
+
+            <section class="edit-section">
+
+                <h3>🧠 Tipologia básica</h3>
+
+                <div class="edit-grid">
+
+                    <label>
+                        MBTI
+                        <input id="edit-mbti" type="text">
+                    </label>
+
+                    <label>
+                        Eneagrama
+                        <input id="edit-eneagrama" type="text">
+                    </label>
+
+                    <label>
+                        Tritype
+                        <input id="edit-tritype" type="text">
+                    </label>
+
+                    <label>
+                        Subtipo
+                        <input id="edit-subtipo" type="text">
+                    </label>
+
+                </div>
+
+            </section>
+
+            <section id="vip-edit-section" class="edit-section vip-edit-section hidden">
+
+                <h3>💎 Recursos VIP</h3>
+
+                <div class="edit-grid">
+
+                    <label>
+                        Temperamento
+                        <input id="edit-temperamento" type="text">
+                    </label>
+
+                    <label>
+                        Socionics
+                        <input id="edit-socionics" type="text">
+                    </label>
+
+                    <label>
+                        Big Five
+                        <input id="edit-big-five" type="text">
+                    </label>
+
+                    <label>
+                        Hobby
+                        <input id="edit-hobby" type="text">
+                    </label>
+
+                    <label>
+                        Música favorita
+                        <input id="edit-music" type="text">
+                    </label>
+
+                    <label>
+                        Artista favorito
+                        <input id="edit-artist" type="text">
+                    </label>
+
+                    <label>
+                        Jogo favorito
+                        <input id="edit-game" type="text">
+                    </label>
+
+                    <label>
+                        Série favorita
+                        <input id="edit-series" type="text">
+                    </label>
+
+                    <label>
+                        Personagem favorito
+                        <input id="edit-character" type="text">
+                    </label>
+
+                </div>
+
+                <label class="edit-full-field">
+                    Status
+                    <input id="edit-status" type="text" maxlength="10" placeholder="Seu status...">
+                </label>
+
+            </section>
+
+            <section id="vip-visual-section" class="edit-section vip-edit-section hidden">
+
+                <h3>🎨 Identidade visual VIP</h3>
+
+                <div class="edit-grid">
+
+                    <label>
+                        Banner
+                        <input id="edit-banner-input" type="file" accept="image/*">
+                    </label>
+
+                    <label>
+                        Background
+                        <input id="edit-background" type="text" placeholder="#100C17 ou URL">
+                    </label>
+
+                </div>
+
+                <div class="color-editor">
+
+                    <div class="color-mode-buttons">
+
+                        <button class="color-mode active" type="button" data-color="primary">PRINCIPAL</button>
+                        <button class="color-mode" type="button" data-color="secondary">SECUNDÁRIA</button>
+                        <button class="color-mode" type="button" data-color="accent">DESTAQUE</button>
+
+                    </div>
+
+                    <div class="color-picker-wrapper">
+
+                        <canvas id="color-wheel" width="320" height="320"></canvas>
+
+                        <div id="color-picker-dot" class="color-picker-dot"></div>
+
+                    </div>
+
+                    <div class="color-value-row">
+
+                        <div>
+                            <span>Cor selecionada</span>
+                            <strong id="selected-color-hex">#8B5CF6</strong>
+                        </div>
+
+                        <div id="selected-color-preview" class="selected-color-preview"></div>
+
+                    </div>
+
+                    <input id="edit-primary" type="hidden" value="#8B5CF6">
+                    <input id="edit-secondary" type="hidden" value="#C084FC">
+                    <input id="edit-accent" type="hidden" value="#60A5FA">
+
+                </div>
+
+            </section>
+
+            <p id="edit-message" class="edit-message"></p>
+
+            <button class="save-profile-button" type="submit">
+                SALVAR PERFIL
+            </button>
+
+        </form>
+
+    </section>
+
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="perfil.js"></script>
+
+</body>
+</html>

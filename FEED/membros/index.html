@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Membros | Casa dos MBTIs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="membros.css">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="background-glow purple"></div>
+    <div class="background-glow pink"></div>
+    <div class="background-glow blue"></div>
+
+    <div class="stars">
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+    </div>
+</div>
+
+<header class="topbar">
+
+    <a href="../" class="brand">
+        <div class="brand-icon">🏠</div>
+
+        <div class="brand-text">
+            <strong>Casa dos MBTIs</strong>
+            <span>Área da comunidade</span>
+        </div>
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="../" class="nav-button">📰 Feed</a>
+        <a href="./" class="nav-button ativo">👥 Membros</a>
+        <a href="../perfil/" class="nav-button">👤 Meu perfil</a>
+    </nav>
+
+    <div class="topbar-right">
+        <a href="../perfil/" id="mini-profile" class="mini-profile">
+            <div id="mini-avatar" class="mini-avatar">👤</div>
+
+            <div class="mini-profile-info">
+                <strong id="mini-name">Carregando...</strong>
+                <span id="mini-username">@usuario</span>
+            </div>
+        </a>
+
+        <button id="menu-button" class="menu-button" type="button" aria-label="Abrir menu">☰</button>
+    </div>
+
+</header>
+
+<main class="members-page">
+
+    <section class="members-header">
+
+        <div>
+            <span class="eyebrow">CASA DOS MBTIs</span>
+
+            <h1>Membros</h1>
+
+            <p>
+                Encontre outras pessoas da comunidade e conheça seus perfis.
+            </p>
+        </div>
+
+        <div class="header-actions">
+            <a href="../" class="header-button secondary">📰 FEED</a>
+            <a href="../perfil/" class="header-button primary">👤 MEU PERFIL</a>
+        </div>
+
+    </section>
+
+    <nav class="mobile-sections">
+        <a href="../" class="section-tab">📰 Feed</a>
+        <a href="./" class="section-tab ativo">👥 Membros</a>
+        <a href="../perfil/" class="section-tab">👤 Perfil</a>
+    </nav>
+
+    <section class="members-content">
+
+        <div class="members-tools">
+
+            <div class="search-box">
+                <span>🔎</span>
+                <input id="search-members" type="search" placeholder="Pesquisar por nome ou username...">
+            </div>
+
+        </div>
+
+        <div class="members-top-info">
+            <div>
+                <span class="section-eyebrow">COMUNIDADE</span>
+                <h2>Todos os membros</h2>
+            </div>
+
+            <p id="members-message">Carregando membros...</p>
+        </div>
+
+        <section id="members-grid" class="members-grid"></section>
+
+    </section>
+
+</main>
+
+<div id="member-menu-overlay" class="member-menu-overlay"></div>
+
+<aside id="member-menu" class="member-menu">
+
+    <div class="member-menu-header">
+
+        <div>
+            <span>CASA DOS MBTIs</span>
+            <h2>Meu espaço</h2>
+        </div>
+
+        <button id="close-menu-button" class="close-menu-button" type="button">×</button>
+
+    </div>
+
+    <div class="menu-profile-card">
+
+        <div id="menu-avatar" class="menu-avatar">👤</div>
+
+        <div class="menu-profile-data">
+            <strong id="menu-name">Visitante</strong>
+            <span id="menu-username">Entrar</span>
+            <span id="menu-badge" class="menu-badge hidden"></span>
+        </div>
+
+    </div>
+
+    <div class="menu-divider"></div>
+
+    <nav class="member-menu-navigation">
+
+        <a href="../" class="member-menu-link">
+            <span class="menu-link-icon">📰</span>
+            <span>Feed</span>
+            <b>›</b>
+        </a>
+
+        <a href="./" class="member-menu-link ativo">
+            <span class="menu-link-icon">👥</span>
+            <span>Membros</span>
+            <b>›</b>
+        </a>
+
+        <a href="../perfil/" id="profile-menu-link" class="member-menu-link">
+            <span class="menu-link-icon">👤</span>
+            <span>Meu perfil</span>
+            <b>›</b>
+        </a>
+
+        <a href="./vip/" id="my-card-button" class="member-menu-link">
+            <span class="menu-link-icon">🪪</span>
+            <span>Minha carteirinha</span>
+            <b>›</b>
+        </a>
+
+        <a href="./vip/cards/" id="my-vip-button" class="member-menu-link vip-menu-link hidden">
+            <span class="menu-link-icon">👑</span>
+            <span>Minha identidade VIP</span>
+            <b>›</b>
+        </a>
+
+    </nav>
+
+    <div class="member-menu-bottom">
+
+        <button id="login-menu-button" class="login-menu-button" type="button">🔐 Entrar / cadastrar</button>
+
+        <button id="logout-button" class="logout-button hidden" type="button">🚪 Sair da conta</button>
+
+    </div>
+
+</aside>
+
+<div id="toast" class="toast"></div>
+
+<script src="membros.js"></script>
+
+</body>
+</html>

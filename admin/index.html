@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Administração | Casa dos MBTIs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="background-glow purple"></div>
+    <div class="background-glow pink"></div>
+    <div class="background-glow blue"></div>
+
+    <div class="stars">
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+    </div>
+</div>
+
+<header class="topbar">
+
+    <a href="../" class="brand">
+        <div class="brand-icon">🏠</div>
+
+        <div class="brand-text">
+            <strong>Casa dos MBTIs</strong>
+            <span>Administração</span>
+        </div>
+    </a>
+
+    <div class="topbar-right">
+        <a href="../perfil/" class="top-button">👤 Meu perfil</a>
+    </div>
+
+</header>
+
+<main class="admin-page">
+
+    <section class="admin-header">
+        <span>🛡️ ÁREA RESTRITA</span>
+        <h1>Administração VIP</h1>
+        <p>Controle manualmente o acesso VIP dos membros da Casa.</p>
+    </section>
+
+    <section class="admin-card">
+
+        <div class="search-row">
+
+            <input id="member-search" type="search" placeholder="Pesquisar por nome ou @username...">
+
+            <button id="search-button" type="button">
+                🔎 Buscar
+            </button>
+
+        </div>
+
+        <p id="admin-message" class="admin-message"></p>
+
+        <div id="member-list" class="member-list"></div>
+
+    </section>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script src="admin.js"></script>
+
+</body>
+</html>

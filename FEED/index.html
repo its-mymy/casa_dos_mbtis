@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Comunidade | Casa dos MBTIs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <link rel="stylesheet" href="feed.css">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="background-glow purple"></div>
+    <div class="background-glow pink"></div>
+    <div class="background-glow blue"></div>
+
+    <div class="stars">
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+        <span>✦</span>
+        <span>✧</span>
+        <span>·</span>
+    </div>
+</div>
+
+<header class="topbar">
+    <a href="../index.html" class="brand">
+        <div class="brand-icon">🏠</div>
+
+        <div class="brand-text">
+            <strong>Casa dos MBTIs</strong>
+            <span>Área da comunidade</span>
+        </div>
+    </a>
+
+    <nav class="desktop-nav">
+        <a href="./" class="nav-button ativo">📰 Feed</a>
+        <a href="./membros/" class="nav-button">👥 Membros</a>
+        <a href="./perfil/" class="nav-button">👤 Meu perfil</a>
+    </nav>
+
+    <div class="topbar-right">
+        <div id="mini-profile" class="mini-profile">
+            <div id="mini-avatar" class="mini-avatar">👤</div>
+
+            <div class="mini-profile-info">
+                <strong id="mini-name">Carregando...</strong>
+                <span id="mini-username">@usuario</span>
+            </div>
+        </div>
+
+        <button id="menu-button" class="menu-button" type="button" aria-label="Abrir menu">☰</button>
+    </div>
+</header>
+
+<main class="community-page">
+
+    <section class="community-header">
+        <div class="community-heading">
+            <span class="eyebrow">CASA DOS MBTIs</span>
+
+            <h1>Área da comunidade</h1>
+
+            <p>Converse, acompanhe as novidades e participe da comunidade.</p>
+        </div>
+
+        <div class="community-decoration">✦</div>
+    </section>
+
+    <nav class="mobile-sections">
+        <a href="./" class="section-tab ativo">📰 Feed</a>
+        <a href="./membros/" class="section-tab">👥 Membros</a>
+        <a href="./perfil/" class="section-tab">👤 Perfil</a>
+    </nav>
+
+    <section class="community-section ativo">
+        <div class="section-heading">
+            <div>
+                <span class="section-eyebrow">AGORA</span>
+
+                <h2>📰 Feed</h2>
+
+                <p>Veja as novidades e publicações da comunidade.</p>
+            </div>
+
+            <button id="new-post-button" class="new-post-button hidden" type="button">＋ NOVA PUBLICAÇÃO</button>
+        </div>
+
+        <div class="feed-tools">
+            <div class="search-box">
+                <span>🔎</span>
+                <input id="feed-search" type="search" placeholder="Pesquisar no feed...">
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-button ativo" type="button" data-filter="todos">Tudo</button>
+                <button class="filter-button" type="button" data-filter="texto">📝 Textos</button>
+                <button class="filter-button" type="button" data-filter="enquete">📊 Enquetes</button>
+            </div>
+        </div>
+
+        <div id="feed-list" class="feed-list">
+            <div class="loading-card">
+                <div class="loading-spinner"></div>
+                <span>Carregando o feed...</span>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<div id="member-menu-overlay" class="member-menu-overlay"></div>
+
+<aside id="member-menu" class="member-menu">
+    <div class="member-menu-header">
+        <div>
+            <span>CASA DOS MBTIs</span>
+            <h2>Meu espaço</h2>
+        </div>
+
+        <button id="close-menu-button" class="close-menu-button" type="button">×</button>
+    </div>
+
+    <div class="menu-profile-card">
+        <div id="menu-avatar" class="menu-avatar">👤</div>
+
+        <div class="menu-profile-data">
+            <strong id="menu-name">Visitante</strong>
+            <span id="menu-username">Entrar</span>
+            <span id="menu-badge" class="menu-badge hidden"></span>
+        </div>
+    </div>
+
+    <div class="menu-divider"></div>
+
+    <nav class="member-menu-navigation">
+        <a href="./" class="member-menu-link ativo">
+            <span class="menu-link-icon">📰</span>
+            <span>Feed</span>
+            <b>›</b>
+        </a>
+
+        
+        <a href="./membros/" class="member-menu-link">
+            <span class="menu-link-icon">👥</span>
+            <span>Membros</span>
+            <b>›</b>
+        </a>
+
+        <a href="./perfil/" id="profile-menu-link" class="member-menu-link">
+            <span class="menu-link-icon">👤</span>
+            <span>Meu perfil</span>
+            <b>›</b>
+        </a>
+
+        <a href="./membros/vip/" id="my-card-button" class="member-menu-link">
+            <span class="menu-link-icon">🪪</span>
+            <span>Minha carteirinha</span>
+            <b>›</b>
+        </a>
+
+        <a href="./membros/vip/cards/" id="my-vip-button" class="member-menu-link vip-menu-link hidden">
+            <span class="menu-link-icon">👑</span>
+            <span>Minha identidade VIP</span>
+            <b>›</b>
+        </a>
+
+        <a href="../admin/" id="admin-menu-link" class="member-menu-link hidden">
+    <span class="menu-link-icon">🛡️</span>
+    <span>Administração</span>
+    <b>›</b>
+</a>
+
+    <div class="member-menu-bottom">
+        <button id="login-menu-button" class="login-menu-button" type="button">🔐 Entrar / cadastrar</button>
+        <button id="logout-button" class="logout-button hidden" type="button">🚪 Sair da conta</button>
+    </div>
+</aside>
+
+<div id="post-modal" class="post-modal hidden">
+    <div class="post-modal-backdrop"></div>
+
+    <section class="post-modal-box">
+        <div class="post-modal-header">
+            <div>
+                <span>NOVA PUBLICAÇÃO</span>
+                <h2>Publicar no Feed</h2>
+            </div>
+
+            <button id="close-post-modal" class="close-post-modal" type="button">×</button>
+        </div>
+
+        <div class="post-type-buttons">
+            <button class="post-type-button active" type="button" data-post-type="texto">📝 TEXTO</button>
+            <button class="post-type-button" type="button" data-post-type="enquete">📊 ENQUETE</button>
+        </div>
+
+        <form id="post-form">
+
+            <div id="text-post-fields">
+                <div class="form-group">
+                    <label for="post-title">Título</label>
+                    <input id="post-title" type="text" maxlength="150" placeholder="Título da publicação...">
+                </div>
+
+                <div class="form-group">
+                    <label for="post-content">Texto</label>
+                    <textarea id="post-content" maxlength="2000" placeholder="Escreva sua publicação..." required></textarea>
+                </div>
+            </div>
+
+            <div id="poll-post-fields" class="hidden">
+                <div class="form-group">
+                    <label for="poll-question">Pergunta</label>
+                    <textarea id="poll-question" maxlength="500" placeholder="Digite a pergunta da enquete..."></textarea>
+                </div>
+
+                <div class="poll-create-options">
+                    <label>Opções</label>
+
+                    <div id="poll-options-inputs">
+                        <input class="poll-option-input" type="text" maxlength="100" placeholder="Opção 1">
+                        <input class="poll-option-input" type="text" maxlength="100" placeholder="Opção 2">
+                    </div>
+
+                    <button id="add-poll-option" class="add-poll-option" type="button">＋ ADICIONAR OPÇÃO</button>
+                </div>
+            </div>
+
+            <p id="post-message" class="post-message"></p>
+
+            <button class="publish-post-button" type="submit">PUBLICAR</button>
+        </form>
+    </section>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="feed.js"></script>
+
+</body>
+</html>

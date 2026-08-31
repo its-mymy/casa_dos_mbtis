@@ -1,0 +1,528 @@
+:root {
+    --primary: #8B5CF6;
+    --secondary: #C084FC;
+    --accent: #60A5FA;
+    --background: #08070D;
+    --card: #15101E;
+    --text: #FFFFFF;
+    --muted: #AAA1B5;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+    background: var(--background);
+}
+
+body {
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Baloo 2", sans-serif;
+    background:
+        radial-gradient(circle at 15% 10%, rgba(139,92,246,0.17), transparent 32%),
+        radial-gradient(circle at 85% 85%, rgba(96,165,250,0.10), transparent 32%),
+        linear-gradient(180deg, #08070D 0%, #0E0A14 55%, #08070D 100%);
+    overflow-x: hidden;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.background {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.background-glow {
+    position: absolute;
+    width: 340px;
+    height: 340px;
+    border-radius: 50%;
+    filter: blur(110px);
+    opacity: 0.12;
+}
+
+.background-glow.purple {
+    top: 10%;
+    left: -140px;
+    background: var(--primary);
+}
+
+.background-glow.pink {
+    top: 35%;
+    right: -160px;
+    background: #EC4899;
+}
+
+.background-glow.blue {
+    bottom: -180px;
+    left: 42%;
+    background: var(--accent);
+}
+
+.card-page {
+    width: min(100%, 1100px);
+    margin: auto;
+    padding: 45px 18px 65px;
+    text-align: center;
+}
+
+.card-header {
+    margin-bottom: 35px;
+}
+
+.eyebrow {
+    display: block;
+    margin-bottom: 7px;
+    color: var(--secondary);
+    font-family: "Fredoka", sans-serif;
+    font-size: 0.8rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+}
+
+.card-header h1 {
+    color: #fff;
+    font-family: "Fredoka", sans-serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1;
+}
+
+.card-header p {
+    margin-top: 9px;
+    color: var(--muted);
+    font-size: 1rem;
+}
+
+.card-area {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.member-card {
+    width: 760px;
+    aspect-ratio: 1.62 / 1;
+    position: relative;
+    overflow: hidden;
+    border: 2px solid rgba(255,255,255,0.14);
+    border-radius: 25px;
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #241636 43%,
+            #10101B
+        );
+    box-shadow:
+        0 30px 80px rgba(0,0,0,0.48),
+        0 0 45px rgba(139,92,246,0.14);
+}
+
+.member-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 85% 15%, rgba(255,255,255,0.12), transparent 20%),
+        radial-gradient(circle at 15% 85%, rgba(255,255,255,0.06), transparent 25%);
+}
+
+.card-top {
+    position: relative;
+    z-index: 1;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 28px;
+    border-bottom: 1px solid rgba(255,255,255,0.14);
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--primary) 88%, #000),
+            color-mix(in srgb, var(--secondary) 65%, var(--primary))
+        );
+    text-align: left;
+}
+
+.card-brand {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-brand span {
+    opacity: 0.8;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+}
+
+.card-brand strong {
+    margin-top: 1px;
+    font-family: "Fredoka", sans-serif;
+    font-size: clamp(1.5rem, 4vw, 2.4rem);
+    line-height: 0.95;
+}
+
+.card-label {
+    opacity: 0.9;
+    font-family: "Fredoka", sans-serif;
+    font-size: clamp(0.65rem, 2vw, 0.9rem);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.card-body {
+    position: relative;
+    z-index: 1;
+    height: 58%;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    padding: 22px 28px;
+    text-align: left;
+}
+
+.card-photo-area {
+    flex: 0 0 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.member-avatar {
+    width: 175px;
+    height: 175px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    padding: 5px;
+    border-radius: 22px;
+    background:
+        conic-gradient(
+            var(--primary),
+            var(--secondary),
+            var(--accent),
+            var(--primary)
+        );
+    box-shadow:
+        0 0 30px
+        color-mix(in srgb, var(--primary) 28%, transparent);
+}
+
+.member-avatar > span,
+.member-avatar img {
+    width: 100%;
+    height: 100%;
+    border: 4px solid #100C17;
+    border-radius: 18px;
+}
+
+.member-avatar > span {
+    display: grid;
+    place-items: center;
+    background: #1B1426;
+    font-size: 4.5rem;
+}
+
+.member-avatar img {
+    display: block;
+    object-fit: cover;
+}
+
+.card-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.card-small-label {
+    display: block;
+    margin-bottom: 3px;
+    opacity: 0.5;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.13em;
+}
+
+.card-info h2 {
+    overflow: hidden;
+    color: #fff;
+    font-family: "Fredoka", sans-serif;
+    font-size: clamp(1.7rem, 5vw, 2.8rem);
+    line-height: 1;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.card-info p {
+    margin-top: 5px;
+    color: rgba(255,255,255,0.63);
+    font-size: 0.95rem;
+}
+
+.card-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.card-tag {
+    min-width: 85px;
+    padding: 8px 10px;
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 11px;
+    background: rgba(255,255,255,0.06);
+}
+
+.card-tag span {
+    display: block;
+    margin-bottom: 2px;
+    color: rgba(255,255,255,0.5);
+    font-size: 0.55rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.card-tag strong {
+    color: #fff;
+    font-family: "Fredoka", sans-serif;
+    font-size: 0.9rem;
+}
+
+.card-bottom {
+    position: relative;
+    z-index: 1;
+    height: 17%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.68);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+}
+
+.card-actions {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.card-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 11px 18px;
+    border-radius: 12px;
+    font-family: "Fredoka", sans-serif;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: 0.2s ease;
+}
+
+.card-button:hover {
+    transform: translateY(-2px);
+}
+
+.card-button.primary {
+    border: none;
+    color: #fff;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    box-shadow: 0 8px 25px rgba(139,92,246,0.18);
+}
+
+.card-button.secondary {
+    border: 1px solid rgba(255,255,255,0.09);
+    color: #fff;
+    background: rgba(255,255,255,0.05);
+}
+
+.card-message {
+    min-height: 22px;
+    margin-top: 14px;
+    color: var(--muted);
+    font-size: 0.9rem;
+}
+
+@media (max-width: 700px) {
+    .card-page {
+        padding: 30px 10px 50px;
+    }
+
+    .member-card {
+        width: calc(100vw - 20px);
+    }
+
+    .card-top {
+        padding: 14px 17px;
+    }
+
+    .card-body {
+        gap: 15px;
+        padding: 14px 17px;
+    }
+
+    .member-avatar {
+        width: 115px;
+        height: 115px;
+        border-radius: 17px;
+    }
+
+    .member-avatar > span,
+    .member-avatar img {
+        border-radius: 13px;
+    }
+
+    .member-avatar > span {
+        font-size: 3rem;
+    }
+
+    .card-tags {
+        gap: 5px;
+        margin-top: 10px;
+    }
+
+    .card-tag {
+        min-width: 0;
+        padding: 6px 8px;
+    }
+
+    .card-tag strong {
+        font-size: 0.75rem;
+    }
+
+    .card-bottom {
+        padding: 0 17px;
+        font-size: 0.58rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-page {
+        padding: 22px 6px 40px;
+    }
+
+    .member-card {
+        width: calc(100vw - 12px);
+        border-radius: 18px;
+    }
+
+    .card-top {
+        height: 25%;
+        padding: 9px 11px;
+    }
+
+    .card-brand span {
+        font-size: 0.42rem;
+    }
+
+    .card-brand strong {
+        font-size: 1.1rem;
+    }
+
+    .card-label {
+        font-size: 0.42rem;
+    }
+
+    .card-body {
+        height: 58%;
+        gap: 8px;
+        padding: 8px 10px;
+    }
+
+    .card-photo-area {
+        flex: 0 0 29%;
+    }
+
+    .member-avatar {
+        width: 76px;
+        height: 76px;
+        border-radius: 13px;
+    }
+
+    .member-avatar > span,
+    .member-avatar img {
+        border-radius: 10px;
+        border-width: 3px;
+    }
+
+    .member-avatar > span {
+        font-size: 2.1rem;
+    }
+
+    .card-small-label {
+        font-size: 0.42rem;
+    }
+
+    .card-info h2 {
+        font-size: 1.1rem;
+    }
+
+    .card-info p {
+        margin-top: 2px;
+        font-size: 0.6rem;
+    }
+
+    .card-tags {
+        gap: 3px;
+        margin-top: 6px;
+    }
+
+    .card-tag {
+        padding: 3px 5px;
+        border-radius: 7px;
+    }
+
+    .card-tag span {
+        font-size: 0.31rem;
+    }
+
+    .card-tag strong {
+        font-size: 0.5rem;
+    }
+
+    .card-bottom {
+        height: 17%;
+        padding: 0 10px;
+        font-size: 0.36rem;
+    }
+
+    .card-actions {
+        gap: 7px;
+        margin-top: 16px;
+    }
+
+    .card-button {
+        min-height: 38px;
+        padding: 8px 11px;
+        font-size: 0.68rem;
+    }
+}

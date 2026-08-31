@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Identidade VIP | Casa dos MBTIs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <link rel="stylesheet" href="cards.css">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="background-glow purple"></div>
+    <div class="background-glow pink"></div>
+    <div class="background-glow blue"></div>
+</div>
+
+<main class="vip-card-page">
+
+    <header class="vip-card-header">
+
+        <span class="eyebrow">
+            CASA DOS MBTIs
+        </span>
+
+        <h1>
+            Minha Identidade VIP
+        </h1>
+
+        <p>
+            Sua identidade personalizada dentro da Casa.
+        </p>
+
+    </header>
+
+    <section class="identity-card-area">
+
+        <div id="vip-identity-card" class="vip-identity-card">
+
+            <div class="identity-banner" id="identity-banner">
+
+                <img id="identity-banner-image" src="" alt="Banner do perfil">
+
+                <div class="identity-banner-overlay"></div>
+
+            </div>
+
+            <div class="identity-content">
+
+                <div class="identity-header">
+
+                    <div class="identity-avatar-area">
+
+                        <div id="identity-avatar" class="identity-avatar">
+                            👤
+                        </div>
+
+                        <span id="identity-badge" class="identity-badge">
+                            💎 VIP
+                        </span>
+
+                    </div>
+
+                    <div class="identity-main-info">
+
+                        <h2 id="identity-name">
+                            Carregando...
+                        </h2>
+
+                        <p id="identity-username">
+                            @usuario
+                        </p>
+
+                        <div class="identity-tags">
+
+                            <span id="identity-mbti">
+                                MBTI
+                            </span>
+
+                            <span id="identity-eneagrama">
+                                Eneagrama
+                            </span>
+
+                            <span id="identity-tritype">
+                                Tritype
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="identity-status-cloud">
+
+                    <span>
+                        STATUS
+                    </span>
+
+                    <p id="identity-status">
+                        Nenhum status adicionado.
+                    </p>
+
+                </div>
+
+                <div class="identity-grid">
+
+                    <section class="identity-section">
+
+                        <div class="section-title">
+                            <span>🧠</span>
+                            <h3>Tipologia</h3>
+                        </div>
+
+                        <div class="identity-info-grid">
+
+                            <div>
+                                <span>Subtipo</span>
+                                <strong id="identity-subtipo">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Temperamento</span>
+                                <strong id="identity-temperamento">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Socionics</span>
+                                <strong id="identity-socionics">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Big Five</span>
+                                <strong id="identity-big-five">—</strong>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="identity-section">
+
+                        <div class="section-title">
+                            <span>🎵</span>
+                            <h3>Gostos</h3>
+                        </div>
+
+                        <div class="identity-info-grid">
+
+                            <div>
+                                <span>Música</span>
+                                <strong id="identity-music">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Artista</span>
+                                <strong id="identity-artist">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Jogo</span>
+                                <strong id="identity-game">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Série</span>
+                                <strong id="identity-series">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Personagem</span>
+                                <strong id="identity-character">—</strong>
+                            </div>
+
+                            <div>
+                                <span>Hobby</span>
+                                <strong id="identity-hobby">—</strong>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="identity-section identity-section-full">
+
+                        <div class="section-title">
+                            <span>🎨</span>
+                            <h3>Identidade visual</h3>
+                        </div>
+
+                        <div class="identity-colors">
+
+                            <div class="identity-color">
+                                <span>Principal</span>
+                                <strong id="identity-primary">#8B5CF6</strong>
+                                <i id="identity-primary-color"></i>
+                            </div>
+
+                            <div class="identity-color">
+                                <span>Secundária</span>
+                                <strong id="identity-secondary">#C084FC</strong>
+                                <i id="identity-secondary-color"></i>
+                            </div>
+
+                            <div class="identity-color">
+                                <span>Destaque</span>
+                                <strong id="identity-accent">#60A5FA</strong>
+                                <i id="identity-accent-color"></i>
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+                <div class="identity-footer">
+
+                    <span id="identity-group">
+                        CASA DOS MBTIs
+                    </span>
+
+                    <span id="identity-since">
+                        MEMBRO DESDE —
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="vip-card-actions">
+
+        <button id="download-vip-card" class="vip-action-button primary" type="button">
+            ↓ BAIXAR IDENTIDADE VIP
+        </button>
+
+        <a href="../" class="vip-action-button secondary">
+            ← VOLTAR
+        </a>
+
+    </div>
+
+    <p id="vip-card-message" class="vip-card-message"></p>
+
+</main>
+
+<script src="cards.js"></script>
+
+</body>
+</html>

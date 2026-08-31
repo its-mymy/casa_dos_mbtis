@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Minha Carteirinha | Casa dos MBTIs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <link rel="stylesheet" href="vip.css">
+</head>
+
+<body>
+
+<div class="background">
+    <div class="background-glow purple"></div>
+    <div class="background-glow pink"></div>
+    <div class="background-glow blue"></div>
+</div>
+
+<main class="card-page">
+
+    <header class="card-header">
+
+        <span class="eyebrow">
+            CASA DOS MBTIs
+        </span>
+
+        <h1>
+            Minha Carteirinha
+        </h1>
+
+        <p>
+            Sua identificação oficial como membro da Casa.
+        </p>
+
+    </header>
+
+    <section class="card-area">
+
+        <div id="member-card" class="member-card">
+
+            <div class="card-top">
+
+                <div class="card-brand">
+                    <span>CASA DOS</span>
+                    <strong>MBTIs</strong>
+                </div>
+
+                <div class="card-label">
+                    CARTEIRINHA
+                </div>
+
+            </div>
+
+            <div class="card-body">
+
+                <div class="card-photo-area">
+
+                    <div id="member-avatar" class="member-avatar">
+                        <span>👤</span>
+                    </div>
+
+                </div>
+
+                <div class="card-info">
+
+                    <span class="card-small-label">
+                        MEMBRO
+                    </span>
+
+                    <h2 id="member-name">
+                        Carregando...
+                    </h2>
+
+                    <p id="member-username">
+                        @usuario
+                    </p>
+
+                    <div class="card-tags">
+
+                        <div class="card-tag">
+                            <span>MBTI</span>
+                            <strong id="member-mbti">—</strong>
+                        </div>
+
+                        <div class="card-tag">
+                            <span>ENEAGRAMA</span>
+                            <strong id="member-eneagrama">—</strong>
+                        </div>
+
+                        <div class="card-tag">
+                            <span>TRITYPE</span>
+                            <strong id="member-tritype">—</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="card-bottom">
+
+                <span id="member-group">
+                    CASA DOS MBTIs
+                </span>
+
+                <span id="member-since">
+                    MEMBRO DESDE —
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <div class="card-actions">
+
+        <button id="download-card" class="card-button primary" type="button">
+            ↓ BAIXAR CARTEIRINHA
+        </button>
+
+        <a href="../../" class="card-button secondary">
+            ← VOLTAR AO FEED
+        </a>
+
+    </div>
+
+    <p id="card-message" class="card-message"></p>
+
+</main>
+
+<script src="vip.js"></script>
+
+</body>
+</html>
