@@ -1,6 +1,11 @@
 *{box-sizing:border-box}
 
-html,body{margin:0;min-height:100%;font-family:"Fredoka",sans-serif;color:#c9b8d8}
+html,body{
+    margin:0;
+    min-height:100%;
+    font-family:"Fredoka",sans-serif;
+    color:#c9b8d8
+}
 
 body{
     min-height:100vh;
@@ -30,7 +35,7 @@ button,input,select{font-family:inherit}
     border:2px solid rgba(167,125,226,.16);
     border-radius:28px;
     padding:23px;
-    box-shadow:0 18px 55px rgba(0,0,0,.35),0 0 35px rgba(118,69,183,.08)
+    box-shadow:0 18px 55px rgba(0,0,0,.35)
 }
 
 .editor-title{
@@ -44,17 +49,24 @@ button,input,select{font-family:inherit}
     width:50px;
     height:50px;
     border-radius:16px;
-    background:linear-gradient(145deg,#33204d,#21152e);
+    background:#271a38;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:27px;
-    box-shadow:inset 2px 2px 5px rgba(255,255,255,.08),0 5px 12px rgba(0,0,0,.3)
+    font-size:27px
 }
 
-.editor-title h1{margin:0;color:#d9c8ee;font-size:25px}
+.editor-title h1{
+    margin:0;
+    color:#d9c8ee;
+    font-size:25px
+}
 
-.editor-title p{margin:2px 0 0;color:#9d83ba;font-size:12px}
+.editor-title p{
+    margin:2px 0 0;
+    color:#9d83ba;
+    font-size:12px
+}
 
 .editor-grid{
     display:grid;
@@ -88,9 +100,10 @@ button,input,select{font-family:inherit}
     font-size:12px
 }
 
-.field input[type=text]:focus,.field select:focus{border-color:#8060ae}
-
-.field input[type=file]{padding:9px;font-size:10px}
+.field input[type=file]{
+    padding:9px;
+    font-size:10px
+}
 
 .color-input{
     height:40px;
@@ -145,9 +158,7 @@ button,input,select{font-family:inherit}
     border-radius:10px;
     background:#0f0c15;
     padding:0 10px;
-    outline:0;
-    color:#d8c9e6;
-    font-size:12px
+    color:#d8c9e6
 }
 
 .accessories-editor{
@@ -185,7 +196,9 @@ button,input,select{font-family:inherit}
     font-size:10px
 }
 
-.accessory-category{margin-bottom:14px}
+.accessory-category{
+    margin-bottom:14px
+}
 
 .accessory-category>span{
     display:block;
@@ -211,20 +224,18 @@ button,input,select{font-family:inherit}
     cursor:pointer;
     display:flex;
     align-items:center;
-    justify-content:center;
-    transition:.18s
+    justify-content:center
 }
 
 .accessory:hover{
-    transform:translateY(-2px) scale(1.05);
+    transform:scale(1.05);
     border-color:#74569a
 }
 
 .accessory.active{
     border-color:#a77bd1;
     background:#241730;
-    box-shadow:0 0 0 3px rgba(167,123,209,.1);
-    transform:scale(1.04)
+    box-shadow:0 0 0 3px rgba(167,123,209,.1)
 }
 
 .download-button{
@@ -240,10 +251,6 @@ button,input,select{font-family:inherit}
     cursor:pointer;
     box-shadow:0 7px 18px rgba(113,72,163,.25)
 }
-
-.download-button:hover{filter:brightness(1.08)}
-
-.download-button:active{transform:translateY(1px)}
 
 .preview-section{
     grid-column:2;
@@ -274,15 +281,10 @@ button,input,select{font-family:inherit}
     width:100%;
     display:flex;
     justify-content:center;
-    align-items:flex-start;
-    overflow:visible
+    align-items:flex-start
 }
 
 #card4{
-    --sparkle-color:#fff28c;
-    --phone-color:#cfc5ff;
-    --button-color:#c8f5c4;
-
     position:relative;
     width:800px;
     height:980px;
@@ -306,7 +308,7 @@ button,input,select{font-family:inherit}
 
 .sparkle{
     position:absolute;
-    color:var(--sparkle-color);
+    color:#fff28c;
     font-family:Arial,sans-serif;
     font-weight:900;
     line-height:1;
@@ -337,9 +339,9 @@ button,input,select{font-family:inherit}
     width:550px;
     height:790px;
     border-radius:115px;
-    background:rgba(84,57,119,.3);
-    transform:translate(24px,31px);
-    filter:blur(15px);
+    background:rgba(35,20,55,.5);
+    transform:translate(25px,30px);
+    filter:blur(16px);
     z-index:2
 }
 
@@ -348,52 +350,59 @@ button,input,select{font-family:inherit}
     width:560px;
     height:800px;
     border-radius:115px;
-    background:
-        linear-gradient(145deg,rgba(255,255,255,.5) 0%,rgba(255,255,255,.08) 25%,transparent 45%),
-        var(--phone-color);
+    background:transparent;
     border:6px solid #7658ae;
     box-shadow:
-        inset 8px 8px 13px rgba(255,255,255,.6),
-        inset -11px -14px 20px rgba(88,60,132,.3),
-        9px 13px 0 rgba(101,75,150,.25),
-        17px 24px 25px rgba(91,63,123,.22);
+        inset 8px 8px 13px rgba(255,255,255,.5),
+        inset -11px -14px 20px rgba(55,35,85,.3),
+        9px 13px 0 rgba(101,75,150,.25);
+    overflow:visible;
     z-index:3
+}
+
+.phone-base{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    border-radius:109px;
+    background-color:#cfc5ff;
+    overflow:hidden
+}
+
+.phone-light{
+    position:absolute;
+    top:10px;
+    left:35px;
+    width:330px;
+    height:100px;
+    border-radius:50%;
+    background:rgba(255,255,255,.23);
+    filter:blur(9px);
+    transform:rotate(-8deg);
+    z-index:1;
+    pointer-events:none
+}
+
+.phone-dark{
+    position:absolute;
+    right:10px;
+    bottom:20px;
+    width:150px;
+    height:260px;
+    border-radius:50%;
+    background:rgba(55,35,85,.12);
+    filter:blur(18px);
+    transform:rotate(-25deg);
+    z-index:1;
+    pointer-events:none
 }
 
 .phone-side{
     position:absolute;
     inset:12px -13px -13px 12px;
     border-radius:110px;
-    background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(89,63,135,.4));
+    background:rgba(89,63,135,.3);
     z-index:-1
-}
-
-.phone::before{
-    content:"";
-    position:absolute;
-    top:13px;
-    left:42px;
-    width:315px;
-    height:95px;
-    border-radius:50%;
-    background:rgba(255,255,255,.25);
-    filter:blur(8px);
-    transform:rotate(-8deg);
-    pointer-events:none
-}
-
-.phone::after{
-    content:"";
-    position:absolute;
-    right:28px;
-    bottom:45px;
-    width:105px;
-    height:190px;
-    border-radius:50%;
-    background:rgba(255,255,255,.1);
-    filter:blur(16px);
-    transform:rotate(-25deg);
-    pointer-events:none
 }
 
 .antenna{
@@ -407,7 +416,7 @@ button,input,select{font-family:inherit}
     border-radius:30px 30px 0 0;
     background:linear-gradient(90deg,#cfc9ff,#fff,#aaa0e8);
     box-shadow:4px 5px 0 rgba(87,63,130,.2),inset 4px 0 7px rgba(255,255,255,.7);
-    z-index:1
+    z-index:2
 }
 
 .top-panel{
@@ -419,11 +428,12 @@ button,input,select{font-family:inherit}
     transform:translateX(-50%);
     border:5px solid #7658ae;
     border-radius:50%;
-    background:linear-gradient(145deg,rgba(255,255,255,.45),rgba(130,102,181,.3)),#b99ce8;
+    background:#b99ce8;
     box-shadow:inset 5px 5px 8px rgba(255,255,255,.5),inset -5px -7px 9px rgba(89,63,133,.2),0 5px 0 rgba(93,68,137,.2);
     display:flex;
     align-items:center;
-    justify-content:center
+    justify-content:center;
+    z-index:3
 }
 
 .top-highlight{
@@ -460,7 +470,7 @@ button,input,select{font-family:inherit}
 .phone-star{
     position:absolute;
     z-index:8;
-    color:var(--sparkle-color);
+    color:#fff28c;
     font-size:52px;
     text-shadow:2px 2px 0 #7658ae,4px 5px 0 rgba(80,55,125,.18)
 }
@@ -505,8 +515,7 @@ button,input,select{font-family:inherit}
     overflow:hidden;
     border:4px solid #a17bcf;
     border-radius:31px;
-    background:#dcc8f4;
-    box-shadow:inset 6px 6px 12px rgba(255,255,255,.65),inset -7px -8px 12px rgba(95,63,130,.22)
+    background:#dcc8f4
 }
 
 .photo-container{
@@ -564,8 +573,7 @@ button,input,select{font-family:inherit}
 .photo-overlay .subtitle{
     margin-top:4px;
     color:#7658a8;
-    font-size:14px;
-    font-weight:500
+    font-size:14px
 }
 
 .watermark{
@@ -598,7 +606,7 @@ button,input,select{font-family:inherit}
     height:58px;
     border:5px solid #7658ae;
     border-radius:50%;
-    background:var(--button-color);
+    background:#c8f5c4;
     color:#7658a8;
     display:flex;
     align-items:center;
@@ -663,7 +671,7 @@ button,input,select{font-family:inherit}
 .accessory-position-7{top:55px;right:115px;transform:rotate(5deg)}
 .accessory-position-8{top:340px;left:5px;transform:rotate(-15deg)}
 
-@media (max-width:950px){
+@media(max-width:950px){
     .card4-page{
         width:min(700px,100%);
         display:flex;
@@ -687,7 +695,7 @@ button,input,select{font-family:inherit}
     }
 }
 
-@media (max-width:520px){
+@media(max-width:520px){
     .card4-page{
         padding:12px 8px 35px
     }

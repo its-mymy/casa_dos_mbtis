@@ -3,57 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Card 4 — Kawaii Phone</title>
+    <title>Typology Phone | Casa dos MBTIs</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="card4.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 </head>
 <body>
+
 <main class="card4-page">
+
     <section class="card4-editor">
+
         <div class="editor-title">
             <span>🎀</span>
             <div>
                 <h1>Card 4</h1>
-                <p>Monte seu Kawaii Phone ♡</p>
+                <p>Monte seu Typology Phone ♡</p>
             </div>
         </div>
 
         <div class="editor-grid">
-            <div class="field"><label for="nome">Nome / Nick</label><input type="text" id="nome" value="lovely"></div>
-            <div class="field"><label for="mbti">MBTI</label><input type="text" id="mbti" value="ENTP"></div>
-            <div class="field"><label for="eneagrama">Eneagrama</label><input type="text" id="eneagrama" value="7w6"></div>
-            <div class="field"><label for="tritype">Tritype</label><input type="text" id="tritype" value="739"></div>
-            <div class="field"><label for="instinto">Instinto</label><input type="text" id="instinto" value="sp/so"></div>
-            <div class="field"><label for="temperamento">Temperamento</label><input type="text" id="temperamento" value="Sanguíneo"></div>
-            <div class="field"><label for="bigfive">Big Five</label><input type="text" id="bigfive" value="SCOEI"></div>
-            <div class="field"><label for="foto">Foto central</label><input type="file" id="foto" accept="image/*"></div>
+            <div class="field">
+                <label for="nome">Nome / Nick</label>
+                <input type="text" id="nome" value="lovely">
+            </div>
+
+            <div class="field">
+                <label for="mbti">MBTI</label>
+                <input type="text" id="mbti" value="ENTP">
+            </div>
+
+            <div class="field">
+                <label for="eneagrama">Eneagrama</label>
+                <input type="text" id="eneagrama" value="7w6">
+            </div>
+
+            <div class="field">
+                <label for="tritype">Tritype</label>
+                <input type="text" id="tritype" value="739">
+            </div>
+
+            <div class="field">
+                <label for="instinto">Instinto</label>
+                <input type="text" id="instinto" value="sp/so">
+            </div>
+
+            <div class="field">
+                <label for="temperamento">Temperamento</label>
+                <input type="text" id="temperamento" value="Sanguíneo">
+            </div>
+
+            <div class="field">
+                <label for="bigfive">Big Five</label>
+                <input type="text" id="bigfive" value="SCOEI">
+            </div>
+
+            <div class="field">
+                <label for="foto">Foto central</label>
+                <input type="file" id="foto" accept="image/*">
+            </div>
 
             <div class="field">
                 <label for="corFundo">Cor do fundo</label>
-                <div class="color-input"><input type="color" id="corFundo" value="#ffd6ed"><span id="corFundoHex">#FFD6ED</span></div>
+                <div class="color-input">
+                    <input type="color" id="corFundo" value="#ffd6ed">
+                    <span id="corFundoHex">#FFD6ED</span>
+                </div>
             </div>
 
             <div class="field">
                 <label for="corCelular">Cor do celular</label>
-                <div class="color-input"><input type="color" id="corCelular" value="#cfc5ff"><span id="corCelularHex">#CFC5FF</span></div>
+                <div class="color-input">
+                    <input type="color" id="corCelular" value="#cfc5ff">
+                    <span id="corCelularHex">#CFC5FF</span>
+                </div>
             </div>
 
             <div class="field">
                 <label for="corBotoes">Cor dos botões</label>
-                <div class="color-input"><input type="color" id="corBotoes" value="#c8f5c4"><span id="corBotoesHex">#C8F5C4</span></div>
+                <div class="color-input">
+                    <input type="color" id="corBotoes" value="#c8f5c4">
+                    <span id="corBotoesHex">#C8F5C4</span>
+                </div>
             </div>
 
             <div class="field">
                 <label for="corBrilhos">Cor dos brilhos</label>
-                <div class="color-input"><input type="color" id="corBrilhos" value="#fff28c"><span id="corBrilhosHex">#FFF28C</span></div>
+                <div class="color-input">
+                    <input type="color" id="corBrilhos" value="#fff28c">
+                    <span id="corBrilhosHex">#FFF28C</span>
+                </div>
             </div>
         </div>
 
         <div class="corner-accessory-editor">
-            <div><h2>🎀 Enfeite do canto</h2><p>Escolha o emoji fixo do telefone</p></div>
+            <div>
+                <h2>🎀 Enfeite do canto</h2>
+                <p>Escolha o emoji fixo do telefone</p>
+            </div>
+
             <select id="cantoEmoji">
                 <option value="🎀">🎀 Lacinho</option>
                 <option value="🍥">🍥 Naruto</option>
@@ -79,59 +129,141 @@
 
         <div class="accessories-editor">
             <div class="accessories-header">
-                <div><h2>✨ Acessórios extras</h2><p>Escolha os enfeites do seu celular</p></div>
+                <div>
+                    <h2>✨ Acessórios extras</h2>
+                    <p>Escolha os enfeites do seu celular</p>
+                </div>
                 <button type="button" id="limparAcessorios">Limpar</button>
             </div>
 
             <div class="accessory-category">
                 <span>🎀 Pink Kawaii</span>
                 <div class="accessory-list">
-                    <button class="accessory" data-emoji="🎀">🎀</button><button class="accessory" data-emoji="💗">💗</button><button class="accessory" data-emoji="💕">💕</button><button class="accessory" data-emoji="🌸">🌸</button><button class="accessory" data-emoji="🌷">🌷</button><button class="accessory" data-emoji="🌺">🌺</button><button class="accessory" data-emoji="🐰">🐰</button><button class="accessory" data-emoji="🍓">🍓</button><button class="accessory" data-emoji="🍑">🍑</button><button class="accessory" data-emoji="🍬">🍬</button><button class="accessory" data-emoji="🍭">🍭</button><button class="accessory" data-emoji="🧁">🧁</button><button class="accessory" data-emoji="🍰">🍰</button><button class="accessory" data-emoji="🩷">🩷</button><button class="accessory" data-emoji="🦄">🦄</button><button class="accessory" data-emoji="🩰">🩰</button>
+                    <button class="accessory" data-emoji="🎀">🎀</button>
+                    <button class="accessory" data-emoji="💗">💗</button>
+                    <button class="accessory" data-emoji="💕">💕</button>
+                    <button class="accessory" data-emoji="🌸">🌸</button>
+                    <button class="accessory" data-emoji="🌷">🌷</button>
+                    <button class="accessory" data-emoji="🌺">🌺</button>
+                    <button class="accessory" data-emoji="🐰">🐰</button>
+                    <button class="accessory" data-emoji="🍓">🍓</button>
+                    <button class="accessory" data-emoji="🍑">🍑</button>
+                    <button class="accessory" data-emoji="🍬">🍬</button>
+                    <button class="accessory" data-emoji="🍭">🍭</button>
+                    <button class="accessory" data-emoji="🧁">🧁</button>
+                    <button class="accessory" data-emoji="🍰">🍰</button>
+                    <button class="accessory" data-emoji="🩷">🩷</button>
+                    <button class="accessory" data-emoji="🦄">🦄</button>
+                    <button class="accessory" data-emoji="🩰">🩰</button>
                 </div>
             </div>
 
             <div class="accessory-category">
                 <span>💙 Blue Kawaii</span>
                 <div class="accessory-list">
-                    <button class="accessory" data-emoji="💙">💙</button><button class="accessory" data-emoji="🩵">🩵</button><button class="accessory" data-emoji="🫧">🫧</button><button class="accessory" data-emoji="🦋">🦋</button><button class="accessory" data-emoji="🐬">🐬</button><button class="accessory" data-emoji="🐳">🐳</button><button class="accessory" data-emoji="🐚">🐚</button><button class="accessory" data-emoji="❄️">❄️</button><button class="accessory" data-emoji="🌙">🌙</button><button class="accessory" data-emoji="☁️">☁️</button><button class="accessory" data-emoji="💎">💎</button><button class="accessory" data-emoji="🧊">🧊</button>
+                    <button class="accessory" data-emoji="💙">💙</button>
+                    <button class="accessory" data-emoji="🩵">🩵</button>
+                    <button class="accessory" data-emoji="🫧">🫧</button>
+                    <button class="accessory" data-emoji="🦋">🦋</button>
+                    <button class="accessory" data-emoji="🐬">🐬</button>
+                    <button class="accessory" data-emoji="🐳">🐳</button>
+                    <button class="accessory" data-emoji="🐚">🐚</button>
+                    <button class="accessory" data-emoji="❄️">❄️</button>
+                    <button class="accessory" data-emoji="🌙">🌙</button>
+                    <button class="accessory" data-emoji="☁️">☁️</button>
+                    <button class="accessory" data-emoji="💎">💎</button>
+                    <button class="accessory" data-emoji="🧊">🧊</button>
                 </div>
             </div>
 
             <div class="accessory-category">
                 <span>🍡 Japanese Kawaii</span>
                 <div class="accessory-list">
-                    <button class="accessory" data-emoji="🍥">🍥</button><button class="accessory" data-emoji="🍡">🍡</button><button class="accessory" data-emoji="🍙">🍙</button><button class="accessory" data-emoji="🍵">🍵</button><button class="accessory" data-emoji="🎐">🎐</button><button class="accessory" data-emoji="🪭">🪭</button><button class="accessory" data-emoji="🏮">🏮</button><button class="accessory" data-emoji="🐱">🐱</button><button class="accessory" data-emoji="🐼">🐼</button>
+                    <button class="accessory" data-emoji="🍥">🍥</button>
+                    <button class="accessory" data-emoji="🍡">🍡</button>
+                    <button class="accessory" data-emoji="🍙">🍙</button>
+                    <button class="accessory" data-emoji="🍵">🍵</button>
+                    <button class="accessory" data-emoji="🎐">🎐</button>
+                    <button class="accessory" data-emoji="🪭">🪭</button>
+                    <button class="accessory" data-emoji="🏮">🏮</button>
+                    <button class="accessory" data-emoji="🐱">🐱</button>
+                    <button class="accessory" data-emoji="🐼">🐼</button>
                 </div>
             </div>
 
             <div class="accessory-category">
                 <span>✨ Decoration</span>
                 <div class="accessory-list">
-                    <button class="accessory" data-emoji="⭐">⭐</button><button class="accessory" data-emoji="✨">✨</button><button class="accessory" data-emoji="💫">💫</button><button class="accessory" data-emoji="🌈">🌈</button><button class="accessory" data-emoji="🔮">🔮</button><button class="accessory" data-emoji="🧸">🧸</button><button class="accessory" data-emoji="🎧">🎧</button><button class="accessory" data-emoji="💿">💿</button><button class="accessory" data-emoji="🎵">🎵</button><button class="accessory" data-emoji="💌">💌</button>
+                    <button class="accessory" data-emoji="⭐">⭐</button>
+                    <button class="accessory" data-emoji="✨">✨</button>
+                    <button class="accessory" data-emoji="💫">💫</button>
+                    <button class="accessory" data-emoji="🌈">🌈</button>
+                    <button class="accessory" data-emoji="🔮">🔮</button>
+                    <button class="accessory" data-emoji="🧸">🧸</button>
+                    <button class="accessory" data-emoji="🎧">🎧</button>
+                    <button class="accessory" data-emoji="💿">💿</button>
+                    <button class="accessory" data-emoji="🎵">🎵</button>
+                    <button class="accessory" data-emoji="💌">💌</button>
                 </div>
             </div>
         </div>
 
-        <button class="download-button" id="baixarCard"><span>💗</span> BAIXAR CARD EM PNG</button>
+        <button class="download-button" id="baixarCard">
+            <span>💗</span> BAIXAR CARD EM PNG
+        </button>
+
     </section>
 
     <section class="preview-section">
-        <div class="preview-label"><span>PRÉVIA</span><small>Card 4</small></div>
+        <div class="preview-label">
+            <span>PRÉVIA</span>
+            <small>Card 4</small>
+        </div>
+
         <div class="card4-wrapper">
             <div id="card4">
+
                 <div class="sparkles-background">
-                    <span class="sparkle s1">✦</span><span class="sparkle s2">✧</span><span class="sparkle s3">✦</span><span class="sparkle s4">✧</span><span class="sparkle s5">✦</span><span class="sparkle s6">✧</span><span class="sparkle s7">✦</span><span class="sparkle s8">✧</span><span class="sparkle s9">✦</span><span class="sparkle s10">✧</span><span class="sparkle s11">✦</span><span class="sparkle s12">✧</span><span class="sparkle s13">✦</span><span class="sparkle s14">✧</span><span class="sparkle s15">✦</span><span class="sparkle s16">✧</span><span class="sparkle s17">✦</span><span class="sparkle s18">✧</span>
+                    <span class="sparkle s1">✦</span>
+                    <span class="sparkle s2">✧</span>
+                    <span class="sparkle s3">✦</span>
+                    <span class="sparkle s4">✧</span>
+                    <span class="sparkle s5">✦</span>
+                    <span class="sparkle s6">✧</span>
+                    <span class="sparkle s7">✦</span>
+                    <span class="sparkle s8">✧</span>
+                    <span class="sparkle s9">✦</span>
+                    <span class="sparkle s10">✧</span>
+                    <span class="sparkle s11">✦</span>
+                    <span class="sparkle s12">✧</span>
+                    <span class="sparkle s13">✦</span>
+                    <span class="sparkle s14">✧</span>
+                    <span class="sparkle s15">✦</span>
+                    <span class="sparkle s16">✧</span>
+                    <span class="sparkle s17">✦</span>
+                    <span class="sparkle s18">✧</span>
                 </div>
 
                 <div class="phone-shadow"></div>
 
                 <div class="phone">
+
+                    <div class="phone-base"></div>
+                    <div class="phone-light"></div>
+                    <div class="phone-dark"></div>
                     <div class="phone-side"></div>
+
                     <div class="antenna"></div>
 
                     <div class="top-panel">
                         <div class="top-highlight"></div>
-                        <div class="top-screen"><span></span><span></span><span></span><span></span><span></span></div>
+                        <div class="top-screen">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
                     </div>
 
                     <div class="phone-star star-left">★</div>
@@ -140,35 +272,58 @@
                     <div class="corner-charm" id="cornerCharm">🎀</div>
 
                     <div class="screen-frame">
+
                         <div class="screen">
-                            <div class="photo-container" id="fotoContainer"><span>SUA FOTO</span></div>
+
+                            <div class="photo-container" id="fotoContainer">
+                                <span>SUA FOTO</span>
+                            </div>
+
                             <div class="screen-glare"></div>
+
                             <div class="photo-overlay">
                                 <div class="name" id="nomePreview">lovely</div>
                                 <div class="subtitle">casa dos mbtis ♡</div>
                             </div>
-                            <div class="watermark">Typology Phone</div>
+
+                            <div class="watermark">
+                                Typology phone
+                            </div>
+
                         </div>
+
                     </div>
 
                     <div class="info-buttons">
                         <div class="info-button" id="mbtiPreview">ENTP</div>
                         <div class="info-button" id="eneagramaPreview">7w6</div>
-                        <div class="info-button" id="tritypePreview">739</div>
+                        <div class="info-button" id="tritypePreview">738</div>
                         <div class="info-button" id="instintoPreview">sp/so</div>
                         <div class="info-button" id="temperamentoPreview">Sanguíneo</div>
-                        <div class="info-button" id="bigfivePreview">SCOEI</div>
+                        <div class="info-button" id="bigfivePreview">SCUEI</div>
                     </div>
+
                 </div>
 
                 <div class="sparkles-foreground">
-                    <span class="sparkle f1">✦</span><span class="sparkle f2">✧</span><span class="sparkle f3">✦</span><span class="sparkle f4">✧</span><span class="sparkle f5">✦</span><span class="sparkle f6">✧</span><span class="sparkle f7">✦</span><span class="sparkle f8">✧</span><span class="sparkle f9">✦</span><span class="sparkle f10">✧</span>
+                    <span class="sparkle f1">✦</span>
+                    <span class="sparkle f2">✧</span>
+                    <span class="sparkle f3">✦</span>
+                    <span class="sparkle f4">✧</span>
+                    <span class="sparkle f5">✦</span>
+                    <span class="sparkle f6">✧</span>
+                    <span class="sparkle f7">✦</span>
+                    <span class="sparkle f8">✧</span>
+                    <span class="sparkle f9">✦</span>
+                    <span class="sparkle f10">✧</span>
                 </div>
 
                 <div class="accessory-layer" id="accessoryLayer"></div>
+
             </div>
         </div>
     </section>
+
 </main>
 
 <script src="card4.js"></script>
