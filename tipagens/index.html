@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Tipagens — Casa dos MBTIs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="tipagens.css">
+</head>
+<body>
+
+    <div class="background" aria-hidden="true"></div>
+
+    <header class="topbar">
+
+        <a class="brand" href="../">
+            <div class="brand-icon">✦</div>
+
+            <div class="brand-text">
+                <strong>Casa dos MBTIs</strong>
+                <span>Banco de Tipagens</span>
+            </div>
+        </a>
+
+        <nav class="desktop-nav" aria-label="Navegação principal">
+            <a href="../" class="nav-button">Início</a>
+            <a href="../" class="nav-button">Feed</a>
+            <a href="./" class="nav-button ativo">Tipagens</a>
+        </nav>
+
+        <div class="topbar-right">
+
+            <div class="mini-profile" id="miniProfile">
+                <div class="mini-avatar" id="miniAvatar">👤</div>
+
+                <div class="mini-profile-info">
+                    <strong id="miniName">Membro</strong>
+                    <span id="miniUsername">@usuario</span>
+                </div>
+            </div>
+
+            <button id="menu-button" class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false">
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+    <!-- MENU LATERAL -->
+
+    <div id="member-menu-overlay" class="member-menu-overlay"></div>
+
+    <aside id="member-menu" class="member-menu" aria-hidden="true">
+
+        <div class="member-menu-header">
+
+            <div>
+                <span>CASA DOS MBTIs</span>
+                <h2>Meu espaço</h2>
+            </div>
+
+            <button id="close-menu-button" class="close-menu-button" type="button" aria-label="Fechar menu">
+                ×
+            </button>
+
+        </div>
+
+        <div class="menu-profile-card">
+
+            <div id="menu-avatar" class="menu-avatar">👤</div>
+
+            <div class="menu-profile-data">
+                <strong id="menu-name">Membro</strong>
+                <span id="menu-username">@usuario</span>
+                <span id="menu-badge" class="menu-badge hidden"></span>
+            </div>
+
+        </div>
+
+        <div class="menu-divider"></div>
+
+        <nav class="member-menu-navigation">
+
+            <a href="../FEED/" class="member-menu-link">
+                <span class="menu-link-icon">📰</span>
+                <span>Feed</span>
+                <b>›</b>
+            </a>
+
+            <a href="./" class="member-menu-link ativo" aria-current="page">
+                <span class="menu-link-icon">✦</span>
+                <span>Tipagens</span>
+                <b>›</b>
+            </a>
+
+        </nav>
+
+        <div class="member-menu-bottom">
+
+            <button id="logout-menu-button" class="logout-button" type="button">
+                🚪 Sair da conta
+            </button>
+
+        </div>
+
+    </aside>
+
+ <main class="tipagens-main">
+
+    <section class="intro-section">
+
+        <div>
+            <span class="intro-label">BANCO DA COMUNIDADE</span>
+            <h1>Tipagens</h1>
+            <p>
+                Personagens, personalidades e tipagens reunidas pela comunidade da Casa dos MBTIs.
+            </p>
+        </div>
+
+        <button id="newTipagemButton" class="admin-new-button hidden" type="button">
+            ＋ Nova tipagem
+        </button>
+
+    </section>
+        </section>
+
+        </section>
+
+        <nav class="category-nav" aria-label="Categorias de tipagens">
+
+            <button class="category-button active" type="button" data-category="todos">
+                TODOS
+            </button>
+
+            <button class="category-button" type="button" data-category="anime">
+                ANIME
+            </button>
+
+            <button class="category-button" type="button" data-category="jogos">
+                JOGOS
+            </button>
+
+            <button class="category-button" type="button" data-category="filmes">
+                FILMES
+            </button>
+
+            <button class="category-button" type="button" data-category="series">
+                SÉRIES
+            </button>
+
+        </nav>
+
+        <section class="tipagens-section">
+
+            <div class="section-heading">
+
+                <div>
+                    <span class="section-kicker">ARQUIVO</span>
+                    <h2>Personagens</h2>
+                </div>
+
+                <span class="results-counter" id="resultsCounter">
+                    0 tipagens
+                </span>
+
+            </div>
+
+            <div class="tipagens-grid" id="tipagensGrid"></div>
+
+            <div class="loading-area" id="loadingArea">
+                <div class="loading-spinner"></div>
+                <span>Carregando mais tipagens...</span>
+            </div>
+
+            <div class="empty-state" id="emptyState">
+
+                <div class="empty-icon">✦</div>
+
+                <h3>Nenhuma tipagem encontrada</h3>
+
+                <p>
+                    Não existem personagens nessa categoria ainda.
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <div class="small-modal-overlay" id="adminTipagemModal" aria-hidden="true">
+
+    <div class="admin-tipagem-modal">
+
+        <button class="small-modal-close" id="adminTipagemClose" type="button" aria-label="Fechar">
+            ×
+        </button>
+
+        <div class="admin-modal-header">
+            <span>ADMINISTRAÇÃO</span>
+            <h3 id="adminModalTitle">Nova tipagem</h3>
+            <p>Adicione um personagem ao banco da Casa dos MBTIs.</p>
+        </div>
+
+        <form id="tipagemForm">
+
+            <input type="hidden" id="tipagemId">
+
+            <div class="admin-form-image">
+
+                <div class="admin-image-preview" id="adminImagePreview">
+                    <span>🖼️</span>
+                </div>
+
+                <label class="admin-upload-button">
+                    📷 Escolher foto
+                    <input id="tipagemImageFile" type="file" accept="image/*">
+                </label>
+
+            </div>
+
+            <div class="admin-form-grid">
+
+                <label>
+                    Personagem
+                    <input id="tipagemPersonagem" type="text" required>
+                </label>
+
+                <label>
+                    Obra
+                    <input id="tipagemObra" type="text" required>
+                </label>
+
+                <label>
+                    Categoria
+                    <select id="tipagemCategoria" required>
+                        <option value="anime">Anime</option>
+                        <option value="jogos">Jogos</option>
+                        <option value="filmes">Filmes</option>
+                        <option value="series">Séries</option>
+                    </select>
+                </label>
+
+                <label>
+                    MBTI
+                    <input id="tipagemMbti" type="text" placeholder="ENTP">
+                </label>
+
+                <label>
+                    Eneagrama
+                    <input id="tipagemEneagrama" type="text" placeholder="7w8">
+                </label>
+
+                <label>
+                    Tritype
+                    <input id="tipagemTritype" type="text" placeholder="738">
+                </label>
+
+                <label>
+                    Subtipo
+                    <input id="tipagemSubtipo" type="text" placeholder="sp/so">
+                </label>
+
+                <label>
+                    Temperamento
+                    <input id="tipagemTemperamento" type="text" placeholder="Sanguíneo">
+                </label>
+
+                <label>
+                    Socionics
+                    <input id="tipagemSocionics" type="text" placeholder="ILE">
+                </label>
+
+                <label>
+                    Big Five
+                    <input id="tipagemBigFive" type="text" placeholder="SCOEI">
+                </label>
+
+            </div>
+
+            <label class="admin-form-description">
+                Observações
+                <textarea id="tipagemDescricao" rows="5"></textarea>
+            </label>
+
+            <p class="admin-form-message" id="adminFormMessage"></p>
+
+            <button class="admin-save-button" type="submit" id="adminSaveButton">
+                Publicar tipagem
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+    <!-- MODAL DA TIPAGEM -->
+
+    <div class="modal-overlay" id="tipagemModal" aria-hidden="true">
+
+        <div class="tipagem-modal" role="dialog" aria-modal="true" aria-labelledby="modalCharacterName">
+
+            <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">
+                ×
+            </button>
+
+            <div class="modal-image-area">
+                <img id="modalImage" src="" alt="">
+            </div>
+
+            <div class="modal-content">
+
+                <div class="modal-top">
+
+                    <span class="modal-category" id="modalCategory">ANIME</span>
+
+                    <h2 id="modalCharacterName">Personagem</h2>
+
+                    <p id="modalWork">Obra</p>
+
+                </div>
+
+                <div class="typing-boxes">
+
+                    <div class="typing-box">
+                        <span>MBTI</span>
+                        <strong id="modalMbti">ENTP</strong>
+                    </div>
+
+                    <div class="typing-box">
+                        <span>ENEAGRAMA</span>
+                        <strong id="modalEnneagram">7w6</strong>
+                    </div>
+
+                    <div class="typing-box">
+                        <span>TRITYPE</span>
+                        <strong id="modalTritype">739</strong>
+                    </div>
+
+                    <div class="typing-box">
+                        <span>SUBTIPO</span>
+                        <strong id="modalSubtype">sp/so</strong>
+                    </div>
+
+                    <div class="typing-box">
+                        <span>TEMPERAMENTO</span>
+                        <strong id="modalTemperament">Sanguíneo</strong>
+                    </div>
+
+                    <div class="typing-box">
+                        <span>SOCIONICS</span>
+                        <strong id="modalSocionics">ILE</strong>
+                    </div>
+
+                    <div class="typing-box">
+                        <span>BIG FIVE</span>
+                        <strong id="modalBigFive">SCOEI</strong>
+                    </div>
+
+                </div>
+
+                <div class="description-box">
+
+                    <span>OBSERVAÇÕES</span>
+
+                    <p id="modalDescription">
+                        Descrição da tipagem do personagem.
+                    </p>
+
+                </div>
+
+   <div class="vote-section">
+
+    <span class="vote-title">
+        VOCÊ CONCORDA COM ESSA TIPAGEM?
+    </span>
+
+    <div class="vote-buttons">
+
+        <button class="vote-button like-button" id="likeButton" type="button">
+            <span class="vote-icon">♡</span>
+            <span class="vote-label">Concordo</span>
+            <strong id="likeCount">0</strong>
+        </button>
+
+        <button class="vote-button dislike-button" id="dislikeButton" type="button">
+            <span class="vote-icon">👎</span>
+            <span class="vote-label">Discordo</span>
+            <strong id="dislikeCount">0</strong>
+        </button>
+
+    </div>
+
+    <p class="login-required" id="loginRequired">
+        Você precisa estar cadastrado na Casa dos MBTIs para votar.
+    </p>
+
+</div>
+
+<div class="comments-section">
+
+    <div class="comments-header">
+
+        <div>
+            <span class="comments-kicker">COMUNIDADE</span>
+            <h3>Comentários</h3>
+        </div>
+
+        <span id="commentsCount" class="comments-count">
+            0
+        </span>
+
+    </div>
+
+    <div id="commentFormArea" class="comment-form-area">
+
+        <textarea id="commentInput" class="comment-input" maxlength="500" rows="5" placeholder="Escreva sua opinião sobre essa tipagem..."></textarea>
+
+        <div class="comment-form-bottom">
+
+            <span id="commentLinesCounter" class="comment-lines-counter">
+                0/5 linhas
+            </span>
+
+            <button id="sendCommentButton" class="send-comment-button" type="button">
+                COMENTAR
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="vipCommentNotice" class="vip-comment-notice">
+        Apenas membros VIP e ADMs podem comentar nas tipagens.
+    </div>
+
+    <div id="commentsList" class="comments-list"></div>
+
+    <div id="commentsEmpty" class="comments-empty">
+        <span>✦</span>
+        <p>Essa tipagem ainda não tem comentários.</p>
+    </div>
+
+</div>
+
+
+
+<div class="admin-section" id="adminSection">
+
+    <div class="admin-heading">
+
+        <div>
+            <span class="admin-kicker">ADMINISTRAÇÃO</span>
+            <h3>Gerenciar tipagem</h3>
+        </div>
+
+    </div>
+                    <div class="admin-actions">
+
+                        <button class="admin-button edit-button" id="editButton" type="button">
+                            ✎ Editar
+                        </button>
+
+                        <button class="admin-button delete-button" id="deleteButton" type="button">
+                            🗑 Apagar
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- MODAL DE LOGIN -->
+
+    <div class="small-modal-overlay" id="loginModal" aria-hidden="true">
+
+        <div class="small-modal">
+
+            <button class="small-modal-close" id="loginModalClose" type="button" aria-label="Fechar">
+                ×
+            </button>
+
+            <div class="small-modal-icon">♡</div>
+
+            <h3>Entre para votar</h3>
+
+            <p>
+                Apenas membros cadastrados da Casa dos MBTIs podem curtir ou marcar que discordam das tipagens.
+            </p>
+
+            <div class="small-modal-actions">
+
+                <a class="small-modal-button primary" href="../login/">
+                    ENTRAR
+                </a>
+
+                <a class="small-modal-button secondary" href="../cadastro/">
+                    CADASTRAR
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="tipagens.js"></script>
+
+</body>
+</html>
