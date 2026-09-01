@@ -1428,16 +1428,14 @@ body.modal-open {
     color: var(--pink-light);
     border-color: rgba(236,72,153,0.22);
 }
-
 .comment-text {
     margin-top: 9px;
     color: #c8bfce;
-    font-size: 0.78rem;
+    font-size: 0.9rem;
     line-height: 1.6;
     white-space: pre-wrap;
     word-break: break-word;
 }
-
 .comments-empty {
     display: none;
     padding: 25px 12px 8px;
@@ -1733,4 +1731,195 @@ body.modal-open {
     .admin-form-grid {
         grid-template-columns: 1fr;
     }
+}
+
+
+/* MODAL DE CONFIRMAÇÃO DE EXCLUSÃO */
+
+.delete-confirm-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(10, 7, 16, 0.72);
+    backdrop-filter: blur(8px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.delete-confirm-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.delete-confirm-modal {
+    width: min(430px, 100%);
+    padding: 28px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    background: #17121f;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.45);
+    text-align: center;
+    transform: translateY(15px) scale(0.97);
+    transition: transform 0.2s ease;
+}
+
+.delete-confirm-overlay.active .delete-confirm-modal {
+    transform: translateY(0) scale(1);
+}
+
+.delete-confirm-icon {
+    width: 64px;
+    height: 64px;
+    margin: 0 auto 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 18px;
+    background: rgba(255, 90, 90, 0.12);
+    font-size: 28px;
+}
+
+.delete-confirm-kicker {
+    display: block;
+    margin-bottom: 7px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    color: #ff8d8d;
+}
+
+.delete-confirm-content h3 {
+    margin: 0 0 10px;
+    font-size: 22px;
+    color: #fff;
+}
+
+.delete-confirm-content p {
+    margin: 0;
+    color: #aaa2b5;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.delete-confirm-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 24px;
+}
+
+.delete-confirm-actions button {
+    flex: 1;
+    min-height: 46px;
+    border: 0;
+    border-radius: 12px;
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.delete-confirm-actions button:hover {
+    transform: translateY(-1px);
+}
+
+.delete-confirm-cancel {
+    background: #292330;
+    color: #fff;
+}
+
+.delete-confirm-delete {
+    background: #e85d68;
+    color: #fff;
+}
+
+.delete-confirm-delete:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+@media (max-width: 500px) {
+    .delete-confirm-modal {
+        padding: 24px 20px;
+        border-radius: 20px;
+    }
+
+    .delete-confirm-actions {
+        flex-direction: column;
+    }
+}
+
+/* AÇÕES DE ADMINISTRAÇÃO */
+
+.admin-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+}
+
+.admin-edit-button,
+.admin-delete-button {
+    min-height: 44px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.18s ease, opacity 0.18s ease, background 0.18s ease;
+}
+
+.admin-edit-button {
+    background: #a9d8ff;
+    color: #17121f;
+}
+
+.admin-delete-button {
+    background: #e85d68;
+    color: #fff;
+}
+
+.admin-edit-button:hover,
+.admin-delete-button:hover {
+    transform: translateY(-2px);
+}
+
+.admin-edit-button:active,
+.admin-delete-button:active {
+    transform: translateY(0);
+}
+
+.admin-edit-button:disabled,
+.admin-delete-button:disabled {
+    opacity: 0.6;
+    cursor: wait;
+    transform: none;
+}
+
+@media (max-width: 600px) {
+    .admin-actions {
+        flex-direction: column;
+    }
+
+    .admin-edit-button,
+    .admin-delete-button {
+        width: 100%;
+    }
+}
+
+#tipagemModal {
+    z-index: 9999;
+}
+
+#adminTipagemModal {
+    z-index: 10000;
 }

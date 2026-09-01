@@ -79,6 +79,14 @@ const modalSocionics = document.getElementById("modalSocionics");
 const modalBigFive = document.getElementById("modalBigFive");
 const modalDescription = document.getElementById("modalDescription");
 
+const deleteConfirmOverlay = document.getElementById("deleteConfirmOverlay");
+const deleteConfirmCancel = document.getElementById("deleteConfirmCancel");
+const deleteConfirmButton = document.getElementById("deleteConfirmButton");
+const deleteConfirmText = document.getElementById("deleteConfirmText");
+
+let tipagemPendenteExclusao = null;
+
+
 const likeButton = document.getElementById("likeButton");
 const dislikeButton = document.getElementById("dislikeButton");
 const likeCount = document.getElementById("likeCount");
@@ -823,11 +831,7 @@ async function abrirTipagem(tipagem) {
     modalBigFive.textContent = tipagem.bigFive;
     modalDescription.textContent = tipagem.descricao;
 
-    likeCount.textContent = tipagem.likes;
-    dislikeCount.textContent = tipagem.dislikes;
-
-    atualizarEstadoDoVoto(tipagem.id);
-    
+await carregarVotos(tipagem.id);
 
     if (TIPAGENS_IS_ADMIN || TIPAGENS_IS_OWNER) {
         adminSection.classList.add("visible");
@@ -835,8 +839,9 @@ async function abrirTipagem(tipagem) {
         adminSection.classList.remove("visible");
     }
 
-    modal.classList.add("active");
-    modal.setAttribute("aria-hidden", "false");
+   modal.style.display = "flex";
+modal.classList.add("active");
+modal.setAttribute("aria-hidden", "false");
 
     document.body.classList.add("modal-open");
 }
@@ -880,11 +885,52 @@ loginModal.addEventListener("click", event => {
     }
 });
 
-
 /* VOTOS */
 
-function atualizarEstadoDoVoto(tipagemId) {
+async function carregarVotos(tipagemId) {
+    if (!tipagemId) {
+        return;
+    }
 
+    const { data: votos, error } = await supabaseClient
+        .from("tipagem_votos")
+        .select("usuario_id, voto")
+        .eq("tipagem_id", tipagemId);
+
+    if (error) {
+        console.error("Erro ao carregar votos:", error);
+        return;
+    }
+
+    const votosLista = votos || [];
+
+    const likes = votosLista.filter(
+        item => item.voto === "like"
+    ).length;
+
+    const dislikes = votosLista.filter(
+        item => item.voto === "dislike"
+    ).length;
+
+    if (usuarioAtual?.id) {
+        const meuVoto = votosLista.find(
+            item => item.usuario_id === usuarioAtual.id
+        );
+
+        if (meuVoto) {
+            state.votosDoUsuario[tipagemId] = meuVoto.voto;
+        } else {
+            delete state.votosDoUsuario[tipagemId];
+        }
+    }
+
+    likeCount.textContent = likes;
+    dislikeCount.textContent = dislikes;
+
+    atualizarEstadoDoVoto(tipagemId);
+}
+
+function atualizarEstadoDoVoto(tipagemId) {
     likeButton.classList.remove("selected");
     dislikeButton.classList.remove("selected");
 
@@ -907,7 +953,6 @@ function atualizarEstadoDoVoto(tipagemId) {
 }
 
 function exigirLogin() {
-
     if (TIPAGENS_IS_LOGGED_IN) {
         return true;
     }
@@ -917,9 +962,8 @@ function exigirLogin() {
     return false;
 }
 
-function votar(tipo) {
-
-    if (!state.tipagemAtual) {
+async function votar(tipo) {
+    if (!state.tipagemAtual?.id) {
         return;
     }
 
@@ -927,46 +971,70 @@ function votar(tipo) {
         return;
     }
 
-    const tipagem = state.tipagemAtual;
-    const votoAnterior = state.votosDoUsuario[tipagem.id];
-
-    if (votoAnterior === tipo) {
-
-        if (tipo === "like") {
-            tipagem.likes = Math.max(0, tipagem.likes - 1);
-        }
-
-        if (tipo === "dislike") {
-            tipagem.dislikes = Math.max(0, tipagem.dislikes - 1);
-        }
-
-        delete state.votosDoUsuario[tipagem.id];
-
-    } else {
-
-        if (votoAnterior === "like") {
-            tipagem.likes = Math.max(0, tipagem.likes - 1);
-        }
-
-        if (votoAnterior === "dislike") {
-            tipagem.dislikes = Math.max(0, tipagem.dislikes - 1);
-        }
-
-        if (tipo === "like") {
-            tipagem.likes += 1;
-        }
-
-        if (tipo === "dislike") {
-            tipagem.dislikes += 1;
-        }
-
-        state.votosDoUsuario[tipagem.id] = tipo;
+    if (!usuarioAtual?.id) {
+        return;
     }
 
-    likeCount.textContent = tipagem.likes;
-    dislikeCount.textContent = tipagem.dislikes;
+    const tipagemId = state.tipagemAtual.id;
 
-    atualizarEstadoDoVoto(tipagem.id);
+    const { data: votoAtual, error: buscaError } = await supabaseClient
+        .from("tipagem_votos")
+        .select("id, voto")
+        .eq("tipagem_id", tipagemId)
+        .eq("usuario_id", usuarioAtual.id)
+        .maybeSingle();
+
+    if (buscaError) {
+        console.error("Erro ao buscar voto:", buscaError);
+        return;
+    }
+
+    if (votoAtual?.voto === tipo) {
+        const { error } = await supabaseClient
+            .from("tipagem_votos")
+            .delete()
+            .eq("id", votoAtual.id);
+
+        if (error) {
+            console.error("Erro ao remover voto:", error);
+            return;
+        }
+
+        delete state.votosDoUsuario[tipagemId];
+
+    } else if (votoAtual) {
+        const { error } = await supabaseClient
+            .from("tipagem_votos")
+            .update({
+                voto: tipo
+            })
+            .eq("id", votoAtual.id);
+
+        if (error) {
+            console.error("Erro ao alterar voto:", error);
+            return;
+        }
+
+        state.votosDoUsuario[tipagemId] = tipo;
+
+    } else {
+        const { error } = await supabaseClient
+            .from("tipagem_votos")
+            .insert({
+                tipagem_id: tipagemId,
+                usuario_id: usuarioAtual.id,
+                voto: tipo
+            });
+
+        if (error) {
+            console.error("Erro ao registrar voto:", error);
+            return;
+        }
+
+        state.votosDoUsuario[tipagemId] = tipo;
+    }
+
+    await carregarVotos(tipagemId);
 }
 
 likeButton.addEventListener("click", () => {
@@ -985,39 +1053,118 @@ editButton.addEventListener("click", () => {
         return;
     }
 
-    abrirAdminTipagem(state.tipagemAtual);
+    if (!TIPAGENS_IS_ADMIN && !TIPAGENS_IS_OWNER) {
+        return;
+    }
+
+    const tipagem = state.tipagemAtual;
+
+    tipagemId.value = tipagem.id || "";
+
+    tipagemPersonagem.value = tipagem.personagem || "";
+    tipagemObra.value = tipagem.obra || "";
+    tipagemCategoria.value = tipagem.categoria || "";
+    tipagemMbti.value = tipagem.mbti || "";
+    tipagemEneagrama.value = tipagem.eneagrama || "";
+    tipagemTritype.value = tipagem.tritype || "";
+    tipagemSubtipo.value = tipagem.subtipo || "";
+    tipagemTemperamento.value = tipagem.temperamento || "";
+    tipagemSocionics.value = tipagem.socionics || "";
+    tipagemBigFive.value = tipagem.big_five || "";
+    tipagemDescricao.value = tipagem.descricao || "";
+
+    adminModalTitle.textContent = "Editar tipagem";
+    adminFormMessage.textContent = "";
+
+    if (adminImagePreview) {
+        adminImagePreview.src =
+            tipagem.imagem_url ||
+            "https://placehold.co/700x700/14101D/A9D8FF?text=SEM+FOTO";
+    }
+
+    adminTipagemModal.classList.add("active");
+    adminTipagemModal.setAttribute("aria-hidden", "false");
 });
-
 deleteButton.addEventListener("click", () => {
-
-    if (!state.tipagemAtual) {
+    if (!state.tipagemAtual?.id) {
         return;
     }
 
     if (!TIPAGENS_IS_OWNER) {
-        alert("Somente o dono da Casa dos MBTIs pode apagar tipagens.");
+        alert("Somente o dono da Casa dos MBTIs pode apagar publicações.");
         return;
     }
 
-    const confirmar = confirm(
-        `Tem certeza que deseja apagar "${state.tipagemAtual.personagem}"?`
-    );
+    tipagemPendenteExclusao = state.tipagemAtual;
 
-    if (!confirmar) {
+    deleteConfirmText.textContent =
+        `A publicação de "${tipagemPendenteExclusao.personagem}" e os comentários dela serão removidos permanentemente.`;
+
+    deleteConfirmOverlay.classList.add("active");
+    deleteConfirmOverlay.setAttribute("aria-hidden", "false");
+});
+
+deleteConfirmCancel.addEventListener("click", () => {
+    fecharConfirmacaoExclusao();
+});
+
+deleteConfirmOverlay.addEventListener("click", (event) => {
+    if (event.target === deleteConfirmOverlay) {
+        fecharConfirmacaoExclusao();
+    }
+});
+
+function fecharConfirmacaoExclusao() {
+    deleteConfirmOverlay.classList.remove("active");
+    deleteConfirmOverlay.setAttribute("aria-hidden", "true");
+    tipagemPendenteExclusao = null;
+}
+
+deleteConfirmButton.addEventListener("click", async () => {
+    if (!tipagemPendenteExclusao?.id) {
         return;
     }
 
-    const indice = tipagensDemo.findIndex(
-        item => item.id === state.tipagemAtual.id
-    );
-
-    if (indice !== -1) {
-        tipagensDemo.splice(indice, 1);
+    if (!TIPAGENS_IS_OWNER) {
+        fecharConfirmacaoExclusao();
+        return;
     }
+
+    const tipagem = tipagemPendenteExclusao;
+
+    deleteConfirmButton.disabled = true;
+    deleteConfirmButton.textContent = "🗑️ Apagando...";
+
+    const { error } = await supabaseClient
+        .from("tipagens")
+        .delete()
+        .eq("id", tipagem.id);
+
+    if (error) {
+        console.error("Erro ao apagar publicação:", error);
+
+        alert(
+            `Não foi possível apagar a publicação:\n${error.message}`
+        );
+
+        deleteConfirmButton.disabled = false;
+        deleteConfirmButton.textContent = "🗑️ Apagar";
+
+        return;
+    }
+
+    fecharConfirmacaoExclusao();
+
+    state.tipagemAtual = null;
 
     fecharTipagem();
-    renderizarTipagens();
+
+    await carregarTipagens();
+
+    deleteConfirmButton.disabled = false;
+    deleteConfirmButton.textContent = "🗑️ Apagar";
 });
+
 
 /* ADMIN — NOVA TIPAGEM / EDIÇÃO */
 
@@ -1041,35 +1188,35 @@ function abrirAdminTipagem(tipagem = null) {
         adminModalTitle.textContent = "Editar tipagem";
         adminSaveButton.textContent = "Salvar alterações";
 
-        tipagemId.value = tipagem.id;
-        tipagemPersonagem.value = tipagem.personagem || "";
-        tipagemObra.value = tipagem.obra || "";
-        tipagemCategoria.value = tipagem.categoria || "anime";
-        tipagemMbti.value = tipagem.mbti || "";
-        tipagemEneagrama.value = tipagem.eneagrama || "";
-        tipagemTritype.value = tipagem.tritype || "";
-        tipagemSubtipo.value = tipagem.subtipo || "";
-        tipagemTemperamento.value = tipagem.temperamento || "";
-        tipagemSocionics.value = tipagem.socionics || "";
-        tipagemBigFive.value = tipagem.big_five || "";
-        tipagemDescricao.value = tipagem.descricao || "";
+   tipagemId.value = tipagem.id;
+   console.log("ID DA EDIÇÃO:", tipagemId.value);
+tipagemPersonagem.value = tipagem.personagem || "";
+tipagemObra.value = tipagem.obra || "";
+tipagemCategoria.value = tipagem.categoria || "anime";
+tipagemMbti.value = tipagem.mbti || "";
+tipagemEneagrama.value = tipagem.eneagrama || "";
+tipagemTritype.value = tipagem.tritype || "";
+tipagemSubtipo.value = tipagem.subtipo || "";
+tipagemTemperamento.value = tipagem.temperamento || "";
+tipagemSocionics.value = tipagem.socionics || "";
+tipagemBigFive.value = tipagem.big_five || "";
+tipagemDescricao.value = tipagem.descricao || "";
 
-        if (tipagem.imagem_url) {
-            adminImagePreview.innerHTML = `
-                <img src="${escaparHtml(tipagem.imagem_url)}" alt="">
-            `;
-        }
-    } else {
-        adminModalTitle.textContent = "Nova tipagem";
-        adminSaveButton.textContent = "Publicar tipagem";
-    }
-
-    adminTipagemModal.classList.add("active");
-    adminTipagemModal.setAttribute("aria-hidden", "false");
-
-    document.body.classList.add("modal-open");
+if (tipagem.imagem_url) {
+    adminImagePreview.innerHTML = `
+        <img src="${escaparHtml(tipagem.imagem_url)}" alt="">
+    `;
 }
+} else {
+    adminModalTitle.textContent = "Nova tipagem";
+    adminSaveButton.textContent = "Publicar tipagem";
+}
+adminTipagemModal.classList.add("active");
+adminTipagemModal.setAttribute("aria-hidden", "false");
+adminTipagemModal.style.display = "flex";
 
+document.body.classList.add("modal-open");
+}
 
 function fecharAdminTipagem() {
     adminTipagemModal.classList.remove("active");
@@ -1077,8 +1224,6 @@ function fecharAdminTipagem() {
 
     document.body.classList.remove("modal-open");
 }
-
-
 newTipagemButton.addEventListener("click", () => {
     abrirAdminTipagem();
 });
@@ -1162,7 +1307,6 @@ async function enviarImagemTipagem(arquivo) {
     return publicUrlData.publicUrl;
 }
 
-
 async function salvarTipagem(event) {
     event.preventDefault();
 
@@ -1195,7 +1339,6 @@ async function salvarTipagem(event) {
 
     adminSaveButton.disabled = true;
     adminSaveButton.textContent = "Salvando...";
-
     adminFormMessage.textContent = "";
 
     try {
@@ -1282,11 +1425,11 @@ async function salvarTipagem(event) {
     }
 }
 
-
 tipagemForm.addEventListener(
     "submit",
     salvarTipagem
 );
+
 
 /* ESC */
 
@@ -1423,148 +1566,160 @@ inicializarTipagens();
             .replaceAll("'", "&#039;");
     }
 
-    async function carregarComentarios() {
-        const tipagem = state.tipagemAtual;
+  async function carregarComentarios() {
+    const tipagem = state.tipagemAtual;
 
-        if (!tipagem?.id) {
-            return;
-        }
+    if (!tipagem?.id) {
+        return;
+    }
 
-        commentsList.innerHTML = "";
-        commentsEmpty.classList.remove("visible");
-        commentsCount.textContent = "0";
+    commentsList.innerHTML = "";
+    commentsEmpty.classList.remove("visible");
+    commentsCount.textContent = "0";
 
-        const { data: comentarios, error } = await supabaseClient
-            .from("tipagem_comentarios")
-            .select("id, usuario_id, comentario, created_at")
-            .eq("tipagem_id", tipagem.id)
-            .order("created_at", {
-                ascending: false
-            });
+    const { data: comentarios, error } = await supabaseClient
+        .from("tipagem_comentarios")
+        .select("id, usuario_id, comentario, created_at")
+        .eq("tipagem_id", tipagem.id)
+        .order("created_at", {
+            ascending: false
+        });
 
-        if (error) {
-            console.error("Erro ao carregar comentários:", error);
-            return;
-        }
+    if (error) {
+        console.error("Erro ao carregar comentários:", error);
+        return;
+    }
 
-        if (!comentarios || comentarios.length === 0) {
-            commentsEmpty.classList.add("visible");
-            return;
-        }
+    if (!comentarios || comentarios.length === 0) {
+        commentsEmpty.classList.add("visible");
+        return;
+    }
 
-        commentsCount.textContent = comentarios.length;
+    commentsCount.textContent = comentarios.length;
 
-        const ids = [
-            ...new Set(
-                comentarios.map(item => item.usuario_id)
-            )
-        ];
+    const ids = [
+        ...new Set(
+            comentarios.map(item => item.usuario_id)
+        )
+    ];
 
-        let perfis = [];
+    let perfis = [];
 
-        if (ids.length) {
-            const { data: perfilData, error: perfilError } =
-                await supabaseClient
-                    .from("profiles")
-                    .select("id, nome, username, avatar_url, vip, cargo")
-                    .in("id", ids);
+    if (ids.length) {
+        const {
+            data: perfilData,
+            error: perfilError
+        } = await supabaseClient
+            .from("profiles")
+            .select("id, nome, username, avatar_url, vip, cargo")
+            .in("id", ids);
 
-            if (perfilError) {
-                console.error(
-                    "Erro ao carregar autores:",
-                    perfilError
-                );
-            } else {
-                perfis = perfilData || [];
-            }
-        }
-
-        comentarios.forEach(comentario => {
-            const perfil = perfis.find(
-                item => item.id === comentario.usuario_id
+        if (perfilError) {
+            console.error(
+                "Erro ao carregar autores:",
+                perfilError
             );
+        } else {
+            perfis = perfilData || [];
+        }
+    }
 
-            const article = document.createElement("article");
-            article.className = "comment-item";
+    comentarios.forEach(comentario => {
+        const perfil = perfis.find(
+            item => item.id === comentario.usuario_id
+        );
 
-            const nome = perfil?.nome || "Membro";
+        const article = document.createElement("article");
+        article.className = "comment-item";
 
-            const username = perfil?.username
-                ? `@${String(perfil.username).replace(/^@/, "")}`
-                : "@usuario";
+        const nome = perfil?.nome || "Membro";
 
-            const isAdm =
-                String(perfil?.cargo || "")
-                    .toLowerCase()
-                    .trim() === "adm";
+        const username = perfil?.username
+            ? `@${String(perfil.username).replace(/^@/, "")}`
+            : "@usuario";
 
-            const isVip =
-                perfil?.vip === true;
+        const isAdm =
+            String(perfil?.cargo || "")
+                .toLowerCase()
+                .trim() === "adm";
 
-            const data = new Date(
-                comentario.created_at
-            ).toLocaleDateString("pt-BR");
+        const isVip =
+            perfil?.vip === true;
 
-            const avatar = perfil?.avatar_url
-                ? `<img src="${escaparHTML(perfil.avatar_url)}" alt="">`
-                : "👤";
+        const data = new Date(
+            comentario.created_at
+        ).toLocaleDateString("pt-BR");
 
-            const badge = isAdm
-                ? `<span class="comment-admin-badge">ADMIN</span>`
-                : isVip
-                    ? `<span class="comment-vip-badge">VIP</span>`
-                    : "";
+        const avatar = perfil?.avatar_url
+            ? `<img src="${escaparHTML(perfil.avatar_url)}" alt="">`
+            : "👤";
 
-            const podeApagar =
-                typeof TIPAGENS_IS_OWNER !== "undefined" &&
-                TIPAGENS_IS_OWNER;
+        const badge = isAdm
+            ? `<span class="comment-admin-badge">ADMIN</span>`
+            : isVip
+                ? `<span class="comment-vip-badge">VIP</span>`
+                : "";
 
-            article.innerHTML = `
-                <div class="comment-top">
+        /*
+         * APAGAR COMENTÁRIO
+         * Continua disponível somente para a dona.
+         */
+        const podeApagarComentario =
+            TIPAGENS_IS_OWNER === true;
 
-                    <div class="comment-avatar">
-                        ${avatar}
-                    </div>
+        article.innerHTML = `
+            <div class="comment-top">
 
-                    <div class="comment-user">
+                <div class="comment-avatar">
+                    ${avatar}
+                </div>
 
-                        <strong>
-                            ${escaparHTML(nome)}
-                            ${badge}
-                        </strong>
+                <div class="comment-user">
 
-                        <span>
-                            ${escaparHTML(username)} · ${data}
-                        </span>
+                    <strong>
+                        ${escaparHTML(nome)}
+                        ${badge}
+                    </strong>
 
-                    </div>
-
-                    ${
-                        podeApagar
-                            ? `
-                                <button
-                                    class="comment-delete-button"
-                                    type="button"
-                                    data-comment-id="${comentario.id}"
-                                >
-                                    🗑
-                                </button>
-                            `
-                            : ""
-                    }
+                    <span>
+                        ${escaparHTML(username)} · ${data}
+                    </span>
 
                 </div>
 
-                <p class="comment-text">
-                    ${escaparHTML(comentario.comentario)}
-                </p>
-            `;
+                ${
+                    podeApagarComentario
+                        ? `
+                            <button
+                                class="comment-delete-button"
+                                type="button"
+                                data-comment-id="${comentario.id}"
+                                title="Apagar comentário"
+                            >
+                                🗑
+                            </button>
+                        `
+                        : ""
+                }
 
-            const deleteButton =
-                article.querySelector(".comment-delete-button");
+            </div>
 
-            if (deleteButton) {
-                deleteButton.addEventListener("click", async () => {
+            <p class="comment-text">
+                ${escaparHTML(comentario.comentario)}
+            </p>
+        `;
+
+        /*
+         * AÇÃO DO BOTÃO DE APAGAR COMENTÁRIO
+         */
+        const deleteCommentButton =
+            article.querySelector(".comment-delete-button");
+
+        if (deleteCommentButton) {
+            deleteCommentButton.addEventListener(
+                "click",
+                async () => {
+
                     const confirmar = confirm(
                         "Deseja apagar este comentário?"
                     );
@@ -1573,31 +1728,38 @@ inicializarTipagens();
                         return;
                     }
 
-                    const { error } = await supabaseClient
+                    deleteCommentButton.disabled = true;
+
+                    const {
+                        error: deleteError
+                    } = await supabaseClient
                         .from("tipagem_comentarios")
                         .delete()
                         .eq("id", comentario.id);
 
-                    if (error) {
+                    if (deleteError) {
                         console.error(
                             "Erro ao apagar comentário:",
-                            error
+                            deleteError
                         );
 
                         alert(
-                            "Não foi possível apagar o comentário."
+                            `Não foi possível apagar o comentário:\n${deleteError.message}`
                         );
+
+                        deleteCommentButton.disabled = false;
 
                         return;
                     }
 
                     await carregarComentarios();
-                });
-            }
+                }
+            );
+        }
 
-            commentsList.appendChild(article);
-        });
-    }
+        commentsList.appendChild(article);
+    });
+}
 
     async function enviarComentario() {
         if (!usuarioAtual) {

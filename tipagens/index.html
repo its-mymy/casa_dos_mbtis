@@ -449,38 +449,30 @@
 </div>
 
 
-
 <div class="admin-section" id="adminSection">
 
     <div class="admin-heading">
-
         <div>
             <span class="admin-kicker">ADMINISTRAÇÃO</span>
             <h3>Gerenciar tipagem</h3>
         </div>
-
     </div>
-                    <div class="admin-actions">
 
-                        <button class="admin-button edit-button" id="editButton" type="button">
-                            ✎ Editar
-                        </button>
+    <div class="admin-actions">
 
-                        <button class="admin-button delete-button" id="deleteButton" type="button">
-                            🗑 Apagar
-                        </button>
+        <button id="editButton" class="admin-edit-button" type="button">
+            ✏️ Editar tipagem
+        </button>
 
-                    </div>
-
-                </div>
-
-            </div>
-
-        </div>
+        <button id="deleteButton" class="admin-delete-button" type="button">
+            🗑️ Apagar publicação
+        </button>
 
     </div>
 
-    <!-- MODAL DE LOGIN -->
+</div>
+
+<!-- MODAL DE LOGIN -->
 
     <div class="small-modal-overlay" id="loginModal" aria-hidden="true">
 
@@ -513,7 +505,34 @@
         </div>
 
     </div>
-        <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+
+<!-- MODAL DE CONFIRMAÇÃO DE EXCLUSÃO -->
+<div class="delete-confirm-overlay" id="deleteConfirmOverlay" aria-hidden="true">
+    <div class="delete-confirm-modal">
+        <div class="delete-confirm-icon">🗑️</div>
+
+        <div class="delete-confirm-content">
+            <span class="delete-confirm-kicker">EXCLUIR PUBLICAÇÃO</span>
+            <h3>Tem certeza que deseja apagar?</h3>
+            <p id="deleteConfirmText">
+                A publicação e os comentários dela serão removidos permanentemente.
+            </p>
+        </div>
+
+        <div class="delete-confirm-actions">
+            <button id="deleteConfirmCancel" class="delete-confirm-cancel" type="button">
+                Cancelar
+            </button>
+
+            <button id="deleteConfirmButton" class="delete-confirm-delete" type="button">
+                🗑️ Apagar
+            </button>
+        </div>
+    </div>
+</div>
+
+ <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
     <script src="tipagens.js"></script>
 
