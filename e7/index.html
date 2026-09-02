@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <meta name="description" content="Casa dos MBTIs — Eneagrama 7">
+    <title>E7 | Casa dos MBTIs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="e7.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#111111">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="background-glow pink"></div>
+        <div class="background-glow pink-two"></div>
+    </div>
+
+    <header class="topbar">
+
+        <a href="../" class="brand">
+            <span class="brand-dot"></span>
+            <span>CASA DOS MBTIs</span>
+        </a>
+
+        <button id="menu-button" class="menu-button" type="button" aria-label="Abrir menu">☰</button>
+
+    </header>
+
+    <main>
+<div class="floating-type type-sp7" onclick="irPara('sp7-section')">
+    <div class="type-image">
+        <img src="../img/sp7.png" alt="SP7">
+    </div>
+    <span>sp7</span>
+</div>
+
+<div class="floating-type type-so7" onclick="irPara('so7-section')">
+    <div class="type-image">
+        <img src="../img/so7.png" alt="SO7">
+    </div>
+    <span>so7</span>
+</div>
+
+<div class="floating-type type-sx7" onclick="irPara('sx7-section')">
+    <div class="type-image">
+        <img src="../img/sx7.png" alt="SX7">
+    </div>
+    <span>sx7</span>
+</div>
+
+
+            <div class="hero-content">
+                <span class="eyebrow">ENEAGRAMA</span>
+                <h1>E7</h1>
+                <p>O Entusiasta</p>
+                <span class="hero-subtitle">Liberdade • Experiência • Possibilidades</span>
+            </div>
+
+        </section>
+
+        <section class="content">
+
+            <nav class="e7-tabs">
+                <button class="e7-tab active" type="button" onclick="trocarAba('sobre', this)">♡ Sobre</button>
+                <button class="e7-tab" type="button" onclick="trocarAba('feed', this)">✎ Feed SP7</button>
+            </nav>
+
+            <div id="tab-sobre" class="tab-content active">
+
+                <section class="about-card" id="sobre-e7">
+
+                    <span class="section-label">ENEAGRAMA 7</span>
+                    <h2>O Entusiasta</h2>
+
+                    <p>
+                        O tipo 7 busca liberdade, experiências, diversão e novas possibilidades.
+                        É um tipo naturalmente curioso, otimista e cheio de energia, sempre procurando
+                        algo interessante para descobrir.
+                    </p>
+
+                    <p>
+                        Ao mesmo tempo, pode ter dificuldade em permanecer em situações dolorosas,
+                        buscando rapidamente uma nova possibilidade para escapar do desconforto.
+                    </p>
+
+                    <div class="traits">
+
+                        <div class="trait">
+                            <strong>✦</strong>
+                            <span>Entusiasmo</span>
+                        </div>
+
+                        <div class="trait">
+                            <strong>♡</strong>
+                            <span>Liberdade</span>
+                        </div>
+
+                        <div class="trait">
+                            <strong>✧</strong>
+                            <span>Curiosidade</span>
+                        </div>
+
+                        <div class="trait">
+                            <strong>∞</strong>
+                            <span>Possibilidades</span>
+                        </div>
+
+                    </div>
+
+                </section>
+
+                <section class="subtypes-section">
+
+                    <div class="section-heading">
+                        <span class="section-label">SUBTIPOS</span>
+                        <h2>As três faces do E7</h2>
+                    </div>
+
+                    <div class="subtypes-grid">
+
+                        <article class="subtype-card sp7-card">
+                            <div class="subtype-number">SP7</div>
+                            <h3>Conservação</h3>
+                            <p>
+                                Busca segurança, conforto e prazer. Pode parecer mais tranquilo,
+                                estratégico e preocupado em garantir boas condições para si.
+                            </p>
+                        </article>
+
+                        <article class="subtype-card so7-card">
+                            <div class="subtype-number">SO7</div>
+                            <h3>Social</h3>
+                            <p>
+                                Direciona seu entusiasmo para pessoas, grupos e ideais.
+                                Costuma ser mais prestativo, idealista e envolvido socialmente.
+                            </p>
+                        </article>
+
+                        <article class="subtype-card sx7-card">
+                            <div class="subtype-number">SX7</div>
+                            <h3>Sexual</h3>
+                            <p>
+                                Busca intensidade, aventura e estímulo. Tende a viver suas
+                                experiências de maneira mais impulsiva e apaixonada.
+                            </p>
+                        </article>
+
+                    </div>
+
+                </section>
+
+                <section id="sp7-section" class="subtype-detail">
+
+                    <span class="section-label">SP7</span>
+                    <h2>Sobre SP7</h2>
+
+                    <p>
+                        O SP7 é o subtipo de conservação do tipo 7. Seu foco está em encontrar
+                        segurança, conforto e prazer, tentando aproveitar a vida sem abrir mão
+                        de uma sensação de estabilidade.
+                    </p>
+
+                    <p>
+                        Pode demonstrar o entusiasmo de maneira mais prática, estratégica
+                        e cuidadosa, procurando garantir boas condições para si enquanto
+                        explora novas possibilidades.
+                    </p>
+
+                </section>
+
+                <section id="so7-section" class="subtype-detail">
+
+                    <span class="section-label">SO7</span>
+                    <h2>Sobre SO7</h2>
+
+                    <p>
+                        O SO7 direciona grande parte do entusiasmo para pessoas, grupos,
+                        ideais e objetivos coletivos.
+                    </p>
+
+                    <p>
+                        Pode apresentar uma postura mais prestativa, idealista e envolvida
+                        socialmente, usando sua energia para criar experiências positivas
+                        para outras pessoas.
+                    </p>
+
+                </section>
+
+                <section id="sx7-section" class="subtype-detail">
+
+                    <span class="section-label">SX7</span>
+                    <h2>Sobre SX7</h2>
+
+                    <p>
+                        O SX7 procura intensidade, aventura, estímulo e experiências marcantes.
+                    </p>
+
+                    <p>
+                        Pode viver o entusiasmo de maneira mais impulsiva e apaixonada,
+                        buscando sensações fortes, novidade e experiências que tragam
+                        bastante intensidade.
+                    </p>
+
+                </section>
+
+                <section class="sp7-section">
+
+                    <div class="section-heading">
+                        <span class="section-label">SP7</span>
+                        <h2>Os SP7 da Casa</h2>
+                        <p>Conheça os membros E7 com subtipo de conservação.</p>
+                    </div>
+
+                    <div id="sp7-members" class="members-grid">
+                        <div class="loading-card">Carregando membros...</div>
+                    </div>
+
+                </section>
+
+            </div>
+
+            <div id="tab-feed" class="tab-content">
+
+                <section class="feed-header">
+
+                    <span class="section-label">FEED SP7</span>
+                    <h2>Conversas da Casa</h2>
+                    <p>Textos, imagens e enquetes sobre SP7.</p>
+
+                </section>
+
+                <section id="composer" class="composer hidden">
+
+                    <div class="composer-top">
+
+                        <div id="composer-avatar" class="composer-avatar">?</div>
+
+                        <div>
+                            <strong id="composer-name">Você</strong>
+                            <span>Publicando no Feed SP7</span>
+                        </div>
+
+                    </div>
+
+                    <textarea id="post-content" maxlength="5000" placeholder="O que você quer falar sobre SP7?"></textarea>
+
+                    <div id="image-preview" class="image-preview hidden"></div>
+
+                    <div class="composer-tools">
+
+                        <label class="tool-button">
+                            🖼️ Imagem
+                            <input id="post-image" type="file" accept="image/png,image/jpeg,image/webp">
+                        </label>
+
+                        <button class="tool-button" type="button" onclick="alternarEnquete()">
+                            📊 Enquete
+                        </button>
+
+                        <button id="publish-button" class="publish-button" type="button" onclick="publicarPost()">
+                            Publicar
+                        </button>
+
+                    </div>
+
+                    <div id="poll-builder" class="poll-builder hidden">
+
+                        <div class="poll-builder-header">
+
+                            <strong>Nova enquete</strong>
+
+                            <button type="button" onclick="cancelarEnquete()">×</button>
+
+                        </div>
+
+                        <input id="poll-question" type="text" maxlength="500" placeholder="Pergunta da enquete">
+
+                        <div id="poll-options">
+
+                            <div class="poll-input-row">
+                                <input class="poll-option-input" type="text" maxlength="200" placeholder="Opção 1">
+                            </div>
+
+                            <div class="poll-input-row">
+                                <input class="poll-option-input" type="text" maxlength="200" placeholder="Opção 2">
+                            </div>
+
+                        </div>
+
+                        <button class="add-option-button" type="button" onclick="adicionarOpcao()">
+                            + Adicionar opção
+                        </button>
+
+                    </div>
+
+                </section>
+
+                <section id="feed-list" class="feed-list">
+
+                    <div class="loading-card">
+                        Carregando publicações...
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- PERFIL RÁPIDO -->
+
+    <div id="profile-panel" class="profile-panel hidden">
+
+        <div class="profile-panel-backdrop" onclick="fecharPerfilRapido()"></div>
+
+        <div class="quick-profile">
+
+            <button class="quick-profile-close" type="button" onclick="fecharPerfilRapido()">×</button>
+
+            <div id="quick-avatar" class="quick-avatar">👤</div>
+
+            <h2 id="quick-name">Carregando...</h2>
+            <p id="quick-username">@usuario</p>
+
+            <div class="quick-tags">
+                <span id="quick-mbti">MBTI</span>
+                <span id="quick-eneagrama">E7</span>
+                <span id="quick-subtipo">SP7</span>
+            </div>
+
+            <a href="../membros/perfil.html" class="quick-profile-button">
+                👤 Abrir meu perfil
+            </a>
+
+            <p class="quick-note">
+                Para editar seu perfil, use o perfil normal da comunidade.
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- MENU IGUAL AO FEED DA CASA -->
+
+    <div id="member-menu-overlay" class="member-menu-overlay"></div>
+
+    <aside id="member-menu" class="member-menu">
+
+        <div class="member-menu-header">
+
+            <div>
+                <span>CASA DOS MBTIs</span>
+                <h2>Meu espaço</h2>
+            </div>
+
+            <button id="close-menu-button" class="close-menu-button" type="button">×</button>
+
+        </div>
+
+        <div class="menu-profile-card">
+
+            <div id="menu-avatar" class="menu-avatar">👤</div>
+
+            <div class="menu-profile-data">
+
+                <strong id="menu-name">Visitante</strong>
+
+                <span id="menu-username">Entrar</span>
+
+                <span id="menu-badge" class="menu-badge hidden"></span>
+
+            </div>
+
+        </div>
+
+        <div class="menu-divider"></div>
+
+        <nav class="member-menu-navigation">
+
+            <a href="../" class="member-menu-link">
+                <span class="menu-link-icon">📰</span>
+                <span>Feed</span>
+                <b>›</b>
+            </a>
+
+            <button class="member-menu-link ativo" type="button" onclick="irParaFeed()">
+                <span class="menu-link-icon">✦</span>
+                <span>Feed SP7</span>
+                <b>›</b>
+            </button>
+
+            <button class="member-menu-link" type="button" onclick="irPara('sp7-section'); fecharMenu(); mostrarSobre()">
+                <span class="menu-link-icon">♡</span>
+                <span>Sobre SP7</span>
+                <b>›</b>
+            </button>
+
+            <button class="member-menu-link" type="button" onclick="irPara('so7-section'); fecharMenu(); mostrarSobre()">
+                <span class="menu-link-icon">♡</span>
+                <span>Sobre SO7</span>
+                <b>›</b>
+            </button>
+
+            <button class="member-menu-link" type="button" onclick="irPara('sx7-section'); fecharMenu(); mostrarSobre()">
+                <span class="menu-link-icon">♡</span>
+                <span>Sobre SX7</span>
+                <b>›</b>
+            </button>
+
+            <button id="profile-menu-link" class="member-menu-link" type="button" onclick="abrirPerfilRapido(); fecharMenu();">
+                <span class="menu-link-icon">👤</span>
+                <span>Meu perfil</span>
+                <b>›</b>
+            </button>
+
+        </nav>
+
+        <div class="member-menu-bottom">
+
+            <a id="login-menu-button" href="../login/" class="login-menu-button">
+                🔐 Entrar / cadastrar
+            </a>
+
+            <button id="logout-button" class="logout-button hidden" type="button">
+                🚪 Sair da conta
+            </button>
+
+        </div>
+
+    </aside>
+
+    <!-- MODAL DE EDIÇÃO DA PUBLICAÇÃO -->
+
+    <div id="edit-modal" class="edit-modal hidden">
+
+        <div class="edit-modal-backdrop" onclick="fecharEdicao()"></div>
+
+        <div class="edit-modal-box">
+
+            <div class="edit-modal-header">
+
+                <h3>Editar publicação</h3>
+
+                <button type="button" onclick="fecharEdicao()">×</button>
+
+            </div>
+
+            <textarea id="edit-content" maxlength="5000" placeholder="Edite sua publicação..."></textarea>
+
+            <div class="edit-modal-actions">
+
+                <button class="cancel-button" type="button" onclick="fecharEdicao()">
+                    Cancelar
+                </button>
+
+                <button class="publish-button" type="button" onclick="salvarEdicao()">
+                    Salvar
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        <span>CASA DOS MBTIs</span>
+        <small>E7 • SP7</small>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="e7.js"></script>
+
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
+
+</body>
+
+</html>
