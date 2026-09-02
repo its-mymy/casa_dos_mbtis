@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="../css/eneagrama.css">
     <link rel="stylesheet" href="../menu/menu.css">
     <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#111111">
 </head>
 
 <body>
@@ -403,6 +404,13 @@
     </main>
 
      <script src="../menu/menu.js"></script>
+     <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
 
 </body>
 </html>

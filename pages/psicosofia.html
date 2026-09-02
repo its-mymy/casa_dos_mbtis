@@ -6,6 +6,8 @@
     <title>Psicosofia - Casa dos MBTIs</title>
     <link rel="stylesheet" href="../menu/menu.css">
     <link rel="stylesheet" href="../css/psicosofia.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#111111">
 </head>
 
 <body>
@@ -62,6 +64,13 @@
 
    
     <script src="../menu/menu.js"></script>
+    <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
 
 </body>
 </html>

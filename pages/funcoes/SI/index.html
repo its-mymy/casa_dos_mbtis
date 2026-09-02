@@ -6,6 +6,8 @@
     <title>Si — Sensação Introvertida</title>
     <link rel="stylesheet" href="si.css">
     <link rel="stylesheet" href="../../../menu/menu.css">
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#111111">
 </head>
 
 <body>
@@ -107,9 +109,14 @@
         </section>
 
     </main>
-
-
     <script src="../../menu/menu.js"></script>
+    <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
 
 </body>
 </html>

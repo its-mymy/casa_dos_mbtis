@@ -8,7 +8,9 @@
     <link rel="stylesheet" href="eneagrama5.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap">
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#111111">
         rel="stylesheet">
 </head>
 <body>
@@ -415,6 +417,13 @@
     </main>
 
     <script src="../../../menu/menu.js"></script>
+    <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
 
 </body>
 </html>

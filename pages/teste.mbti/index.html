@@ -6,6 +6,8 @@
     <title>Teste MBTI | Casa dos MBTIs</title>
     <link rel="stylesheet" href="teste-mbti.css">
     <link rel="stylesheet" href="../../menu/menu.css">
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#111111">
 </head>
 
 <body>
@@ -270,6 +272,13 @@
 
     <script src="teste-mbti.js"></script>
     <script src="../../menu/menu.js"></script>
+    <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
 
 </body>
 </html>

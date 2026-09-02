@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="../css/comunidade.css">
     <link rel="stylesheet" href="../menu/menu.css">
     <title>Comunidade — Casa dos MBTIs</title>
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#111111">
 </head>
 
 <body>
@@ -577,9 +579,14 @@
     </section>
 
 </main>
-
-
 <script src="../menu/menu.js"></script>
+<script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
 
 </body>
 </html>

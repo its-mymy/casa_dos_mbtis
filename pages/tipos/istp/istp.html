@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../../../menu/menu.css">
     <link rel="stylesheet" href="istp.css">
+    <link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#111111">
     <title>ISTP: O ARTESÃO</title>
 </head>
 <body>
@@ -201,5 +203,12 @@
     </main>
 
     <script src="../../../menu/menu.js"></script>
+    <script>
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker.register("/service-worker.js");
+    });
+  }
+</script>
 </body>
 </html>
