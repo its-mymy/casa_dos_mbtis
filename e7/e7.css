@@ -1543,22 +1543,7 @@ footer small {
     min-width: 0;
 }
 
-.e7-post-text {
-    margin-top: 12px;
-    color: #eee8f1;
-    font-size: 14px;
-    line-height: 1.6;
-    white-space: pre-wrap;
-    overflow-wrap: anywhere;
-}
 
-.e7-post-image-wrap {
-    width: 100%;
-    max-width: 420px;
-    margin-top: 12px;
-    overflow: hidden;
-    border-radius: 12px;
-}
 
 .e7-post-image {
     display: block;
