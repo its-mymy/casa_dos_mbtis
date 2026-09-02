@@ -188,12 +188,18 @@ async function configurarMenuUsuario() {
 
         return;
     }
-
-    const supabaseClient =
-        window.supabase.createClient(
-            supabaseUrl,
-            supabaseKey
-        );
+const supabaseClient = window.supabase.createClient(
+    supabaseUrl,
+    supabaseKey,
+    {
+        auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true,
+            storage: window.localStorage
+        }
+    }
+);
 
     const {
         data: {
