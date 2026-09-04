@@ -119,6 +119,12 @@ const editPrimary = document.getElementById("edit-primary");
 const editSecondary = document.getElementById("edit-secondary");
 const editAccent = document.getElementById("edit-accent");
 
+const editNeonBorder =
+    document.getElementById("edit-neon-border");
+
+const neonBorderOptions =
+    document.querySelectorAll(".neon-border-option");
+
 const colorWheelCanvas = document.getElementById("color-wheel");
 const colorPickerDot = document.getElementById("color-picker-dot");
 const selectedColorHex = document.getElementById("selected-color-hex");
@@ -241,6 +247,46 @@ function configurarEventos() {
             );
         }
     );
+
+    neonBorderOptions.forEach(
+    button => {
+        button.addEventListener(
+            "click",
+            () => {
+                if (!isPrivilegiado) {
+                    return;
+                }
+
+                const cor =
+                    button.dataset.neon || "";
+
+                if (editNeonBorder) {
+                    editNeonBorder.value =
+                        cor;
+                }
+                if (profileCard) {
+    profileCard.style.setProperty(
+        "--borda-neon",
+        cor
+    );
+
+    profileCard.classList.add(
+        "borda-neon-personalizada"
+    );
+}
+
+                neonBorderOptions.forEach(
+                    item => {
+                        item.classList.toggle(
+                            "active",
+                            item === button
+                        );
+                    }
+                );
+            }
+        );
+    }
+);
 
     colorWheelCanvas?.addEventListener(
         "pointerdown",
@@ -712,6 +758,32 @@ function aplicarVisualPerfil(perfil) {
             ? perfil.cor_destaque || "#60A5FA"
             : "#60A5FA";
 
+            const bordaNeon =
+    isPrivilegiado
+        ? perfil.borda_neon || ""
+        : "";
+
+if (profileCard) {
+    if (bordaNeon) {
+        profileCard.style.setProperty(
+            "--borda-neon",
+            bordaNeon
+        );
+
+        profileCard.classList.add(
+            "borda-neon-personalizada"
+        );
+    } else {
+        profileCard.style.removeProperty(
+            "--borda-neon"
+        );
+
+        profileCard.classList.remove(
+            "borda-neon-personalizada"
+        );
+    }
+}
+
     document.documentElement.style.setProperty(
         "--primary",
         primary
@@ -1018,6 +1090,23 @@ function preencherFormulario(perfil) {
             perfil.cor_destaque ||
             "#60A5FA";
     }
+
+    if (editNeonBorder) {
+    editNeonBorder.value =
+        isPrivilegiado
+            ? perfil.borda_neon || ""
+            : "";
+}
+
+neonBorderOptions.forEach(
+    button => {
+        button.classList.toggle(
+            "active",
+            button.dataset.neon ===
+            editNeonBorder?.value
+        );
+    }
+);
 
     avatarSelecionado =
         null;
@@ -1402,6 +1491,10 @@ async function salvarPerfil(event) {
             dadosAtualizacao.cor_destaque =
                 editAccent?.value ||
                 "#60A5FA";
+
+                dadosAtualizacao.borda_neon =
+    editNeonBorder?.value ||
+    null;
         }
 
         if (

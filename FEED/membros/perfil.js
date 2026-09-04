@@ -261,6 +261,32 @@ function aplicarCores(perfil, temRecursosVip) {
         accent
     );
 
+    const bordaNeon =
+    temRecursosVip
+        ? perfil.borda_neon || ""
+        : "";
+
+if (profileCard) {
+    if (bordaNeon) {
+        profileCard.style.setProperty(
+            "--borda-neon",
+            bordaNeon
+        );
+
+        profileCard.classList.add(
+            "borda-neon-personalizada"
+        );
+    } else {
+        profileCard.style.removeProperty(
+            "--borda-neon"
+        );
+
+        profileCard.classList.remove(
+            "borda-neon-personalizada"
+        );
+    }
+}
+
     if (showPrimary) {
         showPrimary.textContent =
             primary.toUpperCase();
@@ -816,6 +842,7 @@ async function carregarPerfil() {
             cor_principal,
             cor_secundaria,
             cor_destaque,
+            borda_neon,
             created_at
         `)
         .eq(

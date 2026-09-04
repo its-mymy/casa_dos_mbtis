@@ -451,7 +451,8 @@ async function carregarMembros() {
             avatar_tipo,
             cor_principal,
             cor_secundaria,
-            cor_destaque
+            cor_destaque,
+            borda_neon
         `)
         .order(
             "nome",
@@ -546,6 +547,7 @@ function criarCardMembro(membro) {
 
     article.className =
         "member-card";
+        
 
     const primary =
         membro.cor_principal ||
@@ -583,6 +585,22 @@ function criarCardMembro(membro) {
 
     const isVip =
         membro.vip === true;
+
+    const bordaNeon =
+    (isAdm || isVip)
+        ? membro.borda_neon || ""
+        : "";
+
+if (bordaNeon) {
+    article.style.setProperty(
+        "--borda-neon",
+        bordaNeon
+    );
+
+    article.classList.add(
+        "borda-neon-personalizada"
+    );
+}
 
     const isFundadora =
         normalizarUsername(
@@ -673,12 +691,15 @@ function criarAvatarHTML(membro) {
         )
             .toLowerCase()
             .trim() === "adm";
+const isVip =
+    membro.vip === true;
 
-    const classeAvatar =
-        isAdm
-            ? "avatar-frame-adm"
+const classeAvatar =
+    isAdm
+        ? "avatar-frame-adm"
+        : isVip
+            ? "avatar-frame-vip"
             : "";
-
     if (membro.avatar_url) {
         return `
             <div class="member-avatar ${classeAvatar}">

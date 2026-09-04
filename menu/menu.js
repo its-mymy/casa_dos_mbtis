@@ -1,253 +1,163 @@
+
 const SUPABASE_URL = "https://lhhoqahzpuohhhnbwgfp.supabase.co";
 const SUPABASE_KEY = "sb_publishable_FTie2ELWKBc4Tz9r5fZuTw_izSaEHao";
 
-const caminhoAtual =
-    window.location.pathname.toLowerCase();
+/* ==============================
+   CAMINHOS
+============================== */
 
-const dentroDePages =
-    caminhoAtual.includes("/pages/");
+const scriptAtual = document.currentScript;
+const urlMenuJS = scriptAtual ? new URL(scriptAtual.src) : new URL("/menu/menu.js", window.location.origin);
+const urlMenuHTML = new URL("menu.html", urlMenuJS);
 
-let caminhoMenu = "menu/menu.html";
-let caminhoRaiz = "";
+const caminhoAtual = window.location.pathname.toLowerCase();
+const dentroDePages = caminhoAtual.includes("/pages/");
 
-if (dentroDePages) {
-    const partes =
-        window.location.pathname
-            .split("/")
-            .filter(Boolean);
+/*
+   Raiz do site.
+   O menu.js está em /menu/, então ../ volta para a raiz.
+*/
+const urlRaiz = new URL("../", urlMenuJS);
+const caminhoRaiz = urlRaiz.href;
 
-    const indicePages =
-        partes.findIndex(
-            parte =>
-                parte.toLowerCase() === "pages"
-        );
-
-    if (indicePages !== -1) {
-        const pastasDepoisDePages =
-            partes.length -
-            indicePages -
-            2;
-
-        const niveis =
-            pastasDepoisDePages + 1;
-
-        caminhoRaiz =
-            "../".repeat(niveis);
-
-        caminhoMenu =
-            caminhoRaiz +
-            "menu/menu.html";
-    }
-}
+/* ==============================
+   AJUSTAR LINKS
+============================== */
 
 function ajustarLinksDoMenu() {
 
-    const menuLinks =
-        document.querySelectorAll("#menu a");
+    const menuLinks = document.querySelectorAll("#menu a");
 
     menuLinks.forEach(link => {
 
-        const href =
-            link.getAttribute("href");
+        const href = link.getAttribute("href");
 
-        if (!href) {
+        if (!href || href === "#") {
             return;
         }
 
         /*
-            Quando estamos dentro de /pages/,
-            precisamos voltar para a raiz.
+           Links internos do site.
+           Convertemos para URLs absolutas baseadas
+           na raiz real do site, evitando problemas
+           com a profundidade da página.
         */
 
-        if (dentroDePages) {
-
-            if (href === "index.html") {
-                link.href =
-                    caminhoRaiz +
-                    "index.html";
-            }
-
-            else if (
-                href.startsWith("pages/")
-            ) {
-                link.href =
-                    caminhoRaiz +
-                    href;
-            }
-
-            else if (
-                href.startsWith("membros/")
-            ) {
-                link.href =
-                    caminhoRaiz +
-                    href;
-            }
-
-            else if (
-                href.startsWith("perfil/")
-            ) {
-                link.href =
-                    caminhoRaiz +
-                    href;
-            }
-
-            else if (
-                href.startsWith("login/")
-            ) {
-                link.href =
-                    caminhoRaiz +
-                    href;
-            }
+        if (
+            href === "index.html" ||
+            href.startsWith("pages/") ||
+            href.startsWith("membros/") ||
+            href.startsWith("perfil/") ||
+            href.startsWith("login/")
+        ) {
+            link.href = new URL(href, caminhoRaiz).href;
         }
+
+        /*
+           Links que já possuem ../ continuam relativos
+           à estrutura definida no menu.html.
+        */
+
     });
 }
 
+/* ==============================
+   SUPABASE
+============================== */
+
 function carregarSupabase() {
 
-    return new Promise(
-        (resolve, reject) => {
+    return new Promise((resolve, reject) => {
 
-            if (
-                window.supabase &&
-                typeof window.supabase.createClient ===
-                    "function"
-            ) {
-                resolve();
-                return;
-            }
-
-            const script =
-                document.createElement("script");
-
-            script.src =
-                "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
-
-            script.onload =
-                () => resolve();
-
-            script.onerror =
-                () =>
-                    reject(
-                        new Error(
-                            "Não foi possível carregar o Supabase."
-                        )
-                    );
-
-            document.head.appendChild(
-                script
-            );
+        if (
+            window.supabase &&
+            typeof window.supabase.createClient === "function"
+        ) {
+            resolve();
+            return;
         }
-    );
+
+        const script = document.createElement("script");
+
+        script.src =
+            "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
+
+        script.onload = () => resolve();
+
+        script.onerror = () => {
+            reject(
+                new Error(
+                    "Não foi possível carregar o Supabase."
+                )
+            );
+        };
+
+        document.head.appendChild(script);
+    });
 }
+
+/* ==============================
+   LOGIN / LOGOUT
+============================== */
 
 async function configurarMenuUsuario() {
 
     const menuProfile =
-        document.getElementById(
-            "menu-profile"
-        );
+        document.getElementById("menu-profile");
 
     const menuLogin =
-        document.getElementById(
-            "menu-login"
-        );
+        document.getElementById("menu-login");
 
     const menuLogout =
-        document.getElementById(
-            "menu-logout"
-        );
+        document.getElementById("menu-logout");
 
     const logoutLink =
-        document.getElementById(
-            "logout-link"
+        document.getElementById("logout-link");
+
+    const supabaseClient =
+        window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY,
+            {
+                auth: {
+                    persistSession: true,
+                    autoRefreshToken: true,
+                    detectSessionInUrl: true,
+                    storage: window.localStorage
+                }
+            }
         );
-
-    /*
-        IMPORTANTE:
-        Use exatamente as mesmas credenciais
-        do seu login.js/perfil.js.
-    */
-
-    const supabaseUrl =
-        typeof SUPABASE_URL !== "undefined"
-            ? SUPABASE_URL
-            : "SUA_URL_DO_PROJETO";
-
-    const supabaseKey =
-        typeof SUPABASE_KEY !== "undefined"
-            ? SUPABASE_KEY
-            : "SUA_SB_PUBLISHABLE_KEY";
-
-    if (
-        supabaseUrl === "SUA_URL_DO_PROJETO" ||
-        supabaseKey === "SUA_SB_PUBLISHABLE_KEY"
-    ) {
-        console.warn(
-            "Configure SUPABASE_URL e SUPABASE_KEY no menu.js."
-        );
-
-        return;
-    }
-const supabaseClient = window.supabase.createClient(
-    supabaseUrl,
-    supabaseKey,
-    {
-        auth: {
-            persistSession: true,
-            autoRefreshToken: true,
-            detectSessionInUrl: true,
-            storage: window.localStorage
-        }
-    }
-);
 
     const {
-        data: {
-            user
-        }
-    } =
-        await supabaseClient.auth.getUser();
+        data: { user }
+    } = await supabaseClient.auth.getUser();
 
     if (user) {
 
-        /*
-            LOGADO
-        */
-
         if (menuProfile) {
-            menuProfile.style.display =
-                "";
+            menuProfile.style.display = "";
         }
 
         if (menuLogin) {
-            menuLogin.style.display =
-                "none";
+            menuLogin.style.display = "none";
         }
 
         if (menuLogout) {
-            menuLogout.style.display =
-                "";
+            menuLogout.style.display = "";
         }
 
     } else {
 
-        /*
-            NÃO LOGADO
-        */
-
         if (menuProfile) {
-            menuProfile.style.display =
-                "none";
+            menuProfile.style.display = "none";
         }
 
         if (menuLogin) {
-            menuLogin.style.display =
-                "";
+            menuLogin.style.display = "";
         }
 
         if (menuLogout) {
-            menuLogout.style.display =
-                "none";
+            menuLogout.style.display = "none";
         }
     }
 
@@ -259,12 +169,11 @@ const supabaseClient = window.supabase.createClient(
 
                 event.preventDefault();
 
-                const {
-                    error
-                } =
+                const { error } =
                     await supabaseClient.auth.signOut();
 
                 if (error) {
+
                     console.error(
                         "Erro ao sair:",
                         error
@@ -279,18 +188,23 @@ const supabaseClient = window.supabase.createClient(
     }
 }
 
-fetch(caminhoMenu)
+/* ==============================
+   CARREGAR MENU
+============================== */
+
+fetch(urlMenuHTML.href)
     .then(response => {
 
         console.log(
-            "Resposta do menu:",
+            "Menu carregado:",
+            urlMenuHTML.href,
             response
         );
 
         if (!response.ok) {
 
             throw new Error(
-                "Não foi possível carregar o menu."
+                `Não foi possível carregar o menu. HTTP ${response.status}`
             );
         }
 
@@ -298,19 +212,19 @@ fetch(caminhoMenu)
     })
     .then(async data => {
 
-        document.querySelector(
-            "#menu"
-        ).innerHTML = data;
+        const container =
+            document.querySelector("#menu");
 
-        /*
-            Corrige os caminhos.
-        */
+        if (!container) {
+
+            throw new Error(
+                "Elemento #menu não encontrado."
+            );
+        }
+
+        container.innerHTML = data;
 
         ajustarLinksDoMenu();
-
-        /*
-            Primeiro cria o MobileNavbar.
-        */
 
         const mobileNavbar =
             new MobileNavbar(
@@ -320,10 +234,6 @@ fetch(caminhoMenu)
             );
 
         mobileNavbar.init();
-
-        /*
-            Depois configura login/logout.
-        */
 
         try {
 
@@ -342,11 +252,14 @@ fetch(caminhoMenu)
     .catch(error => {
 
         console.error(
-            "ERRO:",
+            "ERRO AO CARREGAR MENU:",
             error
         );
     });
 
+/* ==============================
+   MOBILE NAVBAR
+============================== */
 
 class MobileNavbar {
 
@@ -357,53 +270,39 @@ class MobileNavbar {
     ) {
 
         this.mobileMenu =
-            document.querySelector(
-                mobileMenu
-            );
+            document.querySelector(mobileMenu);
 
         this.navList =
-            document.querySelector(
-                navList
-            );
+            document.querySelector(navList);
 
         this.navLinks =
-            document.querySelectorAll(
-                navLinks
-            );
+            document.querySelectorAll(navLinks);
 
-        this.activeClass =
-            "active";
+        this.activeClass = "active";
 
         this.handleClick =
-            this.handleClick.bind(
-                this
-            );
+            this.handleClick.bind(this);
 
         this.closeMenu =
-            this.closeMenu.bind(
-                this
-            );
+            this.closeMenu.bind(this);
     }
 
     animateLinks() {
 
-        this.navLinks.forEach(
-            link => {
+        this.navLinks.forEach(link => {
+
+            link.style.animation = "";
+
+            if (
+                this.navList.classList.contains(
+                    this.activeClass
+                )
+            ) {
 
                 link.style.animation =
-                    "";
-
-                if (
-                    this.navList.classList.contains(
-                        this.activeClass
-                    )
-                ) {
-
-                    link.style.animation =
-                        "navLinkFade 0.45s ease forwards";
-                }
+                    "navLinkFade 0.45s ease forwards";
             }
-        );
+        });
     }
 
     handleClick() {
@@ -437,15 +336,13 @@ class MobileNavbar {
             this.handleClick
         );
 
-        this.navLinks.forEach(
-            link => {
+        this.navLinks.forEach(link => {
 
-                link.addEventListener(
-                    "click",
-                    this.closeMenu
-                );
-            }
-        );
+            link.addEventListener(
+                "click",
+                this.closeMenu
+            );
+        });
     }
 
     init() {
@@ -454,6 +351,10 @@ class MobileNavbar {
             !this.mobileMenu ||
             !this.navList
         ) {
+            console.warn(
+                "Elementos do menu mobile não encontrados."
+            );
+
             return this;
         }
 

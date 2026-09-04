@@ -357,6 +357,18 @@ a {
         0 25px 70px rgba(0,0,0,0.32);
 }
 
+/* BORDA NEON PERSONALIZADA */
+
+.public-profile-card.borda-neon-personalizada {
+    border-color: var(--borda-neon);
+
+    box-shadow:
+        0 0 8px color-mix(in srgb, var(--borda-neon) 80%, transparent),
+        0 0 20px color-mix(in srgb, var(--borda-neon) 45%, transparent),
+        0 0 45px color-mix(in srgb, var(--borda-neon) 20%, transparent),
+        0 25px 70px rgba(0,0,0,0.32);
+}
+
 .profile-banner {
     position: relative;
     height: 250px;
