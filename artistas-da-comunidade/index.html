@@ -1,210 +1,186 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Galeria de artes dos vencedores das competições da Casa dos MBTIs.">
+    <meta name="theme-color" content="#050208">
+    <title>Ateliê — Casa dos MBTIs</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="../css/artistas-da-comunidade.css">
-    <link rel="manifest" href="/manifest.json">
-<meta name="theme-color" content="#111111">
-    <title>Artes da Comunidade — Casa dos MBTIs</title>
-    
 </head>
+
 <body>
 
-    <div class="neblina neblina-1"></div>
-    <div class="neblina neblina-2"></div>
-    <div class="neblina neblina-3"></div>
+    <div class="page-background"></div>
 
-    <main>
-        <header class="artes-topo">
-            <a href="comunidade.html" class="voltar">← Voltar para a comunidade</a>
+    <header class="topbar">
+        <a href="../" class="topbar-brand">
+            <span>CASA DOS MBTIs</span>
+            <small>ATELIÊ</small>
+        </a>
 
-            <span class="secao-label">GALERIA DA CASA</span>
+        <button id="menu-button" class="menu-button" type="button" aria-label="Abrir menu">
+            ☰
+        </button>
+    </header>
 
-            <h1>Arte também é uma forma de deixar sua marca.</h1>
+    <div id="menu-overlay" class="menu-overlay"></div>
 
-            <p>
-                A Casa dos MBTIs sempre teve espaço para criatividade. Ao longo dos
-                eventos da comunidade, realizamos competições de desenhos e outras
-                atividades artísticas para incentivar os membros a criarem, experimentarem
-                estilos diferentes e compartilharem aquilo que fazem.
-            </p>
+    <aside id="sidebar" class="sidebar">
 
-            <p>
-                Esta galeria reúne algumas das artes dos vencedores dessas competições.
-                Cada obra representa uma pessoa, uma ideia e um pequeno momento da história
-                da Casa.
-            </p>
-        </header>
-
-        <section class="galeria">
-            <div class="galeria-intro">
-                <span class="secao-label">OBRAS DOS VENCEDORES</span>
-                <h2>Feitas por pessoas da Casa.</h2>
-                <p>
-                    Não existe um único estilo por aqui. Cada artista trouxe uma maneira
-                    diferente de enxergar e criar.
-                </p>
+        <div class="sidebar-header">
+            <div>
+                <span class="sidebar-eyebrow">O ATELIÊ</span>
+                <strong>Explorar</strong>
             </div>
 
-            <div class="galeria-grid">
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/artistas-da-comunidade/mii.jpg" loading="lazy" alt="Arte de Mii">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Mii - INFJ</h3>
-                    </div>
-                </article>
+            <button id="close-menu" class="close-menu" type="button" aria-label="Fechar menu">
+                ×
+            </button>
+        </div>
 
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/artistas-da-comunidade/EmilyLuana.jpg" loading="lazy" alt="Arte de Emily Luana">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Emily Luana</h3>
-                    </div>
-                </article>
+        <div id="menu-profile" class="menu-profile">
 
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/artistas-da-comunidade/Sam.jpg" loading="lazy" alt="Arte de Sam">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Sam - O quarteto do(no) inferno</h3>
-                    </div>
-                </article>
+            <div id="menu-profile-logged" class="menu-profile-logged">
+                <div id="menu-profile-avatar" class="menu-profile-avatar">
+                    👤
+                </div>
 
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/arte/arte4.jpg" loading="lazy" alt="Arte de artista da comunidade">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Nome do artista</h3>
-                    </div>
-                </article>
-
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/arte/arte5.jpg" loading="lazy" alt="Arte de artista da comunidade">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Nome do artista</h3>
-                    </div>
-                </article>
-
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/arte/arte6.jpg" loading="lazy" alt="Arte de artista da comunidade">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Nome do artista</h3>
-                    </div>
-                </article>
-
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/arte/arte7.jpg" loading="lazy" alt="Arte de artista da comunidade">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Nome do artista</h3>
-                    </div>
-                </article>
-
-                <article class="obra">
-                    <div class="obra-moldura">
-                        <div class="obra-fundo"></div>
-                        <div class="obra-imagem">
-                            <img data-src="../img/arte/arte8.jpg" loading="lazy" alt="Arte de artista da comunidade">
-                        </div>
-                        <img class="moldura" src="../img/moldura.png" loading="lazy" alt="">
-                    </div>
-                    <div class="obra-info">
-                        <span>VENCEDOR</span>
-                        <h3>Nome do artista</h3>
-                    </div>
-                </article>
+                <div class="menu-profile-info">
+                    <strong id="menu-profile-name">Carregando...</strong>
+                    <span id="menu-profile-username">@usuario</span>
+                </div>
             </div>
+
+            <div id="menu-profile-visitor" class="menu-profile-visitor">
+                <div class="visitor-icon">✦</div>
+
+                <div>
+                    <strong>Você está visitando</strong>
+                    <span>Entre para interagir com a Casa.</span>
+                </div>
+
+                <a href="../login/" class="visitor-login">
+                    Entrar
+                </a>
+            </div>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="../" class="sidebar-link ativo">
+                <span class="sidebar-icon">⌂</span>
+                <span>Início</span>
+            </a>
+
+            <button class="sidebar-link filtro-link ativo" type="button" data-filtro="todos">
+                <span class="sidebar-icon">✦</span>
+                <span>Artes</span>
+            </button>
+
+            <button class="sidebar-link filtro-link" type="button" data-filtro="fotografia">
+                <span class="sidebar-icon">▣</span>
+                <span>Fotografias</span>
+            </button>
+
+            <button class="sidebar-link filtro-link" type="button" data-filtro="poema">
+                <span class="sidebar-icon">✎</span>
+                <span>Poemas</span>
+            </button>
+
+            <button class="sidebar-link filtro-link" type="button" data-filtro="vencedores">
+                <span class="sidebar-icon">♛</span>
+                <span>Vencedores</span>
+            </button>
+
+            <button class="sidebar-link filtro-link" type="button" data-filtro="curtidos">
+                <span class="sidebar-icon">♡</span>
+                <span>Mais curtidos</span>
+            </button>
+
+        </nav>
+
+        <div class="sidebar-divider"></div>
+
+        <div class="sidebar-bottom">
+            <span>CASA DOS MBTIs</span>
+            <small>Um espaço para criar.</small>
+        </div>
+
+    </aside>
+
+    <main class="main-content">
+
+        <section class="hero">
+            <div class="hero-decoration hero-decoration-1">✦</div>
+            <div class="hero-decoration hero-decoration-2">✧</div>
+
+            <span class="hero-eyebrow">CASA DOS MBTIs</span>
+
+            <h1>ATELIÊ DA CASA</h1>
+
+            <p>
+                Onde a Casa deixa sua marca.
+            </p>
+
+            <div class="hero-line"></div>
         </section>
 
-        <section class="artes-final">
-            <span class="final-brilho">✦</span>
-            <h2>A próxima obra pode ser sua.</h2>
-            <p>
-                As competições continuam acontecendo dentro da comunidade.
-                Talvez a próxima arte exposta aqui seja feita por você.
-            </p>
-            <a href="comunidade.html" class="btn-voltar">Voltar para a Casa</a>
+        <section class="feed-section">
+
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">GALERIA</span>
+                    <h2>Criações da comunidade</h2>
+                </div>
+
+                <span id="feed-counter" class="feed-counter">
+                    0 publicações
+                </span>
+            </div>
+
+            <div id="feed-artistas" class="feed-artistas"></div>
+
+            <div id="empty-feed" class="empty-feed" hidden>
+                <div class="empty-icon">✦</div>
+                <h3>Nada por aqui ainda.</h3>
+                <p>As próximas criações da Casa aparecerão aqui.</p>
+            </div>
+
         </section>
+
+        <section class="invite-section">
+            <div class="invite-glow"></div>
+
+            <span class="invite-kicker">FAÇA PARTE</span>
+
+            <h2>Tem algo para mostrar?</h2>
+
+            <p>
+                O Ateliê é o espaço para compartilhar sua arte,
+                fotografia, poesia e outras criações com a Casa.
+            </p>
+
+            <a href="../" class="invite-button">
+                Voltar para a Casa
+            </a>
+        </section>
+
     </main>
-    <script>
-        const obras = document.querySelectorAll(".obra-imagem img");
 
-        const observador = new IntersectionObserver((entradas, observer) => {
-            entradas.forEach(entrada => {
-                if (!entrada.isIntersecting) {
-                    return;
-                }
+    <footer class="footer">
+        <span>CASA DOS MBTIs</span>
+        <small>ATELIÊ DA CASA</small>
+    </footer>
 
-                const imagem = entrada.target;
-                const src = imagem.dataset.src;
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="artistas-da-comunidade.js"></script>
 
-                if (src) {
-                    imagem.src = src;
-                    imagem.removeAttribute("data-src");
-                }
-
-                observer.unobserve(imagem);
-            });
-        }, {
-            rootMargin: "300px 0px"
-        });
-
-        obras.forEach(imagem => observador.observe(imagem));
-    </script>
-
-    <script>
-  if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-      navigator.serviceWorker.register("/service-worker.js");
-    });
-  }
-</script>
 </body>
 </html>

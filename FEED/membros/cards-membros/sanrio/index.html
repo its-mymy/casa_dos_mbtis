@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Monte seu Card — Casa dos MBTIs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=DM+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sanrio.css">
+</head>
+
+<body>
+  <main class="page">
+
+    <header class="page-header">
+      <div>
+        <span class="eyebrow">CASA DOS MBTIs</span>
+        <h1>Monte seu Card</h1>
+        <p>Personalize seu card do seu jeito ✨</p>
+      </div>
+    </header>
+
+    <section class="builder">
+
+      <div class="preview-section">
+        <div class="preview-wrapper">
+          <div id="memberCard" class="member-card">
+
+            <div id="photoBackground" class="photo-background"></div>
+
+            <img id="userPhoto" class="user-photo" alt="Foto do membro">
+
+            <div id="photoOverlay" class="photo-overlay"></div>
+
+            <div id="contentArea" class="content-area">
+              <div class="info-content">
+
+                <div id="memberName" class="member-name">Seu Nome</div>
+                <div id="memberUsername" class="member-username">@username</div>
+
+                <div class="member-data">
+                  <div id="memberMbti" class="data-item mbti-item">ENTP</div>
+
+                  <div class="secondary-data">
+                    <div id="memberEneagrama" class="data-item">7w6</div>
+                    <span class="data-separator">•</span>
+                    <div id="memberTritype" class="data-item">739</div>
+                  </div>
+
+                  <div id="memberSubtipo" class="data-item subtipo-item">sp/so</div>
+                </div>
+
+              </div>
+            </div>
+
+            <img id="frameImage" class="frame-image" alt="Moldura">
+
+          </div>
+        </div>
+
+        <button id="downloadBtn" class="download-btn">
+          Baixar Card PNG
+        </button>
+      </div>
+
+      <aside class="controls">
+
+        <section class="control-section">
+          <h2>Moldura</h2>
+          <div id="frameOptions" class="frame-grid"></div>
+        </section>
+
+        <section class="control-section">
+          <h2>Foto</h2>
+
+          <label class="upload-button">
+            <input id="photoInput" type="file" accept="image/*">
+            <span>📷 Escolher foto</span>
+          </label>
+
+          <button id="removePhotoBtn" class="secondary-btn" type="button">
+            Remover foto
+          </button>
+        </section>
+
+        <section class="control-section">
+          <h2>Cores</h2>
+
+          <div class="color-control">
+            <label for="backgroundColor">Fundo</label>
+            <div class="color-row">
+              <input id="backgroundColor" type="color" value="#F8E6EF">
+              <span id="backgroundColorValue">#F8E6EF</span>
+            </div>
+          </div>
+
+          <div class="color-control">
+            <label for="cardColor">Cor da área sem foto</label>
+            <div class="color-row">
+              <input id="cardColor" type="color" value="#FFFFFF">
+              <span id="cardColorValue">#FFFFFF</span>
+            </div>
+          </div>
+
+          <div class="color-control">
+            <label for="textColor">Cor do texto</label>
+            <div class="color-row">
+              <input id="textColor" type="color" value="#3B3038">
+              <span id="textColorValue">#3B3038</span>
+            </div>
+          </div>
+
+          <div class="color-control">
+            <label for="nickColor">Cor do Nick</label>
+            <div class="color-row">
+              <input id="nickColor" type="color" value="#E99BB9">
+              <span id="nickColorValue">#E99BB9</span>
+            </div>
+          </div>
+
+          <div class="color-control">
+            <label for="overlayColor">Overlay</label>
+            <div class="color-row">
+              <input id="overlayColor" type="color" value="#000000">
+              <span id="overlayColorValue">#000000</span>
+            </div>
+          </div>
+
+          <div class="range-control">
+            <div class="range-header">
+              <label for="overlayOpacity">Opacidade do overlay</label>
+              <span id="overlayOpacityValue">25%</span>
+            </div>
+            <input id="overlayOpacity" type="range" min="0" max="100" value="25">
+          </div>
+        </section>
+
+        <section class="control-section">
+          <h2>Informações</h2>
+
+          <label class="field">
+            <span>Nick</span>
+            <input id="nameInput" type="text" value="Seu Nome" maxlength="30">
+          </label>
+
+          <label class="field">
+            <span>Username</span>
+            <input id="usernameInput" type="text" value="@username" maxlength="30">
+          </label>
+
+          <label class="field">
+            <span>MBTI</span>
+            <input id="mbtiInput" type="text" value="ENTP" maxlength="4">
+          </label>
+
+          <label class="field">
+            <span>Eneagrama</span>
+            <input id="eneagramaInput" type="text" value="7w6" maxlength="8">
+          </label>
+
+          <label class="field">
+            <span>Tritype</span>
+            <input id="tritypeInput" type="text" value="739" maxlength="6">
+          </label>
+
+          <label class="field">
+            <span>Subtipo</span>
+            <input id="subtipoInput" type="text" value="sp/so" maxlength="8">
+          </label>
+        </section>
+
+      </aside>
+
+    </section>
+
+  </main>
+
+  <script src="sanrio.js"></script>
+</body>
+</html>
