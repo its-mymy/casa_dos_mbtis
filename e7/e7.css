@@ -1572,3 +1572,177 @@ footer small {
         max-height: 280px;
     }
 }
+
+/* =========================================================
+   ENQUETE E7 / SP7
+   ========================================================= */
+
+.e7-poll {
+    width: 100%;
+    margin-top: 15px;
+    padding: 16px;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    background: var(--card-soft);
+}
+
+.e7-poll-title {
+    margin-bottom: 13px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 800;
+    line-height: 1.5;
+}
+
+.e7-poll-options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.e7-poll-option {
+    width: 100%;
+    min-height: 42px;
+    padding: 10px 13px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(208,43,193,.25);
+    border-radius: 10px;
+    background: rgba(188,31,174,.06);
+    color: var(--text);
+    text-align: left;
+    transition: .2s ease;
+}
+
+.e7-poll-option:hover:not(:disabled) {
+    border-color: rgba(208,43,193,.65);
+    background: rgba(188,31,174,.12);
+    transform: translateY(-1px);
+}
+
+.e7-poll-option.voted {
+    border-color: rgba(234,114,221,.6);
+    background: rgba(188,31,174,.16);
+}
+
+.e7-poll-option:disabled {
+    cursor: default;
+    opacity: .9;
+}
+
+.e7-poll-option span {
+    width: 100%;
+    overflow-wrap: anywhere;
+}
+
+.e7-poll-voted {
+    display: block;
+    margin-top: 10px;
+    color: var(--muted);
+    font-size: 11px;
+}
+
+@media (max-width: 700px) {
+    .e7-poll {
+        padding: 14px;
+    }
+
+    .e7-poll-option {
+        min-height: 40px;
+        padding: 10px 12px;
+    }
+}
+
+/* =========================================================
+   AVISO DE EXCLUSÃO E7
+   ========================================================= */
+
+.e7-delete-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.e7-delete-modal.hidden {
+    display: none !important;
+}
+
+.e7-delete-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,.72);
+    backdrop-filter: blur(5px);
+}
+
+.e7-delete-box {
+    width: min(390px,100%);
+    position: relative;
+    z-index: 2;
+    padding: 25px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: var(--card);
+    box-shadow: 0 25px 80px rgba(0,0,0,.55);
+    text-align: center;
+}
+
+.e7-delete-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: rgba(255,95,115,.1);
+    font-size: 24px;
+}
+
+.e7-delete-box h3 {
+    font-size: 21px;
+}
+
+.e7-delete-box p {
+    margin-top: 7px;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.e7-delete-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 20px;
+}
+
+.e7-delete-actions button {
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 700;
+}
+
+.e7-delete-cancel {
+    border: 1px solid var(--border);
+    background: var(--card-soft);
+    color: var(--muted);
+}
+
+.e7-delete-cancel:hover {
+    color: var(--text);
+}
+
+.e7-delete-confirm {
+    border: 1px solid transparent;
+    background: var(--danger);
+    color: white;
+}
+
+.e7-delete-confirm:hover {
+    filter: brightness(1.08);
+}

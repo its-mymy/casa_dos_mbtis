@@ -58,10 +58,14 @@
             minute: "2-digit"
         });
     }
+function ehAdminE7() {
+    if (!usuarioAtual) return false;
 
-    function ehAdminE7() {
-        return !!usuarioAtual && ADMINS_E7.includes(usuarioAtual.id);
-    }
+    return (
+        ADMINS_E7.includes(usuarioAtual.id) ||
+        perfilAtual?.feed_admin === true
+    );
+}
 
     function mostrar(elemento) {
         if (!elemento) return;
@@ -990,15 +994,14 @@ const perfilURL = "../FEED/membros/";
             return;
         }
 
-        const pollIds =
-            posts
-                .flatMap(
-                    (post) =>
-                        post.e7_polls || []
-                )
-                .map(
-                    (poll) => poll.id
-                );
+ const pollIds = posts
+    .map((post) =>
+        Array.isArray(post.e7_polls)
+            ? post.e7_polls[0]
+            : post.e7_polls
+    )
+    .filter(Boolean)
+    .map((poll) => poll.id);
 
         let votosDoUsuario = [];
 
@@ -1127,16 +1130,16 @@ const perfilURL = "../FEED/membros/";
                 `
                 : "";
 
-        const enqueteHTML =
-            post.e7_polls?.length
-                ? renderizarEnquete(
-                    post.e7_polls[0],
-                    votosMap[
-                        post.e7_polls[0].id
-                    ]
-                )
-                : "";
+     const poll = Array.isArray(post.e7_polls)
+    ? post.e7_polls[0]
+    : post.e7_polls;
 
+const enqueteHTML = poll
+    ? renderizarEnquete(
+        poll,
+        votosMap[poll.id]
+    )
+    : "";
         const acoesHTML =
             podeEditarExcluir
                 ? `
@@ -1853,6 +1856,16 @@ const perfilURL = "../FEED/membros/";
                     );
                 }
             );
+
+            const confirmarExclusao =
+    $("e7-delete-confirm");
+
+if (confirmarExclusao) {
+    confirmarExclusao.addEventListener(
+        "click",
+        confirmarExclusaoPost
+    );
+}
     }
 
     async function publicarPost() {
@@ -1899,12 +1912,12 @@ const perfilURL = "../FEED/membros/";
             campoImagem?.files?.[0] ||
             null;
 
-        if (!texto) {
-            mostrarToast(
-                "Escreva alguma coisa antes de publicar."
-            );
-            return;
-        }
+     if (!texto && !arquivo) {
+    mostrarToast(
+        "Escreva alguma coisa ou escolha uma imagem antes de publicar."
+    );
+    return;
+}
 
         if (
             texto.length >
@@ -2205,6 +2218,120 @@ const perfilURL = "../FEED/membros/";
     /* =========================================================
        EXCLUIR POST
        ========================================================= */
+function fecharAvisoExclusao() {
+    const modal = $("e7-delete-modal");
+
+    if (modal) {
+        modal.classList.add("hidden");
+    }
+
+    window.postParaExcluir = null;
+}
+
+async function confirmarExclusaoPost() {
+    const postId = window.postParaExcluir;
+
+    if (!postId) {
+        fecharAvisoExclusao();
+        return;
+    }
+
+    fecharAvisoExclusao();
+
+    const {
+        data: post,
+        error: selectError
+    } = await supabaseClient
+        .from("e7_posts")
+        .select(
+            "id, author_id, image_path"
+        )
+        .eq("id", postId)
+        .maybeSingle();
+
+    if (selectError) {
+        console.error(
+            selectError
+        );
+
+        mostrarToast(
+            "Não foi possível localizar a publicação."
+        );
+
+        return;
+    }
+
+    if (!post) {
+        mostrarToast(
+            "Publicação não encontrada."
+        );
+
+        return;
+    }
+
+    if (
+        post.author_id !==
+        usuarioAtual.id
+    ) {
+        mostrarToast(
+            "Você só pode excluir suas próprias publicações."
+        );
+
+        return;
+    }
+
+    const {
+        error
+    } = await supabaseClient
+        .from("e7_posts")
+        .delete()
+        .eq(
+            "id",
+            postId
+        )
+        .eq(
+            "author_id",
+            usuarioAtual.id
+        );
+
+    if (error) {
+        console.error(
+            error
+        );
+
+        mostrarToast(
+            "Não foi possível excluir."
+        );
+
+        return;
+    }
+
+    if (post.image_path) {
+        const {
+            error: storageError
+        } = await supabaseClient
+            .storage
+            .from("avatar")
+            .remove([
+                post.image_path
+            ]);
+
+        if (storageError) {
+            console.warn(
+                "Não foi possível remover a imagem do Storage:",
+                storageError
+            );
+        }
+    }
+
+    mostrarToast(
+        "Publicação excluída. 🗑️"
+    );
+
+    await carregarFeed();
+}
+
+
 
     async function excluirPost(
         postId
@@ -2218,15 +2345,16 @@ const perfilURL = "../FEED/membros/";
             );
             return;
         }
+window.postParaExcluir = postId;
 
-        const confirmar =
-            window.confirm(
-                "Tem certeza que deseja excluir esta publicação?"
-            );
+const modal = $("e7-delete-modal");
 
-        if (!confirmar) {
-            return;
-        }
+if (modal) {
+    modal.classList.remove("hidden");
+}
+
+return;
+
 
         const {
             data: post,
@@ -2328,11 +2456,9 @@ const perfilURL = "../FEED/membros/";
     /* =========================================================
        EVENTOS DO COMPOSER
        ========================================================= */
-
-    function configurarComposer() {
-        configurarPreviewImagem();
-    }
-
+function configurarComposer() {
+    configurarPreviewImagem();
+}
     /* =========================================================
        NAVEGAÇÃO "SOBRE"
        ========================================================= */
@@ -2413,6 +2539,12 @@ const perfilURL = "../FEED/membros/";
 
     window.adicionarOpcao =
         adicionarOpcao;
+
+    window.fecharAvisoExclusao =
+    fecharAvisoExclusao;
+
+window.confirmarExclusaoPost =
+    confirmarExclusaoPost;
 
     /* =========================================================
        EVENTOS INICIAIS

@@ -483,6 +483,39 @@
         <small>E7 • SP7</small>
     </footer>
 
+
+    <div id="e7-delete-modal" class="e7-delete-modal hidden">
+    <div class="e7-delete-backdrop"></div>
+
+    <div class="e7-delete-box">
+        <div class="e7-delete-icon">🗑️</div>
+
+        <h3>Excluir publicação?</h3>
+
+        <p>
+            Essa publicação será apagada permanentemente.
+        </p>
+
+        <div class="e7-delete-actions">
+            <button
+                type="button"
+                class="e7-delete-cancel"
+                onclick="fecharAvisoExclusao()"
+            >
+                Cancelar
+            </button>
+
+            <button
+                type="button"
+                class="e7-delete-confirm"
+                id="e7-delete-confirm"
+            >
+                Excluir
+            </button>
+        </div>
+    </div>
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="e7.js"></script>
 
