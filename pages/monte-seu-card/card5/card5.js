@@ -1,3 +1,4 @@
+
 const canvas = document.getElementById("cardCanvas");
 const ctx = canvas.getContext("2d");
 
@@ -5,6 +6,7 @@ const nickInput = document.getElementById("nick");
 const overlayColor = document.getElementById("overlayColor");
 const overlayOpacity = document.getElementById("overlayOpacity");
 const opacityValue = document.getElementById("opacityValue");
+const gridColor = document.getElementById("gridColor");
 const downloadBtn = document.getElementById("downloadBtn");
 
 const cardData = {
@@ -13,6 +15,7 @@ const cardData = {
         color: "#8b5cf6",
         opacity: 25
     },
+    gridColor: "#ffffff",
     images: {
         mbti: null,
         eneagrama: null,
@@ -173,7 +176,7 @@ function drawCard() {
         Linhas da grade
     */
 
-    ctx.strokeStyle = "rgba(255,255,255,0.75)";
+    ctx.strokeStyle = cardData.gridColor;
     ctx.lineWidth = 5;
 
     for (let i = 1; i < 3; i++) {
@@ -189,46 +192,46 @@ function drawCard() {
         ctx.stroke();
     }
 
-  /*
-    Nick
-*/
+    /*
+        Nick
+    */
 
-const nick = cardData.nick.trim();
+    const nick = cardData.nick.trim();
 
-if (nick) {
+    if (nick) {
 
-    ctx.save();
+        ctx.save();
 
-    ctx.textAlign = "center";
-    ctx.textBaseline = "middle";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
 
-    ctx.font = "bold 48px Arial";
+        ctx.font = "bold 48px Arial";
 
-    const centerX = canvas.width / 2;
-    const centerY = canvas.height / 2;
+        const centerX = canvas.width / 2;
+        const centerY = canvas.height / 2;
 
-    const nickWidth = ctx.measureText(nick).width;
+        const nickWidth = ctx.measureText(nick).width;
 
-    // Fundo atrás do nick
-    ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
-    ctx.fillRect(
-        centerX - nickWidth / 2 - 25,
-        centerY - 32,
-        nickWidth + 50,
-        64
-    );
+        // Fundo atrás do nick
+        ctx.fillStyle = "rgba(0, 0, 0, 0.55)";
+        ctx.fillRect(
+            centerX - nickWidth / 2 - 25,
+            centerY - 32,
+            nickWidth + 50,
+            64
+        );
 
-    // Nick
-    ctx.fillStyle = "#fff";
+        // Nick
+        ctx.fillStyle = "#fff";
 
-    ctx.fillText(
-        nick,
-        centerX,
-        centerY
-    );
+        ctx.fillText(
+            nick,
+            centerX,
+            centerY
+        );
 
-    ctx.restore();
-}
+        ctx.restore();
+    }
 
     /*
         Marca d'água
@@ -333,6 +336,17 @@ overlayOpacity.addEventListener("input", event => {
 
     opacityValue.textContent =
         `${cardData.overlay.opacity}%`;
+
+    drawCard();
+});
+
+/*
+    Cor das divisórias
+*/
+
+gridColor.addEventListener("input", event => {
+
+    cardData.gridColor = event.target.value;
 
     drawCard();
 });

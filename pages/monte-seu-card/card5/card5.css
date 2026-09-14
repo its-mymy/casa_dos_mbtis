@@ -1,3 +1,4 @@
+
 * {
     box-sizing: border-box;
 }
@@ -34,7 +35,8 @@ h1 {
 }
 
 .campo-nick,
-.controle-overlay {
+.controle-overlay,
+.controle-grade {
     background: #17171f;
     border: 1px solid #292936;
     border-radius: 14px;
@@ -42,7 +44,8 @@ h1 {
 }
 
 .campo-nick label,
-.controle-overlay > label {
+.controle-overlay > label,
+.controle-grade label {
     display: block;
     margin-bottom: 10px;
     font-weight: bold;
@@ -84,6 +87,27 @@ h1 {
 #opacityValue {
     min-width: 45px;
     color: #bbb;
+}
+
+/* COR DAS DIVISÓRIAS */
+
+.controle-grade {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+.controle-grade label {
+    margin: 0;
+}
+
+#gridColor {
+    width: 52px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
 }
 
 .uploads {
