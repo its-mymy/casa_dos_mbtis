@@ -1,4 +1,3 @@
-
 const FRAMES = {
   kuromi: [
     "png/kuromi.png"
@@ -32,8 +31,12 @@ const FRAMES = {
     "png/coelho.png"
   ],
 
-  coelho: [
+  coelhoAzul: [
     "png/coelho-azul.png"
+  ],
+
+  nova: [
+    "png/pochacco.png"
   ]
 };
 
@@ -45,13 +48,15 @@ const FRAME_NAMES = {
   hellokitty: "Hello Kitty",
   mymelody: "My Melody",
   pochacco: "Pochacco",
-  keroppi: "Keroppi"
+  keroppi: "Keroppi",
+  coelho: "Coelho",
+  coelhoAzul: "Coelho Azul",
+  nova: "Nova Moldura"
 };
 
 const DEFAULT_CONFIG = {
   frame: "kuromi",
   background: "#F8E6EF",
-  cardColor: "#FFFFFF",
   textColor: "#3B3038",
   nickColor: "#E99BB9",
   overlayColor: "#000000",
@@ -78,28 +83,24 @@ const elements = {
   downloadBtn: document.getElementById("downloadBtn"),
 
   backgroundColor: document.getElementById("backgroundColor"),
-  cardColor: document.getElementById("cardColor"),
   textColor: document.getElementById("textColor"),
   nickColor: document.getElementById("nickColor"),
   overlayColor: document.getElementById("overlayColor"),
   overlayOpacity: document.getElementById("overlayOpacity"),
 
   backgroundColorValue: document.getElementById("backgroundColorValue"),
-  cardColorValue: document.getElementById("cardColorValue"),
   textColorValue: document.getElementById("textColorValue"),
   nickColorValue: document.getElementById("nickColorValue"),
   overlayColorValue: document.getElementById("overlayColorValue"),
   overlayOpacityValue: document.getElementById("overlayOpacityValue"),
 
   nameInput: document.getElementById("nameInput"),
-  usernameInput: document.getElementById("usernameInput"),
   mbtiInput: document.getElementById("mbtiInput"),
   eneagramaInput: document.getElementById("eneagramaInput"),
   tritypeInput: document.getElementById("tritypeInput"),
   subtipoInput: document.getElementById("subtipoInput"),
 
   memberName: document.getElementById("memberName"),
-  memberUsername: document.getElementById("memberUsername"),
   memberMbti: document.getElementById("memberMbti"),
   memberEneagrama: document.getElementById("memberEneagrama"),
   memberTritype: document.getElementById("memberTritype"),
@@ -681,13 +682,6 @@ bindColorInput(
 );
 
 bindColorInput(
-  elements.cardColor,
-  elements.cardColorValue,
-  "cardColor",
-  "--card-bg"
-);
-
-bindColorInput(
   elements.textColor,
   elements.textColorValue,
   "textColor",
@@ -762,11 +756,6 @@ function bindTextInput(
 bindTextInput(
   elements.nameInput,
   elements.memberName
-);
-
-bindTextInput(
-  elements.usernameInput,
-  elements.memberUsername
 );
 
 bindTextInput(
@@ -903,11 +892,6 @@ async function initialize() {
   );
 
   elements.card.style.setProperty(
-    "--card-bg",
-    config.cardColor
-  );
-
-  elements.card.style.setProperty(
     "--text-color",
     config.textColor
   );
@@ -919,9 +903,6 @@ async function initialize() {
 
   elements.backgroundColor.value =
     config.background;
-
-  elements.cardColor.value =
-    config.cardColor;
 
   elements.textColor.value =
     config.textColor;
@@ -937,9 +918,6 @@ async function initialize() {
 
   elements.backgroundColorValue.textContent =
     config.background;
-
-  elements.cardColorValue.textContent =
-    config.cardColor;
 
   elements.textColorValue.textContent =
     config.textColor;

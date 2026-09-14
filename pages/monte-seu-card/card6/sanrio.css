@@ -1,15 +1,14 @@
-
 * {
   box-sizing: border-box;
 }
 
 :root {
-  --page-bg: #f5f2f6;
+  --page-bg: #07050b;
   --panel-bg: #fff;
   --border: #e7e1e7;
   --text: #302a31;
   --muted: #827982;
-  --accent: #e99bb9;
+  --accent: #c084fc;
   --radius: 18px;
 }
 
@@ -20,8 +19,12 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
-  background: var(--page-bg);
-  color: var(--text);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(139, 92, 246, .28), transparent 30%),
+    radial-gradient(circle at 85% 30%, rgba(168, 85, 247, .22), transparent 32%),
+    radial-gradient(circle at 50% 100%, rgba(88, 28, 135, .28), transparent 38%),
+    #050407;
+  color: #fff;
   font-family: "DM Sans", sans-serif;
 }
 
@@ -59,11 +62,12 @@ button {
   font-size: 42px;
   line-height: 1;
   font-weight: 800;
+  color: #fff;
 }
 
 .page-header p {
   margin: 8px 0 0;
-  color: var(--muted);
+  color: #aaa1b0;
   font-size: 15px;
 }
 
@@ -93,7 +97,7 @@ button {
   aspect-ratio: 1 / 1;
   overflow: hidden;
   isolation: isolate;
-  background: var(--card-bg, #fff);
+  background: #fff;
 }
 
 .photo-background,
@@ -166,23 +170,6 @@ button {
   white-space: normal;
   overflow-wrap: anywhere;
   word-break: break-word;
-}
-
-.member-username {
-  width: 100%;
-  max-width: 100%;
-  margin-top: calc(var(--fit) * .008);
-
-  font-size: clamp(8px, calc(var(--fit) * .032), 16px);
-  line-height: 1;
-  font-weight: 600;
-
-  color: var(--text-color, #3b3038);
-  opacity: .8;
-
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
 }
 
 /* DADOS */
@@ -267,17 +254,19 @@ button {
   border: 0;
   border-radius: 14px;
 
-  background: #302a31;
+  background: linear-gradient(135deg, #8b5cf6, #6d28d9);
   color: #fff;
 
   font-size: 15px;
   font-weight: 700;
 
-  transition: transform .15s ease, opacity .15s ease;
+  transition: transform .15s ease, opacity .15s ease, box-shadow .15s ease;
+  box-shadow: 0 8px 25px rgba(124, 58, 237, .25);
 }
 
 .download-btn:hover {
   transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(124, 58, 237, .35);
 }
 
 .download-btn:active {
@@ -293,9 +282,10 @@ button {
 
 .control-section {
   padding: 22px;
-  background: var(--panel-bg);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, .96);
+  border: 1px solid rgba(192, 132, 252, .18);
   border-radius: var(--radius);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, .2);
 }
 
 .control-section h2 {
@@ -304,6 +294,7 @@ button {
   font-family: "Baloo 2", sans-serif;
   font-size: 21px;
   line-height: 1;
+  color: var(--text);
 }
 
 .frame-grid {
@@ -396,6 +387,7 @@ button {
 
   font-size: 12px;
   font-weight: 700;
+  color: var(--text);
 }
 
 .color-row {
@@ -439,6 +431,7 @@ button {
 .range-header label {
   font-size: 12px;
   font-weight: 700;
+  color: var(--text);
 }
 
 .range-header span {
@@ -479,7 +472,7 @@ input[type="range"] {
 
 .field input:focus {
   border-color: var(--accent);
-  box-shadow: 0 0 0 3px rgba(233, 155, 185, .12);
+  box-shadow: 0 0 0 3px rgba(192, 132, 252, .15);
 }
 
 @media (max-width: 900px) {

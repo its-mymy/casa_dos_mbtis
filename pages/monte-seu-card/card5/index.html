@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monte seu Card 4</title>
+    <link rel="stylesheet" href="card5.css">
+</head>
+<body>
+
+    <main class="container">
+
+        <h1>Monte seu Card</h1>
+        <p class="subtitulo">Preencha os quadradinhos e crie seu card de tipologias.</p>
+
+        <section class="editor">
+
+            <div class="campo-nick">
+                <label for="nick">Seu apelido / nick</label>
+                <input type="text" id="nick" placeholder="@seunick" maxlength="30">
+            </div>
+
+            <div class="controle-overlay">
+                <label for="overlayColor">Cor do overlay</label>
+
+                <div class="overlay-controles">
+                    <input type="color" id="overlayColor" value="#8b5cf6">
+                    <input type="range" id="overlayOpacity" min="0" max="100" value="25">
+                    <span id="opacityValue">25%</span>
+                </div>
+            </div>
+
+            <div class="uploads">
+
+                <div class="upload-box">
+                    <span>MBTI</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="mbti">
+                    </label>
+                    <div class="preview" id="preview-mbti"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Eneagrama</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="eneagrama">
+                    </label>
+                    <div class="preview" id="preview-eneagrama"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Tritype</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="tritype">
+                    </label>
+                    <div class="preview" id="preview-tritype"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Subtipos</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="subtipos">
+                    </label>
+                    <div class="preview" id="preview-subtipos"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Personagem</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="personagem">
+                    </label>
+                    <div class="preview" id="preview-personagem"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Big Five</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="bigfive">
+                    </label>
+                    <div class="preview" id="preview-bigfive"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Temperamento</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="temperamento">
+                    </label>
+                    <div class="preview" id="preview-temperamento"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Psychosophy</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="psychosophy">
+                    </label>
+                    <div class="preview" id="preview-psychosophy"></div>
+                </div>
+
+                <div class="upload-box">
+                    <span>Extra</span>
+                    <label>
+                        Escolher imagem
+                        <input type="file" accept="image/*" data-slot="extra">
+                    </label>
+                    <div class="preview" id="preview-extra"></div>
+                </div>
+
+            </div>
+
+            <div class="canvas-area">
+                <canvas id="cardCanvas" width="1000" height="1000"></canvas>
+            </div>
+
+            <button id="downloadBtn" class="download-btn">
+                Salvar Card
+            </button>
+
+        </section>
+
+    </main>
+
+    <script src="card5.js"></script>
+</body>
+</html>

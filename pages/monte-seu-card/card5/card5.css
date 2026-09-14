@@ -1,0 +1,196 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0d0d12;
+    color: #fff;
+}
+
+.container {
+    width: min(1100px, 94%);
+    margin: 40px auto;
+}
+
+h1 {
+    margin: 0;
+    text-align: center;
+    font-size: 32px;
+}
+
+.subtitulo {
+    margin: 8px 0 30px;
+    text-align: center;
+    color: #aaa;
+}
+
+.editor {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.campo-nick,
+.controle-overlay {
+    background: #17171f;
+    border: 1px solid #292936;
+    border-radius: 14px;
+    padding: 18px;
+}
+
+.campo-nick label,
+.controle-overlay > label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.campo-nick input[type="text"] {
+    width: 100%;
+    padding: 13px 14px;
+    background: #0e0e14;
+    color: #fff;
+    border: 1px solid #353542;
+    border-radius: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.campo-nick input[type="text"]:focus {
+    border-color: #8b5cf6;
+}
+
+.overlay-controles {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+#overlayColor {
+    width: 48px;
+    height: 38px;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+#overlayOpacity {
+    flex: 1;
+}
+
+#opacityValue {
+    min-width: 45px;
+    color: #bbb;
+}
+
+.uploads {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.upload-box {
+    min-height: 210px;
+    padding: 14px;
+    background: #17171f;
+    border: 1px solid #292936;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.upload-box > span {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.upload-box label {
+    padding: 8px 12px;
+    background: #252533;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    transition: .2s;
+}
+
+.upload-box label:hover {
+    background: #343448;
+}
+
+.upload-box input[type="file"] {
+    display: none;
+}
+
+.preview {
+    width: 125px;
+    height: 125px;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #0d0d12;
+    border: 1px dashed #3b3b49;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    font-size: 12px;
+}
+
+.preview img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.canvas-area {
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+    background: #111118;
+    border-radius: 18px;
+    border: 1px solid #292936;
+}
+
+#cardCanvas {
+    width: min(100%, 800px);
+    height: auto;
+    display: block;
+    border-radius: 4px;
+}
+
+.download-btn {
+    border: 0;
+    padding: 15px 24px;
+    border-radius: 12px;
+    background: #8b5cf6;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.download-btn:hover {
+    background: #7443dd;
+    transform: translateY(-1px);
+}
+
+@media (max-width: 750px) {
+    .uploads {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .uploads {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}
