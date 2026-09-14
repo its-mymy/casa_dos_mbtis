@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Casa dos NTPs</title>
+    <link rel="stylesheet" href="ntps.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+
+<body>
+
+<header class="topbar">
+
+   <a href="./" class="brand">
+    <div class="brand-icon">
+        <img src="img/logo.png" alt="Casa dos MBTIs">
+    </div>
+
+    <div class="brand-text">
+        <strong>Casa dos NTPs</strong>
+        <span>ENTP + INTP</span>
+    </div>
+</a>
+
+    <nav class="desktop-nav">
+        <button type="button" class="nav-button ativo" id="feed-nav">📰 Feed</button>
+        <button type="button" class="nav-button" id="members-nav">👥 Membros NTPs</button>
+        <a href="./intp/" class="nav-button">🧠 Área INTP</a>
+        <a href="./entp/" class="nav-button">⚡ Área ENTP</a>
+    </nav>
+
+    <div class="topbar-right">
+        <a href="../perfil/" id="mini-profile" class="mini-profile">
+            <div id="mini-avatar" class="mini-avatar">👤</div>
+
+            <div class="mini-profile-info">
+                <strong id="mini-name">Visitante</strong>
+                <span id="mini-username">Entrar</span>
+            </div>
+        </a>
+    </div>
+
+</header>
+
+<main>
+
+    <section id="feed-view" class="page-view active-view">
+
+        <section class="welcome">
+
+            <div class="welcome-text">
+                <span class="eyebrow">CASA DOS NTPs</span>
+                <h1>Bem-vindo à Casa dos NTPs</h1>
+
+                <p>
+                    Um espaço para ENTPs e INTPs compartilharem ideias,
+                    experiências, pensamentos e conteúdos.
+                </p>
+            </div>
+
+            <div class="characters">
+                <img src="img/intps.png" class="character" alt="Personagens INTP">
+                <img src="img/entps.png" class="character" alt="Personagens ENTP">
+            </div>
+
+            <div class="area-buttons">
+                <a href="./intp/" class="area-button intp">🧠 ÁREA INTP</a>
+                <a href="./entp/" class="area-button entp">⚡ ÁREA ENTP</a>
+            </div>
+
+        </section>
+
+        <section id="composer" class="composer hidden">
+
+            <div class="composer-header">
+                <div>
+                    <span class="section-eyebrow">CASA DOS NTPs</span>
+                    <h2>Nova publicação</h2>
+                </div>
+
+                <span class="composer-permission">✦ Editor</span>
+            </div>
+
+            <textarea id="post-content" maxlength="5000" placeholder="Compartilhe alguma coisa com os NTPs..."></textarea>
+
+            <div id="image-preview" class="image-preview hidden"></div>
+
+            <div id="poll-builder" class="poll-builder hidden">
+
+                <div class="poll-builder-header">
+                    <strong>📊 Criar enquete</strong>
+                    <button type="button" id="cancel-poll-button">×</button>
+                </div>
+
+                <input id="poll-question" type="text" maxlength="300" placeholder="Pergunta da enquete...">
+
+                <div id="poll-options">
+
+                    <div class="poll-input-row">
+                        <input class="poll-option-input" type="text" maxlength="200" placeholder="Opção 1">
+                    </div>
+
+                    <div class="poll-input-row">
+                        <input class="poll-option-input" type="text" maxlength="200" placeholder="Opção 2">
+                    </div>
+
+                </div>
+
+                <button type="button" id="add-poll-option" class="add-option-button">+ Adicionar opção</button>
+
+            </div>
+
+            <div class="composer-actions">
+
+                <label class="composer-tool" for="post-image">📷 Foto</label>
+                <input id="post-image" type="file" accept="image/*" hidden>
+
+                <button type="button" id="toggle-poll-button" class="composer-tool">📊 Enquete</button>
+
+                <div class="composer-spacer"></div>
+
+                <button type="button" id="publish-button" class="publish-button">Publicar</button>
+
+            </div>
+
+        </section>
+
+        <div id="login-message" class="login-message hidden">
+            🔐 Faça login para participar da comunidade.
+        </div>
+
+        <section class="feed-section">
+
+            <div id="feed-list" class="feed-list">
+                <div class="loading-card">Carregando o Feed...</div>
+            </div>
+
+        </section>
+
+    </section>
+
+    <section id="members-view" class="page-view">
+
+        <section class="members-page">
+
+            <div class="section-header members-heading">
+
+                <div>
+                    <span class="section-eyebrow">COMUNIDADE</span>
+                    <h2>Membros NTPs</h2>
+                    <p>ENTPs e INTPs da Casa dos MBTIs.</p>
+                </div>
+
+                <span id="members-message" class="members-count">Carregando...</span>
+
+            </div>
+
+            <section id="members-grid" class="members-grid"></section>
+
+        </section>
+
+    </section>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<script>
+    const SUPABASE_URL = "https://lhhoqahzpuohhhnbwgfp.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_FTie2ELWKBc4Tz9r5fZuTw_izSaEHao";
+
+    const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+        auth: {
+            persistSession: true,
+            autoRefreshToken: true,
+            detectSessionInUrl: true
+        }
+    });
+
+    window.supabaseClient = supabaseClient;
+</script>
+
+<script src="ntps.js"></script>
+
+</body>
+</html>
