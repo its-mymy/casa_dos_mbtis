@@ -3,12 +3,6 @@
     "use strict";
 
     const supabaseClient = window.supabaseClient;
-
-    const NTP_EDITORES = [
-        "yu",
-        "uriel"
-    ];
-
     let usuarioAtual = null;
     let perfilAtual = null;
     let membrosNTP = [];
@@ -93,16 +87,13 @@
         return data?.publicUrl || null;
     }
 
-    function podePublicar() {
-        if (!usuarioAtual || !perfilAtual) {
-            return false;
-        }
-
-        return NTP_EDITORES.includes(
-            normalizar(perfilAtual.username)
-        );
+ function podePublicar() {
+    if (!usuarioAtual || !perfilAtual) {
+        return false;
     }
 
+    return perfilAtual.cargo === "ntp_editor";
+}
 
     /* =========================================================
        SESSÃO
