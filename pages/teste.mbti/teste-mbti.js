@@ -1,30 +1,41 @@
 const questions = [ 
 
-    // NI
+    //SI
+    { q: "Prefiro planejar com antecedência e organizar as coisas na minha cabeça antes de improvisar na hora", w: { Ni: 0, Ne: 0, Ti: 1, Te: 0, Si: 3, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Costumo lembrar de detalhes específicos de experiências que vivi, como o que aconteceu, como era o lugar e como me senti naquele momento.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Quando passo por uma situação parecida com algo que já vivi, naturalmente comparo o que está acontecendo com minha experiência anterior.", w: { Si: 3, Se: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Gosto de aprender com aquilo que já aconteceu e usar essas experiências como referência para minhas decisões.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 0, Te: 1, Fi: 0, Fe: 0 } }, 
+    { q: "Costumo perceber quando algo está diferente de como eu me lembro ou de como normalmente acontece.", w: { Si: 3, Se: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Mudanças bruscas podem me deixar desconfortável quando alteram algo que eu já estava acostumado a fazer de determinada maneira.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
 
-    { q: "Tenho insights repentinos que parecem surgir do nada, mas que depois fazem sentido para mim.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Costumo procurar o significado mais profundo ou o padrão central por trás dos acontecimentos.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Quando penso no futuro, geralmente surge uma direção que parece mais provável ou significativa do que as outras.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Prefiro aprofundar uma ideia até compreender suas implicações, em vez de continuar abrindo novas possibilidades.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Sinto que minhas ideias vão se organizando internamente até convergirem para uma compreensão mais definida.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    // NI
+    { q: "Sinto que minhas ideias vão se organizando aos poucos até eu conseguir entender claramente o que penso.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
     { q: "Às vezes percebo como uma situação provavelmente vai se desenvolver antes de conseguir explicar exatamente como cheguei a essa conclusão.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Tenho facilidade em resumir conceitos complexos em uma única ideia que representa o que considero essencial.", w: { Ne: 1, Ni: 3, Ti: 1, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Quando penso sobre uma situação, tendo a reunir as informações até formar uma interpretação principal, em vez de manter várias interpretações abertas.", w: { Ne: 1, Ni: 3, Ti: 1, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Tenho facilidade em pegar algo complexo e resumir tudo em uma única ideia que explica o que considero mais importante.", w: { Ne: 1, Ni: 3, Ti: 1, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Quando penso sobre uma situação, costumo juntar as informações até chegar a uma conclusão, em vez de ficar pensando em várias possibilidades ao mesmo tempo.", w: { Ne: 1, Ni: 3, Ti: 1, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
     { q: "Quando penso no que pode acontecer no futuro, geralmente procuro entender qual direção parece mais provável, em vez de imaginar muitos caminhos diferentes.", w: { Ne: 0, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
     { q: "Quando várias informações parecem estar relacionadas, minha tendência é procurar o padrão que conecta todas elas e chegar a uma compreensão mais unificada.", w: { Ne: 1, Ni: 3, Ti: 1, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
 
-    // NE 
+    //TE 1
+    
+    { q: "Sinto que perco tempo quando fico divagando em ideias que não vou pôr em pratica.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 3, Si: 1, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Sou naturalmente orientado a resultados e gosto de sentir que estou fazendo algo que realmente leva a algum resultado.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Tenho facilidade para organizar pessoas e recursos para alcançar metas claras.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Fico frustrado quando percebo que algo poderia ser feito de forma mais eficiente, mas ninguém tenta melhorar. Isso pode me deixar impaciente.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Ao tomar uma decisão, costumo considerar fatos, dados e informações que possam ajudar a escolher a melhor opção.", w: { Te: 3, Ti: 1, Se: 0, Si: 1, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
 
-    { q: "Eu me divirto mais na parte de criar uma ideia do que na parte de executá-la.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "É mais natural para mim conectar ideias diferentes do que aprofundar uma única ideia até o fim.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Fico naturalmente interessado quando começo a perceber novas possibilidades para uma situação.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Genuinamente não gosto de fechar portas ou descartar opções, porque cada possibilidade pode levar a uma descoberta inesperada.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Frequentemente uma ideia me leva a outra, que leva a outra, fazendo meu pensamento seguir várias direções.", w: { Ne: 3, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Gosto de imaginar situações hipotéticas e explorar o que poderia acontecer se determinada coisa fosse diferente.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Minha mente costuma fazer associações espontâneas enquanto converso, leio ou observo alguma coisa.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Quando uma ideia chama minha atenção, é comum ela gerar outras possibilidades e perguntas em vez de me levar imediatamente a uma conclusão única.", w: { Ne: 3, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Ao receber uma informação nova, costumo fazer várias associações e pensar em diferentes coisas que poderiam estar relacionadas a ela.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Quando tento compreender uma situação complexa, tendo a explorar diferentes interpretações e possibilidades antes de decidir qual delas faz mais sentido.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    //FE
+    { q: "Minhas decisões levam bastante em conta como elas vão afetar as pessoas ao meu redor.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 1, Fe: 3 } }, 
+    { q: "Me sinto desconfortável quando tem uma desarmonia/briga no grupo.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 3 } }, 
+    { q: "Consigo perceber rápido o que os outros estão sentindo, mesmo antes deles falarem.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Sou bom em causar uma boa primeira impressão e passar uma imagem positiva para as pessoas", w: { Fe: 3, Fi: 0, Se: 1, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Quando preciso escolher entre falar a verdade diretamente ou suavizar minhas palavras para não deixar o clima ruim, prefiro suavizar", w: { Fi: 1, Fe: 3, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+
+    // NE 
+{ q: "Minha mente costuma fazer várias conexões enquanto converso, leio ou observo alguma coisa.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+{ q: "Quando uma ideia chama minha atenção, ela costuma me fazer pensar em várias outras possibilidades e perguntas.", w: { Ne: 3, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+{ q: "Quando recebo uma informação nova, costumo pensar em várias coisas que podem ter relação com ela.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+{ q: "Quando tento entender uma situação complicada, costumo pensar em várias possibilidades antes de decidir qual faz mais sentido.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
 
     // TI 
 
@@ -34,18 +45,29 @@ const questions = [
     { q: "Minhas decisões são baseadas principalmente na análise lógica, não em emoções ou na opinião dos outros. Ponho a lógica em primeiro lugar, mesmo que a pessoa não goste.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Preciso entender a lógica interna das coisas antes de aceitá-las como verdade. Não confio em algo só porque 'é assim que sempre foi feito'. Prefiro eu mesmo analisar e ver como funciona para ter certeza", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Fico frustrado quando as pessoas usam argumentos emocionais ou apelos à autoridade em vez de lógica.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
+   
+    //FI
+    
+    { q: "Tenhho valores fortes, mas não me fecho para perspectivas diferentes que possam enriquecer minha visão.", w: { Fi: 3, Fe: 1, Ne: 1, Se: 1, Si: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Uso meus valores pessoais como guia, mas estou aberto a aprender com as experiências do mundo.", w: { Fi: 3, Fe: 1, Ne: 1, Se: 1, Si: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Sinto uma forte necessidade de ser autêntico e verdadeiro comigo mesmo, independentemente das expectativas externas.", w: { Fi: 3, Fe: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
+    { q: "Minhas emoções são profundas e pessoais, e costumo processá-las dentro de mim antes de compartilhá-las com outras pessoas.", w: { Fi: 3, Fe: 0, Ti: 0, Te: 0, Se: 0, Si: 0, Ne: 0, Ni: 0 } }, 
+    { q: "Quando me expresso artisticamente ou criativamente, sinto que estou colocando uma parte de quem eu sou naquilo que faço.", w: { Fi: 3, Fe: 1, Ti: 0, Te: 0, Se: 0, Si: 0, Ne: 0, Ni: 0 } }, 
+
+    //TI
     { q: "Prefiro entender o 'porquê' das coisas do que simplesmente saber 'como' fazer.", w: { Ti: 3, Te: 0, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Sou atraído por quebra-cabeças, enigmas e problemas que exigem raciocínio lógico.", w: { Ti: 3, Te: 1, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Antes de tomar uma posição sobre algo, preciso dissecar o assunto de todos os ângulos possíveis.", w: { Ti: 3, Te: 0, Fi: 0, Fe: 0, Ne: 0, Ni: 0, Se: 0, Si: 0 } }, 
     { q: "Quando algo não faz sentido para mim, fico tentando entender onde está o erro até conseguir montar uma explicação que seja logicamente coerente e faça sentido pra mim.", w: { Ti: 3, Te: 1, Ne: 0, Ni: 0, Se: 0, Si: 0, Fi: 1, Fe: 0 } }, 
 
-    // TE 
 
-    { q: "Sinto que perco tempo quando fico divagando em ideias que não vou pôr em pratica.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 3, Si: 1, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Sou naturalmente orientado a resultados e gosto de sentir que estou fazendo algo que realmente leva a algum resultado.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Tenho facilidade para organizar pessoas e recursos para alcançar metas claras.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Fico frustrado quando percebo que algo poderia ser feito de forma mais eficiente, mas ninguém tenta melhorar. Isso pode me deixar impaciente.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Ao tomar uma decisão, costumo considerar fatos, dados e informações que possam ajudar a escolher a melhor opção.", w: { Te: 3, Ti: 1, Se: 0, Si: 1, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
+   //NI 2
+    { q: "Tenho ideias ou percepções repentinas que parecem surgir do nada, mas que depois fazem sentido para mim.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Costumo tentar entender o que está por trás dos acontecimentos e qual é o significado deles.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Quando penso no futuro, geralmente tenho uma ideia mais clara de qual caminho parece fazer mais sentido para mim.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Prefiro aprofundar uma ideia até compreender suas implicações, em vez de continuar abrindo novas possibilidades.", w: { Ne: 1, Ni: 3, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } }, 
+
+    // TE 
     { q: "Gosto de criar sistemas, processos e estruturas que tornem o trabalho mais eficiente.", w: { Te: 3, Ti: 1, Se: 0, Si: 1, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
     { q: "Sou bom em dividir tarefas e organizar o que precisa ser feito para que um objetivo seja alcançado.", w: { Te: 3, Ti: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
     { q: "Fico impaciente quando uma discussão fica apenas na teoria e ninguém pensa em como colocar a ideia logo em prática.", w: { Te: 3, Ti: 0, Se: 1, Si: 0, Ne: 0, Ni: 0, Fi: 0, Fe: 0 } }, 
@@ -53,38 +75,27 @@ const questions = [
     { q: "Uso minha capacidade de organização e planejamento para colocar em prática aquilo que considero importante.", w: { Te: 3, Ti: 0, Ni: 1, Si: 1, Se: 0, Ne: 0, Fi: 0, Fe: 0 } }, 
 
     // SE 
-
-    { q: "Tomar decisões baseadas em 'intuição' ou 'pressentimento' me parece arriscado e pouco confiável.", w: { Ni: 0, Ne: 0, Ti: 1, Te: 0, Si: 0, Se: 3, Fi: 0, Fe: 0 } }, 
-    { q: "Minha energia vem da ação e do movimento. Ficar parado por muito tempo me deixa inquieto.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Tenho reflexos rápidos e sou bom em reagir a mudanças inesperadas no ambiente.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Sou atraído por experiências que envolvem meus sentidos: texturas, sabores, cheiros, sons e imagens.", w: { Se: 3, Si: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Fico entediado com teorias muito abstratas e prefiro quando uma conversa leva a algo que possa ser feito na prática logo, em vez de ficar teorizando muito.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 1, Te: 1, Fi: 0, Fe: 0 } }, 
     { q: "Gosto de atividades físicas e de sentir que estou usando meu corpo para fazer algo.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
     { q: "Aprendo melhor quando posso experimentar e descobrir as coisas fazendo, em vez de apenas ler ou ouvir sobre elas.", w: { Se: 3, Si: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
     { q: "Reparo facilmente em detalhes que estão acontecendo ao meu redor, como mudanças no ambiente, expressões, movimentos e sons.", w: { Se: 3, Si: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 1, Fe: 0 } }, 
     { q: "Sou bom em improvisar e me adaptar rapidamente quando algo inesperado acontece.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
     { q: "Sou uma pessoa prática e gosto de lidar diretamente com coisas que posso ver, tocar e experimentar.", w: { Se: 3, Si: 1, Ne: 0, Ni: 0, Ti: 0, Te: 1, Fi: 0, Fe: 0 } }, 
+     
+    //NE
+    { q: "Eu me divirto mais criando uma ideia do que colocando ela em prática.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+    { q: "É mais natural para mim ligar ideias diferentes do que ficar aprofundando uma só até o fim.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+    { q: "Fico naturalmente interessado quando começo a perceber novas possibilidades para uma situação.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+    { q: "Não gosto muito de descartar possibilidades, porque uma delas pode acabar levando a uma ideia ou descoberta inesperada.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+    { q: "Muitas vezes uma ideia me faz pensar em outra, que me faz pensar em outra, e quando vejo já estou pensando em várias coisas diferentes.", w: { Ne: 3, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
+    { q: "Gosto de imaginar situações hipotéticas e pensar no que poderia acontecer se alguma coisa fosse diferente.", w: { Ne: 3, Ni: 1, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 0 } },
 
     // SI
-
-    { q: "Prefiro planejar com antecedência a improvisar na hora.", w: { Ni: 0, Ne: 0, Ti: 1, Te: 0, Si: 3, Se: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Costumo lembrar de detalhes específicos de experiências que vivi, como o que aconteceu, como era o lugar e como me senti naquele momento.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Quando passo por uma situação parecida com algo que já vivi, naturalmente comparo o que está acontecendo com minha experiência anterior.", w: { Si: 3, Se: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Gosto de aprender com aquilo que já aconteceu e usar essas experiências como referência para minhas decisões.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 0, Te: 1, Fi: 0, Fe: 0 } }, 
-    { q: "Costumo perceber quando algo está diferente de como eu me lembro ou de como normalmente acontece.", w: { Si: 3, Se: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Mudanças bruscas podem me deixar desconfortável quando alteram algo que eu já estava acostumado a fazer de determinada maneira.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
     { q: "Quando preciso decidir o que fazer, muitas vezes lembro de situações anteriores para descobrir o que funcionou ou não naquela época.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
     { q: "Costumo guardar informações e detalhes que considero importantes porque posso precisar deles novamente no futuro.", w: { Si: 3, Se: 0, Ne: 0, Ni: 0, Ti: 1, Te: 0, Fi: 0, Fe: 0 } }, 
-    { q: "Quando conheço algo novo, gosto de relacioná-lo com experiências que já tive para entender melhor o que estou vendo.", w: { Si: 3, Se: 0, Ne: 0, Ni: 1, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Quando conheço algo novo, costumo comparar com coisas que já vivi ou conheci antes para ver se encontro algum padrão.", w: { Si: 3, Se: 0, Ne: 0, Ni: 1, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
     { q: "Tenho facilidade para lembrar como uma experiência foi para mim, inclusive detalhes sensoriais como cheiros, sons, sabores ou sensações físicas.", w: { Si: 3, Se: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 1, Fe: 0 } }, 
 
     // FI
-
-    { q: "Tenhho valores fortes, mas não me fecho para perspectivas diferentes que possam enriquecer minha visão.", w: { Fi: 3, Fe: 1, Ne: 1, Se: 1, Si: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Uso meus valores pessoais como guia, mas estou aberto a aprender com as experiências do mundo.", w: { Fi: 3, Fe: 1, Ne: 1, Se: 1, Si: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Sinto uma forte necessidade de ser autêntico e verdadeiro comigo mesmo, independentemente das expectativas externas.", w: { Fi: 3, Fe: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Minhas emoções são profundas e pessoais, e costumo processá-las dentro de mim antes de compartilhá-las com outras pessoas.", w: { Fi: 3, Fe: 0, Ti: 0, Te: 0, Se: 0, Si: 0, Ne: 0, Ni: 0 } }, 
-    { q: "Quando me expresso artisticamente ou criativamente, sinto que estou colocando uma parte de quem eu sou naquilo que faço.", w: { Fi: 3, Fe: 1, Ti: 0, Te: 0, Se: 0, Si: 0, Ne: 0, Ni: 0 } }, 
     { q: "Prefiro ser sincero sobre o que realmente penso e sinto, mesmo quando isso pode não agradar todo mundo.", w: { Fi: 3, Fe: 1, Ti: 0, Te: 0, Se: 0, Si: 0, Ne: 0, Ni: 0 } }, 
     { q: "Costumo prestar atenção ao que sinto por dentro para perceber se algo realmente está de acordo com o que considero certo para mim.", w: { Fi: 3, Fe: 1, Ti: 0, Te: 0, Se: 0, Si: 0, Ne: 0, Ni: 0 } }, 
     { q: "Prefiro que as pessoas me conheçam como eu realmente sou, em vez de criar uma imagem de mim apenas para agradá-las.", w: { Fi: 3, Fe: 1, Ti: 0, Te: 0, Se: 0, Si: 0, Ne: 0, Ni: 0 } }, 
@@ -92,15 +103,17 @@ const questions = [
     { q: "Minha identidade é importante para mim, mas também pode mudar conforme vivo novas experiências e descubro coisas sobre mim mesmo.", w: { Fi: 3, Fe: 1, Ne: 1, Se: 1, Ti: 0, Te: 0, Si: 0, Ni: 0 } }, 
 
 
-    // FE
+    //SE 2
+    
+    { q: "Tomar decisões baseadas em 'intuição' ou 'pressentimento' me parece arriscado e pouco confiável.", w: { Ni: 0, Ne: 0, Ti: 1, Te: 0, Si: 0, Se: 3, Fi: 0, Fe: 0 } }, 
+    { q: "Minha energia vem da ação e do movimento. Ficar parado por muito tempo me deixa inquieto.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Tenho reflexos rápidos e sou bom em reagir a mudanças inesperadas no ambiente.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Sou atraído por experiências que envolvem meus sentidos: texturas, sabores, cheiros, sons e imagens.", w: { Se: 3, Si: 1, Ne: 0, Ni: 0, Ti: 0, Te: 0, Fi: 0, Fe: 0 } }, 
+    { q: "Fico entediado com teorias muito abstratas e prefiro quando uma conversa leva a algo que possa ser feito na prática logo, em vez de ficar teorizando muito.", w: { Se: 3, Si: 0, Ne: 0, Ni: 0, Ti: 1, Te: 1, Fi: 0, Fe: 0 } }, 
 
-    { q: "Minhas decisões levam em conta principalmente como elas vão afetar as pessoas ao meu redor.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 1, Fe: 3 } }, 
-    { q: "Me sinto desconfortável quando há uma desarmonia NO GRUPO.", w: { Ne: 0, Ni: 0, Ti: 0, Te: 0, Si: 0, Se: 0, Fi: 0, Fe: 3 } }, 
-    { q: "Consigo perceber rapidamente o que os outros estão sentindo, mesmo antes deles mesmos colocarem em palavras.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Sou bom em criar uma boa primeira impressão e causar impacto positivo nas pessoas.", w: { Fe: 3, Fi: 0, Se: 1, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Se eu tiver que escolher entre: dizer a verdade direta e seca ou suavizar para amenizar o impacto e me adaptar para não deixar o clima muito pesado, escolho suavizar e amenizar o impacto no clima.", w: { Fi: 1, Fe: 3, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
-    { q: "Sinto que fiz a coisa certa quando consigo manter as pessoas importantes para mim bem e satisfeitas com a situação.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Te: 0, Ti: 0 } }, 
-    { q: "Me sinto bem e satisfeito quando percebo que as pessoas ao meu redor estão bem e o ambiente entre nós está harmonioso.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Te: 0, Ti: 0 } }, 
+    // FE
+    { q: "Sinto que fiz a coisa certa quando consigo deixar as pessoas importantes para mim bem e satisfeitas.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Te: 0, Ti: 0 } }, 
+    { q: "Sou muito empático e às vezes penso mais no que os outros estão sentindo do que no que eu mesmo estou sentindo.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Te: 0, Ti: 0 } }, 
     { q: "Minhas decisões podem ser influenciadas se vai afetar as pessoas ao meu redor.", w: { Fe: 3, Fi: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
     { q: "Consigo perceber facilmente o que as pessoas estão sentindo, então costumo levar isso em consideração na forma de como ajo com elas.", w: { Fe: 3, Fi: 1, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } }, 
     { q: "Quando percebo que alguém está desconfortável em uma situação, tenho vontade de mudar minha forma de agir ou falar para deixar o ambiente mais de boas.", w: { Fe: 3, Fi: 0, Se: 0, Si: 0, Ne: 0, Ni: 0, Ti: 0, Te: 0 } } 

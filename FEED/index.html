@@ -138,15 +138,53 @@
 </div>
 
 <div id="ranking-registered-group" class="ranking-form-group">
-    <label for="ranking-member-select">Membro</label>
-    <select id="ranking-member-select">
+    <label for="ranking-member-search">Membro</label>
+
+    <div class="ranking-member-search">
+        <span class="ranking-search-icon">⌕</span>
+
+        <input
+            id="ranking-member-search"
+            type="search"
+            autocomplete="off"
+            placeholder="Pesquisar membro..."
+        >
+    </div>
+
+    <div
+        id="ranking-member-results"
+        class="ranking-member-results hidden"
+    ></div>
+
+    <div
+        id="ranking-selected-member"
+        class="ranking-selected-member hidden"
+    ></div>
+
+    <select id="ranking-member-select" class="ranking-member-select-hidden">
         <option value="">Selecione um membro...</option>
     </select>
 </div>
 
 <div id="ranking-guest-group" class="ranking-form-group hidden">
-    <label for="ranking-guest-name">Nome</label>
-    <input id="ranking-guest-name" type="text" maxlength="60" placeholder="Digite o nome da pessoa...">
+    <label for="ranking-guest-name">Pessoa sem cadastro</label>
+
+    <input
+        id="ranking-guest-name"
+        type="text"
+        maxlength="60"
+        placeholder="Digite o nome da pessoa..."
+    >
+
+    <div
+        id="ranking-guest-results"
+        class="ranking-member-results hidden"
+    ></div>
+
+    <div
+        id="ranking-selected-guest"
+        class="ranking-selected-member hidden"
+    ></div>
 </div>
 
         <div class="ranking-form-group">
