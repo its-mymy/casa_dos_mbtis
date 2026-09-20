@@ -14,11 +14,6 @@
     let perfilAtual = null;
     let editandoPostId = null;
 
-    const ADMINS_E7 = [
-        "0be5c16f-5b0f-4ed6-9bc2-107a1f40cf57",
-        "b5507317-72d9-46a1-d545-91b83a740390"
-    ];
-
     /* =========================================================
        UTILIDADES
        ========================================================= */
@@ -61,12 +56,8 @@
 function ehAdminE7() {
     if (!usuarioAtual) return false;
 
-    return (
-        ADMINS_E7.includes(usuarioAtual.id) ||
-        perfilAtual?.feed_admin === true
-    );
+    return perfilAtual?.e7_admin === true;
 }
-
     function mostrar(elemento) {
         if (!elemento) return;
         elemento.classList.remove("hidden");
@@ -376,19 +367,20 @@ async function sair() {
         } = await supabaseClient
             .from("profiles")
             .select(`
-                id,
-                nome,
-                username,
-                mbti,
-                eneagrama,
-                tritype,
-                subtipo,
-                avatar_url,
-                banner_url,
-                cargo,
-                vip,
-                feed_admin
-            `)
+    id,
+    nome,
+    username,
+    mbti,
+    eneagrama,
+    tritype,
+    subtipo,
+    avatar_url,
+    banner_url,
+    cargo,
+    vip,
+    feed_admin,
+    e7_admin
+`)
             .eq("id", usuarioAtual.id)
             .maybeSingle();
 
@@ -1467,7 +1459,7 @@ const enqueteHTML = poll
             !ehAdminE7()
         ) {
             mostrarToast(
-                "Apenas YU e Berry podem criar enquetes."
+                "Apenas administradores do Feed SP7 podem publicar.."
             );
             return false;
         }
@@ -1878,7 +1870,7 @@ if (confirmarExclusao) {
 
         if (!ehAdminE7()) {
             mostrarToast(
-                "Apenas YU e Berry podem publicar no Feed SP7."
+                "Apenas administradores do Feed SP7 podem publicar.."
             );
             return;
         }
