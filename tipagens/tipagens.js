@@ -35,6 +35,7 @@ const resultsCounter = document.getElementById("resultsCounter");
 const loadingArea = document.getElementById("loadingArea");
 const emptyState = document.getElementById("emptyState");
 
+
 const newTipagemButton = document.getElementById("newTipagemButton");
 
 const adminTipagemModal = document.getElementById("adminTipagemModal");
@@ -246,8 +247,22 @@ const closeMenuButton = document.getElementById("close-menu-button");
 const memberMenu = document.getElementById("member-menu");
 const memberMenuOverlay = document.getElementById("member-menu-overlay");
 
+const loginMenuButton = document.getElementById("login-menu-button");
 const logoutMenuButton = document.getElementById("logout-menu-button");
+function irParaLogin() {
+    sessionStorage.setItem(
+        "retornoLogin",
+        window.location.href
+    );
 
+    window.location.href = "../login/";
+}
+if (loginMenuButton) {
+    loginMenuButton.addEventListener(
+        "click",
+        irParaLogin
+    );
+}
 
 /* CARREGAR TIPAGENS DO SUPABASE */
 async function carregarTipagens() {
