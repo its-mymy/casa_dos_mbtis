@@ -1,0 +1,170 @@
+body {
+    margin: 0;
+    background: #08060b;
+    color: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.subtipos-container {
+    width: min(1200px, 90%);
+    margin: 0 auto;
+    padding: 100px 0 80px;
+}
+
+.pagina-header {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.pagina-header span {
+    color: #d66cff;
+    font-size: 13px;
+    letter-spacing: 4px;
+    font-weight: bold;
+}
+
+.pagina-header h1 {
+    font-size: 52px;
+    margin: 10px 0;
+}
+
+.pagina-header p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #aaa;
+    line-height: 1.7;
+}
+
+
+/* CADA ENEAGRAMA */
+
+.eneagrama-grupo {
+    margin-bottom: 90px;
+}
+
+.grupo-titulo {
+    margin-bottom: 25px;
+}
+
+.grupo-titulo span {
+    color: #c85cff;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+}
+
+.grupo-titulo h2 {
+    margin: 5px 0 0;
+    font-size: 28px;
+}
+
+
+/* OS 3 SUBTIPOS */
+
+.subtipos-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+
+/* CARD */
+
+.subtipo-card {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 18px;
+    background: #111;
+    border: 1px solid rgba(255,255,255,0.08);
+    text-decoration: none;
+    color: white;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.subtipo-card:hover {
+    transform: translateY(-7px);
+    border-color: rgba(214,108,255,0.7);
+}
+
+.subtipo-card img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.subtipo-card:hover img {
+    transform: scale(1.05);
+}
+
+
+/* INFORMAÇÕES */
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 35px 20px 20px;
+    background: linear-gradient(
+        transparent,
+        rgba(0,0,0,0.9)
+    );
+}
+
+.card-info strong {
+    display: block;
+    font-size: 25px;
+    letter-spacing: 2px;
+}
+
+.card-info span {
+    display: block;
+    margin-top: 4px;
+    color: #ddd;
+    font-size: 13px;
+}
+
+
+/* CELULAR */
+
+@media (max-width: 700px) {
+
+    .subtipos-container {
+        width: 94%;
+        padding-top: 70px;
+    }
+
+    .pagina-header h1 {
+        font-size: 38px;
+    }
+
+    .subtipos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .eneagrama-grupo {
+        margin-bottom: 50px;
+    }
+
+    .grupo-titulo h2 {
+        font-size: 22px;
+    }
+
+    .card-info {
+        padding: 20px 8px 8px;
+    }
+
+    .card-info strong {
+        font-size: 14px;
+        letter-spacing: 1px;
+    }
+
+    .card-info span {
+        font-size: 9px;
+    }
+
+}
