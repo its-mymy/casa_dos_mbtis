@@ -23,8 +23,8 @@ body::before {
     inset: 0;
     pointer-events: none;
     background:
-        linear-gradient(rgba(255, 80, 170, .025) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 80, 170, .025) 1px, transparent 1px);
+        linear-gradient(rgba(255, 210, 0, .025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 210, 0, .025) 1px, transparent 1px);
     background-size: 45px 45px;
     mask-image: linear-gradient(to bottom, rgba(0, 0, 0, .9), transparent 85%);
     z-index: -1;
@@ -35,7 +35,7 @@ body::before {
     min-height: 100vh;
 }
 
-.hero-type7 {
+.hero-type9 {
     position: relative;
     min-height: 760px;
     padding: 90px 8%;
@@ -43,15 +43,15 @@ body::before {
     grid-template-columns: 1fr 1fr;
     align-items: center;
     overflow: hidden;
-    border-bottom: 1px solid rgba(255, 80, 170, .25);
+    border-bottom: 1px solid rgba(255, 210, 0, .25);
 }
 
 .hero-background {
     position: absolute;
     inset: 0;
     background:
-        radial-gradient(circle at 15% 20%, rgba(255, 80, 170, .11), transparent 35%),
-        radial-gradient(circle at 85% 80%, rgba(220, 40, 130, .10), transparent 35%);
+        radial-gradient(circle at 15% 20%, rgba(255, 210, 0, .11), transparent 35%),
+        radial-gradient(circle at 85% 80%, rgba(220, 150, 0, .10), transparent 35%);
     pointer-events: none;
 }
 
@@ -65,8 +65,8 @@ body::before {
     display: inline-block;
     font-size: .72rem;
     letter-spacing: 3px;
-    color: #ff8bc7;
-    border-left: 2px solid #ff4fa3;
+    color: #ffe45c;
+    border-left: 2px solid #ffd21a;
     padding-left: 14px;
     margin-bottom: 28px;
     text-transform: uppercase;
@@ -79,14 +79,14 @@ body::before {
     letter-spacing: -10px;
     color: #ffffff;
     text-shadow:
-        0 0 10px rgba(255, 80, 170, .6),
-        0 0 35px rgba(220, 40, 130, .4);
+        0 0 10px rgba(255, 210, 0, .6),
+        0 0 35px rgba(220, 160, 0, .4);
 }
 
 .hero-content h2 {
     font-size: clamp(1.5rem, 3vw, 2.5rem);
     font-weight: 500;
-    color: #ff4fa3;
+    color: #ffd21a;
     letter-spacing: 8px;
     margin-top: 28px;
     text-transform: uppercase;
@@ -105,8 +105,8 @@ body::before {
     width: 100px;
     height: 1px;
     margin: 30px 0 18px;
-    background: linear-gradient(90deg, #ff4fa3, transparent);
-    box-shadow: 0 0 10px rgba(255, 80, 170, .8);
+    background: linear-gradient(90deg, #ffd21a, transparent);
+    box-shadow: 0 0 10px rgba(255, 210, 0, .8);
 }
 
 .hero-small {
@@ -129,54 +129,54 @@ body::before {
     width: 350px;
     height: 350px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(255, 80, 170, .15), transparent 68%);
+    background: radial-gradient(circle, rgba(255, 210, 0, .15), transparent 68%);
     filter: blur(12px);
 }
 
-.seven-circle {
+.nine-circle {
     position: relative;
     width: min(360px, 65vw);
     height: min(360px, 65vw);
-    border: 1px solid rgba(255, 80, 170, .30);
+    border: 1px solid rgba(255, 210, 0, .30);
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     box-shadow:
-        0 0 25px rgba(255, 80, 170, .10),
-        inset 0 0 40px rgba(255, 80, 170, .07);
-    animation: floatSeven 4s ease-in-out infinite;
+        0 0 25px rgba(255, 210, 0, .10),
+        inset 0 0 40px rgba(255, 210, 0, .07);
+    animation: floatNine 4s ease-in-out infinite;
 }
 
-.seven-circle::before {
+.nine-circle::before {
     content: "";
     position: absolute;
     inset: 25px;
-    border: 1px solid rgba(255, 80, 170, .18);
+    border: 1px solid rgba(255, 210, 0, .18);
     border-radius: 50%;
 }
 
-.seven-circle::after {
+.nine-circle::after {
     content: "";
     position: absolute;
     inset: 55px;
-    border: 1px solid rgba(230, 40, 130, .14);
+    border: 1px solid rgba(230, 170, 0, .14);
     border-radius: 50%;
 }
 
-.seven-circle span {
+.nine-circle span {
     font-size: clamp(8rem, 15vw, 13rem);
     font-weight: 800;
-    color: #ffb5dc;
+    color: #fff1a8;
     text-shadow:
-        0 0 10px #ff4fa3,
-        0 0 30px rgba(255, 80, 170, .8),
-        0 0 70px rgba(220, 40, 130, .3);
+        0 0 10px #ffd21a,
+        0 0 30px rgba(255, 210, 0, .8),
+        0 0 70px rgba(220, 150, 0, .3);
 }
 
 .orbit {
     position: absolute;
-    border: 1px solid rgba(255, 80, 170, .18);
+    border: 1px solid rgba(255, 210, 0, .18);
     border-radius: 50%;
     animation: orbitRotate linear infinite;
 }
@@ -196,7 +196,7 @@ body::before {
 .orbit-three {
     width: 410px;
     height: 410px;
-    border-color: rgba(220, 40, 130, .12);
+    border-color: rgba(220, 160, 0, .12);
     animation-duration: 15s;
 }
 
@@ -215,7 +215,7 @@ body::before {
     display: inline-block;
     font-size: .62rem;
     letter-spacing: 3px;
-    color: #ff80bd;
+    color: #ffdf45;
     margin-bottom: 15px;
 }
 
@@ -227,7 +227,7 @@ body::before {
 }
 
 .intro-header h2 em {
-    color: #ff4fa3;
+    color: #ffd21a;
     font-style: normal;
 }
 
@@ -239,7 +239,7 @@ body::before {
 }
 
 .intro-header strong {
-    color: #ffb5dc;
+    color: #fff0a6;
 }
 
 .subtype-section {
@@ -250,7 +250,7 @@ body::before {
     grid-template-columns: 100px 1fr;
     gap: 45px;
     padding: 85px 0;
-    border-top: 1px solid rgba(255, 80, 170, .14);
+    border-top: 1px solid rgba(255, 210, 0, .14);
 }
 
 .subtype-section::before {
@@ -264,7 +264,7 @@ body::before {
         linear-gradient(
             to bottom,
             transparent,
-            rgba(255, 80, 170, .55),
+            rgba(255, 210, 0, .55),
             transparent
         );
 }
@@ -277,18 +277,18 @@ body::before {
     width: 5px;
     height: 5px;
     border-radius: 50%;
-    background: #ff4fa3;
+    background: #ffd21a;
     box-shadow:
-        0 0 10px #ff4fa3,
-        0 0 25px rgba(255, 80, 170, .7);
+        0 0 10px #ffd21a,
+        0 0 25px rgba(255, 210, 0, .7);
 }
 
 .subtype-number {
     font-size: 2.8rem;
     font-weight: 700;
-    color: rgba(255, 80, 170, .38);
+    color: rgba(255, 210, 0, .38);
     padding-left: 25px;
-    text-shadow: 0 0 15px rgba(255, 80, 170, .25);
+    text-shadow: 0 0 15px rgba(255, 210, 0, .25);
 }
 
 .subtype-content {
@@ -299,24 +299,24 @@ body::before {
     display: inline-block;
     font-size: .63rem;
     letter-spacing: 3px;
-    color: #ff76b9;
+    color: #ffdb35;
     margin-bottom: 13px;
-    text-shadow: 0 0 12px rgba(255, 80, 170, .4);
+    text-shadow: 0 0 12px rgba(255, 210, 0, .4);
 }
 
 .subtype-content h2 {
     font-size: clamp(3.5rem, 7vw, 6rem);
     font-weight: 800;
     line-height: .9;
-    color: #fff4fa;
-    text-shadow: 0 0 15px rgba(255, 80, 170, .18);
+    color: #fffbea;
+    text-shadow: 0 0 15px rgba(255, 210, 0, .18);
     margin-bottom: 5px;
 }
 
 .subtype-content h3 {
     font-size: clamp(1.4rem, 3vw, 2rem);
     font-weight: 400;
-    color: #ff4fa3;
+    color: #ffd21a;
     margin-bottom: 40px;
 }
 
@@ -337,23 +337,23 @@ body::before {
 }
 
 .subtype-content strong {
-    color: #ffb5dc;
+    color: #fff0a6;
 }
 
-.subtype-7w6 {
+.subtype-9w8 {
     background:
         linear-gradient(
             90deg,
-            rgba(255, 80, 170, .04),
+            rgba(255, 210, 0, .04),
             transparent 60%
         );
 }
 
-.subtype-7w8 {
+.subtype-9w1 {
     background:
         linear-gradient(
             90deg,
-            rgba(220, 40, 130, .03),
+            rgba(220, 160, 0, .03),
             transparent 60%
         );
 }
@@ -368,7 +368,7 @@ body::before {
     display: inline-block;
     font-size: .63rem;
     letter-spacing: 3px;
-    color: #ff78ba;
+    color: #ffdc35;
     margin-bottom: 12px;
 }
 
@@ -382,7 +382,7 @@ body::before {
 
 .comparison-section h2 em {
     font-style: normal;
-    color: #ff4fa3;
+    color: #ffd21a;
 }
 
 .comparison-grid {
@@ -394,11 +394,11 @@ body::before {
 .comparison-card {
     position: relative;
     padding: 35px;
-    border: 1px solid rgba(255, 80, 170, .18);
+    border: 1px solid rgba(255, 210, 0, .18);
     background:
         linear-gradient(
             145deg,
-            rgba(255, 80, 170, .04),
+            rgba(255, 200, 0, .04),
             rgba(5, 5, 5, .8)
         );
     transition: .35s ease;
@@ -415,22 +415,22 @@ body::before {
         linear-gradient(
             90deg,
             transparent,
-            #ff4fa3,
+            #ffd21a,
             transparent
         );
 }
 
 .comparison-card:hover {
     transform: translateY(-5px);
-    border-color: rgba(255, 80, 170, .5);
-    box-shadow: 0 0 30px rgba(220, 40, 130, .09);
+    border-color: rgba(255, 210, 0, .5);
+    box-shadow: 0 0 30px rgba(220, 170, 0, .09);
 }
 
 .comparison-card > span {
     font-size: 3rem;
     font-weight: 800;
-    color: #ff4fa3;
-    text-shadow: 0 0 15px rgba(255, 80, 170, .45);
+    color: #ffd21a;
+    text-shadow: 0 0 15px rgba(255, 210, 0, .45);
 }
 
 .comparison-card h3 {
@@ -453,7 +453,7 @@ body::before {
         linear-gradient(
             90deg,
             transparent,
-            rgba(255, 80, 170, .55),
+            rgba(255, 210, 0, .55),
             transparent
         );
     margin: 60px 0 35px;
@@ -469,18 +469,18 @@ body::before {
 }
 
 .comparison-text strong {
-    color: #ff4fa3;
+    color: #ffd21a;
 }
 
 .comparison-text em {
-    color: #ffb5dc;
+    color: #fff0a6;
 }
 
 .closing-section {
     position: relative;
     padding: 140px 8%;
     text-align: center;
-    border-top: 1px solid rgba(255, 80, 170, .15);
+    border-top: 1px solid rgba(255, 210, 0, .15);
     overflow: hidden;
 }
 
@@ -495,7 +495,7 @@ body::before {
     background:
         radial-gradient(
             ellipse,
-            rgba(255, 80, 170, .09),
+            rgba(255, 210, 0, .09),
             transparent 70%
         );
     pointer-events: none;
@@ -505,8 +505,8 @@ body::before {
     position: relative;
     font-size: 1rem;
     letter-spacing: 7px;
-    color: #ff4fa3;
-    text-shadow: 0 0 15px rgba(255, 80, 170, .55);
+    color: #ffd21a;
+    text-shadow: 0 0 15px rgba(255, 210, 0, .55);
     margin-bottom: 30px;
 }
 
@@ -515,7 +515,7 @@ body::before {
     display: inline-block;
     font-size: .65rem;
     letter-spacing: 4px;
-    color: #ff78ba;
+    color: #ffdc35;
     margin-bottom: 20px;
 }
 
@@ -530,7 +530,7 @@ body::before {
 }
 
 .closing-section h2 em {
-    color: #ff4fa3;
+    color: #ffd21a;
     font-style: normal;
 }
 
@@ -548,11 +548,11 @@ body::before {
     max-width: 700px;
     margin: 55px auto 0;
     padding: 28px 30px;
-    border: 1px solid rgba(255, 80, 170, .16);
+    border: 1px solid rgba(255, 210, 0, .16);
     background:
         linear-gradient(
             145deg,
-            rgba(255, 80, 170, .035),
+            rgba(255, 200, 0, .035),
             rgba(5, 5, 5, .75)
         );
     text-align: left;
@@ -569,10 +569,10 @@ body::before {
         linear-gradient(
             90deg,
             transparent,
-            #ff4fa3,
+            #ffd21a,
             transparent
         );
-    box-shadow: 0 0 10px rgba(255, 80, 170, .35);
+    box-shadow: 0 0 10px rgba(255, 210, 0, .35);
 }
 
 .core-fear-tag {
@@ -580,8 +580,8 @@ body::before {
     margin-bottom: 12px;
     font-size: .62rem;
     letter-spacing: 3px;
-    color: #ff78ba;
-    text-shadow: 0 0 10px rgba(255, 80, 170, .35);
+    color: #ffdc35;
+    text-shadow: 0 0 10px rgba(255, 210, 0, .35);
 }
 
 .core-fear p {
@@ -594,11 +594,11 @@ body::before {
 }
 
 .core-fear strong {
-    color: #ffb5dc;
+    color: #fff0a6;
     font-weight: 500;
 }
 
-@keyframes floatSeven {
+@keyframes floatNine {
     0%, 100% {
         transform: translateY(0);
     }
@@ -620,7 +620,7 @@ body::before {
 
 @media (max-width: 1000px) {
 
-    .hero-type7 {
+    .hero-type9 {
         grid-template-columns: 1fr;
         min-height: auto;
         padding-top: 110px;
@@ -634,7 +634,7 @@ body::before {
 
     .type-tag {
         border-left: none;
-        border-bottom: 1px solid #ff4fa3;
+        border-bottom: 1px solid #ffd21a;
         padding: 0 0 8px;
     }
 
@@ -662,7 +662,7 @@ body::before {
 
 @media (max-width: 700px) {
 
-    .hero-type7 {
+    .hero-type9 {
         padding-left: 5%;
         padding-right: 5%;
     }
@@ -685,12 +685,12 @@ body::before {
         min-height: 380px;
     }
 
-    .seven-circle {
+    .nine-circle {
         width: 280px;
         height: 280px;
     }
 
-    .seven-circle span {
+    .nine-circle span {
         font-size: 8rem;
     }
 
@@ -785,12 +785,12 @@ body::before {
         min-height: 320px;
     }
 
-    .seven-circle {
+    .nine-circle {
         width: 230px;
         height: 230px;
     }
 
-    .seven-circle span {
+    .nine-circle span {
         font-size: 6.5rem;
     }
 
