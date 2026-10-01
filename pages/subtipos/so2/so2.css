@@ -1,0 +1,438 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --black: #050505;
+    --black-soft: #0b0b0b;
+    --black-card: #101010;
+    --yellow: #d4aa3f;
+    --yellow-light: #e8ca72;
+    --yellow-dark: #806522;
+    --white: #ffffff;
+    --gray: #bdbdbd;
+    --gray-dark: #777777;
+    --border: rgba(212, 170, 63, 0.18);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--black);
+    color: var(--white);
+    font-family: "Roboto", sans-serif;
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: -1;
+    background:
+        radial-gradient(circle at 50% 0%, rgba(212, 170, 63, 0.12), transparent 30%),
+        radial-gradient(circle at 10% 50%, rgba(212, 170, 63, 0.04), transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(212, 170, 63, 0.04), transparent 25%);
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.so2-page {
+    min-height: 100vh;
+}
+
+.hero {
+    min-height: 620px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 120px 25px 100px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    border-radius: 50%;
+    background: rgba(212, 170, 63, 0.08);
+    filter: blur(100px);
+    top: -300px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.hero-glow {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 170, 63, 0.12);
+    box-shadow:
+        0 0 80px rgba(212, 170, 63, 0.08),
+        inset 0 0 80px rgba(212, 170, 63, 0.04);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-glow::before,
+.hero-glow::after {
+    content: "";
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(212, 170, 63, 0.08);
+}
+
+.hero-glow::before {
+    width: 450px;
+    height: 450px;
+    top: -66px;
+    left: -66px;
+}
+
+.hero-glow::after {
+    width: 580px;
+    height: 580px;
+    top: -131px;
+    left: -131px;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 850px;
+    text-align: center;
+}
+
+.tag {
+    display: inline-block;
+    color: var(--yellow);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(80px, 16vw, 170px);
+    line-height: 0.85;
+    font-weight: 900;
+    letter-spacing: -8px;
+    color: var(--white);
+    text-shadow: 0 0 45px rgba(212, 170, 63, 0.18);
+}
+
+.hero h2 {
+    margin-top: 25px;
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 500;
+    color: var(--yellow);
+    letter-spacing: 1px;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: 25px auto 0;
+    color: var(--gray);
+    font-size: 17px;
+    line-height: 1.7;
+}
+
+.hero-line {
+    width: 80px;
+    height: 2px;
+    margin: 30px auto 20px;
+    background: var(--yellow);
+    box-shadow: 0 0 15px rgba(212, 170, 63, 0.5);
+}
+
+.hero-small {
+    color: var(--white);
+    font-size: 15px;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+
+/* =========================
+   CONTEÚDO
+========================= */
+
+.content {
+    width: min(1000px, calc(100% - 40px));
+    margin: 0 auto;
+    padding: 100px 0;
+}
+
+.text-section {
+    position: relative;
+    margin-bottom: 100px;
+    padding-left: 35px;
+    border-left: 1px solid rgba(212, 170, 63, 0.25);
+}
+
+.text-section::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--yellow);
+    box-shadow: 0 0 15px rgba(212, 170, 63, 0.7);
+    left: -4px;
+    top: 8px;
+}
+
+.section-number {
+    display: block;
+    color: var(--yellow);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.text-section h2 {
+    font-size: clamp(25px, 4vw, 38px);
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: var(--white);
+    letter-spacing: -0.5px;
+}
+
+.text-section p {
+    color: #d2d2d2;
+    font-size: 17px;
+    line-height: 1.9;
+    font-weight: 400;
+}
+
+.text-section strong {
+    color: var(--yellow-light);
+    font-weight: 700;
+}
+
+
+/* =========================
+   DESTAQUES
+========================= */
+
+.highlight {
+    position: relative;
+    margin: 90px 0;
+    padding: 45px 50px;
+    background: linear-gradient(
+        135deg,
+        rgba(212, 170, 63, 0.10),
+        rgba(212, 170, 63, 0.025)
+    );
+    border: 1px solid rgba(212, 170, 63, 0.22);
+    border-radius: 18px;
+    overflow: hidden;
+}
+
+.highlight::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    background: rgba(212, 170, 63, 0.12);
+    filter: blur(70px);
+    right: -80px;
+    top: -80px;
+}
+
+.highlight-label {
+    position: relative;
+    display: block;
+    margin-bottom: 18px;
+    color: var(--yellow);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.highlight p {
+    position: relative;
+    color: var(--white);
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.5;
+    font-weight: 500;
+}
+
+
+/* =========================
+   FINAL
+========================= */
+
+.ending {
+    position: relative;
+    text-align: center;
+    margin-top: 120px;
+    padding: 90px 30px;
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.ending::before {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 250px;
+    background: rgba(212, 170, 63, 0.08);
+    filter: blur(100px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+.ending > * {
+    position: relative;
+    z-index: 1;
+}
+
+.ending .section-number {
+    font-size: 14px;
+}
+
+.ending h2 {
+    font-size: clamp(30px, 5vw, 50px);
+    margin-bottom: 25px;
+}
+
+.ending p {
+    max-width: 700px;
+    margin: auto;
+    color: var(--gray);
+    font-size: 18px;
+    line-height: 1.8;
+}
+
+.ending-words {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 40px;
+}
+
+.ending-words span {
+    padding: 10px 18px;
+    border: 1px solid rgba(212, 170, 63, 0.25);
+    border-radius: 50px;
+    color: var(--yellow-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    background: rgba(212, 170, 63, 0.04);
+}
+
+
+/* =========================
+   SELEÇÃO
+========================= */
+
+::selection {
+    background: var(--yellow);
+    color: var(--black);
+}
+
+
+/* =========================
+   SCROLLBAR
+========================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--black);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--yellow-dark);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--yellow);
+}
+
+
+/* =========================
+   RESPONSIVO
+========================= */
+
+@media (max-width: 700px) {
+
+    .hero {
+        min-height: 560px;
+        padding: 100px 20px 80px;
+    }
+
+    .hero h1 {
+        letter-spacing: -5px;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .content {
+        width: min(100% - 30px, 1000px);
+        padding: 70px 0;
+    }
+
+    .text-section {
+        padding-left: 22px;
+        margin-bottom: 75px;
+    }
+
+    .text-section p {
+        font-size: 16px;
+        line-height: 1.8;
+    }
+
+    .highlight {
+        padding: 35px 25px;
+        margin: 70px 0;
+    }
+
+    .highlight p {
+        font-size: 20px;
+    }
+
+    .ending {
+        padding: 70px 15px;
+    }
+
+    .ending p {
+        font-size: 16px;
+    }
+
+    .ending-words {
+        gap: 8px;
+    }
+
+    .ending-words span {
+        padding: 8px 13px;
+        font-size: 9px;
+    }
+}
