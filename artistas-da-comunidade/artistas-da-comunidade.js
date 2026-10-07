@@ -16,7 +16,7 @@ const PUBLICACOES = [
     {
         id: "mii-001",
         autor: "Mii",
-        username: "mii",
+        username: "miizoca",
         tipo: "arte",
         titulo: "Criação da Mii",
         descricao: "Uma das artes compartilhadas pela comunidade.",
@@ -49,17 +49,70 @@ const PUBLICACOES = [
         vencedor: true
     },
 
-    {
-        id: "poema-001",
-        autor: "Membro da Casa",
-        username: "teste",
-        tipo: "poema TESTE",
-        titulo: "Entre pensamentos",
-        texto: "Às vezes a mente fala baixo,\nenquanto o mundo grita alto.\n\nE no silêncio entre os dois,\na gente finalmente se encontra.",
-        assinatura: "— poema teste",
-        data: "2026-08-21",
-        vencedor: false
-    }
+
+        {
+        id: "jack",
+        autor: "jack",
+        username: "jack",
+        tipo: "arte",
+        titulo: "desgaste",
+        descricao: "Uma criação compartilhada no Ateliê.",
+        imagem: "../img/artistas-da-comunidade/jack-desgaste.jpg",
+        data: "2026-09-30",
+        vencedor: true
+    },
+
+    
+        {
+        id: "Gabriel",
+        autor: "Gabriel",
+        username: "Gabriel",
+        tipo: "arte",
+        titulo: "-",
+        descricao: "Uma criação compartilhada no Ateliê.",
+        imagem: "../img/artistas-da-comunidade/gabriel.jpg",
+        data: "2026-09-30",
+        vencedor: true
+    },
+
+        {
+        id: "Silva",
+        autor: "Silva",
+        username: "Silva",
+        tipo: "arte",
+        titulo: "Nostalgia",
+        descricao: "Uma criação compartilhada no Ateliê.",
+        imagem: "../img/artistas-da-comunidade/silva-nostalgia.jpg",
+        data: "2026-09-30",
+        vencedor: true
+    },
+
+        {
+        id: "Yudi",
+        autor: "Yudi",
+        username: "Yudi",
+        tipo: "poema",
+        titulo: "Procrastinação víciosa",
+        descricao: "Uma criação compartilhada no Ateliê.",
+        imagem: "../img/artistas-da-comunidade/yudi.png",
+        data: "2026-09-30",
+        vencedor: true
+    },
+
+             {
+        id: "David",
+        autor: "David",
+        username: "DavidLgendary",
+        tipo: "poema",
+        titulo: "A tragédia do sexual",
+        descricao: "Uma criação compartilhada no Ateliê.",
+        imagem: "../img/artistas-da-comunidade/david.png",
+        data: "2026-09-30",
+        vencedor: true
+    },
+
+
+   
 ];
 
 
@@ -1070,46 +1123,50 @@ function criarCardPoema(post) {
 
             ${criarCabecalhoPost(post)}
 
-            <div
-                class="poema-preview"
-                data-poem-id="${escaparHTML(post.id)}"
-                role="button"
-                tabindex="0"
-                aria-label="Abrir poema"
-            >
+            <div class="post-image-wrap">
 
-                <div class="poema-preview-title">
-                    ${escaparHTML(
-                        post.titulo ||
-                        "Poema"
-                    )}
-                </div>
-
-                <div class="poema-text">
-                    ${escaparHTML(
-                        post.texto
-                    )}
-                </div>
+                <img
+                    class="post-image poema-image"
+                    src="${escaparHTML(post.imagem)}"
+                    alt="${escaparHTML(
+                        post.titulo || "Poema"
+                    )}"
+                    loading="lazy"
+                >
 
                 ${
-                    post.assinatura
+                    post.vencedor
                         ? `
-                            <div class="poema-signature">
-                                ${escaparHTML(
-                                    post.assinatura
-                                )}
+                            <div class="winner-badge">
+                                ♛ VENCEDOR
                             </div>
                         `
                         : ""
                 }
 
-                <div class="poema-expand-hint">
-                    Toque para ler
-                </div>
-
             </div>
 
-            <div class="post-content poema-actions-content">
+            <div class="post-content">
+
+                ${
+                    post.titulo
+                        ? `
+                            <h3 class="post-title">
+                                ${escaparHTML(post.titulo)}
+                            </h3>
+                        `
+                        : ""
+                }
+
+                ${
+                    post.descricao
+                        ? `
+                            <p class="post-description">
+                                ${escaparHTML(post.descricao)}
+                            </p>
+                        `
+                        : ""
+                }
 
                 <div class="post-actions">
                     ${criarBotaoCurtida(post)}
@@ -1120,7 +1177,6 @@ function criarCardPoema(post) {
         </article>
     `;
 }
-
 
 /* =========================================================
    MODAL DO POEMA
@@ -1720,14 +1776,6 @@ function configurarZoomImagens() {
              * Poemas são completamente ignorados.
              */
             if (!imagem) {
-                return;
-            }
-
-            if (
-                imagem.closest(
-                    ".poema-card"
-                )
-            ) {
                 return;
             }
 
