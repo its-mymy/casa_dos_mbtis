@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070b">
+    <title>Quiz 2 — Sombras da Mente</title>
+    <link rel="stylesheet" href="quiz2.css">
+</head>
+<body>
+    <main class="container">
+        <header class="cabecalho">
+            <span class="simbolo">✦</span>
+            <p class="sobretitulo">CASA DOS MBTIs APRESENTA</p>
+            <h1>Sombras da <span>Mente</span></h1>
+            <p class="introducao">
+                Explore seus padrões de comportamento e descubra
+                quais traços aparecem com mais intensidade em você.
+            </p>
+        </header>
+
+        <section id="inicio" class="painel">
+            <div class="ilustracao">☽</div>
+            <h2>O que existe além da superfície?</h2>
+            <p>
+                Responda a 24 perguntas sobre suas reações, seus
+                relacionamentos e a maneira como você enxerga a si mesmo.
+            </p>
+            <p class="aviso">
+                Este teste é recreativo e não fornece diagnósticos psicológicos.
+            </p>
+            <button id="comecar" class="botao principal">Revelar minhas sombras</button>
+        </section>
+
+        <section id="areaQuiz" class="painel escondido">
+            <div class="topo-quiz">
+                <span id="contador">PERGUNTA 1 DE 24</span>
+                <span id="porcentagem">0%</span>
+            </div>
+
+            <div class="trilho">
+                <div id="progresso"></div>
+            </div>
+
+            <p class="categoria" id="categoria"></p>
+            <h2 id="pergunta"></h2>
+
+            <div id="opcoes" class="opcoes">
+                <button class="opcao" data-resposta="sim">Sim</button>
+                <button class="opcao" data-resposta="nao">Não</button>
+                <button class="opcao" data-resposta="depende">Depende</button>
+            </div>
+
+            <div class="navegacao">
+                <button id="voltar" class="botao secundario">Voltar</button>
+                <button id="proxima" class="botao principal" disabled>Próxima</button>
+            </div>
+        </section>
+
+        <section id="resultado" class="painel escondido">
+            <p class="sobretitulo">SEU MAPA PSICOLÓGICO</p>
+            <h2 id="tituloResultado">Suas tendências</h2>
+            <p id="descricaoResultado" class="descricao-resultado"></p>
+
+            <div class="grafico-container">
+                <canvas id="graficoRadar" aria-label="Gráfico radar das seis categorias psicológicas"></canvas>
+            </div>
+
+            <p class="legenda-grafico">
+                Pontuações indicativas de 0 a 100. Valores maiores representam
+                maior presença das características avaliadas neste questionário.
+            </p>
+
+            <div id="listaPontuacoes" class="lista-pontuacoes"></div>
+
+            <p class="aviso">
+                Os resultados são uma ferramenta de reflexão, não um diagnóstico.
+                Um questionário informal não determina se alguém tem um transtorno.
+            </p>
+
+            <div class="acoes-resultado">
+                <button id="baixar" class="botao secundario">Baixar gráfico</button>
+                <button id="refazer" class="botao principal">Refazer teste</button>
+            </div>
+        </section>
+
+        <footer>
+            <span>CASA DOS MBTIs</span>
+            <span>✦ SOMBRAS DA MENTE ✦</span>
+        </footer>
+    </main>
+
+    <script src="quiz2.js"></script>
+</body>
+</html>
