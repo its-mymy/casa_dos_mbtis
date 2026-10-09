@@ -304,54 +304,23 @@ const perguntas = [
 
         texto: "Quando enfrento um problema, consigo separar o que posso resolver agora daquilo que precisa esperar."
 
-    },
-
-    {
-
-        categoria: "calma",
-
-        texto: "Em situações tensas, consigo manter certa clareza para pensar no que fazer."
-
     }
-
 ];
 
 
-
 const respostas = new Array(perguntas.length).fill(null);
-
-
-
 const inicio = document.getElementById("inicio");
-
 const areaQuiz = document.getElementById("areaQuiz");
-
 const resultado = document.getElementById("resultado");
-
-
-
 const botaoComecar = document.getElementById("comecar");
-
 const botaoVoltar = document.getElementById("voltar");
-
 const botaoProxima = document.getElementById("proxima");
-
 const botaoRefazer = document.getElementById("refazer");
-
 const botaoBaixar = document.getElementById("baixar");
-
-
-
-const elementoCategoria = document.getElementById("categoria");
-
 const elementoContador = document.getElementById("contador");
-
 const elementoProgresso = document.getElementById("progresso");
-
 const elementoNumero = document.getElementById("numeroGrande");
-
 const elementoPergunta = document.getElementById("pergunta");
-
 const elementoOpcoes = document.getElementById("opcoes");
 
 
@@ -387,62 +356,23 @@ function iniciarQuiz() {
 
 
 function renderizarPergunta() {
-
     const pergunta = perguntas[perguntaAtual];
-
     const dimensao = dimensoes[pergunta.categoria];
-
-
-
-    elementoCategoria.textContent = dimensao.nome.toLocaleUpperCase("pt-BR");
-
-    elementoCategoria.className = `category-label ${dimensao.classe}`;
-
-
-
-    elementoContador.textContent =
-
-        `PERGUNTA ${perguntaAtual + 1} DE ${perguntas.length}`;
-
-
-
-    elementoProgresso.style.width =
-
-        `${((perguntaAtual + 1) / perguntas.length) * 100}%`;
-
-
-
+    elementoContador.textContent = `PERGUNTA ${perguntaAtual + 1} DE ${perguntas.length}`;
+    elementoProgresso.style.width =  `${((perguntaAtual + 1) / perguntas.length) * 100}%`;
     elementoNumero.textContent = String(perguntaAtual + 1).padStart(2, "0");
-
     elementoPergunta.textContent = pergunta.texto;
-
-
-
     elementoOpcoes.querySelectorAll(".answer-option").forEach(botao => {
-
         const valor = Number(botao.dataset.value);
-
         const selecionado = respostas[perguntaAtual] === valor;
-
-
-
         botao.classList.toggle("selected", selecionado);
-
         botao.setAttribute("aria-pressed", String(selecionado));
 
     });
 
-
-
     botaoVoltar.disabled = perguntaAtual === 0;
-
     botaoProxima.disabled = respostas[perguntaAtual] === null;
-
-
-
-    botaoProxima.innerHTML =
-
-        perguntaAtual === perguntas.length - 1
+    botaoProxima.innerHTML = perguntaAtual === perguntas.length - 1
 
             ? 'Ver meu resultado <span>→</span>'
 
@@ -487,13 +417,9 @@ botaoVoltar.addEventListener("click", () => {
 });
 
 
-
 botaoProxima.addEventListener("click", () => {
 
     if (respostas[perguntaAtual] === null) return;
-
-
-
     if (perguntaAtual < perguntas.length - 1) {
 
         perguntaAtual++;
@@ -505,8 +431,6 @@ botaoProxima.addEventListener("click", () => {
         return;
 
     }
-
-
 
     mostrarResultados();
 
@@ -535,8 +459,6 @@ function calcularPontuacoes() {
             return soma + respostas[item.indice];
 
         }, 0);
-
-
 
         resultados[categoria] = Math.round(total / indices.length);
 
@@ -575,8 +497,6 @@ function obterDescricao(categoria, valor) {
         return `${dimensao.descricao} Suas respostas indicam uma presença intermediária dessa tendência.`;
 
     }
-
-
 
     return dimensao.baixa;
 
