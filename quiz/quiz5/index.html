@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080612">
+<title>Quiz 05 | Qual é o seu mecanismo de defesa?</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="quiz5.css">
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+</head>
+<body>
+<main class="app-shell">
+<header class="topbar"><a class="brand" href="../"><span>✦</span> CASA DOS MBTIs</a><span class="topbar-label">QUIZ COMPORTAMENTAL</span></header>
+<section class="screen intro-screen" id="inicio">
+<div class="intro-art" role="img" aria-label="Pessoa diante de um espelho luminoso">
+<div class="art-stars"></div><div class="person outside"><i class="head"></i><i class="body"></i><i class="arm a1"></i><i class="arm a2"></i><i class="leg l1"></i><i class="leg l2"></i></div>
+<div class="mirror"><div class="person reflection"><i class="head"></i><i class="body"></i><i class="arm a1"></i><i class="arm a2"></i><i class="leg l1"></i><i class="leg l2"></i></div></div><div class="floor-glow"></div>
+</div>
+<div class="intro-copy"><div class="eyebrow">● 20 PERGUNTAS · AUTOCONHECIMENTO</div>
+<h1>Qual é o seu <em>mecanismo de defesa?</em></h1>
+<p>Descubra quais tendências podem aparecer quando você se sente pressionado, vulnerável ou diante de situações difíceis.</p>
+<div class="pills"><span class="rational">Racionalização</span><span class="denial">Negação</span><span class="projection">Projeção</span><span class="repression">Repressão</span><span class="humor">Humor</span></div>
+<button class="primary" id="comecar">Começar quiz <b>→</b></button>
+<small>Teste recreativo de autoconhecimento. Não substitui uma avaliação psicológica.</small></div>
+</section>
+<section class="screen quiz-screen" id="areaQuiz" hidden>
+<div class="eyebrow">SUA JORNADA</div><div class="progress-meta"><span id="contador">PERGUNTA 1 DE 20</span><span id="percentual">5%</span></div><div class="track"><div id="progresso"></div></div>
+<div class="question"><span id="numero">01</span><div><h2 id="pergunta"></h2><p>Escolha a alternativa que mais se aproxima da sua reação habitual.</p></div></div>
+<div id="opcoes" class="options"></div><p id="aviso" class="hint" aria-live="polite">Selecione uma alternativa para continuar.</p>
+<nav><button class="secondary" id="anterior" disabled>← Anterior</button><button class="primary" id="proxima" disabled>Próxima →</button></nav>
+</section>
+<section class="screen results-screen" id="resultado" hidden>
+<div class="eyebrow">SEU RESULTADO</div><h1>Seu mecanismo de defesa <em>predominante</em></h1><p class="sub">Veja quais tendências tiveram maior pontuação nas suas respostas.</p>
+<div class="feature" id="cartaoPrincipal"><div class="big-symbol" id="simbolo"></div><div><small id="kicker">TENDÊNCIA MAIS PRESENTE</small><h2 id="nome"></h2><p id="descricao"></p><div class="combination"><b>SUA COMBINAÇÃO</b><p id="combinacao"></p></div></div></div>
+<div class="score-title"><div><div class="eyebrow">VISÃO GERAL</div><h2>Suas pontuações</h2></div><span>Distribuição das respostas</span></div><div class="scores" id="pontuacoes"></div>
+<div class="actions"><button class="primary" id="baixar">Baixar resultado ↓</button><button class="secondary" id="refazer">Refazer quiz ↻</button><a class="secondary" href="../">Voltar ao catálogo</a></div>
+<p class="disclaimer">Os resultados indicam tendências dentro deste quiz, não um diagnóstico. Mecanismos de defesa variam conforme o contexto e não podem ser determinados com precisão por um teste breve.</p>
+</section>
+<footer><span>✦ CASA DOS MBTIs</span><span>QUIZ 05</span></footer>
+</main><script src="quiz5.js"></script>
+</body></html>
