@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#050505">
+    <title>Quiz de Maldade e Bondade | Casa dos MBTIs</title>
+    <link rel="stylesheet" href="quiz.css">
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <script src="quiz.js" defer></script>
+</head>
+<body>
+    <header class="topo">
+        <a class="logo" href="../../index.html">CASA DOS <span>MBTIs</span></a>
+        <span class="selo">QUIZ MORAL</span>
+    </header>
+
+    <main class="container">
+        <section id="inicio" class="painel inicio">
+            <div class="ornamento">✦ ───── ✦</div>
+            <p class="sobretitulo">DESCUBRA SUA NATUREZA</p>
+            <h1>QUIZ DE<br><span>MALDADE</span> E<br>BONDADE</h1>
+            <p class="introducao">
+                Todos temos nossos próprios princípios.
+                Mas até onde você iria diante de um dilema moral?
+            </p>
+            <div class="aviso">✧ 20 perguntas • 5 níveis • Um resultado</div>
+            <button id="comecar" class="botao principal">
+                COMEÇAR QUIZ <span>↗</span>
+            </button>
+            <p class="nota">Um quiz de entretenimento, sem avaliação psicológica.</p>
+            <div class="ornamento">✦ ───── ✦</div>
+        </section>
+
+        <section id="areaQuiz" class="painel escondido">
+            <div class="progresso-info">
+                <span id="contador">PERGUNTA 1 DE 20</span>
+                <span id="porcentagem">5%</span>
+            </div>
+            <div class="barra"><div id="progresso"></div></div>
+
+            <p class="sobretitulo">REFLITA ANTES DE ESCOLHER</p>
+            <h2 id="pergunta"></h2>
+
+            <div id="opcoes" class="opcoes">
+                <button class="opcao" data-resposta="sim">SIM</button>
+                <button class="opcao" data-resposta="nao">NÃO</button>
+                <button class="opcao" data-resposta="depende">DEPENDE</button>
+            </div>
+
+            <p class="dica">Escolha a resposta que mais combina com você.</p>
+
+            <div class="navegacao">
+                <button id="voltar" class="botao secundario">← VOLTAR</button>
+                <button id="proxima" class="botao principal" disabled>PRÓXIMA →</button>
+            </div>
+        </section>
+
+        <section id="resultado" class="painel escondido">
+            <p class="sobretitulo">SEU RESULTADO FOI REVELADO</p>
+            <h2 class="titulo-resultado">SUA NATUREZA MORAL</h2>
+
+            <div id="cartao" class="cartao">
+                <div class="card-borda">
+                    <p class="card-marca">CASA DOS MBTIs</p>
+                    <p class="card-subtitulo">QUIZ DE MALDADE E BONDADE</p>
+                    <div class="linha"></div>
+
+                    <div class="imagem-card">
+                        <img id="imagemNivel" src="quis/nivel3.png"
+                             alt="Ilustração do nível" crossorigin="anonymous">
+                        <div id="imagemFallback" class="imagem-fallback escondido">
+                            ✦
+                        </div>
+                    </div>
+
+                    <p id="cardNumero" class="card-numero">NÍVEL 03</p>
+                    <h2 id="nomeNivel" class="nome-nivel">MORALIDADE CINZENTA</h2>
+                    <p id="descricaoNivel" class="descricao-nivel"></p>
+
+                    <div class="escala-titulo">
+                        <span>☼ BONDADE</span>
+                        <span>MALDADE ☾</span>
+                    </div>
+                    <div class="escala">
+                        <div id="barraResultado"></div>
+                        <span id="marcador"></span>
+                    </div>
+
+                    <div class="pontuacao">
+                        <span>PONTUAÇÃO</span>
+                        <strong id="pontos">50/100</strong>
+                    </div>
+
+                    <div class="linha"></div>
+                    <p class="frase-card" id="fraseNivel"></p>
+                    <p class="card-rodape">RESULTADO PARA ENTRETENIMENTO</p>
+                </div>
+            </div>
+
+            <p class="texto-resultado">
+                Este resultado representa suas respostas neste quiz, não uma
+                avaliação definitiva do seu caráter.
+            </p>
+
+            <div class="acoes-resultado">
+                <button id="baixar" class="botao principal">BAIXAR IMAGEM PNG ↓</button>
+                <button id="refazer" class="botao secundario">REFAZER QUIZ ↻</button>
+            </div>
+            <p id="mensagem" class="mensagem"></p>
+        </section>
+    </main>
+
+    <footer>
+        <span>✦</span> CASA DOS MBTIs <span>✦</span>
+    </footer>
+</body>
+</html>
