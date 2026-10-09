@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070d">
+    <title>Quiz dos Temperamentos</title>
+    <link rel="stylesheet" href="quiz6.css">
+    <script src="quiz6.js" defer></script>
+</head>
+<body>
+    <div class="background-effects">
+        <span class="glow glow-one"></span>
+        <span class="glow glow-two"></span>
+        <span class="glow glow-three"></span>
+    </div>
+
+    <main class="page">
+        <header class="topbar">
+            <a href="#" class="brand">
+                <span class="brand-symbol">✦</span>
+                <span>PSYCH<span class="brand-accent">SPACE</span></span>
+            </a>
+            <span class="topbar-label">TESTE DE PERSONALIDADE</span>
+        </header>
+
+        <section class="intro" id="intro">
+            <span class="eyebrow"><span class="eyebrow-dot"></span> AUTOCONHECIMENTO</span>
+            <h1>Qual é o seu<br><span>temperamento?</span></h1>
+            <p class="intro-description">
+                Descubra qual dos quatro temperamentos clássicos mais combina
+                com suas tendências de comportamento, suas reações e sua forma
+                de lidar com o mundo.
+            </p>
+
+            <div class="temperament-preview">
+                <div class="preview-item">
+                    <span class="preview-dot colerico"></span>
+                    <span>Colérico</span>
+                </div>
+                <div class="preview-item">
+                    <span class="preview-dot sanguineo"></span>
+                    <span>Sanguíneo</span>
+                </div>
+                <div class="preview-item">
+                    <span class="preview-dot fleumatico"></span>
+                    <span>Fleumático</span>
+                </div>
+                <div class="preview-item">
+                    <span class="preview-dot melancolico"></span>
+                    <span>Melancólico</span>
+                </div>
+            </div>
+
+            <div class="intro-footer">
+                <div class="test-info">
+                    <span>◷</span>
+                    <span>20 perguntas</span>
+                    <span class="info-separator">·</span>
+                    <span>5 a 8 minutos</span>
+                </div>
+                <button class="primary-button" id="startBtn">
+                    Começar teste <span>↗</span>
+                </button>
+            </div>
+            <p class="disclaimer">
+                Este teste é uma ferramenta de reflexão pessoal, não uma avaliação psicológica.
+            </p>
+        </section>
+
+        <section class="quiz-section hidden" id="quizSection">
+            <div class="quiz-heading">
+                <div>
+                    <span class="eyebrow">SEU TESTE</span>
+                    <h2>Conheça suas tendências.</h2>
+                </div>
+                <span class="question-counter" id="questionCounter">01 / 20</span>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+            <div class="question-card">
+                <span class="question-number" id="questionNumber">PERGUNTA 01</span>
+                <h3 id="questionText">Pergunta aparecerá aqui.</h3>
+                <p class="question-hint">Escolha a alternativa que mais se aproxima de você.</p>
+
+                <div class="answers" id="answers"></div>
+
+                <div class="quiz-navigation">
+                    <button class="secondary-button" id="backBtn" disabled>← Voltar</button>
+                    <button class="primary-button" id="nextBtn" disabled>
+                        Próxima <span>→</span>
+                    </button>
+                </div>
+            </div>
+
+            <p class="quiz-footnote">
+                Não existe resposta certa ou errada. Responda pensando em como você costuma agir.
+            </p>
+        </section>
+
+        <section class="result-section hidden" id="resultSection">
+            <div class="result-heading">
+                <span class="eyebrow"><span class="eyebrow-dot"></span> SEU RESULTADO</span>
+                <h2>Seu perfil de temperamento</h2>
+                <p>Veja como suas tendências se distribuem entre os quatro temperamentos.</p>
+            </div>
+
+            <div class="result-main">
+                <article class="dominant-card" id="dominantCard">
+                    <div class="dominant-topline">
+                        <span class="card-label">TEMPERAMENTO PREDOMINANTE</span>
+                        <span class="dominant-symbol" id="dominantSymbol">✦</span>
+                    </div>
+
+                    <div class="dominant-emoji" id="dominantEmoji">😎</div>
+                    <h3 id="dominantName">Colérico</h3>
+                    <p id="dominantDescription"></p>
+
+                    <div class="dominant-score">
+                        <span>Compatibilidade no teste</span>
+                        <strong id="dominantPercentage">0%</strong>
+                    </div>
+                    <div class="score-track">
+                        <div class="score-fill" id="dominantScoreFill"></div>
+                    </div>
+                </article>
+
+                <article class="dashboard-card">
+                    <div class="dashboard-header">
+                        <div>
+                            <span class="card-label">VISÃO GERAL</span>
+                            <h3>Seu mapa de tendências</h3>
+                        </div>
+                        <span class="dashboard-icon">◉</span>
+                    </div>
+
+                    <div class="bubble-chart" id="bubbleChart">
+                        <div class="bubble bubble-colerico" data-bubble="colerico">
+                            <span class="bubble-emoji">🔥</span>
+                            <span class="bubble-name">Colérico</span>
+                            <strong class="bubble-score">0%</strong>
+                        </div>
+                        <div class="bubble bubble-sanguineo" data-bubble="sanguineo">
+                            <span class="bubble-emoji">☀️</span>
+                            <span class="bubble-name">Sanguíneo</span>
+                            <strong class="bubble-score">0%</strong>
+                        </div>
+                        <div class="bubble bubble-fleumatico" data-bubble="fleumatico">
+                            <span class="bubble-emoji">🌊</span>
+                            <span class="bubble-name">Fleumático</span>
+                            <strong class="bubble-score">0%</strong>
+                        </div>
+                        <div class="bubble bubble-melancolico" data-bubble="melancolico">
+                            <span class="bubble-emoji">🌙</span>
+                            <span class="bubble-name">Melancólico</span>
+                            <strong class="bubble-score">0%</strong>
+                        </div>
+                    </div>
+
+                    <p class="chart-note">
+                        O tamanho das bolhas representa a pontuação relativa de cada temperamento.
+                    </p>
+                </article>
+            </div>
+
+            <article class="scores-card">
+                <div class="scores-heading">
+                    <div>
+                        <span class="card-label">DISTRIBUIÇÃO</span>
+                        <h3>Pontuação dos temperamentos</h3>
+                    </div>
+                </div>
+                <div id="scoreList" class="score-list"></div>
+            </article>
+
+            <article class="interpretation-card">
+                <span class="card-label">INTERPRETAÇÃO</span>
+                <h3>O que isso pode dizer sobre você?</h3>
+                <p id="resultInterpretation"></p>
+                <p class="result-disclaimer">
+                    Os temperamentos são um modelo tradicional de autoconhecimento,
+                    não categorias científicas definitivas. Seu resultado não define
+                    toda a sua personalidade e pode variar conforme o contexto.
+                </p>
+            </article>
+
+            <div class="result-actions">
+                <button class="primary-button" id="restartBtn">↻ Refazer teste</button>
+                <button class="secondary-button" id="copyBtn">Copiar resultado ↗</button>
+            </div>
+        </section>
+
+        <footer class="page-footer">
+            <span>PSYCHSPACE © 2026</span>
+            <span>Explore. Reflita. Conheça-se.</span>
+        </footer>
+    </main>
+</body>
+</html>
