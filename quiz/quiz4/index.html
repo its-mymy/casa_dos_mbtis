@@ -1,0 +1,235 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#100d18">
+    <meta name="description" content="Descubra qual instinto parece guiar suas escolhas.">
+    <title>Quiz 04 | Instintos</title>
+    <link rel="stylesheet" href="quiz4.css">
+</head>
+<body>
+    <div class="background-glow glow-one" aria-hidden="true"></div>
+    <div class="background-glow glow-two" aria-hidden="true"></div>
+
+    <header class="topbar">
+        <a href="../index.html" class="brand">
+            <span class="brand-icon">✦</span> CASA DOS MBTIs
+        </a>
+        <span class="quiz-label">QUIZ COMPORTAMENTAL</span>
+    </header>
+
+    <main class="container">
+
+        <!-- INÍCIO DO QUIZ -->
+        <section id="inicio" class="panel intro">
+            <span class="eyebrow">
+                <span></span> 20 PERGUNTAS · 3 INSTINTOS
+            </span>
+
+            <h1>Qual instinto parece <span>guiar suas escolhas?</span></h1>
+
+            <p class="intro-text">
+                Descubra quais prioridades parecem influenciar sua maneira
+                de viver, tomar decisões e se conectar com o mundo.
+                Responda pensando no que acontece naturalmente com você.
+            </p>
+
+            <div class="trait-preview">
+                <span class="trait-chip purple">☾ Autopreservação</span>
+                <span class="trait-chip green">✦ Social</span>
+                <span class="trait-chip pink">♡ Sexual</span>
+            </div>
+
+            <div class="intro-info">
+                <div>
+                    <strong>20</strong>
+                    <span>perguntas</span>
+                </div>
+                <div>
+                    <strong>3</strong>
+                    <span>alternativas</span>
+                </div>
+                <div>
+                    <strong>3</strong>
+                    <span>instintos</span>
+                </div>
+            </div>
+
+            <div class="intro-meme">
+                <img
+                    src="arrocha.jpg"
+                    alt="Meme de apresentação do quiz de instintos"
+                    onerror="this.closest('.intro-meme').classList.add('meme-missing')"
+                >
+                <p>Arrocha nas respostas</p>
+            </div>
+
+            <button type="button" id="comecar" class="primary-button">
+                Começar quiz <span>→</span>
+            </button>
+
+            <p class="disclaimer">
+                Teste recreativo inspirado nos instintos do Eneagrama.
+                Não constitui avaliação psicológica ou tipagem definitiva.
+            </p>
+        </section>
+
+        <!-- PERGUNTAS -->
+        <section
+            id="areaQuiz"
+            class="panel quiz-section hidden"
+            aria-live="polite"
+        >
+            <div class="quiz-topline">
+                <span id="contador">PERGUNTA 1 DE 20</span>
+                <span id="percentual">5%</span>
+            </div>
+
+            <div class="progress-track">
+                <div id="progresso" class="progress-fill"></div>
+            </div>
+
+            <div class="question-area">
+                <span id="numeroGrande" class="question-number">01</span>
+                <h2 id="pergunta"></h2>
+                <p class="answer-hint">
+                    Escolha a alternativa que mais combina com você.
+                </p>
+            </div>
+
+            <div id="opcoes" class="answers"></div>
+
+            <div class="quiz-navigation">
+                <button
+                    type="button"
+                    id="voltar"
+                    class="secondary-button"
+                    disabled
+                >
+                    ← Anterior
+                </button>
+
+                <button
+                    type="button"
+                    id="proxima"
+                    class="primary-button"
+                    disabled
+                >
+                    Próxima <span>→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- RESULTADO -->
+        <section id="resultado" class="results-section hidden">
+
+            <div class="panel result-heading">
+                <span class="card-kicker">SEU RESULTADO</span>
+                <h1>Seu panorama <span>instintivo</span></h1>
+                <p>
+                    Veja como suas respostas se distribuíram entre os três instintos.
+                </p>
+            </div>
+
+            <article class="panel result-highlight">
+                <div id="iconeDestaque" class="highlight-icon">✦</div>
+
+                <div>
+                    <span class="highlight-caption">INSTINTO EM DESTAQUE</span>
+                    <h2 id="tituloResultado"></h2>
+                    <p id="descricaoResultado"></p>
+                </div>
+            </article>
+
+            <section class="panel dashboard-card">
+                <span class="card-kicker">SUAS PONTUAÇÕES</span>
+                <h2>Distribuição dos instintos</h2>
+                <div id="listaPontuacoes" class="score-grid"></div>
+            </section>
+
+            <section class="panel dashboard-card">
+                <span class="card-kicker">COMPARAÇÃO</span>
+                <h2>Como suas respostas se distribuíram</h2>
+
+                <div id="barrasResultado" class="bar-list"></div>
+
+                <p class="chart-note">
+                    Os percentuais representam a distribuição das suas respostas
+                    neste questionário, não uma medida absoluta da personalidade.
+                </p>
+            </section>
+
+            <section class="panel interpretation-card">
+                <span class="card-kicker">LEITURA DO RESULTADO</span>
+                <h2>Sua combinação instintiva</h2>
+                <p id="textoCombinacao"></p>
+            </section>
+
+            <!-- MEME DO RESULTADO -->
+            <section class="panel meme-card">
+                <span class="card-kicker">VOCÊ DEPOIS DE 20 PERGUNTAS</span>
+
+                <p>Recomendo ler sobre instinto </p>
+
+                <img
+                    src="meme.jpg"
+                    alt="Meme do resultado do quiz"
+                    onerror="this.style.display='none'"
+                >
+            </section>
+
+            <!-- CARTÃO UTILIZADO PARA GERAR O PNG -->
+            <div id="imagemResultado" class="share-result">
+                <div class="share-top">
+                    <span>✦ CASA DOS MBTIs</span>
+                    <span>QUIZ 04</span>
+                </div>
+
+                <div class="share-main">
+                    <p class="share-kicker">MEU RESULTADO INSTINTIVO</p>
+                    <h2 id="imagemTitulo">Meu resultado</h2>
+                    <p id="imagemDescricao"></p>
+                </div>
+
+                <div id="imagemPontuacoes" class="share-scores"></div>
+
+                <div class="share-footer">
+                    <span>QUAL INSTINTO GUIA SUAS ESCOLHAS?</span>
+                    <span>CASA DOS MBTIs</span>
+                </div>
+            </div>
+
+            <!-- BOTÕES -->
+            <div class="result-actions">
+                <button type="button" id="baixar" class="primary-button">
+                    Baixar resultado PNG ↓
+                </button>
+
+                <button type="button" id="refazer" class="secondary-button">
+                    Refazer quiz ↻
+                </button>
+
+                <a href="../index.html" class="secondary-button">
+                    Voltar ao catálogo
+                </a>
+            </div>
+
+            <p class="disclaimer result-disclaimer">
+                Este resultado é recreativo e não substitui uma análise completa
+                dos instintos no Eneagrama.
+            </p>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <span>CASA DOS MBTIs</span>
+        <span>QUIZ 04</span>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="quiz4.js"></script>
+</body>
+</html>
