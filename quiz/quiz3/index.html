@@ -1,0 +1,175 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#100d18">
+  <meta name="description" content="Quiz recreativo de perfil comportamental da Casa dos MBTIs.">
+  <title>Quiz | Perfil Comportamental</title>
+  <link rel="stylesheet" href="quiz3.css">
+</head>
+<body>
+  <div class="background-glow glow-one" aria-hidden="true"></div>
+  <div class="background-glow glow-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a href="../index.html" class="brand">
+      <span class="brand-icon">✦</span> CASA DOS MBTIs
+    </a>
+    <span class="quiz-label">QUIZ COMPORTAMENTAL</span>
+  </header>
+
+  <main class="container">
+    <section id="inicio" class="panel intro">
+      <span class="eyebrow"><span></span> 24 PERGUNTAS · 5 DIMENSÕES</span>
+
+      <h1>Seu perfil <span>comportamental</span></h1>
+
+      <p class="intro-text">
+        Descubra como você costuma reagir em diferentes situações.
+        Responda com sinceridade: não existem respostas certas ou erradas.
+      </p>
+
+      <div class="trait-preview">
+        <span class="trait-chip purple"><span>☾</span> Preguiça</span>
+        <span class="trait-chip green"><span>✦</span> Competência</span>
+        <span class="trait-chip pink"><span>♡</span> Ansiedade</span>
+        <span class="trait-chip yellow"><span>◉</span> Alerta</span>
+        <span class="trait-chip blue"><span>☁</span> Calma</span>
+      </div>
+
+      <div class="intro-info">
+        <div><strong>24</strong><span>perguntas</span></div>
+        <div><strong>3</strong><span>opções de resposta</span></div>
+        <div><strong>5</strong><span>dimensões</span></div>
+      </div>
+
+      <button type="button" id="comecar" class="primary-button">
+        Começar quiz <span>→</span>
+      </button>
+
+      <p class="disclaimer">
+        Este quiz é recreativo e não constitui avaliação psicológica ou diagnóstico profissional.
+      </p>
+    </section>
+
+    <section id="areaQuiz" class="panel quiz-section hidden" aria-live="polite">
+      <div class="quiz-topline">
+        <span id="contador">PERGUNTA 1 DE 24</span>
+        <span id="percentual">4%</span>
+      </div>
+
+      <div class="progress-track">
+        <div id="progresso" class="progress-fill"></div>
+      </div>
+
+      <div class="question-area">
+        <span id="numeroGrande" class="question-number">01</span>
+        <h2 id="pergunta">Carregando pergunta...</h2>
+        <p class="answer-hint">Escolha a opção que mais combina com você.</p>
+      </div>
+
+      <div id="opcoes" class="answers">
+        <button type="button" class="answer-option" data-value="100" aria-pressed="false">
+          <span class="answer-radio"></span><span>Sim</span>
+        </button>
+        <button type="button" class="answer-option" data-value="50" aria-pressed="false">
+          <span class="answer-radio"></span><span>Às vezes</span>
+        </button>
+        <button type="button" class="answer-option" data-value="0" aria-pressed="false">
+          <span class="answer-radio"></span><span>Não</span>
+        </button>
+      </div>
+
+      <div class="quiz-navigation">
+        <button type="button" id="voltar" class="secondary-button" disabled>
+          ← Anterior
+        </button>
+        <button type="button" id="proxima" class="primary-button" disabled>
+          Próxima <span>→</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="resultado" class="results-section hidden">
+      <div class="panel result-heading dashboard-card">
+        <span class="card-kicker">SEU RESULTADO</span>
+        <h1>Seu panorama <span>comportamental</span></h1>
+        <p>Veja como suas respostas se distribuíram entre as cinco dimensões.</p>
+      </div>
+
+      <article class="panel result-highlight">
+        <div id="iconeDestaque" class="highlight-icon">✦</div>
+        <div>
+          <span class="highlight-caption">DIMENSÃO MAIS PRESENTE</span>
+          <h2 id="tituloResultado">Seu destaque</h2>
+          <p id="descricaoResultado">Sua descrição aparecerá aqui.</p>
+        </div>
+      </article>
+
+      <div id="listaPontuacoes" class="score-grid"></div>
+
+      <div class="dashboard-grid">
+        <section class="panel dashboard-card">
+          <div class="card-heading">
+            <div>
+              <span class="card-kicker">VISÃO GERAL</span>
+              <h2>Seu perfil em gráfico</h2>
+            </div>
+            <span class="mini-icon">⌁</span>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="graficoRadar" aria-label="Gráfico radar das cinco dimensões" role="img"></canvas>
+          </div>
+
+          <p class="chart-note">
+            As pontuações representam suas respostas neste questionário recreativo.
+          </p>
+        </section>
+
+        <section class="panel dashboard-card">
+          <div class="card-heading">
+            <div>
+              <span class="card-kicker">COMPARAÇÃO</span>
+              <h2>Suas dimensões</h2>
+            </div>
+            <span class="mini-icon">▤</span>
+          </div>
+
+          <div id="barrasResultado" class="bar-list"></div>
+        </section>
+      </div>
+
+      <section class="panel meme-card">
+        <span class="card-kicker">VOCÊ DEPOIS DESSE QUIZ</span>
+        <h2>Enfim, a hipocrisia.</h2>
+        <p>24 perguntas depois e você continua sendo você.</p>
+        <img src="repense.jpg" alt="Meme universal do resultado do quiz" loading="lazy">
+      </section>
+
+      <div class="result-actions">
+        <button type="button" id="baixar" class="primary-button">
+          Baixar resultado <span>↓</span>
+        </button>
+        <button type="button" id="refazer" class="secondary-button">
+          Refazer quiz ↻
+        </button>
+        <a href="../index.html" class="secondary-button">Voltar ao catálogo</a>
+      </div>
+
+      <p class="disclaimer result-disclaimer">
+        Este quiz é recreativo e não constitui avaliação psicológica ou diagnóstico profissional.
+      </p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <span>CASA DOS MBTIs</span>
+    <span>REPENSE</span>
+  </footer>
+
+  <script src="quiz3.js"></script>
+</body>
+</html>
