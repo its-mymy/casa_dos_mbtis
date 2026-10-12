@@ -42,11 +42,14 @@
         </div>
     </a>
 
-    <nav class="desktop-nav">
-        <a href="./" class="nav-button ativo">📰 Feed</a>
-        <a href="./membros/" class="nav-button">👥 Membros</a>
-        <a href="./perfil/" class="nav-button">👤 Meu perfil</a>
-    </nav>
+  
+<nav class="desktop-nav">
+    <a href="./" class="nav-button ativo">📰 Feed</a>
+    <a href="./chat-geral/" class="nav-button">💬 Chat Geral</a>
+    <a href="./membros/" class="nav-button">👥 Membros</a>
+    <a href="./perfil/" class="nav-button">👤 Meu perfil</a>
+</nav>
+
 
     <div class="topbar-right">
         <div id="mini-profile" class="mini-profile">
@@ -76,11 +79,14 @@
         <div class="community-decoration">✦</div>
     </section>
 
-    <nav class="mobile-sections">
-        <a href="./" class="section-tab ativo">📰 Feed</a>
-        <a href="./membros/" class="section-tab">👥 Membros</a>
-        <a href="./perfil/" class="section-tab">👤 Perfil</a>
-    </nav>
+ 
+<nav class="mobile-sections">
+    <a href="./" class="section-tab ativo">📰 Feed</a>
+    <a href="./chat-geral/" class="section-tab">💬 Chat</a>
+    <a href="./membros/" class="section-tab">👥 Membros</a>
+    <a href="./perfil/" class="section-tab">👤 Perfil</a>
+</nav>
+
 
     <section class="community-section ativo">
         <div class="section-heading">
@@ -274,6 +280,14 @@
         </a>
 
         
+<a href="../FEED/chat-geral/" class="member-menu-link">
+    <span class="menu-link-icon">💬</span>
+    <span>Chat Geral</span>
+    <b>›</b>
+</a>
+
+
+        
         <a href="./membros/" class="member-menu-link">
             <span class="menu-link-icon">👥</span>
             <span>Membros</span>
@@ -309,6 +323,7 @@
     <span>Administração</span>
     <b>›</b>
 </a>
+</nav>
 
     <div class="member-menu-bottom">
         <button id="login-menu-button" class="login-menu-button" type="button">🔐 Entrar / cadastrar</button>
@@ -375,6 +390,11 @@
 
 <div id="toast" class="toast"></div>
 
+<script src="js/publicacoes/publicar-texto.js"></script>
+<script src="js/publicacoes/publicar-enquete.js"></script>
+<script src="js/publicacoes/exibir-texto.js"></script>
+<script src="js/publicacoes/enquetes.js"></script>
+<script src="js/ranking/ranking.js"></script>
 <script src="feed.js"></script>
 <script>
   if ("serviceWorker" in navigator) {
