@@ -1,18 +1,21 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#08070D">
-    <title>Chat-geral | Casa dos MBTIs</title>
+    <title>Chat Geral | Casa dos MBTIs</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="chat-geral.css">
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-    <script src="filtro-palavras.js" defer></script>
-    <script src="chat-geral.js" defer></script>
+    <link rel="stylesheet" href="js/perfis/perfil-mensagem.css">
+
+
 </head>
+
 <body>
     <div class="background" aria-hidden="true">
         <div class="background-glow purple"></div>
@@ -24,60 +27,109 @@
     <header class="topbar">
         <a href="../../" class="brand">
             <span class="brand-icon">🏠</span>
-            <span class="brand-text"><strong>Casa dos MBTIs</strong><small>Área da comunidade</small></span>
+            <span class="brand-text">
+                <strong>Casa dos MBTIs</strong>
+                <small>Área da comunidade</small>
+            </span>
         </a>
+
         <nav class="desktop-nav" aria-label="Navegação principal">
             <a href="../" class="nav-button">📰 Feed</a>
             <a href="./" class="nav-button active" aria-current="page">💬 Chat</a>
             <a href="../membros/" class="nav-button">👥 Membros</a>
             <a href="../perfil/" class="nav-button">👤 Perfil</a>
         </nav>
-      <div class="topbar-right">
-    <a href="../perfil/" id="mini-profile" class="mini-profile hidden">
-        <div id="mini-avatar" class="mini-avatar">👤</div>
 
-        <div class="mini-profile-info">
-            <strong id="mini-name">Carregando...</strong>
-            <span id="mini-username">@usuario</span>
+        <div class="topbar-right">
+            <a href="../perfil/" id="mini-profile" class="mini-profile hidden">
+                <div id="mini-avatar" class="mini-avatar">👤</div>
+                <div class="mini-profile-info">
+                    <strong id="mini-name">Carregando...</strong>
+                    <span id="mini-username">@usuario</span>
+                </div>
+            </a>
+            <a class="login-link" id="top-login" href="../../login/index.html">Entrar</a>
         </div>
-    </a>
-
-    <a class="login-link" id="top-login" href="../../login/index.html">
-        Entrar
-    </a>
-</div>
     </header>
 
     <main class="page">
         <section class="page-heading">
             <span class="eyebrow">CASA DOS MBTIs • CONVERSA AO VIVO</span>
-            <h1>Chat-geral <span>✦</span></h1>
+            <h1>Chat Geral <span>✦</span></h1>
             <p>Converse com a comunidade em tempo real.</p>
         </section>
 
-        <section class="chat-shell" aria-label="Chat-geral">
+        <section class="chat-shell" aria-label="Chat Geral">
             <div class="chat-top">
                 <div class="chat-title">
                     <span class="status-dot" aria-hidden="true"></span>
-                    <div><h2>Praça da Casa</h2><p id="chat-status">Verificando acesso...</p></div>
+                    <div>
+                        <h2>Praça da Casa</h2>
+                        <p id="chat-status">Verificando acesso...</p>
+                    </div>
                 </div>
                 <span class="retention-note">Mensagens expiram em até 20h</span>
             </div>
 
+            <!-- CONTROLES DOS ADMs -->
+
+            <div id="chat-admin-controls" class="chat-admin-controls hidden">
+                <div class="chat-admin-heading">
+                    <strong>⚙️ Administração do chat</strong>
+                    <p id="chat-admin-state">Verificando estado...</p>
+                </div>
+
+                <div class="chat-admin-actions">
+                    <button id="open-muted-members" class="primary-button" type="button">
+                        🔇 Membros silenciados <span id="muted-count">0</span>
+                    </button>
+                    <button id="toggle-chat-state" class="primary-button" type="button">🔒 Fechar chat</button>
+                </div>
+            </div>
+
+            <!-- PAINEL DE MEMBROS SILENCIADOS -->
+
+            <section id="muted-members-panel" class="muted-members-panel hidden" aria-labelledby="muted-members-title">
+                <div class="muted-members-header">
+                    <div>
+                        <span class="eyebrow">MODERAÇÃO</span>
+                        <h2 id="muted-members-title">🔇 Membros silenciados</h2>
+                        <p>Gerencie as punições de escrita da comunidade.</p>
+                    </div>
+                    <button id="close-muted-members" class="close-muted-members" type="button" aria-label="Fechar lista de silenciados">×</button>
+                </div>
+
+                <div id="muted-members-list" class="muted-members-list">
+                    <p class="muted-members-empty">Carregando membros...</p>
+                </div>
+            </section>
+
+            <!-- AVISO DE CHAT FECHADO -->
+
+            <div id="chat-closed-notice" class="chat-closed-notice hidden" role="status">
+                🔒 O chat está fechado pela administração. Você pode ler as mensagens, mas não enviar novas.
+            </div>
+
+            <!-- ACESSO DE VISITANTES -->
+
             <div id="locked-state" class="state-card">
                 <div class="state-icon">🔒</div>
                 <h2>Este espaço é para membros</h2>
-                <p>Entre na sua conta para visualizar e enviar mensagens no chat-geral.</p>
+                <p>Entre na sua conta para visualizar e enviar mensagens no Chat Geral.</p>
                 <a class="primary-button" href="../../login/index.html">Entrar na comunidade</a>
             </div>
+
+            <!-- CONTEÚDO DO CHAT -->
 
             <div id="chat-content" class="chat-content hidden">
                 <div id="messages" class="messages" aria-live="polite" aria-label="Mensagens do chat">
                     <div class="empty-state">Carregando mensagens...</div>
                 </div>
+
                 <form id="message-form" class="composer">
                     <label class="sr-only" for="message-input">Sua mensagem</label>
                     <textarea id="message-input" maxlength="500" rows="1" placeholder="Escreva uma mensagem..." required></textarea>
+
                     <div class="composer-footer">
                         <span id="character-count">0/500 · sem palavrões pesados ou conteúdo sexual explícito</span>
                         <button id="send-button" class="primary-button" type="submit">Enviar <span>➤</span></button>
@@ -85,7 +137,31 @@
                 </form>
             </div>
         </section>
+
         <p class="community-note">Respeite as outras pessoas. Mensagens com ofensas graves ou conteúdo sexual explícito podem ser bloqueadas.</p>
     </main>
+
+
+    <div id="moderation-modal" class="moderation-modal hidden">
+        <div id="moderation-modal-backdrop" class="moderation-modal-backdrop"></div>
+
+        <section class="moderation-modal-box" role="dialog" aria-modal="true" aria-labelledby="moderation-modal-title" aria-describedby="moderation-modal-description">
+            <div class="moderation-modal-icon" id="moderation-modal-icon">🔇</div>
+            <span class="eyebrow">ADMINISTRAÇÃO</span>
+            <h2 id="moderation-modal-title">Confirmar ação</h2>
+            <p id="moderation-modal-description">Deseja realmente realizar esta ação?</p>
+
+            <div class="moderation-modal-actions">
+                <button id="cancel-moderation" class="moderation-cancel-button" type="button">Cancelar</button>
+                <button id="confirm-moderation" class="primary-button" type="button">Confirmar</button>
+            </div>
+        </section>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="filtro-palavras.js" defer></script>
+<script src="js/perfis/perfil-mensagem.js" defer></script>
+<script src="chat-geral.js" defer></script>
 </body>
 </html>

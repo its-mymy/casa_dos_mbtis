@@ -6,7 +6,6 @@
     "use strict";
 
     const TERMOS_BLOQUEADOS = [
-        // Lista inicial ilustrativa; mantenha e ajuste conforme as regras da comunidade.
         /\bputa\b/giu,
         /\bputo\b/giu,
         /\bputaria\b/giu,
