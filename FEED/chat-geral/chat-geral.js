@@ -833,14 +833,27 @@ function renderMessage(row) {
             return;
         }
 
-        rows.forEach(renderMessage);
-        scrollToBottom();
+      rows.forEach(renderMessage);
+scrollToBottom(true);
     }
 
-    function scrollToBottom() {
-        messagesBox.scrollTop = messagesBox.scrollHeight;
+   function isNearBottom() {
+    return messagesBox.scrollHeight -
+        messagesBox.scrollTop -
+        messagesBox.clientHeight <= 120;
+}
+
+function scrollToBottom(force = false) {
+    if (!messagesBox) {
+        return;
     }
 
+    if (!force && !isNearBottom()) {
+        return;
+    }
+
+    messagesBox.scrollTop = messagesBox.scrollHeight;
+}
     async function sendMessage(event) {
         event.preventDefault();
 
@@ -913,7 +926,7 @@ function renderMessage(row) {
             renderMessage(row);
             messageInput.value = "";
             updateCounter();
-            scrollToBottom();
+            scrollToBottom(true);
         } catch (error) {
             console.error("Erro ao enviar mensagem:", error);
 
@@ -935,49 +948,53 @@ function renderMessage(row) {
         applyMuteStatus();
     }
 
-    function subscribeToMessages() {
-        if (channel) {
-            client.removeChannel(channel);
-        }
-
-        channel = client
-            .channel("chat-geral-messages")
-            .on("postgres_changes", {
-                event: "INSERT",
-                schema: "public",
-                table: "chat_messages"
-            }, async payload => {
-                try {
-                    const [row] = await hydrateProfiles([payload.new]);
-
-                    if (messagesBox.querySelector(".empty-state")) {
-                        messagesBox.innerHTML = "";
-                    }
-
-                    renderMessage(row);
-                    scrollToBottom();
-                } catch (error) {
-                    console.error("Erro ao receber mensagem:", error);
-                }
-            })
-            .on("postgres_changes", {
-                event: "DELETE",
-                schema: "public",
-                table: "chat_messages"
-            }, payload => {
-                removeMessageFromView(payload.old?.id);
-            })
-            .subscribe(status => {
-                if (status === "SUBSCRIBED") {
-                    statusText.textContent =
-                        "Conectado · mensagens em tempo real";
-                }
-
-                if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
-                    statusText.textContent = "Reconectando ao chat...";
-                }
-            });
+  function subscribeToMessages() {
+    if (channel) {
+        client.removeChannel(channel);
     }
+
+    channel = client
+        .channel("chat-geral-messages")
+        .on("postgres_changes", {
+            event: "INSERT",
+            schema: "public",
+            table: "chat_messages"
+        }, async payload => {
+            try {
+                const shouldFollow = isNearBottom();
+                const [row] = await hydrateProfiles([payload.new]);
+
+                if (messagesBox.querySelector(".empty-state")) {
+                    messagesBox.innerHTML = "";
+                }
+
+                renderMessage(row);
+
+                if (shouldFollow) {
+                    scrollToBottom(true);
+                }
+            } catch (error) {
+                console.error("Erro ao receber mensagem:", error);
+            }
+        })
+        .on("postgres_changes", {
+            event: "DELETE",
+            schema: "public",
+            table: "chat_messages"
+        }, payload => {
+            removeMessageFromView(payload.old?.id);
+        })
+        .subscribe(status => {
+            if (status === "SUBSCRIBED") {
+                statusText.textContent =
+                    "Conectado · mensagens em tempo real";
+            }
+
+            if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
+                statusText.textContent = "Reconectando ao chat...";
+            }
+        });
+}
 
     async function initialize() {
         if (!window.supabase) {
