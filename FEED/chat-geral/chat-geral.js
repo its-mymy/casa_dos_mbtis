@@ -1,4 +1,3 @@
-
 (() => {
     "use strict";
 
@@ -19,6 +18,7 @@
     const sendButton = el("send-button");
     const characterCount = el("character-count");
     const topLogin = el("top-login");
+    const customizeBubbleLink = el("customize-bubble-link");
 
     const chatAdminControls = el("chat-admin-controls");
     const chatAdminState = el("chat-admin-state");
@@ -78,6 +78,24 @@
             .toLowerCase() === "adm";
     }
 
+    function canCustomizeBubble(profile = currentProfile) {
+        if (isAdmin(profile)) {
+            return true;
+        }
+
+        if (profile?.vip !== true) {
+            return false;
+        }
+
+        if (!profile.vip_expira_em) {
+            return true;
+        }
+
+        const expiresAt = new Date(profile.vip_expira_em).getTime();
+
+        return Number.isFinite(expiresAt) && expiresAt > Date.now();
+    }
+
     function avatarMarkup(profile) {
         const url = profile?.avatar_url;
 
@@ -115,6 +133,7 @@
         chatAdminControls?.classList.add("hidden");
         chatClosedNotice?.classList.add("hidden");
         mutedMembersPanel?.classList.add("hidden");
+        customizeBubbleLink?.classList.add("hidden");
 
         if (statusText) {
             statusText.textContent = "Acesso exclusivo para membros";
@@ -151,10 +170,16 @@
                 ? `@${username}`
                 : "@usuario";
         }
+
+        customizeBubbleLink?.classList.toggle(
+            "hidden",
+            !canCustomizeBubble()
+        );
     }
 
     function applyMuteStatus() {
         const admin = isAdmin();
+
         const silenciado = !admin &&
             !!currentUser &&
             mutedUserIds.has(currentUser.id);
@@ -166,9 +191,11 @@
             messageInput.disabled = bloqueado;
 
             if (silenciado) {
-                messageInput.placeholder = "Sua escrita foi suspensa pela administração.";
+                messageInput.placeholder =
+                    "Sua escrita foi suspensa pela administração.";
             } else if (!settingsVerified) {
-                messageInput.placeholder = "Não foi possível verificar o estado do chat.";
+                messageInput.placeholder =
+                    "Não foi possível verificar o estado do chat.";
             } else if (!chatIsOpen && !admin) {
                 messageInput.placeholder = "O chat está fechado.";
             } else {
@@ -182,11 +209,14 @@
 
         if (characterCount) {
             if (silenciado) {
-                characterCount.textContent = "Sua escrita foi suspensa pela administração.";
+                characterCount.textContent =
+                    "Sua escrita foi suspensa pela administração.";
             } else if (!settingsVerified) {
-                characterCount.textContent = "Envio temporariamente bloqueado.";
+                characterCount.textContent =
+                    "Envio temporariamente bloqueado.";
             } else if (!chatIsOpen && !admin) {
-                characterCount.textContent = "O chat está fechado para novas mensagens.";
+                characterCount.textContent =
+                    "O chat está fechado para novas mensagens.";
             } else {
                 characterCount.textContent =
                     `${messageInput?.value.length || 0}/${MAX_MENSAGEM} · sem palavrões pesados ou conteúdo sexual explícito`;
@@ -197,7 +227,7 @@
     async function getProfile(userId) {
         const { data, error } = await client
             .from("profiles")
-            .select("id,nome,username,avatar_url,avatar_tipo,cargo")
+            .select("id,nome,username,avatar_url,avatar_tipo,cargo,vip,vip_expira_em")
             .eq("id", userId)
             .maybeSingle();
 
@@ -292,6 +322,7 @@
             applyChatState();
         } catch (error) {
             console.error("Erro ao alterar estado do chat:", error);
+
             showModerationMessage(
                 "Não foi possível alterar o chat",
                 error?.message || "Verifique as permissões do Supabase.",
@@ -354,6 +385,7 @@
         moderationModalTitle.textContent = options.title || "Confirmar ação";
         moderationModalDescription.textContent =
             options.description || "Deseja realmente realizar esta ação?";
+
         confirmModerationButton.textContent = options.confirmText || "Confirmar";
 
         confirmModerationButton.classList.toggle(
@@ -451,6 +483,7 @@
             chatAdminState.textContent = "Mensagem removida com sucesso.";
         } catch (error) {
             console.error("Erro ao apagar mensagem:", error);
+
             await showModerationMessage(
                 "Não foi possível apagar",
                 error?.message || "Verifique as permissões do Supabase.",
@@ -474,6 +507,7 @@
         }
 
         const jaSilenciado = mutedUserIds.has(userId);
+
         const confirmed = await openModerationModal({
             icon: jaSilenciado ? "🔊" : "🔇",
             title: jaSilenciado ? "Retirar punição?" : "Silenciar membro?",
@@ -534,6 +568,7 @@
             );
         } catch (error) {
             console.error("Erro ao alterar punição:", error);
+
             await showModerationMessage(
                 "Não foi possível alterar a punição",
                 error?.message || "Verifique as permissões do Supabase.",
@@ -558,6 +593,7 @@
 
         if (error) {
             console.error("Erro ao carregar silenciados:", error);
+
             mutedMembersList.innerHTML =
                 '<p class="muted-members-empty">Não foi possível carregar a lista. Confira as permissões do Supabase.</p>';
             return;
@@ -573,6 +609,7 @@
         }
 
         const userIds = activeMutes.map(item => item.user_id);
+
         const { data: profiles, error: profilesError } = await client
             .from("profiles")
             .select("id,nome,username,avatar_url,avatar_tipo")
@@ -618,6 +655,7 @@
             unmuteButton.type = "button";
             unmuteButton.className = "message-admin-button unmute-member-button";
             unmuteButton.textContent = "🔊 Retirar punição";
+
             unmuteButton.addEventListener("click", () => {
                 toggleMemberMute(mute.user_id, name);
             });
@@ -684,90 +722,142 @@
             .subscribe();
     }
 
-    
-function renderMessage(row) {
-    if (!row || messageIds.has(row.id)) {
-        return;
-    }
-
-    messageIds.add(row.id);
-
-    const profile = row.profiles || {};
-    const own = row.user_id === currentUser?.id;
-
-    const safeText = window.ChatFiltro
-        ? window.ChatFiltro.limpar(row.content)
-        : row.content;
-
-    const article = document.createElement("article");
-    article.className = `message${own ? " own" : ""}`;
-    article.dataset.messageId = row.id;
-
-    const perfil = window.ChatPerfilMensagem.criarCabecalho({
-        userId: row.user_id,
-        profile,
-        createdAt: row.created_at
-    });
-
-    const body = document.createElement("div");
-    body.className = "message-body";
-
-    body.appendChild(perfil.meta);
-
-    const text = document.createElement("p");
-    text.className = "message-text";
-    text.textContent = safeText;
-    body.appendChild(text);
-
-    article.append(perfil.avatar, body);
-
-    if (isAdmin() && !own && row.user_id) {
-        const actions = document.createElement("div");
-        actions.className = "message-admin-actions";
-
-        const deleteButton = document.createElement("button");
-        deleteButton.type = "button";
-        deleteButton.className = "message-admin-button delete-message-button";
-        deleteButton.textContent = "🗑️ Apagar";
-        deleteButton.addEventListener("click", () => {
-            deleteChatMessage(row, article);
-        });
-
-        actions.appendChild(deleteButton);
-
-        if (!isAdmin(profile)) {
-            const muteButton = document.createElement("button");
-            muteButton.type = "button";
-            muteButton.className = "message-admin-button mute-member-button";
-            muteButton.dataset.userId = row.user_id;
-            muteButton.textContent = mutedUserIds.has(row.user_id)
-                ? "🔊 Retirar punição"
-                : "🔇 Silenciar";
-
-            muteButton.addEventListener("click", () => {
-                toggleMemberMute(row.user_id, profile.nome || profile.username || "Membro");
-            });
-
-            actions.appendChild(muteButton);
+    function renderMessage(row) {
+        if (!row || messageIds.has(row.id)) {
+            return;
         }
 
-        article.appendChild(actions);
+        messageIds.add(row.id);
+
+        const profile = row.profiles || {};
+        const own = row.user_id === currentUser?.id;
+
+        const safeText = window.ChatFiltro
+            ? window.ChatFiltro.limpar(row.content)
+            : row.content;
+
+        const article = document.createElement("article");
+        article.className = `message${own ? " own" : ""}`;
+        article.dataset.messageId = row.id;
+
+        let avatarElement;
+        let metaElement;
+
+        if (window.ChatPerfilMensagem?.criarCabecalho) {
+            const perfil = window.ChatPerfilMensagem.criarCabecalho({
+                userId: row.user_id,
+                profile,
+                createdAt: row.created_at
+            });
+
+            avatarElement = perfil.avatar;
+            metaElement = perfil.meta;
+        } else {
+            avatarElement = document.createElement("div");
+            avatarElement.className = "avatar";
+            avatarElement.innerHTML = avatarMarkup(profile);
+
+            metaElement = document.createElement("div");
+            metaElement.className = "message-meta";
+
+            const name = document.createElement("strong");
+            name.className = "message-name";
+            name.textContent = profile.nome || profile.username || "Membro";
+
+            const time = document.createElement("time");
+            time.className = "message-time";
+            time.dateTime = row.created_at || "";
+            time.textContent = formatTime(row.created_at);
+
+            metaElement.append(name, time);
+        }
+
+        const body = document.createElement("div");
+        body.className = "message-body";
+
+        if (window.ChatBaloes) {
+            window.ChatBaloes.aplicar(body, row.bubblePreference);
+        }
+
+        body.appendChild(metaElement);
+
+        const text = document.createElement("p");
+        text.className = "message-text";
+        text.textContent = safeText;
+
+        body.appendChild(text);
+        article.append(avatarElement, body);
+
+        if (isAdmin() && !own && row.user_id) {
+            const actions = document.createElement("div");
+            actions.className = "message-admin-actions";
+
+            const deleteButton = document.createElement("button");
+            deleteButton.type = "button";
+            deleteButton.className = "message-admin-button delete-message-button";
+            deleteButton.textContent = "🗑️ Apagar";
+
+            deleteButton.addEventListener("click", () => {
+                deleteChatMessage(row, article);
+            });
+
+            actions.appendChild(deleteButton);
+
+            if (!isAdmin(profile)) {
+                const muteButton = document.createElement("button");
+                muteButton.type = "button";
+                muteButton.className = "message-admin-button mute-member-button";
+                muteButton.dataset.userId = row.user_id;
+                muteButton.textContent = mutedUserIds.has(row.user_id)
+                    ? "🔊 Retirar punição"
+                    : "🔇 Silenciar";
+
+                muteButton.addEventListener("click", () => {
+                    toggleMemberMute(
+                        row.user_id,
+                        profile.nome || profile.username || "Membro"
+                    );
+                });
+
+                actions.appendChild(muteButton);
+            }
+
+            article.appendChild(actions);
+        }
+
+        messagesBox.appendChild(article);
     }
 
-    messagesBox.appendChild(article);
-}
-
     async function hydrateProfiles(rows) {
-        const userIds = [...new Set(rows.map(row => row.user_id).filter(Boolean))];
+        const userIds = [
+            ...new Set(rows.map(row => row.user_id).filter(Boolean))
+        ];
 
         if (!userIds.length) {
             return rows;
         }
 
-        const { data, error } = await client
+        const profilesRequest = client
             .from("profiles")
-            .select("id,nome,username,avatar_url,avatar_tipo,cargo")
+            .select("id,nome,username,avatar_url,avatar_tipo,cargo,vip,vip_expira_em")
             .in("id", userIds);
+
+        const preferencesRequest = window.ChatBaloes
+            ? window.ChatBaloes.carregarPreferencias(client, userIds)
+                .catch(error => {
+                    console.warn(
+                        "Não foi possível carregar os balões personalizados:",
+                        error
+                    );
+
+                    return new Map();
+                })
+            : Promise.resolve(new Map());
+
+        const [{ data, error }, preferencesByUser] = await Promise.all([
+            profilesRequest,
+            preferencesRequest
+        ]);
 
         if (error) {
             throw error;
@@ -777,10 +867,22 @@ function renderMessage(row) {
             (data || []).map(profile => [profile.id, profile])
         );
 
-        return rows.map(row => ({
-            ...row,
-            profiles: profilesById.get(row.user_id) || {}
-        }));
+        return rows.map(row => {
+            const profile =
+                profilesById.get(row.user_id) ||
+                row.profiles ||
+                {};
+
+            const entitled = canCustomizeBubble(profile);
+
+            return {
+                ...row,
+                profiles: profile,
+                bubblePreference: entitled
+                    ? preferencesByUser.get(row.user_id) || null
+                    : null
+            };
+        });
     }
 
     function showEmptyStateIfNeeded() {
@@ -819,8 +921,10 @@ function renderMessage(row) {
 
         if (error) {
             console.error("Erro ao carregar chat:", error);
+
             messagesBox.innerHTML =
                 '<div class="empty-state">Não foi possível carregar as mensagens. Confira as permissões do Supabase.</div>';
+
             return;
         }
 
@@ -833,27 +937,28 @@ function renderMessage(row) {
             return;
         }
 
-      rows.forEach(renderMessage);
-scrollToBottom(true);
+        rows.forEach(renderMessage);
+        scrollToBottom(true);
     }
 
-   function isNearBottom() {
-    return messagesBox.scrollHeight -
-        messagesBox.scrollTop -
-        messagesBox.clientHeight <= 120;
-}
-
-function scrollToBottom(force = false) {
-    if (!messagesBox) {
-        return;
+    function isNearBottom() {
+        return messagesBox.scrollHeight -
+            messagesBox.scrollTop -
+            messagesBox.clientHeight <= 120;
     }
 
-    if (!force && !isNearBottom()) {
-        return;
+    function scrollToBottom(force = false) {
+        if (!messagesBox) {
+            return;
+        }
+
+        if (!force && !isNearBottom()) {
+            return;
+        }
+
+        messagesBox.scrollTop = messagesBox.scrollHeight;
     }
 
-    messagesBox.scrollTop = messagesBox.scrollHeight;
-}
     async function sendMessage(event) {
         event.preventDefault();
 
@@ -871,6 +976,7 @@ function scrollToBottom(force = false) {
                 "Não foi possível verificar se o chat está aberto.",
                 "⚠️"
             );
+
             applyMuteStatus();
             return;
         }
@@ -881,6 +987,7 @@ function scrollToBottom(force = false) {
                 "A administração fechou o chat para novas mensagens.",
                 "🔒"
             );
+
             applyMuteStatus();
             return;
         }
@@ -891,6 +998,7 @@ function scrollToBottom(force = false) {
                 "Sua conta está impedida de enviar mensagens até que um ADM retire a punição.",
                 "🔇"
             );
+
             applyMuteStatus();
             return;
         }
@@ -901,6 +1009,7 @@ function scrollToBottom(force = false) {
                 `A mensagem pode ter no máximo ${MAX_MENSAGEM} caracteres.`,
                 "⚠️"
             );
+
             return;
         }
 
@@ -909,7 +1018,10 @@ function scrollToBottom(force = false) {
         try {
             const { data, error } = await client
                 .from("chat_messages")
-                .insert({ user_id: currentUser.id, content })
+                .insert({
+                    user_id: currentUser.id,
+                    content
+                })
                 .select("id,user_id,content,created_at")
                 .single();
 
@@ -917,13 +1029,14 @@ function scrollToBottom(force = false) {
                 throw error;
             }
 
-            const row = { ...data, profiles: currentProfile || {} };
+            const [row] = await hydrateProfiles([data]);
 
             if (messagesBox.querySelector(".empty-state")) {
                 messagesBox.innerHTML = "";
             }
 
             renderMessage(row);
+
             messageInput.value = "";
             updateCounter();
             scrollToBottom(true);
@@ -948,65 +1061,77 @@ function scrollToBottom(force = false) {
         applyMuteStatus();
     }
 
-  function subscribeToMessages() {
-    if (channel) {
-        client.removeChannel(channel);
+    function subscribeToMessages() {
+        if (channel) {
+            client.removeChannel(channel);
+        }
+
+        channel = client
+            .channel("chat-geral-messages")
+            .on("postgres_changes", {
+                event: "INSERT",
+                schema: "public",
+                table: "chat_messages"
+            }, async payload => {
+                try {
+                    const shouldFollow = isNearBottom();
+                    const [row] = await hydrateProfiles([payload.new]);
+
+                    if (messagesBox.querySelector(".empty-state")) {
+                        messagesBox.innerHTML = "";
+                    }
+
+                    renderMessage(row);
+
+                    if (shouldFollow) {
+                        scrollToBottom(true);
+                    }
+                } catch (error) {
+                    console.error("Erro ao receber mensagem:", error);
+                }
+            })
+            .on("postgres_changes", {
+                event: "DELETE",
+                schema: "public",
+                table: "chat_messages"
+            }, payload => {
+                removeMessageFromView(payload.old?.id);
+            })
+            .subscribe(status => {
+                if (status === "SUBSCRIBED" && statusText) {
+                    statusText.textContent =
+                        "Conectado · mensagens em tempo real";
+                }
+
+                if (
+                    (status === "CHANNEL_ERROR" || status === "TIMED_OUT") &&
+                    statusText
+                ) {
+                    statusText.textContent = "Reconectando ao chat...";
+                }
+            });
     }
-
-    channel = client
-        .channel("chat-geral-messages")
-        .on("postgres_changes", {
-            event: "INSERT",
-            schema: "public",
-            table: "chat_messages"
-        }, async payload => {
-            try {
-                const shouldFollow = isNearBottom();
-                const [row] = await hydrateProfiles([payload.new]);
-
-                if (messagesBox.querySelector(".empty-state")) {
-                    messagesBox.innerHTML = "";
-                }
-
-                renderMessage(row);
-
-                if (shouldFollow) {
-                    scrollToBottom(true);
-                }
-            } catch (error) {
-                console.error("Erro ao receber mensagem:", error);
-            }
-        })
-        .on("postgres_changes", {
-            event: "DELETE",
-            schema: "public",
-            table: "chat_messages"
-        }, payload => {
-            removeMessageFromView(payload.old?.id);
-        })
-        .subscribe(status => {
-            if (status === "SUBSCRIBED") {
-                statusText.textContent =
-                    "Conectado · mensagens em tempo real";
-            }
-
-            if (status === "CHANNEL_ERROR" || status === "TIMED_OUT") {
-                statusText.textContent = "Reconectando ao chat...";
-            }
-        });
-}
 
     async function initialize() {
         if (!window.supabase) {
-            statusText.textContent = "Não foi possível iniciar o Supabase";
+            statusText.textContent =
+                "Não foi possível iniciar o Supabase";
+
             lockedState.querySelector("p").textContent =
                 "A biblioteca do Supabase não carregou. Atualize a página e tente novamente.";
+
             return;
         }
 
-        client = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+        client = window.supabase.createClient(
+            SUPABASE_URL,
+            SUPABASE_KEY
+        );
 
-        const { data: { session }, error } = await client.auth.getSession();
+        const {
+            data: { session },
+            error
+        } = await client.auth.getSession();
 
         if (error) {
             console.warn("Erro ao recuperar sessão:", error);
@@ -1029,7 +1154,11 @@ function scrollToBottom(force = false) {
         try {
             await loadChatSettings();
         } catch (error) {
-            console.error("Não foi possível verificar o estado do chat:", error);
+            console.error(
+                "Não foi possível verificar o estado do chat:",
+                error
+            );
+
             chatIsOpen = false;
             settingsVerified = false;
         }
@@ -1037,13 +1166,19 @@ function scrollToBottom(force = false) {
         try {
             await loadMuteState();
         } catch (error) {
-            console.error("Não foi possível verificar as punições:", error);
+            console.error(
+                "Não foi possível verificar as punições:",
+                error
+            );
+
             showChat();
 
             messageInput.disabled = true;
             sendButton.disabled = true;
+
             characterCount.textContent =
                 "Não foi possível verificar suas permissões. O envio foi bloqueado.";
+
             return;
         }
 
@@ -1053,7 +1188,10 @@ function scrollToBottom(force = false) {
         showChat();
         applyChatState();
 
-        toggleChatStateButton?.addEventListener("click", toggleChatState);
+        toggleChatStateButton?.addEventListener(
+            "click",
+            toggleChatState
+        );
 
         messageForm.addEventListener("submit", sendMessage);
         messageInput.addEventListener("input", updateCounter);
@@ -1078,11 +1216,21 @@ function scrollToBottom(force = false) {
     initialize().catch(error => {
         console.error("Erro ao iniciar chat-geral:", error);
 
-        statusText.textContent = "Erro ao iniciar o chat";
-        messageInput.disabled = true;
-        sendButton.disabled = true;
+        if (statusText) {
+            statusText.textContent = "Erro ao iniciar o chat";
+        }
 
-        messagesBox.innerHTML =
-            '<div class="empty-state">O chat não conseguiu iniciar. Confira a configuração SQL e as permissões do Supabase.</div>';
+        if (messageInput) {
+            messageInput.disabled = true;
+        }
+
+        if (sendButton) {
+            sendButton.disabled = true;
+        }
+
+        if (messagesBox) {
+            messagesBox.innerHTML =
+                '<div class="empty-state">O chat não conseguiu iniciar. Confira a configuração SQL e as permissões do Supabase.</div>';
+        }
     });
 })();

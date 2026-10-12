@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#08070D">
+    <title>Personalizar balão | Casa dos MBTIs</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../baloes-chat.css">
+    <link rel="stylesheet" href="personalizar.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../baloes-chat.js" defer></script>
+    <script src="personalizar.js" defer></script>
+</head>
+<body>
+    <main class="customizer-page">
+        <a class="back-link" href="../../">← Voltar ao Chat Geral</a>
+
+        <header class="intro">
+            <span class="eyebrow">EXCLUSIVO VIP + ADM</span>
+            <h1>Personalize seu balão <span>✦</span></h1>
+            <p>Escolha suas cores e deixe seu balão brilhar com um contorno neon animado no chat.</p>
+        </header>
+
+        <section id="access-message" class="access-message hidden" aria-live="polite"></section>
+
+        <form id="bubble-form" class="customizer-card hidden">
+            <div class="section-heading">
+                <span>01</span>
+                <div>
+                    <h2>Suas cores</h2>
+                    <p>Escolha duas cores para o balão e para o brilho neon.</p>
+                </div>
+            </div>
+
+            <div class="color-grid">
+                <label class="color-field" for="color1">
+                    <span>Cor principal</span>
+                    <input id="color1" type="color" value="#8B5CF6">
+                </label>
+
+                <label class="color-field" for="color2">
+                    <span>Cor do neon</span>
+                    <input id="color2" type="color" value="#EC4899">
+                </label>
+            </div>
+
+            <div class="section-heading">
+                <span>02</span>
+                <div>
+                    <h2>Prévia ao vivo</h2>
+                    <p>Veja suas cores e o contorno luminoso antes de salvar.</p>
+                </div>
+            </div>
+
+            <div class="preview-stage">
+                <div id="bubble-preview" class="preview-bubble" data-bubble-style="padrao" data-effect="aurora">
+                    <strong>Seu nome · @usuario</strong>
+                    <span>Oi, Casa! Olha meu balão neon! ✨</span>
+                </div>
+            </div>
+
+            <p id="save-status" class="save-status" role="status"></p>
+
+            <div class="button-row">
+                <button id="reset-bubble" class="secondary-button" type="button">Restaurar cores</button>
+                <button id="save-bubble" class="save-button" type="submit">Salvar personalização</button>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

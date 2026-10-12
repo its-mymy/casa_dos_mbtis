@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -6,16 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#08070D">
     <title>Chat Geral | Casa dos MBTIs</title>
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="chat-geral.css">
     <link rel="stylesheet" href="js/perfis/perfil-mensagem.css">
-
-
+    <link rel="stylesheet" href="baloes/baloes-chat.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="filtro-palavras.js" defer></script>
+    <script src="js/perfis/perfil-mensagem.js" defer></script>
+    <script src="baloes/baloes-chat.js" defer></script>
+    <script src="chat-geral.js" defer></script>
 </head>
-
 <body>
     <div class="background" aria-hidden="true">
         <div class="background-glow purple"></div>
@@ -38,6 +39,7 @@
             <a href="./" class="nav-button active" aria-current="page">💬 Chat</a>
             <a href="../membros/" class="nav-button">👥 Membros</a>
             <a href="../perfil/" class="nav-button">👤 Perfil</a>
+            <a href="baloes/personalizar/" id="customize-bubble-link" class="nav-button hidden">🎨 Balão VIP</a>
         </nav>
 
         <div class="topbar-right">
@@ -72,7 +74,6 @@
             </div>
 
             <!-- CONTROLES DOS ADMs -->
-
             <div id="chat-admin-controls" class="chat-admin-controls hidden">
                 <div class="chat-admin-heading">
                     <strong>⚙️ Administração do chat</strong>
@@ -88,7 +89,6 @@
             </div>
 
             <!-- PAINEL DE MEMBROS SILENCIADOS -->
-
             <section id="muted-members-panel" class="muted-members-panel hidden" aria-labelledby="muted-members-title">
                 <div class="muted-members-header">
                     <div>
@@ -105,13 +105,11 @@
             </section>
 
             <!-- AVISO DE CHAT FECHADO -->
-
             <div id="chat-closed-notice" class="chat-closed-notice hidden" role="status">
                 🔒 O chat está fechado pela administração. Você pode ler as mensagens, mas não enviar novas.
             </div>
 
             <!-- ACESSO DE VISITANTES -->
-
             <div id="locked-state" class="state-card">
                 <div class="state-icon">🔒</div>
                 <h2>Este espaço é para membros</h2>
@@ -120,7 +118,6 @@
             </div>
 
             <!-- CONTEÚDO DO CHAT -->
-
             <div id="chat-content" class="chat-content hidden">
                 <div id="messages" class="messages" aria-live="polite" aria-label="Mensagens do chat">
                     <div class="empty-state">Carregando mensagens...</div>
@@ -141,7 +138,7 @@
         <p class="community-note">Respeite as outras pessoas. Mensagens com ofensas graves ou conteúdo sexual explícito podem ser bloqueadas.</p>
     </main>
 
-
+    <!-- MODAL DE MODERAÇÃO -->
     <div id="moderation-modal" class="moderation-modal hidden">
         <div id="moderation-modal-backdrop" class="moderation-modal-backdrop"></div>
 
@@ -157,11 +154,5 @@
             </div>
         </section>
     </div>
-
-
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script src="filtro-palavras.js" defer></script>
-<script src="js/perfis/perfil-mensagem.js" defer></script>
-<script src="chat-geral.js" defer></script>
 </body>
 </html>

@@ -1,0 +1,116 @@
+
+/* ========================================
+   CASA DOS MBTIs
+   INTERIOR COLORIDO + NEON AO REDOR
+======================================== */
+
+.message-body {
+    position: relative;
+    isolation: isolate;
+    min-width: 0;
+}
+
+/* BALÃO PERSONALIZADO */
+
+.message-body[data-personalizado="true"],
+.preview-bubble[data-personalizado="true"] {
+    position: relative;
+    isolation: isolate;
+
+    border: 2px solid transparent !important;
+
+    /* Interior colorido + borda em gradiente */
+    background:
+        linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--bubble-color-1) 65%, #100c17),
+            color-mix(in srgb, var(--bubble-color-2) 60%, #100c17)
+        ) padding-box,
+        linear-gradient(
+            135deg,
+            var(--bubble-color-1),
+            var(--bubble-color-2),
+            var(--bubble-color-1)
+        ) border-box !important;
+
+    /* O efeito acontece somente na luz externa */
+    box-shadow:
+        0 0 4px color-mix(in srgb, var(--bubble-color-1) 35%, transparent),
+        0 0 7px color-mix(in srgb, var(--bubble-color-2) 25%, transparent);
+
+    animation: neon-ao-redor 3.5s ease-in-out infinite alternate;
+}
+
+/* TEXTO SEM ANIMAÇÃO */
+
+.message-body[data-personalizado="true"] .message-text,
+.message-body[data-personalizado="true"] .message-name,
+.preview-bubble[data-personalizado="true"] strong,
+.preview-bubble[data-personalizado="true"] span {
+    color: #fff;
+}
+
+/* PRÉVIA */
+
+.preview-bubble {
+    position: relative;
+    isolation: isolate;
+    width: min(100%, 390px);
+    min-height: 95px;
+    margin: 12px auto;
+    padding: 16px 18px;
+    box-sizing: border-box;
+    border: 1px solid var(--bubble-color-1, #8B5CF6);
+    border-radius: 16px;
+    color: #fff;
+    background: linear-gradient(135deg, #211633, #151020);
+    overflow-wrap: anywhere;
+}
+
+.preview-bubble strong,
+.preview-bubble span {
+    display: block;
+    overflow-wrap: anywhere;
+}
+
+.preview-bubble strong {
+    margin-bottom: 6px;
+    font-size: .9rem;
+}
+
+.preview-bubble span {
+    line-height: 1.5;
+}
+
+/* NEON: PULSA APENAS A AURA EXTERNA */
+
+@keyframes neon-ao-redor {
+    from {
+        box-shadow:
+            0 0 3px color-mix(in srgb, var(--bubble-color-1) 35%, transparent),
+            0 0 6px color-mix(in srgb, var(--bubble-color-2) 25%, transparent);
+    }
+
+    to {
+        box-shadow:
+            0 0 7px color-mix(in srgb, var(--bubble-color-1) 65%, transparent),
+            0 0 14px color-mix(in srgb, var(--bubble-color-2) 45%, transparent);
+    }
+}
+
+/* CELULAR */
+
+@media (max-width: 600px) {
+    .preview-bubble {
+        padding: 14px;
+    }
+}
+
+/* MENOS ANIMAÇÃO, SE SOLICITADO PELO SISTEMA */
+
+@media (prefers-reduced-motion: reduce) {
+    .message-body[data-personalizado="true"],
+    .preview-bubble[data-personalizado="true"] {
+        animation: none !important;
+    }
+}
