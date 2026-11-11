@@ -1,28 +1,14 @@
 
 const SUPABASE_URL = "https://lhhoqahzpuohhhnbwgfp.supabase.co";
 const SUPABASE_KEY = "sb_publishable_FTie2ELWKBc4Tz9r5fZuTw_izSaEHao";
-
-/* ==============================
-   CAMINHOS
-============================== */
-
 const scriptAtual = document.currentScript;
 const urlMenuJS = scriptAtual ? new URL(scriptAtual.src) : new URL("/menu/menu.js", window.location.origin);
 const urlMenuHTML = new URL("menu.html", urlMenuJS);
 
 const caminhoAtual = window.location.pathname.toLowerCase();
 const dentroDePages = caminhoAtual.includes("/pages/");
-
-/*
-   Raiz do site.
-   O menu.js está em /menu/, então ../ volta para a raiz.
-*/
 const urlRaiz = new URL("../", urlMenuJS);
 const caminhoRaiz = urlRaiz.href;
-
-/* ==============================
-   AJUSTAR LINKS
-============================== */
 
 function ajustarLinksDoMenu() {
 
@@ -36,13 +22,6 @@ function ajustarLinksDoMenu() {
             return;
         }
 
-        /*
-           Links internos do site.
-           Convertemos para URLs absolutas baseadas
-           na raiz real do site, evitando problemas
-           com a profundidade da página.
-        */
-
         if (
             href === "index.html" ||
             href.startsWith("pages/") ||
@@ -53,17 +32,8 @@ function ajustarLinksDoMenu() {
             link.href = new URL(href, caminhoRaiz).href;
         }
 
-        /*
-           Links que já possuem ../ continuam relativos
-           à estrutura definida no menu.html.
-        */
-
     });
 }
-
-/* ==============================
-   SUPABASE
-============================== */
 
 function carregarSupabase() {
 
@@ -78,7 +48,6 @@ function carregarSupabase() {
         }
 
         const script = document.createElement("script");
-
         script.src =
             "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
 
@@ -95,10 +64,6 @@ function carregarSupabase() {
         document.head.appendChild(script);
     });
 }
-
-/* ==============================
-   LOGIN / LOGOUT
-============================== */
 
 async function configurarMenuUsuario() {
 
@@ -188,9 +153,6 @@ async function configurarMenuUsuario() {
     }
 }
 
-/* ==============================
-   CARREGAR MENU
-============================== */
 
 fetch(urlMenuHTML.href)
     .then(response => {
@@ -256,10 +218,6 @@ fetch(urlMenuHTML.href)
             error
         );
     });
-
-/* ==============================
-   MOBILE NAVBAR
-============================== */
 
 class MobileNavbar {
 
