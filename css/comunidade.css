@@ -1,392 +1,459 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 
 :root {
-    --preto: #050508;
-    --preto-sec: #0b0a10;
-    --roxo: #8b42ff;
-    --roxo-claro: #b77aff;
-    --roxo-escuro: #34105c;
-    --roxo-neon: #9b4dff;
-    --branco: #f4efff;
-    --cinza: #aaa3b8;
-    --borda: rgba(164, 91, 255, 0.2);
-    --sombra: rgba(124, 43, 255, 0.25);
+    --bg: #08060d;
+    --bg-card: #100b18;
+    --bg-card2: #171020;
+    --purple: #b66aff;
+    --purple-light: #d6a2ff;
+    --pink: #f18bdc;
+    --pink-light: #ffc0ec;
+    --text: #f7efff;
+    --muted: #bdb1c9;
+    --line: #a65bdb45;
+    --glow: #b45aff;
+    --font-title: 'Outfit', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 90px;
 }
 
 body {
-    background:
-        radial-gradient(circle at 15% 10%, rgba(105, 34, 181, 0.13), transparent 28%),
-        radial-gradient(circle at 85% 35%, rgba(122, 46, 255, 0.1), transparent 30%),
-        linear-gradient(180deg, #050508 0%, #08060d 45%, #040406 100%);
-    color: var(--branco);
-    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
     overflow-x: hidden;
+    background:
+        radial-gradient(ellipse at 8% 8%, #68209c30, transparent 35%),
+        radial-gradient(ellipse at 92% 24%, #a52c8020, transparent 36%),
+        radial-gradient(ellipse at 50% 65%, #43116b20, transparent 45%),
+        radial-gradient(ellipse at 10% 95%, #782b9c20, transparent 35%),
+        #08060d;
+    color: var(--text);
+    font-family: var(--font-body);
+    position: relative;
 }
 
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    pointer-events: none;
-    opacity: 0.08;
-    background-image:
-        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-    background-size: 45px 45px;
     z-index: -1;
+    pointer-events: none;
+    opacity: .65;
+    background-image:
+        radial-gradient(1px 1px at 8% 12%, #ffffff 99%, transparent),
+        radial-gradient(1.5px 1.5px at 22% 38%, #e6baff 99%, transparent),
+        radial-gradient(1px 1px at 37% 15%, #ffffff 99%, transparent),
+        radial-gradient(2px 2px at 51% 55%, #f4a9e8 99%, transparent),
+        radial-gradient(1px 1px at 69% 24%, #ffffff 99%, transparent),
+        radial-gradient(1.5px 1.5px at 84% 68%, #d9a5ff 99%, transparent),
+        radial-gradient(1px 1px at 94% 13%, #ffffff 99%, transparent),
+        radial-gradient(1px 1px at 14% 84%, #e5aaff 99%, transparent),
+        radial-gradient(2px 2px at 42% 91%, #ffffff 99%, transparent),
+        radial-gradient(1px 1px at 75% 90%, #ffffff 99%, transparent);
+    background-size: 400px 400px;
 }
 
-main {
+body::after {
+    content: "✦";
+    position: fixed;
+    top: 17%;
+    right: 5%;
+    color: #d18cff;
+    font-size: 25px;
+    opacity: .35;
+    pointer-events: none;
+    z-index: -1;
+    text-shadow: 0 0 18px #bd66ff;
+}
+
+h1, h2, h3, p {
+    margin-top: 0;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-title);
+    letter-spacing: -.6px;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.pagina-comunidade {
     width: 100%;
+    overflow: hidden;
+    position: relative;
 }
 
-/* =========================================================
-   BANNER PRINCIPAL
-   ========================================================= */
+.pagina-comunidade section {
+    position: relative;
+    z-index: 1;
+}
+
+.secao-label {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: var(--pink);
+    font-size: .68rem;
+    font-weight: 800;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+}
+
 
 .banner-inicial {
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    background: #111;
-    border-bottom: 1px solid var(--borda);
+    width: min(1200px, 92%);
+    margin: 35px auto 80px;
 }
 
 .banner-imagem {
-    width: 100%;
-    display: block;
-    line-height: 0;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #bd75ff60;
+    border-radius: 20px;
+    box-shadow: 0 0 25px #a43cff22, 0 0 65px #d04caa12;
 }
 
 .banner-imagem img {
     display: block;
     width: 100%;
     height: auto;
-    max-width: 100%;
+    max-height: 420px;
     object-fit: cover;
 }
 
-.banner-inicial::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background: linear-gradient(180deg, transparent 70%, rgba(5, 5, 8, 0.35) 100%);
-}
-
-/* =========================================================
-   ÁREAS PRINCIPAIS
-   ========================================================= */
-
-.introducao,
-.grupos,
-.espacos,
-.mapa-comunidade,
-.historia-comunidade,
-.comunidade-final {
-    width: min(1180px, 90%);
-    margin: auto;
-}
-
-/* =========================================================
-   LABELS
-   ========================================================= */
-
-.secao-label {
-    display: inline-block;
-    margin-bottom: 18px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.68rem;
-    letter-spacing: 3px;
-    color: var(--roxo-claro);
-    font-weight: 700;
-}
-
-/* =========================================================
-   INTRODUÇÃO
-   ========================================================= */
 
 .introducao {
-    padding: 120px 0 70px;
+    width: min(900px, 88%);
+    margin: 0 auto 120px;
     text-align: center;
 }
 
-.introducao h2,
-.grupo-header h2,
-.espacos-header h2,
-.mapa-texto h2,
-.historia-comunidade h2,
-.comunidade-final h2 {
-    font-size: clamp(2rem, 4vw, 3.4rem);
-    line-height: 1.1;
-    color: #fff;
-}
-
-.introducao p {
+.introducao h1 {
     max-width: 850px;
-    margin: 22px auto 0;
-    color: var(--cinza);
+    margin: 0 auto 25px;
+    font-size: clamp(2rem, 5vw, 3.6rem);
+    line-height: 1.15;
+    background: linear-gradient(100deg, #e2b7ff, #f6a0df, #c9a0ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.introducao > p {
+    max-width: 790px;
+    margin: 17px auto;
+    color: var(--muted);
+    font-size: .98rem;
     line-height: 1.9;
-    font-size: 1rem;
 }
 
-.introducao strong {
-    color: #e6d7fa;
+.introducao-destaque {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    max-width: 750px;
+    margin: 40px auto 0;
+    padding: 22px 25px;
+    text-align: left;
+    border: 1px solid #bd71f76b;
+    border-radius: 12px;
+    background: linear-gradient(110deg, #702a9b25, #d83d9912);
+    box-shadow: 0 0 22px #b044ff12;
 }
 
-/* =========================================================
-   GRUPOS
-   ========================================================= */
+.introducao-destaque span {
+    color: var(--pink);
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.introducao-destaque p {
+    margin: 0;
+    color: #ead5f7;
+    line-height: 1.7;
+}
 
 .grupos {
-    padding: 80px 0 120px;
+    width: min(1150px, 90%);
+    margin: 0 auto 130px;
 }
 
 .grupo-header,
 .espacos-header {
+    max-width: 750px;
+    margin: 0 auto 45px;
     text-align: center;
-    margin-bottom: 50px;
 }
 
-.grupo-header p,
-.espacos-header p {
-    color: var(--cinza);
-    margin-top: 18px;
+.grupo-header h2,
+.espacos-header h2,
+.mapa-texto h2,
+.historia-comunidade > h2,
+.criadora-section > h2,
+.projetos-section > h2,
+.redes-section > h2 {
+    margin-bottom: 18px;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    line-height: 1.2;
+    background: linear-gradient(100deg, #dfb2ff, #f6a1df);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.grupo-header > p,
+.espacos-header > p {
+    color: var(--muted);
+    font-size: .96rem;
+    line-height: 1.85;
 }
 
 .grupos-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
 }
 
 .grupo-card {
-    min-height: 310px;
-    padding: 30px;
     position: relative;
     overflow: hidden;
-    border-radius: 22px;
-    border: 1px solid var(--borda);
-    background: linear-gradient(145deg, rgba(44, 19, 67, 0.7), rgba(13, 9, 17, 0.88));
-    transition: 0.35s ease;
+    padding: 30px;
+    border: 1px solid #a95ee35b;
+    border-radius: 13px;
+    background:
+        radial-gradient(circle at 100% 0%, #a33dff15, transparent 45%),
+        linear-gradient(145deg, #181020, #0d0912);
+    box-shadow: 0 0 20px #9e46e60c;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
 }
 
-.grupo-card::before {
+.grupo-card::before,
+.espaco-card::before {
     content: "";
     position: absolute;
-    width: 160px;
-    height: 160px;
-    border-radius: 50%;
-    top: -70px;
-    right: -60px;
-    background: rgba(141, 61, 255, 0.14);
-    filter: blur(20px);
+    top: 0;
+    left: 0;
+    width: 45px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--purple), var(--pink));
+    box-shadow: 0 0 12px var(--purple);
 }
 
 .grupo-card:hover {
-    transform: translateY(-8px);
-    border-color: rgba(174, 101, 255, 0.5);
-    box-shadow: 0 18px 50px rgba(79, 26, 139, 0.2);
+    transform: translateY(-5px);
+    border-color: #e58ce5;
+    box-shadow: 0 0 28px #ae4aff25;
 }
 
 .grupo-icone {
-    font-size: 2.4rem;
-    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 22px;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 2px solid #c879ff;
+    border-radius: 50%;
+    background: #170e24;
+    box-shadow:
+        0 0 10px #b45aff80,
+        0 0 22px #b45aff35;
+    transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+}
+
+.grupo-icone img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.grupo-card:hover .grupo-icone {
+    transform: scale(1.06);
+    border-color: #f18bdc;
+    box-shadow:
+        0 0 12px #f18bdc,
+        0 0 28px #c44cff70;
 }
 
 .grupo-numero {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.72rem;
-    color: rgba(192, 160, 235, 0.35);
+    display: block;
+    margin-bottom: 9px;
+    color: var(--purple-light);
+    font-size: .64rem;
+    font-weight: 800;
+    letter-spacing: 1.8px;
 }
 
 .grupo-card h3 {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.15rem;
     margin-bottom: 15px;
+    font-size: 1.65rem;
+    color: var(--pink-light);
 }
 
 .grupo-card p {
-    color: var(--cinza);
-    font-size: 0.9rem;
-    line-height: 1.7;
+    color: #c5b9d0;
+    font-size: .91rem;
+    line-height: 1.85;
 }
 
 .grupo-tipos {
     display: block;
     margin-top: 22px;
-    color: var(--roxo-claro);
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.8px;
+    padding-top: 17px;
+    border-top: 1px solid #ffffff18;
+    color: #e5b7ff;
+    font-size: .79rem;
+    font-weight: 800;
+    letter-spacing: 1.1px;
 }
 
-.diplomatas {
-    background: linear-gradient(145deg, rgba(53, 21, 67, 0.7), rgba(13, 9, 17, 0.88));
+.grupos-observacao {
+    max-width: 750px;
+    margin: 28px auto 0;
+    color: #92849f;
+    font-size: .8rem;
+    line-height: 1.7;
+    text-align: center;
 }
-
-.sentinelas {
-    background: linear-gradient(145deg, rgba(29, 20, 48, 0.7), rgba(13, 9, 17, 0.88));
-}
-
-.exploradores {
-    background: linear-gradient(145deg, rgba(57, 22, 65, 0.7), rgba(13, 9, 17, 0.88));
-}
-
-/* =========================================================
-   ESPAÇOS
-   ========================================================= */
 
 .espacos {
-    padding: 80px 0 120px;
+    width: min(1150px, 90%);
+    margin: 0 auto 130px;
 }
 
 .espacos-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
 }
 
 .espaco-card {
+    position: relative;
     display: flex;
-    gap: 22px;
-    padding: 28px;
-    border-radius: 20px;
-    background: rgba(15, 11, 20, 0.8);
-    border: 1px solid rgba(163, 85, 255, 0.14);
-    transition: 0.3s ease;
+    align-items: flex-start;
+    gap: 20px;
+    overflow: hidden;
+    padding: 27px;
+    border: 1px solid #a45bdf55;
+    border-radius: 12px;
+    background: linear-gradient(140deg, #191020, #0e0a14);
+    box-shadow: 0 0 18px #a54cff0b;
+    transition: .3s ease;
 }
 
 .espaco-card:hover {
-    transform: translateY(-5px);
-    border-color: rgba(163, 85, 255, 0.38);
-    background: rgba(26, 15, 37, 0.9);
+    transform: translateY(-4px);
+    border-color: #ed91dc;
+    box-shadow: 0 0 24px #b34cff25;
 }
 
 .espaco-icon {
-    width: 58px;
-    height: 58px;
+    display: grid;
+    place-items: center;
     flex-shrink: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 16px;
-    background: rgba(128, 52, 215, 0.11);
-    border: 1px solid rgba(171, 98, 255, 0.16);
+    width: 52px;
+    height: 52px;
+    border: 1px solid #bd76f766;
+    border-radius: 11px;
+    background: linear-gradient(140deg, #742fa52c, #e64a9e20);
+    box-shadow: 0 0 17px #b74aff18;
     font-size: 1.6rem;
 }
 
 .espaco-card h3 {
-    font-size: 1.1rem;
-    margin-bottom: 9px;
-    color: #f2e9ff;
+    margin: 2px 0 11px;
+    color: #efb4f0;
+    font-size: 1.15rem;
 }
 
 .espaco-card p {
-    color: var(--cinza);
-    font-size: 0.88rem;
-    line-height: 1.7;
+    margin: 0;
+    color: var(--muted);
+    font-size: .87rem;
+    line-height: 1.8;
 }
-
-/* =========================================================
-   MAPA DA COMUNIDADE
-   ========================================================= */
 
 .mapa-comunidade {
-    margin-top: 40px;
-    margin-bottom: 120px;
-    padding: 65px;
     display: grid;
-    grid-template-columns: 0.8fr 1.2fr;
+    grid-template-columns: .8fr 1.2fr;
     align-items: center;
-    gap: 50px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 30px;
-    border: 1px solid rgba(157, 80, 255, 0.2);
+    gap: 65px;
+    width: min(1050px, 90%);
+    margin: 0 auto 130px;
+    padding: 55px;
+    border: 1px solid #ad64ed50;
+    border-radius: 18px;
     background:
-        radial-gradient(circle at 15% 50%, rgba(125, 50, 223, 0.13), transparent 30%),
-        linear-gradient(145deg, rgba(28, 15, 42, 0.85), rgba(8, 7, 11, 0.95));
-}
-
-.mapa-comunidade::before {
-    content: "";
-    position: absolute;
-    width: 500px;
-    height: 500px;
-    border-radius: 50%;
-    border: 1px solid rgba(150, 75, 255, 0.08);
-    left: -130px;
-    top: 50%;
-    transform: translateY(-50%);
+        radial-gradient(circle at 15% 50%, #8d39c927, transparent 45%),
+        linear-gradient(140deg, #171020, #0c0911);
+    box-shadow: 0 0 40px #a044ff12;
 }
 
 .mapa-cerebro {
-    min-height: 340px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
     position: relative;
-}
-
-.mapa-cerebro::before,
-.mapa-cerebro::after {
-    content: "";
-    position: absolute;
-    border-radius: 50%;
-    border: 1px solid rgba(157, 81, 255, 0.2);
-}
-
-.mapa-cerebro::before {
-    width: 290px;
-    height: 290px;
-}
-
-.mapa-cerebro::after {
-    width: 370px;
-    height: 370px;
-    border-style: dashed;
-    animation: girar 18s linear infinite;
+    display: grid;
+    place-items: center;
+    min-height: 260px;
 }
 
 .cerebro-grande {
-    width: 180px;
-    height: 180px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
+    width: 185px;
+    height: 185px;
+    border: 1px solid #d17bff77;
     border-radius: 50%;
-    background: rgba(75, 27, 108, 0.2);
-    border: 1px solid rgba(181, 117, 255, 0.32);
-    box-shadow:
-        0 0 35px rgba(145, 60, 255, 0.24),
-        inset 0 0 35px rgba(145, 60, 255, 0.1);
-    font-size: 5.5rem;
-    z-index: 2;
+    background: radial-gradient(circle, #9d43c735, #160e23);
+    box-shadow: 0 0 25px #b044ff45, inset 0 0 25px #b044ff22;
+    font-size: 5rem;
 }
 
-.mapa-texto {
-    position: relative;
-    z-index: 2;
+.mapa-brilho {
+    position: absolute;
+    color: #f1a4ed;
+    text-shadow: 0 0 15px var(--pink);
 }
 
-.mapa-texto p {
-    color: var(--cinza);
-    line-height: 1.8;
-    margin-top: 20px;
+.brilho-a {
+    top: 10%;
+    left: 17%;
+    font-size: 2rem;
+}
+
+.brilho-b {
+    right: 10%;
+    top: 30%;
+    font-size: 1.7rem;
+}
+
+.brilho-c {
+    bottom: 12%;
+    left: 23%;
+    font-size: 1.5rem;
+}
+
+.mapa-texto h2 {
+    margin-bottom: 22px;
+}
+
+.mapa-texto > p {
+    color: var(--muted);
+    font-size: .91rem;
+    line-height: 1.9;
 }
 
 .conexoes-lista {
@@ -398,682 +465,780 @@ main {
 
 .conexoes-lista span {
     padding: 9px 13px;
-    border-radius: 10px;
-    font-size: 0.78rem;
-    color: #cab5ea;
-    background: rgba(129, 52, 220, 0.1);
-    border: 1px solid rgba(173, 98, 255, 0.13);
+    border: 1px solid #b56cdd60;
+    border-radius: 7px;
+    background: #6f2e9c1c;
+    color: #e8c6fa;
+    font-size: .77rem;
+    transition: .25s;
 }
 
-/* =========================================================
-   HISTÓRIA
-   ========================================================= */
+.conexoes-lista span:hover {
+    border-color: var(--pink);
+    box-shadow: 0 0 13px #dc65dc30;
+}
 
 .historia-comunidade {
-    max-width: 950px;
-    padding: 80px 0 110px;
+    width: min(900px, 88%);
+    margin: 0 auto 130px;
+    padding: 20px 0;
 }
 
-.historia-comunidade h2 {
-    margin-top: 55px;
-    margin-bottom: 20px;
-    font-size: clamp(1.7rem, 3vw, 2.6rem);
+.historia-comunidade > h2 {
+    margin: 55px 0 18px;
+    font-size: clamp(1.55rem, 3vw, 2.15rem);
 }
 
-.historia-comunidade p {
-    color: var(--cinza);
+.historia-comunidade > h2:first-of-type {
+    margin-top: 20px;
+}
+
+.historia-comunidade > p {
+    max-width: 850px;
+    margin: 15px 0;
+    color: #c7bdcf;
+    font-size: .96rem;
+    line-height: 1.95;
+}
+
+.historia-marco {
+    position: relative;
+    overflow: hidden;
+    margin: 50px 0;
+    padding: 35px;
+    border: 1px solid #d16de780;
+    border-radius: 13px;
+    background:
+        radial-gradient(circle at 100% 0%, #c64fbb20, transparent 50%),
+        linear-gradient(120deg, #4e1d702e, #1b1028);
+    box-shadow: 0 0 28px #bc4de91b;
+}
+
+.historia-marco > span {
+    display: inline-block;
+    margin-bottom: 15px;
+    color: #f2a4e7;
+    font-size: .75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.historia-marco h3 {
+    margin-bottom: 15px;
+    color: #e6b8ff;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+}
+
+.historia-marco p {
+    margin: 0;
+    color: #d1c1dc;
+    font-size: .93rem;
     line-height: 1.9;
-    margin-top: 18px;
-    font-size: 0.98rem;
-}
-
-.historia-comunidade strong {
-    color: #e0cdf8;
-}
-
-.historia-comunidade blockquote {
-    margin: 35px 0;
-    padding: 25px 30px;
-    border-left: 3px solid var(--roxo);
-    background: rgba(102, 41, 171, 0.08);
-    color: #e8d9fa;
-    font-size: 1.1rem;
-    font-style: italic;
-    border-radius: 0 12px 12px 0;
 }
 
 .historia-comunidade .final {
-    margin-top: 60px;
-    text-align: center;
-    color: #d6b9fa;
-    font-size: 1.1rem;
+    margin-top: 35px;
+    padding: 24px;
+    border-left: 3px solid var(--pink);
+    border-radius: 0 10px 10px 0;
+    background: linear-gradient(100deg, #9e3c9d24, transparent);
+    color: #f0c9ff;
+    line-height: 1.8;
 }
 
-/* =========================================================
-   ARTES DOS VENCEDORES
-   ========================================================= */
+.criadora-section {
+    width: min(1100px, 90%);
+    margin: 0 auto 130px;
+}
+
+.criadora-section > h2 {
+    margin-bottom: 35px;
+}
+
+.criadora-card {
+    overflow: hidden;
+    padding: clamp(25px, 5vw, 55px);
+    border: 1px solid #b36ae46b;
+    border-radius: 17px;
+    background:
+        radial-gradient(circle at 0% 0%, #a13bff20, transparent 40%),
+        radial-gradient(circle at 100% 100%, #e344a019, transparent 40%),
+        linear-gradient(145deg, #17101f, #0c0910);
+    box-shadow: 0 0 35px #963bff18;
+}
+
+.criadora-identidade h3 {
+    margin: 20px 0;
+    color: #f4d9ff;
+    font-size: clamp(2.5rem, 7vw, 4.2rem);
+}
+
+.criadora-identidade h3 span {
+    color: var(--pink);
+    text-shadow: 0 0 22px #eb72dc55;
+}
+
+.criadora-tag {
+    display: inline-block;
+    padding: 8px 13px;
+    border: 1px solid #e57cdb77;
+    border-radius: 6px;
+    color: #f2a2e7;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.criadora-frase {
+    max-width: 600px;
+    color: #c7b5d4;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+.criadora-dados {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+    margin: 32px 0;
+}
+
+.criadora-dados div {
+    min-width: 0;
+    padding: 19px;
+    border: 1px solid #a46bff55;
+    border-radius: 9px;
+    background: #170e24;
+    box-shadow: inset 0 0 18px #a24cff0b, 0 0 12px #9c46ff16;
+}
+
+.criadora-dados small,
+.criadora-dados strong {
+    display: block;
+}
+
+.criadora-dados small {
+    margin-bottom: 9px;
+    color: #bd8be7;
+    font-size: .65rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.criadora-dados strong {
+    color: #f4e8ff;
+    font-size: .95rem;
+    line-height: 1.5;
+}
+
+.criadora-texto {
+    padding-top: 28px;
+    border-top: 1px solid #ffffff18;
+}
+
+.criadora-texto p {
+    margin: 16px 0;
+    color: #c9bfd1;
+    font-size: .95rem;
+    line-height: 1.95;
+}
+
+.criadora-texto strong {
+    color: #eab4f5;
+}
+
+.criadora-texto .criadora-assinatura {
+    margin-top: 30px;
+    color: #f2a3e4;
+    font-family: var(--font-title);
+    font-size: 1.05rem;
+    font-weight: 700;
+}
+
+
+.projetos-section {
+    width: min(1100px, 90%);
+    margin: 0 auto 130px;
+}
+
+.projetos-section > h2 {
+    max-width: 750px;
+}
+
+.projetos-intro {
+    max-width: 750px;
+    margin-bottom: 35px;
+    color: var(--muted);
+    font-size: .94rem;
+    line-height: 1.85;
+}
+
+.projetos-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+}
+
+.projeto-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    min-height: 310px;
+    padding: 30px;
+    border: 1px solid #a45dff65;
+    border-radius: 12px;
+    background:
+        radial-gradient(circle at 100% 0%, #a53aff16, transparent 45%),
+        linear-gradient(145deg, #1c1129, #0d0912);
+    transition: .3s ease;
+}
+
+a.projeto-card:hover {
+    transform: translateY(-5px);
+    border-color: #ed8ddd;
+    box-shadow: 0 0 25px #b044ff32;
+}
+
+.projeto-icon {
+    margin-bottom: 20px;
+    color: var(--pink);
+    font-size: 2.1rem;
+}
+
+.projeto-card small {
+    color: #d68bff;
+    font-size: .65rem;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.projeto-card h3 {
+    margin: 12px 0;
+    color: #f1c4ff;
+    font-size: 1.5rem;
+}
+
+.projeto-card p {
+    color: #bdb1ca;
+    font-size: .92rem;
+    line-height: 1.8;
+}
+
+.projeto-link {
+    display: block;
+    margin-top: auto;
+    padding-top: 22px;
+    color: #f09bdf;
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
 
 .artes-competicao {
-    width: min(1180px, 90%);
-    min-height: 390px;
-    margin: 20px auto 110px;
-    padding: 65px;
-    position: relative;
-    overflow: hidden;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
     align-items: center;
-    justify-content: space-between;
-    gap: 50px;
-    border: 1px solid rgba(163, 85, 255, 0.22);
-    border-radius: 30px;
+    gap: 40px;
+    width: min(1100px, 90%);
+    margin: 0 auto 130px;
+    padding: 50px;
+    border: 1px solid #a957d75e;
+    border-radius: 17px;
     background:
-        radial-gradient(circle at 80% 50%, rgba(144, 64, 255, 0.16), transparent 32%),
-        radial-gradient(circle at 10% 100%, rgba(99, 32, 170, 0.14), transparent 30%),
-        linear-gradient(145deg, rgba(27, 13, 42, 0.96), rgba(8, 7, 11, 0.98));
-    box-shadow: 0 20px 70px rgba(70, 24, 120, 0.15);
-}
-
-.artes-competicao::before {
-    content: "";
-    position: absolute;
-    width: 420px;
-    height: 420px;
-    right: -180px;
-    top: 50%;
-    border: 1px solid rgba(174, 99, 255, 0.08);
-    border-radius: 50%;
-    transform: translateY(-50%);
-}
-
-.artes-competicao::after {
-    content: "";
-    position: absolute;
-    width: 300px;
-    height: 300px;
-    right: -120px;
-    top: -140px;
-    border-radius: 50%;
-    background: rgba(144, 62, 255, 0.1);
-    filter: blur(45px);
-}
-
-.artes-conteudo {
-    max-width: 700px;
-    position: relative;
-    z-index: 3;
+        radial-gradient(circle at 90% 50%, #b6389820, transparent 45%),
+        linear-gradient(145deg, #191020, #0c0912);
 }
 
 .artes-conteudo h2 {
-    color: #fff;
-    font-size: clamp(2rem, 4vw, 3.3rem);
-    line-height: 1.1;
+    margin-bottom: 20px;
+    color: #edb4f6;
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
 }
 
 .artes-conteudo p {
-    max-width: 700px;
-    margin-top: 18px;
-    color: var(--cinza);
-    line-height: 1.8;
-    font-size: 0.95rem;
+    color: var(--muted);
+    font-size: .93rem;
+    line-height: 1.9;
 }
 
 .btn-artes {
-    min-width: 280px;
-    min-height: 64px;
-    margin-top: 32px;
-    padding: 0 28px;
     display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 25px;
-    border: 1px solid rgba(214, 167, 255, 0.4);
-    border-radius: 14px;
-    color: #fff;
-    background: linear-gradient(135deg, #8c43ed, #5d2d91);
-    box-shadow: 0 12px 35px rgba(125, 47, 219, 0.28);
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    text-decoration: none;
-    transition: 0.3s ease;
-}
-
-.btn-artes span {
-    font-size: 1.3rem;
-    transition: 0.3s ease;
+    gap: 15px;
+    margin-top: 18px;
+    padding: 15px 22px;
+    border: 1px solid #e18bff;
+    border-radius: 8px;
+    background: linear-gradient(100deg, #782ab7, #a82f91);
+    color: white;
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .8px;
+    box-shadow: 0 0 18px #b44cff40;
+    transition: .3s;
 }
 
 .btn-artes:hover {
-    transform: translateY(-5px);
-    border-color: rgba(231, 207, 255, 0.7);
-    box-shadow: 0 18px 45px rgba(125, 47, 219, 0.38);
-}
-
-.btn-artes:hover span {
-    transform: translate(4px, -4px);
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px #d65ce7;
 }
 
 .artes-decoracao {
-    width: 320px;
-    height: 280px;
     position: relative;
-    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    min-height: 250px;
 }
 
 .arte-quadro {
-    width: 155px;
-    height: 185px;
-    position: absolute;
-    left: 80px;
-    top: 45px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid rgba(209, 164, 255, 0.35);
-    border-radius: 18px;
-    background: linear-gradient(145deg, rgba(128, 54, 208, 0.18), rgba(20, 11, 30, 0.8));
-    box-shadow: 0 0 35px rgba(137, 56, 240, 0.18);
-    font-size: 4.8rem;
+    display: grid;
+    place-items: center;
+    width: 165px;
+    height: 165px;
+    border: 1px solid #d887ff99;
+    border-radius: 25px;
+    background: linear-gradient(145deg, #692d9a, #a42b7e);
+    box-shadow: 0 0 35px #bc55ff50;
+    font-size: 5rem;
     transform: rotate(-7deg);
-}
-
-.arte-quadro::before {
-    content: "";
-    position: absolute;
-    inset: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 12px;
 }
 
 .arte-brilho {
     position: absolute;
-    color: var(--roxo-claro);
-    text-shadow: 0 0 18px rgba(183, 122, 255, 0.8);
+    color: #f6a8ed;
+    text-shadow: 0 0 15px #ed8aff;
 }
 
 .brilho-1 {
-    top: 15px;
-    right: 35px;
+    top: 5%;
+    left: 15%;
     font-size: 2rem;
 }
 
 .brilho-2 {
-    bottom: 30px;
-    left: 20px;
+    right: 10%;
+    top: 20%;
     font-size: 1.5rem;
 }
 
 .brilho-3 {
-    top: 90px;
-    right: 0;
-    font-size: 1.1rem;
+    bottom: 10%;
+    right: 20%;
+    font-size: 2.3rem;
 }
 
-/* =========================================================
-   FINAL
-   ========================================================= */
 
-.comunidade-final {
-    margin-top: 20px;
-    margin-bottom: 100px;
-    padding: 80px 30px;
-    text-align: center;
-    border-radius: 30px;
-    border: 1px solid rgba(157, 78, 255, 0.18);
+.redes-section {
+    width: min(1100px, 90%);
+    margin: 0 auto 130px;
+}
+
+.redes-section > p {
+    max-width: 750px;
+    margin-bottom: 30px;
+    color: var(--muted);
+    font-size: .94rem;
+    line-height: 1.85;
+}
+
+.redes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 17px;
+}
+
+.rede-card {
+    display: flex;
+    align-items: center;
+    gap: 17px;
+    min-width: 0;
+    padding: 23px;
+    border: 1px solid #a66aff55;
+    border-radius: 11px;
+    background: linear-gradient(140deg, #191020, #0e0a14);
+    transition: .3s;
+}
+
+.rede-card:hover {
+    transform: translateY(-4px);
+    border-color: #ed83dc;
+    box-shadow: 0 0 22px #c14dff30;
+}
+
+.rede-icon {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #c27af477;
+    border-radius: 12px;
+    background: #8a3cb52b;
+    color: #f0a3ec;
+    font-size: 1.9rem;
+}
+
+.rede-card div {
+    flex: 1;
+    min-width: 0;
+}
+
+.rede-card small,
+.rede-card strong {
+    display: block;
+}
+
+.rede-card small {
+    color: #b58ad6;
+    font-size: .62rem;
+    letter-spacing: 1px;
+}
+
+.rede-card strong {
+    margin-top: 5px;
+    color: #f2d9ff;
+    font-size: .95rem;
+    overflow-wrap: anywhere;
+}
+
+.rede-card p {
+    margin: 7px 0 0;
+    color: #aa9bb7;
+    font-size: .78rem;
+    line-height: 1.5;
+}
+
+.rede-card b {
+    color: #ed8ddd;
+    font-size: 1.2rem;
+}
+
+.comunidade-final { position: relative; overflow: hidden; width: min(1100px, 90%);
+    margin: 0 auto 100px;
+    padding: 70px 30px;
+    border: 1px solid #b36de77a;
+    border-radius: 20px;
     background:
-        radial-gradient(circle at center, rgba(128, 45, 227, 0.13), transparent 45%),
-        rgba(11, 8, 15, 0.8);
+        radial-gradient(ellipse at 50% 0%, #a73ecb35, transparent 60%),
+        radial-gradient(ellipse at 100% 100%, #c7358d20, transparent 45%),
+        linear-gradient(145deg, #1a1024, #0d0912);
+    text-align: center;
+    box-shadow: 0 0 35px #a442ff20, inset 0 0 35px #8b3cc012;
 }
 
 .final-casa {
-    font-size: 4rem;
     margin-bottom: 20px;
-    filter: drop-shadow(0 0 20px rgba(151, 73, 255, 0.28));
+    font-size: 3rem;
+    filter: drop-shadow(0 0 15px #d66bff);
 }
 
 .comunidade-final h2 {
-    margin-bottom: 18px;
+    margin: 12px 0 20px;
+    color: #f2c3ff;
+    font-size: clamp(2rem, 5vw, 3.3rem);
 }
 
-.comunidade-final p {
+.comunidade-final > p {
     max-width: 650px;
-    margin: auto;
-    color: var(--cinza);
-    line-height: 1.8;
+    margin: 0 auto 22px;
+    color: #c6b8d0;
+    font-size: .96rem;
+    line-height: 1.85;
 }
 
-.comunidade-final strong {
+.comunidade-final > strong {
     display: block;
-    margin-top: 22px;
-    color: var(--roxo-claro);
+    margin-bottom: 30px;
+    color: #f0a6e8;
+    font-size: 1rem;
 }
 
-/* =========================================================
-   TIKTOK
-   ========================================================= */
-
-.tiktok-comunidade {
-    width: min(1180px, 90%);
-    margin: 20px auto 100px;
-}
-
-.tiktok-header {
-    text-align: center;
-    margin-bottom: 45px;
-}
-
-.tiktok-header h2 {
-    font-size: clamp(2rem, 4vw, 3.2rem);
-    color: #fff;
-}
-
-.tiktok-header p {
-    max-width: 680px;
-    margin: 18px auto 0;
-    color: var(--cinza);
-    line-height: 1.8;
-}
-
-.tiktok-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
-}
-
-.tiktok-card {
-    position: relative;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    gap: 22px;
-    padding: 30px;
-    text-decoration: none;
-    color: inherit;
-    border-radius: 24px;
-    border: 1px solid rgba(163, 85, 255, 0.18);
-    background:
-        radial-gradient(circle at 100% 0%, rgba(150, 67, 255, 0.14), transparent 35%),
-        linear-gradient(145deg, rgba(27, 14, 39, 0.92), rgba(8, 7, 11, 0.96));
-    transition: 0.35s ease;
-}
-
-.tiktok-card::before {
-    content: "";
-    position: absolute;
-    width: 180px;
-    height: 180px;
-    right: -80px;
-    bottom: -100px;
-    border-radius: 50%;
-    background: rgba(138, 54, 255, 0.18);
-    filter: blur(30px);
-}
-
-.tiktok-card:hover {
-    transform: translateY(-7px);
-    border-color: rgba(185, 111, 255, 0.5);
-    box-shadow: 0 18px 50px rgba(86, 27, 145, 0.22);
-}
-
-.tiktok-icon {
-    width: 64px;
-    height: 64px;
-    flex-shrink: 0;
-    display: flex;
+.whatsapp-button {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 18px;
-    font-size: 2rem;
+    gap: 15px;
+    padding: 17px 27px;
+    border: 1px solid #ec8bfa;
+    border-radius: 9px;
+    background: linear-gradient(100deg, #762bb2, #b52c8a);
     color: #fff;
-    background: rgba(122, 50, 205, 0.15);
-    border: 1px solid rgba(178, 105, 255, 0.22);
-    box-shadow: 0 0 25px rgba(136, 55, 240, 0.12);
+    font-size: .8rem;
+    font-weight: 800;
+    letter-spacing: .8px;
+    box-shadow: 0 0 20px #bc50ed50;
+    transition: .3s;
 }
 
-.tiktok-info {
-    position: relative;
-    z-index: 2;
+.whatsapp-button:hover {
+    transform: translateY(-4px) scale(1.02);
+    box-shadow: 0 0 35px #d65ce7;
 }
 
-.tiktok-info span {
-    display: block;
-    margin-bottom: 7px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.62rem;
-    letter-spacing: 2px;
-    color: var(--roxo-claro);
-}
-
-.tiktok-info h3 {
-    margin-bottom: 9px;
-    font-size: 1.15rem;
-    color: #fff;
-}
-
-.tiktok-info p {
-    color: var(--cinza);
-    font-size: 0.85rem;
-    line-height: 1.65;
-}
-
-.tiktok-arrow {
-    margin-left: auto;
-    align-self: flex-start;
-    font-size: 1.5rem;
-    color: var(--roxo-claro);
-    transition: 0.3s ease;
-}
-
-.tiktok-card:hover .tiktok-arrow {
-    transform: translate(4px, -4px);
-}
-
-.comunidade-tiktok {
-    background:
-        radial-gradient(circle at 0% 100%, rgba(110, 42, 188, 0.13), transparent 35%),
-        linear-gradient(145deg, rgba(31, 16, 45, 0.95), rgba(8, 7, 11, 0.96));
-}
-
-/* =========================================================
-   ANIMAÇÃO
-   ========================================================= */
-
-@keyframes girar {
-    from {
-        transform: rotate(0deg);
-    }
-
-    to {
-        transform: rotate(360deg);
-    }
-}
-
-/* =========================================================
-   TABLET
-   ========================================================= */
-
-@media (max-width: 1100px) {
-    .grupos-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-/* =========================================================
-   CELULAR
-   ========================================================= */
-
-@media (max-width: 800px) {
-    .banner-imagem img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
-    }
-
-    .introducao {
-        padding: 85px 0 55px;
-    }
-
-    .grupos {
-        padding: 65px 0 85px;
-    }
-
-    .grupos-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .espacos {
-        padding: 65px 0 85px;
-    }
-
-    .espacos-grid {
-        grid-template-columns: 1fr;
-    }
+@media (max-width: 850px) {
 
     .mapa-comunidade {
         grid-template-columns: 1fr;
-        padding: 40px 25px;
-        text-align: center;
-    }
-
-    .conexoes-lista {
-        justify-content: center;
+        gap: 25px;
+        padding: 35px;
     }
 
     .mapa-cerebro {
-        min-height: 280px;
+        min-height: 210px;
     }
 
-    .historia-comunidade {
-        padding: 65px 0 85px;
+    .cerebro-grande {
+        width: 155px;
+        height: 155px;
+        font-size: 4rem;
     }
 
     .artes-competicao {
-        padding: 45px 35px;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: center;
-    }
-
-    .artes-conteudo {
-        width: 100%;
-        max-width: none;
-    }
-
-    .artes-conteudo p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .btn-artes {
-        width: 100%;
-        max-width: 420px;
+        grid-template-columns: 1fr;
+        padding: 35px;
     }
 
     .artes-decoracao {
-        width: 100%;
-        height: 230px;
-        margin-top: 5px;
-    }
-
-    .arte-quadro {
-        left: 50%;
-        top: 25px;
-        transform: translateX(-50%) rotate(-7deg);
-    }
-
-    .brilho-1 {
-        right: 18%;
-    }
-
-    .brilho-2 {
-        left: 18%;
-    }
-
-    .brilho-3 {
-        right: 12%;
-    }
-
-    .comunidade-final {
-        padding: 60px 25px;
-    }
-
-    .tiktok-grid {
-        grid-template-columns: 1fr;
+        min-height: 190px;
     }
 }
 
-/* =========================================================
-   CELULAR MENOR
-   ========================================================= */
+@media (max-width: 600px) {
 
-@media (max-width: 520px) {
     .banner-inicial {
-        border-bottom: 1px solid rgba(164, 91, 255, 0.15);
+        width: 94%;
+        margin: 20px auto 65px;
     }
 
-    .banner-imagem img {
-        width: 100%;
-        height: auto;
-        object-fit: contain;
+    .banner-imagem {
+        border-radius: 12px;
     }
 
-    .introducao,
+    .introducao {
+        width: 89%;
+        margin-bottom: 85px;
+    }
+
+    .introducao h1 {
+        font-size: 2.15rem;
+    }
+
+    .introducao > p {
+        font-size: .91rem;
+        text-align: left;
+    }
+
+    .introducao-destaque {
+        padding: 17px;
+    }
+
     .grupos,
-    .espacos,
-    .mapa-comunidade,
-    .historia-comunidade,
-    .comunidade-final {
+    .espacos {
         width: 90%;
+        margin-bottom: 90px;
     }
 
-    .introducao h2,
-    .grupo-header h2,
-    .espacos-header h2,
-    .mapa-texto h2,
-    .historia-comunidade h2,
-    .comunidade-final h2 {
-        font-size: 2rem;
-    }
-
-    .introducao p {
-        font-size: 0.92rem;
-        line-height: 1.8;
+    .grupos-grid,
+    .espacos-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
     }
 
     .grupo-card {
-        padding: 25px;
-        min-height: auto;
+        padding: 24px;
+    }
+
+    .grupo-icone {
+        width: 85px;
+        height: 85px;
+        margin-bottom: 18px;
+    }
+
+    .grupo-card p {
+        font-size: .88rem;
     }
 
     .espaco-card {
-        padding: 22px;
-        gap: 16px;
+        padding: 21px;
+        gap: 15px;
     }
 
     .espaco-icon {
-        width: 48px;
-        height: 48px;
+        width: 45px;
+        height: 45px;
         font-size: 1.35rem;
     }
 
     .mapa-comunidade {
-        padding: 35px 20px;
-        border-radius: 22px;
+        width: 90%;
+        margin-bottom: 90px;
+        padding: 27px 21px;
     }
 
-    .mapa-cerebro::before {
-        width: 220px;
-        height: 220px;
+    .mapa-texto h2 {
+        font-size: 1.8rem;
     }
 
-    .mapa-cerebro::after {
-        width: 285px;
-        height: 285px;
+    .historia-comunidade {
+        width: 89%;
+        margin-bottom: 90px;
     }
 
-    .cerebro-grande {
-        width: 145px;
-        height: 145px;
-        font-size: 4.3rem;
+    .historia-comunidade > h2 {
+        margin-top: 42px;
+        font-size: 1.65rem;
     }
 
-    .historia-comunidade blockquote {
-        padding: 20px;
-        font-size: 1rem;
+    .historia-comunidade > p {
+        font-size: .9rem;
+        line-height: 1.9;
+    }
+
+    .historia-marco {
+        padding: 25px 20px;
+    }
+
+    .criadora-section,
+    .projetos-section,
+    .redes-section {
+        width: 90%;
+        margin-bottom: 90px;
+    }
+
+    .criadora-card {
+        padding: 25px 20px;
+    }
+
+    .criadora-identidade h3 {
+        font-size: 2.8rem;
+    }
+
+    .criadora-dados {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+
+    .criadora-dados div {
+        padding: 14px 11px;
+    }
+
+    .criadora-dados strong {
+        font-size: .82rem;
+    }
+
+    .criadora-texto p {
+        font-size: .9rem;
+    }
+
+    .projetos-grid,
+    .redes-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projeto-card {
+        min-height: 280px;
+        padding: 25px;
     }
 
     .artes-competicao {
         width: 90%;
-        min-height: auto;
-        padding: 38px 22px;
-        border-radius: 22px;
+        margin-bottom: 90px;
+        padding: 27px 22px;
     }
 
     .artes-conteudo h2 {
         font-size: 1.9rem;
     }
 
-    .artes-conteudo p {
-        font-size: 0.88rem;
-        line-height: 1.75;
+    .redes-grid {
+        gap: 12px;
     }
 
-    .btn-artes {
-        min-width: 0;
-        min-height: 60px;
-        padding: 0 18px;
-        font-size: 0.62rem;
-        letter-spacing: 1px;
-    }
-
-    .artes-decoracao {
-        height: 205px;
-    }
-
-    .arte-quadro {
-        width: 135px;
-        height: 165px;
-        font-size: 4rem;
+    .rede-card {
+        padding: 17px;
+        gap: 12px;
     }
 
     .comunidade-final {
-        padding: 55px 20px;
-        border-radius: 22px;
-    }
-
-    .final-casa {
-        font-size: 3.3rem;
-    }
-
-    .tiktok-comunidade {
         width: 90%;
-        margin-bottom: 70px;
+        margin-bottom: 60px;
+        padding: 50px 20px;
     }
 
-    .tiktok-card {
-        padding: 22px;
-        gap: 16px;
+    .comunidade-final h2 {
+        font-size: 2.1rem;
     }
 
-    .tiktok-icon {
-        width: 52px;
-        height: 52px;
-        font-size: 1.6rem;
-    }
-
-    .tiktok-info h3 {
-        font-size: 1rem;
-    }
-
-    .tiktok-info p {
-        font-size: 0.8rem;
-    }
-
-    .tiktok-arrow {
-        font-size: 1.2rem;
+    .whatsapp-button {
+        width: 100%;
+        padding: 16px 12px;
+        gap: 10px;
+        font-size: .72rem;
     }
 }
-
 @media (max-width: 380px) {
-    .introducao h2,
-    .grupo-header h2,
-    .espacos-header h2,
-    .mapa-texto h2,
-    .historia-comunidade h2,
-    .comunidade-final h2 {
-        font-size: 1.75rem;
+
+    .criadora-dados {
+        grid-template-columns: 1fr;
     }
 
     .grupo-card {
-        padding: 22px;
+        padding: 20px;
+    }
+
+    .grupo-icone {
+        width: 75px;
+        height: 75px;
     }
 
     .espaco-card {
         flex-direction: column;
     }
 
-    .tiktok-card {
-        align-items: flex-start;
+    .conexoes-lista span {
+        font-size: .7rem;
     }
+
+    .whatsapp-button {
+        font-size: .66rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+    }
+}
+
+/* ==========================================
+   TIKTOK — PERFIS DA CRIADORA E COMUNIDADE
+========================================== */
+
+.rede-card[href*="tiktok.com"] .rede-icon {
+    background: #08060d;
+    border: 1px solid #25f4ee;
+    color: #fff;
+    text-shadow:
+        2px 0 #25f4ee,
+        -2px 0 #fe2c55;
+    box-shadow:
+        0 0 10px #25f4ee45,
+        0 0 18px #fe2c5530;
+}
+
+.rede-card[href*="tiktok.com"]:hover {
+    border-color: #25f4ee;
+    box-shadow:
+        0 0 15px #25f4ee30,
+        0 0 25px #fe2c5530;
+}
+
+.rede-card[href*="tiktok.com"]:hover .rede-icon {
+    transform: scale(1.08);
+    border-color: #fe2c55;
 }
