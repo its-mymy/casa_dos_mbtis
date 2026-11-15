@@ -1,0 +1,3 @@
+.admin-view { border-top: 1px solid var(--color-border); padding-top: 24px; }
+.admin-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.admin-record { padding: 18px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
