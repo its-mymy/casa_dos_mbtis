@@ -142,16 +142,18 @@ async function loadComments(topic, target) {
     if (error) return target.append(el("p", "", "Não foi possível carregar os comentários."));
     const profileMap = await authors((data || []).map(item => item.author_id));
     const comments = data || [];
-    const composer = el("form", "comment-composer");
-    composer.innerHTML = '<textarea name="body" rows="2" maxlength="6000" required placeholder="Escreva um comentário..."></textarea><button class="button button--primary" type="submit">Comentar</button>';
-    composer.addEventListener("submit", async event => {
-        event.preventDefault();
-        if (!getCurrentUser()) return notify("Entre na sua conta para comentar.");
-        const body = composer.elements.namedItem("body").value.trim();
-        const { error } = await supabase.from("community_comments").insert({ topic_id: topic.id, author_id: getCurrentUser().id, body });
-        if (error) return notify("Não foi possível comentar. Talvez o tópico esteja bloqueado.");
-        await loadComments(topic, target);
-    });
+    let composer = null;
+    if (getCurrentUser()) {
+        composer = el("form", "comment-composer");
+        composer.innerHTML = '<textarea name="body" rows="2" maxlength="6000" required placeholder="Escreva um comentário..."></textarea><button class="button button--primary" type="submit">Comentar</button>';
+        composer.addEventListener("submit", async event => {
+            event.preventDefault();
+            const body = composer.elements.namedItem("body").value.trim();
+            const { error } = await supabase.from("community_comments").insert({ topic_id: topic.id, author_id: getCurrentUser().id, body });
+            if (error) return notify("Não foi possível comentar. Talvez o tópico esteja bloqueado.");
+            await loadComments(topic, target);
+        });
+    }
     const thread = el("div", "forum-comments");
     for (const comment of comments) {
         const item = el("article", "forum-comment");
@@ -190,5 +192,6 @@ async function loadComments(topic, target) {
         item.append(tools);
         thread.append(item);
     }
-    target.replaceChildren(thread, composer);
+    target.replaceChildren(thread);
+    if (composer) target.append(composer);
 }
