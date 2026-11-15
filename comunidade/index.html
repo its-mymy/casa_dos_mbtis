@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#0D0A12">
+<meta name="description" content="Participe das discussões, compartilhe sugestões e ajude a construir a comunidade Casa dos MBTIs.">
+<title>Comunidade | Casa dos MBTIs</title>
+<link rel="icon" type="image/png" href="assets/logo-casa-mbtis.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./css/variables.css">
+<link rel="stylesheet" href="./css/base.css">
+<link rel="stylesheet" href="./css/layout.css">
+<link rel="stylesheet" href="./css/components.css">
+<link rel="stylesheet" href="./css/features/forum.css">
+<link rel="stylesheet" href="./css/features/suggestions.css">
+<link rel="stylesheet" href="./css/features/feedback.css">
+<link rel="stylesheet" href="./css/features/admin.css">
+<link rel="stylesheet" href="./css/responsive.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="https://unpkg.com/lucide@0.468.0/dist/umd/lucide.min.js"></script>
+<script type="module" src="./js/app.js"></script>
+</head>
+<body>
+<div class="page-background" aria-hidden="true"><span class="ambient-glow ambient-glow--purple"></span><span class="ambient-glow ambient-glow--pink"></span></div>
+<header class="topbar">
+<div class="topbar__inner">
+<a class="brand" href="#inicio" data-route="inicio" aria-label="Casa dos MBTIs - início da comunidade">
+<span class="brand__image-wrap"><img src="assets/logo-casa-mbtis.jpg" alt="Logo Casa dos MBTIs" class="brand__image"></span>
+<span class="brand__copy"><strong>CASA DOS MBTIs</strong><small>Comunidade</small></span>
+</a>
+<div class="account-area">
+<a class="login-link" id="login-link" href="../login/index.html">Login</a>
+<a class="account-link" id="account-link" href="../FEED/" aria-label="Abrir meu perfil no feed" hidden>
+<img id="account-avatar" class="account-link__avatar" src="" alt="Meu perfil" hidden>
+<span id="account-avatar-fallback" class="account-link__fallback"><i data-lucide="user-round"></i></span>
+</a>
+</div>
+</div>
+</header>
+<main class="community-shell">
+<section class="intro-panel" aria-labelledby="page-title">
+<div class="intro-panel__content"><span class="eyebrow">CASA DOS MBTIs</span><h1 id="page-title">Comunidade</h1><p>Compartilhe ideias, participe de discussões e ajude a construir a Casa.</p></div>
+<span class="intro-panel__ornament" aria-hidden="true">✧</span>
+</section>
+<nav class="section-navigation" aria-label="Áreas da comunidade">
+<button class="section-tab is-active" type="button" data-route="forum" aria-current="page"><i data-lucide="messages-square"></i><span>Fórum</span></button>
+<button class="section-tab" type="button" data-route="sugestoes"><i data-lucide="lightbulb"></i><span>Sugestões</span></button>
+<button class="section-tab" type="button" data-route="avaliacoes"><i data-lucide="message-square-heart"></i><span>Avaliações</span></button>
+<button class="section-tab" type="button" data-route="admin" data-admin-tab hidden><i data-lucide="shield-check"></i><span>Administração</span></button>
+</nav>
+<div class="view-stack">
+<section class="community-view" id="view-inicio" data-view="inicio" hidden>
+<div class="section-heading"><div><span class="eyebrow">ESPAÇO DA COMUNIDADE</span><h2>Boas-vindas à Casa</h2><p>Um lugar para trocar conhecimento, propor melhorias e conversar sobre tipologias.</p></div></div>
+<div class="overview-grid">
+<button class="overview-card" type="button" data-route="forum"><span class="overview-card__icon"><i data-lucide="messages-square"></i></span><strong>Fórum de discussões</strong><span>Abra tópicos, compartilhe estudos e converse com outros membros.</span><span class="overview-card__action">Acessar fórum <i data-lucide="arrow-up-right"></i></span></button>
+<button class="overview-card" type="button" data-route="sugestoes"><span class="overview-card__icon"><i data-lucide="lightbulb"></i></span><strong>Mural de sugestões</strong><span>Publique ideias e apoie melhorias propostas pela comunidade.</span><span class="overview-card__action">Ver sugestões <i data-lucide="arrow-up-right"></i></span></button>
+<button class="overview-card" type="button" data-route="avaliacoes"><span class="overview-card__icon"><i data-lucide="message-square-heart"></i></span><strong>Avaliações anônimas</strong><span>Envie opiniões e relatos diretamente para a administração.</span><span class="overview-card__action">Enviar avaliação <i data-lucide="arrow-up-right"></i></span></button>
+</div>
+</section>
+<section class="community-view" id="view-forum" data-view="forum">
+<div class="section-heading section-heading--row"><div><span class="eyebrow">TROCA DE CONHECIMENTO</span><h2>Fórum de discussões</h2><p>Debates e conversas sobre MBTI, Eneagrama, Socionics e outros sistemas.</p></div><button class="button button--primary" type="button" data-forum-create><i data-lucide="plus"></i>Nova discussão</button></div>
+<div class="toolbar"><label class="search-field"><i data-lucide="search"></i><input type="search" placeholder="Buscar discussões" aria-label="Buscar discussões" data-forum-search></label><span class="toolbar-note">Discussões recentes da comunidade</span></div>
+<div class="forum-topic-list" data-forum-list aria-live="polite"><div class="empty-state">Carregando discussões...</div></div>
+</section>
+<section class="community-view" id="view-sugestoes" data-view="sugestoes" hidden>
+<div class="section-heading section-heading--row"><div><span class="eyebrow">CONSTRUINDO JUNTOS</span><h2>Mural de sugestões</h2><p>Compartilhe ideias e ajude a decidir quais melhorias merecem prioridade.</p></div><button class="button button--primary" type="button" data-suggestion-create><i data-lucide="plus"></i>Nova sugestão</button></div>
+<div class="toolbar"><label class="form-field"><span>Filtrar por status</span><select data-suggestion-filter><option value="">Todos os status</option><option>Em análise</option><option>Planejado</option><option>Em desenvolvimento</option><option>Implementado</option><option>Não aprovado</option></select></label></div>
+<div class="status-legend" aria-label="Etapas das sugestões"><span class="status-pill status-pill--review">Em análise</span><span class="status-pill status-pill--planned">Planejado</span><span class="status-pill status-pill--progress">Em desenvolvimento</span><span class="status-pill status-pill--done">Implementado</span></div>
+<div class="suggestion-list" data-suggestion-list aria-live="polite"><div class="empty-state">Carregando sugestões...</div></div>
+</section>
+<section class="community-view" id="view-avaliacoes" data-view="avaliacoes" hidden>
+<div class="section-heading"><span class="eyebrow">CANAL PRIVADO</span><h2>Central de avaliações</h2><p>Envie sua opinião diretamente para a administração. Sua avaliação não será exibida publicamente nem vinculada ao seu perfil público.</p></div>
+<div class="feedback-layout">
+<form class="panel feedback-form" data-feedback-form>
+<div class="form-heading"><div><h3>Compartilhe sua experiência</h3><p>Seja claro e respeitoso. Seu retorno ajuda a melhorar a Casa.</p></div><i data-lucide="lock-keyhole"></i></div>
+<label class="form-field"><span>Categoria</span><select name="category" required><option value="">Selecione uma categoria</option><option value="sugestão">Sugestão</option><option value="crítica">Crítica</option><option value="problema">Problema</option><option value="elogio">Elogio</option></select></label>
+<label class="form-field"><span>Assunto <small>(opcional)</small></span><input type="text" name="subject" maxlength="160" placeholder="Sobre o que gostaria de falar?"></label>
+<label class="form-field"><span>Nome <small>(opcional; visível apenas à administração)</small></span><input type="text" name="sender_name" maxlength="100" autocomplete="off" placeholder="Não é obrigatório"></label>
+<label class="form-field"><span>Mensagem</span><textarea name="message" rows="6" minlength="5" maxlength="10000" placeholder="Conte sua opinião ou descreva o que aconteceu..." required></textarea><small>De 5 a 10.000 caracteres.</small></label>
+<button class="button button--primary button--wide" type="submit"><i data-lucide="send"></i>Enviar avaliação</button>
+<p class="form-notice">O envio é privado. Guarde o código de acompanhamento exibido ao concluir.</p>
+</form>
+<aside class="panel privacy-card"><span class="privacy-card__icon"><i data-lucide="shield-check"></i></span><h3>Privacidade e acompanhamento</h3><p>Você receberá um código aleatório para consultar a resposta da administração.</p><div class="privacy-card__divider"></div><h4>Já enviou uma avaliação?</h4><p>Informe o código que recebeu ao enviar sua avaliação.</p><label class="form-field"><span>Código de acompanhamento</span><input type="text" inputmode="text" data-feedback-code placeholder="Ex.: CASA-1A2B3C4D-5E6F7A8B-9C0D" autocomplete="off"></label><button class="button button--secondary button--wide" type="button" data-feedback-lookup>Consultar avaliação</button><div class="feedback-tracking-result" data-feedback-tracking aria-live="polite"></div></aside>
+</div>
+</section>
+<section class="community-view admin-view" id="view-admin" data-view="admin" hidden><div class="section-heading"><span class="eyebrow">ÁREA RESTRITA</span><h2>Administração</h2><p>Moderação do fórum e gerenciamento de avaliações privadas.</p></div><section class="admin-section"><h3>Avaliações recebidas</h3><p class="admin-section__description">Somente administradores podem visualizar os relatos, nomes opcionais e respostas. O titular consulta a resposta usando seu código.</p><label class="form-field admin-filter"><span>Filtrar avaliações</span><select data-admin-feedback-filter><option value="all">Todas</option><option value="pending">Pendentes</option><option value="resolved">Resolvidas</option><option value="archived">Arquivadas</option></select></label><div class="admin-record-list" data-admin-feedback-list><p>Carregando avaliações...</p></div></section><section class="admin-section"><h3>Denúncias do fórum</h3><div class="admin-record-list" data-admin-reports><p>Carregando denúncias...</p></div></section></section>
+</div>
+</main>
+<footer class="site-footer"><span>CASA DOS MBTIs</span><small>Desenvolvido por Yu — Yasmym, com apoio de IA.</small></footer>
+<div class="toast" id="app-toast" role="status" aria-live="polite"></div>
+</body>
+</html>

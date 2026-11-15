@@ -74,6 +74,8 @@ const editProfileButton = document.getElementById("edit-profile");
 const viewProfileButton = document.getElementById("view-profile-button");
 const logoutButton = document.getElementById("logout-button");
 const logoutMenuButton = document.getElementById("logout-menu-button");
+const deleteAccountButton = document.getElementById("delete-account-button");
+const deleteAccountMessage = document.getElementById("delete-account-message");
 
 const editModal = document.getElementById("edit-modal");
 const editModalBackdrop = document.querySelector(".edit-modal-backdrop");
@@ -159,6 +161,20 @@ async function iniciar() {
 }
 
 function configurarEventos() {
+
+    deleteAccountButton?.addEventListener(
+        "click",
+        excluirMinhaConta
+    );
+
+    document.getElementById("delete-account-form")?.addEventListener("submit", confirmarExclusaoConta);
+    document.querySelectorAll("[data-close-delete-modal]").forEach(button => {
+        button.addEventListener("click", fecharModalExclusao);
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") fecharModalExclusao();
+    });
+
     editProfileButton?.addEventListener(
         "click",
         abrirEdicaoPerfil
@@ -460,21 +476,12 @@ async function verificarExpiracaoVip(perfil) {
 }
 
 function configurarAcessoAdmin(perfil) {
-    const ehYu =
-        String(perfil.username || "")
-            .replace(/^@/, "")
-            .toLowerCase()
-            .trim() === "yu";
-
     const ehAdm =
         String(perfil.cargo || "")
             .toLowerCase()
             .trim() === "adm";
 
-    adminMenuLink?.classList.toggle(
-        "hidden",
-        !(ehYu && ehAdm)
-    );
+    adminMenuLink?.classList.toggle("hidden", !ehAdm);
 }
 
 async function carregarPerfil() {
@@ -1959,6 +1966,74 @@ function irParaLogin() {
 
     window.location.href =
         "../../login/index.html";
+}
+
+
+function excluirMinhaConta() {
+    if (!usuarioAtual || !perfilAtual) return;
+    const username = String(perfilAtual.username || "").replace(/^@/, "").trim();
+    if (!username) {
+        mostrarToast("Não foi possível carregar o nick da sua conta.");
+        return;
+    }
+    document.getElementById("delete-modal-name").textContent = perfilAtual.nome || "Não informado";
+    document.getElementById("delete-modal-username").textContent = "@" + username;
+    document.getElementById("delete-confirm-username").value = "";
+    document.getElementById("delete-confirm-password").value = "";
+    document.getElementById("delete-modal-error").textContent = "";
+    document.getElementById("delete-account-modal").classList.remove("hidden");
+    document.getElementById("delete-confirm-username").focus();
+}
+
+function fecharModalExclusao() {
+    document.getElementById("delete-account-modal")?.classList.add("hidden");
+}
+
+async function confirmarExclusaoConta(event) {
+    event.preventDefault();
+    if (!usuarioAtual || !perfilAtual) return;
+
+    const username = String(perfilAtual.username || "").replace(/^@/, "").trim();
+    const typedUsername = document.getElementById("delete-confirm-username").value.replace(/^@/, "").trim();
+    const password = document.getElementById("delete-confirm-password").value;
+    const errorEl = document.getElementById("delete-modal-error");
+    const submit = document.getElementById("confirm-delete-account");
+
+    if (typedUsername.toLowerCase() !== username.toLowerCase()) {
+        errorEl.textContent = "O nick digitado não corresponde ao seu perfil.";
+        return;
+    }
+    if (!password) {
+        errorEl.textContent = "Digite a senha da sua conta.";
+        return;
+    }
+
+    submit.disabled = true;
+    submit.textContent = "Validando...";
+    errorEl.textContent = "";
+
+    try {
+        const { data, error } = await supabaseClient.functions.invoke("delete-account", {
+            body: { confirmation_username: username, password }
+        });
+        if (error) {
+            let message = error.message || "Não foi possível excluir a conta.";
+            try {
+                const body = await error.context?.json();
+                if (body?.error) message = body.error;
+            } catch (_) {}
+            throw new Error(message);
+        }
+        if (!data?.success) throw new Error(data?.error || "Não foi possível excluir a conta.");
+
+        await supabaseClient.auth.signOut();
+        window.location.replace("/");
+    } catch (error) {
+        console.error("Erro ao excluir conta:", error);
+        errorEl.textContent = error?.message || "Confira seu nick e sua senha e tente novamente.";
+        submit.disabled = false;
+        submit.textContent = "Excluir permanentemente";
+    }
 }
 
 async function sair() {

@@ -69,7 +69,13 @@ const rankingSelectedMember =
     document.getElementById("ranking-selected-member");
 
 
-    async function carregarMembrosAvulsosRanking() {
+    function usuarioEhAdmRanking() {
+    return String(perfilAtual?.cargo || "")
+        .trim()
+        .toLowerCase() === "adm";
+}
+
+async function carregarMembrosAvulsosRanking() {
 
     if (!rankingGuestResults) return;
 
@@ -258,7 +264,7 @@ async function removerMembroRanking() {
 
     if (
         !usuarioAtual ||
-        perfilAtual?.ranking_admin !== true
+        !usuarioEhAdmRanking()
     ) {
         mostrarToast(
             "Você não tem permissão para alterar o ranking."
@@ -419,7 +425,7 @@ async function carregarRanking() {
         ranking = data || [];
         renderizarRanking();
 
-        if (perfilAtual?.ranking_admin === true) {
+        if (usuarioEhAdmRanking()) {
     await carregarMembrosRanking();
 }
 
@@ -549,7 +555,7 @@ function abrirGerenciadorRanking() {
 
     if (
         !usuarioAtual ||
-        perfilAtual?.ranking_admin !== true
+        !usuarioEhAdmRanking()
     ) {
         mostrarToast(
             "Você não tem permissão para gerenciar o ranking."
@@ -600,7 +606,7 @@ async function adicionarPontosRanking() {
 
     if (
         !usuarioAtual ||
-        perfilAtual?.ranking_admin !== true
+        !usuarioEhAdmRanking()
     ) {
         mostrarToast(
             "Você não tem permissão para alterar o ranking."
@@ -711,7 +717,7 @@ async function removerPontosRanking() {
 
     if (
         !usuarioAtual ||
-        perfilAtual?.ranking_admin !== true
+        !usuarioEhAdmRanking()
     ) {
         mostrarToast(
             "Você não tem permissão para alterar o ranking."

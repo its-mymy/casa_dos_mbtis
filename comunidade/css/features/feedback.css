@@ -1,0 +1,21 @@
+.feedback-layout { display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(260px, .8fr); align-items: start; gap: 17px; }
+.feedback-form, .privacy-card { padding: 23px; }
+.form-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 23px; }
+.form-heading h3, .privacy-card h3 { margin: 0 0 6px; font-family: var(--font-heading); font-size: 1.08rem; font-weight: 800; }
+.form-heading p, .privacy-card p { margin: 0; color: var(--color-muted); font-size: .86rem; line-height: 1.6; }
+.form-heading > svg { width: 21px; height: 21px; flex: 0 0 auto; color: var(--color-purple); }
+.form-field { display: grid; gap: 8px; margin-bottom: 17px; }
+.form-field > span { color: var(--color-text-soft); font-size: .84rem; font-weight: 700; }
+.form-field small { color: var(--color-muted); font-size: .75rem; font-weight: 400; }
+.form-field input, .form-field select, .form-field textarea { width: 100%; min-height: 44px; padding: 11px 13px; border: 1px solid var(--color-border-strong); border-radius: 11px; outline: none; background: rgba(12, 9, 16, .62); color: var(--color-text); transition: border-color .2s ease, box-shadow .2s ease; }
+.form-field textarea { min-height: 140px; resize: vertical; }
+.form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-color: var(--color-purple-strong); box-shadow: 0 0 0 3px rgba(167, 123, 216, .10); }
+.form-field input::placeholder, .form-field textarea::placeholder { color: #74677E; }
+.form-notice { margin: 12px 0 0; color: var(--color-muted); font-size: .76rem; line-height: 1.5; text-align: center; }
+.privacy-card__icon { margin-bottom: 17px; }
+.privacy-card__icon svg { width: 21px; height: 21px; }
+.privacy-card h4 { margin: 0 0 7px; font-size: .91rem; }
+.privacy-card__divider { height: 1px; margin: 22px 0; background: var(--color-border); }
+.privacy-card .form-field { margin-top: 18px; }
+@media (max-width: 760px) { .feedback-layout { grid-template-columns: 1fr; } }
+@media (max-width: 430px) { .feedback-form, .privacy-card { padding: 18px; } }

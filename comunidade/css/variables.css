@@ -1,0 +1,29 @@
+:root {
+    color-scheme: dark;
+    --color-bg: #0D0A12;
+    --color-bg-soft: #120E18;
+    --color-surface: #19131F;
+    --color-surface-raised: #201829;
+    --color-surface-hover: #281D32;
+    --color-border: #32243D;
+    --color-border-strong: #493457;
+    --color-text: #F5F0F8;
+    --color-text-soft: #C1B3CC;
+    --color-muted: #93849E;
+    --color-purple: #C3A0EA;
+    --color-purple-strong: #A77BD8;
+    --color-pink: #D69BBE;
+    --color-success: #79C9A0;
+    --color-warning: #D9B77A;
+    --color-danger: #D98C9B;
+    --shadow-card: 0 18px 55px rgba(0, 0, 0, .22);
+    --glow-purple: 0 0 0 1px rgba(174, 128, 220, .18), 0 0 18px rgba(153, 100, 205, .12);
+    --glow-purple-hover: 0 0 0 1px rgba(195, 160, 234, .42), 0 0 22px rgba(153, 100, 205, .20);
+    --radius-sm: 10px;
+    --radius-md: 15px;
+    --radius-lg: 21px;
+    --radius-xl: 27px;
+    --font-body: "DM Sans", sans-serif;
+    --font-heading: "Manrope", sans-serif;
+    --content-width: 1080px;
+}
