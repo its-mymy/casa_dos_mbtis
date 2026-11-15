@@ -1,8 +1,8 @@
 .topbar { position: sticky; z-index: 20; top: 0; border-bottom: 1px solid rgba(105, 75, 125, .20); background: rgba(13, 10, 18, .88); backdrop-filter: blur(18px); }
 .topbar__inner { display: flex; width: min(100% - 48px, 1280px); min-height: 82px; align-items: center; justify-content: space-between; gap: 20px; margin: 0 auto; }
 .brand { display: inline-flex; min-width: 0; align-items: center; gap: 13px; }
-.brand__image-wrap { display: grid; width: 48px; height: 48px; flex: 0 0 48px; place-items: center; overflow: hidden; border: 1px solid rgba(195, 160, 234, .24); border-radius: 15px; background: #251A31; box-shadow: var(--glow-purple); }
-.brand__image { width: 100%; height: 100%; object-fit: cover; }
+.brand__image-wrap { display: grid; width: 54px; height: 54px; flex: 0 0 54px; place-items: center; overflow: hidden; border: 1px solid rgba(195, 160, 234, .32); border-radius: 50%; background: #000; box-shadow: var(--glow-purple); }
+.brand__image { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
 .brand__copy { display: grid; gap: 3px; }
 .brand__copy strong { font-family: var(--font-heading); font-size: .96rem; font-weight: 800; letter-spacing: -.025em; }
 .brand__copy small { color: var(--color-muted); font-size: .82rem; }
