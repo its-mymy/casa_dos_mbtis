@@ -161,6 +161,12 @@ async function iniciar() {
 }
 
 function configurarEventos() {
+
+    deleteAccountButton?.addEventListener(
+        "click",
+        excluirMinhaConta
+    );
+
     editProfileButton?.addEventListener(
         "click",
         abrirEdicaoPerfil
@@ -1970,36 +1976,48 @@ async function excluirMinhaConta() {
     const nome = String(perfilAtual.nome || "Não informado").trim();
     const username = String(perfilAtual.username || "").replace(/^@/, "").trim();
 
-    if (!username) {
-        mostrarToast("Não foi possível confirmar seu username. Atualize seu perfil e tente novamente.");
+    if (!username || !usuarioAtual.email) {
+        mostrarToast("Não foi possível validar os dados da conta. Entre novamente.");
         return;
     }
 
     const confirmar = window.confirm(
-        `Você está prestes a excluir permanentemente esta conta:\\n\\nNome: ${nome}\\nNick: @${username}\\n\\nSeu perfil, login e conteúdos vinculados serão removidos. Essa ação não pode ser desfeita. Deseja continuar?`
+        `Você está prestes a excluir permanentemente esta conta:\n\nNome: ${nome}\nNick: @${username}\n\nEssa ação não pode ser desfeita. Deseja continuar?`
     );
-
     if (!confirmar) return;
 
     const digitado = window.prompt(
-        `Para confirmar a exclusão, digite seu nick exatamente como aparece: @${username}`
+        `Digite seu nick para confirmar: @${username}`
     );
-
     if (digitado === null || digitado.replace(/^@/, "").trim().toLowerCase() !== username.toLowerCase()) {
         mostrarToast("Exclusão cancelada. O nick não corresponde.");
         return;
     }
 
+    const senha = window.prompt("Digite a senha da sua própria conta para confirmar a exclusão:");
+    if (senha === null) return;
+    if (!senha.trim()) {
+        mostrarToast("A senha é obrigatória.");
+        return;
+    }
+
     deleteAccountButton.disabled = true;
-    deleteAccountButton.textContent = "EXCLUINDO CONTA...";
-    if (deleteAccountMessage) deleteAccountMessage.textContent = "Estamos excluindo sua conta com segurança...";
+    deleteAccountButton.textContent = "VALIDANDO CREDENCIAIS...";
+    if (deleteAccountMessage) deleteAccountMessage.textContent = "Validando nick, senha e sessão...";
 
     try {
         const { data, error } = await supabaseClient.functions.invoke("delete-account", {
-            body: { confirmation_username: username }
+            body: { confirmation_username: username, password: senha }
         });
 
-        if (error) throw error;
+        if (error) {
+            let message = error.message || "Falha ao solicitar exclusão.";
+            try {
+                const body = await error.context?.json();
+                if (body?.error) message = body.error;
+            } catch (_) {}
+            throw new Error(message);
+        }
         if (!data?.success) throw new Error(data?.error || "Não foi possível excluir a conta.");
 
         await supabaseClient.auth.signOut();
@@ -2008,7 +2026,7 @@ async function excluirMinhaConta() {
         console.error("Erro ao excluir conta:", error);
         deleteAccountButton.disabled = false;
         deleteAccountButton.textContent = "EXCLUIR MINHA CONTA";
-        if (deleteAccountMessage) deleteAccountMessage.textContent = error?.message || "Não foi possível excluir sua conta. Tente novamente.";
+        if (deleteAccountMessage) deleteAccountMessage.textContent = error?.message || "Não foi possível excluir a conta. Confira a senha e tente novamente.";
     }
 }
 
