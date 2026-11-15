@@ -380,32 +380,17 @@ async function carregarUsuario() {
 
         atualizarIdentidadeTopo();
 const podePublicar =
-    perfilAtual.feed_admin === true;
+    String(perfilAtual.cargo || "").trim().toLowerCase() === "adm";
 
 newPostButton?.classList.toggle(
     "hidden",
     !podePublicar
 );
 
-const ehYu =
-    String(
-        perfilAtual.username || ""
-    )
-        .replace(/^@/, "")
-        .toLowerCase()
-        .trim() === "yu";
+const isAdm =
+    String(perfilAtual.cargo || "").trim().toLowerCase() === "adm";
 
-const ehAdm =
-    String(
-        perfilAtual.cargo || ""
-    )
-        .toLowerCase()
-        .trim() === "adm";
-
-adminMenuLink?.classList.toggle(
-    "hidden",
-    !(ehYu && ehAdm)
-);
+adminMenuLink?.classList.toggle("hidden", !isAdm);
 
         loginMenuButton?.classList.add(
             "hidden"
@@ -601,18 +586,7 @@ function atualizarIdentidadeTopo() {
     const isVip =
         perfilAtual.vip === true;
 
-        const ehYu =
-    String(
-        perfilAtual.username || ""
-    )
-        .replace(/^@/, "")
-        .toLowerCase()
-        .trim() === "yu";
-
-adminMenuLink?.classList.toggle(
-    "hidden",
-    !(ehYu && isAdm)
-);
+        adminMenuLink?.classList.toggle("hidden", !isAdm);
 
     if (!menuBadge) {
         return;
@@ -1275,7 +1249,7 @@ async function publicarPost(event) {
 
     if (
         !usuarioAtual ||
-        !perfilAtual?.feed_admin
+        String(perfilAtual?.cargo || "").trim().toLowerCase() !== "adm"
     ) {
         mostrarToast(
             "Você não tem permissão para publicar."
