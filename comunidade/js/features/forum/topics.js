@@ -43,7 +43,10 @@ export function initializeTopicComposer(container, reload) {
         if (!user) return notify("Entre na sua conta para publicar.");
         const data = Object.fromEntries(new FormData(form));
         const { error } = await supabase.from("community_topics").insert({ ...data, author_id: user.id });
-        if (error) return notify("Não foi possível publicar a discussão.");
+        if (error) {
+            console.error("Erro ao publicar discussão:", error);
+            return notify(error.code === "42501" ? "Sua conta não tem permissão para publicar. Saia e entre novamente." : `Falha ao publicar: ${error.message || "verifique os campos e tente novamente."}`);
+        }
         form.reset();
         form.hidden = true;
         notify("Discussão publicada.");
@@ -59,7 +62,8 @@ export async function loadTopics(list, search = "") {
         .select("id,author_id,category,title,body,is_pinned,is_locked,created_at")
         .order("is_pinned", { ascending: false }).order("created_at", { ascending: false }).limit(100);
     if (error) {
-        list.append(el("p", "empty-state", "Não foi possível carregar as discussões."));
+        console.error("Erro ao carregar discussões:", error);
+        list.append(el("p", "empty-state", `Não foi possível carregar as discussões: ${error.message || "erro desconhecido"}`));
         return;
     }
     const filtered = (data || []).filter(topic => !search || (topic.title + " " + topic.body + " " + topic.category).toLowerCase().includes(search.toLowerCase()));
