@@ -1,0 +1,1 @@
+// Registro e remoção de votos, com uma participação por membro e sugestão.

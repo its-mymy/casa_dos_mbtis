@@ -1,0 +1,1 @@
+// Reações em tópicos e comentários, com prevenção de duplicidade no banco.
