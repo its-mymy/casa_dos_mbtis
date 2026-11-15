@@ -1,15 +1,20 @@
 import { getCurrentUser } from "../../core/auth.js";
-import { notify } from "../../shared/notifications.js";
 import { initializeTopicComposer, loadTopics } from "./topics.js";
 
 export function initializeForum() {
     const view = document.querySelector('[data-view="forum"]');
-    const list = document.querySelector("[data-forum-list]");
+    const list = view?.querySelector("[data-forum-list]");
     const create = view?.querySelector("[data-forum-create]");
     const search = view?.querySelector("[data-forum-search]");
     if (!view || !list || !create) return;
 
-    const toggleComposer = initializeTopicComposer(list, () => loadTopics(list, search?.value || ""));
+    // O formulário precisa ficar fora da lista, pois loadTopics() substitui
+    // os filhos da lista a cada atualização.
+    const composerHost = document.createElement("div");
+    composerHost.className = "forum-composer-host";
+    list.before(composerHost);
+
+    const toggleComposer = initializeTopicComposer(composerHost, () => loadTopics(list, search?.value || ""));
     create.addEventListener("click", () => {
         if (!getCurrentUser()) {
             window.location.href = "../login/index.html";
