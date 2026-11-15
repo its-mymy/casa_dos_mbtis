@@ -476,21 +476,12 @@ async function verificarExpiracaoVip(perfil) {
 }
 
 function configurarAcessoAdmin(perfil) {
-    const ehYu =
-        String(perfil.username || "")
-            .replace(/^@/, "")
-            .toLowerCase()
-            .trim() === "yu";
-
     const ehAdm =
         String(perfil.cargo || "")
             .toLowerCase()
             .trim() === "adm";
 
-    adminMenuLink?.classList.toggle(
-        "hidden",
-        !(ehYu && ehAdm)
-    );
+    adminMenuLink?.classList.toggle("hidden", !ehAdm);
 }
 
 async function carregarPerfil() {
