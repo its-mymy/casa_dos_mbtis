@@ -20,11 +20,33 @@ const isAdmin = () => String(getCurrentProfile()?.cargo || "").trim().toLowerCas
 
 async function authors(ids) {
     if (!ids.length) return {};
-    const { data } = await supabase.from("profiles").select("id,nome,username").in("id", [...new Set(ids)]);
+    const { data } = await supabase.from("profiles").select("id,nome,username,avatar_url").in("id", [...new Set(ids)]);
     return Object.fromEntries((data || []).map(profile => [profile.id, profile]));
 }
 function authorName(profile) {
     return profile?.nome || (profile?.username ? "@" + profile.username : "Membro");
+}
+function authorIdentity(profile) {
+    const identity = el("span", "forum-author");
+    const avatar = el("span", "forum-author__avatar");
+    const url = String(profile?.avatar_url || "").trim();
+    if (url) {
+        const image = el("img");
+        image.src = url;
+        image.alt = "";
+        image.loading = "lazy";
+        image.onerror = () => { image.remove(); avatar.append(el("i", "forum-author__fallback", "●")); };
+        avatar.append(image);
+    } else {
+        avatar.append(el("i", "forum-author__fallback", "●"));
+    }
+    identity.append(avatar, el("strong", "forum-author__name", authorName(profile)));
+    return identity;
+}
+function topicMeta(category, profile, date) {
+    const meta = el("div", "forum-topic__meta");
+    meta.append(el("span", "forum-topic__category", category), authorIdentity(profile), el("time", "", date));
+    return meta;
 }
 
 export function initializeTopicComposer(container, reload) {
@@ -74,7 +96,7 @@ export async function loadTopics(list, search = "") {
     const profileMap = await authors(filtered.map(item => item.author_id));
     for (const topic of filtered) {
         const card = el("article", "forum-topic");
-        const meta = el("div", "forum-topic__meta", `${topic.category} · ${authorName(profileMap[topic.author_id])} · ${dateLabel(topic.created_at)}`);
+        const meta = topicMeta(topic.category, profileMap[topic.author_id], dateLabel(topic.created_at));
         const title = el("h3", "", topic.title);
         const body = el("p", "forum-topic__body", topic.body);
         const actions = el("div", "community-actions");
@@ -161,7 +183,9 @@ async function loadComments(topic, target) {
     const thread = el("div", "forum-comments");
     for (const comment of comments) {
         const item = el("article", "forum-comment");
-        item.append(el("div", "forum-topic__meta", `${authorName(profileMap[comment.author_id])} · ${dateLabel(comment.created_at)}`), el("p", "", comment.body));
+        const meta = el("div", "forum-topic__meta");
+        meta.append(authorIdentity(profileMap[comment.author_id]), el("time", "", dateLabel(comment.created_at)));
+        item.append(meta, el("p", "", comment.body));
         const tools = el("div", "community-actions");
         if (getCurrentUser()) tools.append(button("Responder", () => {
             const area = el("form", "comment-composer");

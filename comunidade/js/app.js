@@ -1,4 +1,5 @@
 import { initializeAuth } from "./core/auth.js";
+import { initializeTheme } from "./core/theme.js";
 import { initializeNavigation } from "./core/navigation.js";
 import { initializeAdmin } from "./features/admin/index.js";
 import { initializeFeedback } from "./features/feedback/index.js";
@@ -7,6 +8,7 @@ import { initializeSuggestions } from "./features/suggestions/index.js";
 import { notify } from "./shared/notifications.js";
 
 async function startCommunityApp() {
+    initializeTheme();
     const authState = await initializeAuth();
     const adminAllowed = initializeAdmin(authState.profile);
 
