@@ -1,41 +1,92 @@
-<!doctype html>
+
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
-  <meta name="theme-color" content="#10051c">
-  <title>Corre Berry!</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#10051c">
+    <meta name="description" content="Ajude Berry a fugir do cachorro! Um jogo de sobrevivência e obstáculos.">
+    <title>Corre Berry!</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Press+Start+2P&display=swap" rel="stylesheet">
 </head>
 <body>
-  <main class="game-shell">
+
+<main class="game-shell">
+
     <header class="topbar">
-      <div class="brand"><span class="brand-icon">✦</span><div><small>UM JOGO DE FUGA</small><h1>CORRE <b>BERRY!</b></h1></div></div>
-      <div class="stats">
-        <div class="stat"><small>DISTÂNCIA</small><strong id="score">0 m</strong></div>
-        <div class="stat"><small>RECORDE LOCAL</small><strong id="best">0 m</strong></div>
-      </div>
-      <button class="pause-btn" id="pauseBtn" aria-label="Pausar">Ⅱ</button>
-    </header>
-    <section class="stage-wrap">
-      <canvas id="game" width="960" height="540" aria-label="Jogo Corre Berry"></canvas>
-      <div class="overlay" id="overlay">
-        <div class="modal">
-          <div class="eyebrow">⚠ ALERTA DE PERSEGUIÇÃO ⚠</div>
-          <h2 id="overlayTitle">CORRE, BERRY!</h2>
-          <p id="overlayText">Um cachorro branco está no seu encalço. Pule os obstáculos e tente não virar lanche!</p>
-          <div class="keys"><span>← → mover</span><span>ESPAÇO / ↑ pular</span></div>
-          <button id="startBtn">COMEÇAR A FUGA <span>➜</span></button>
-          <small class="hint">Dica: quanto mais tempo você sobreviver, mais rápido fica.</small>
+        <div class="brand">
+            <span class="brand-icon">✦</span>
+            <div>
+                <small>UM JOGO DE FUGA</small>
+                <h1>CORRE <b>BERRY!</b></h1>
+            </div>
         </div>
-      </div>
-      <div class="toast" id="toast">PAUSADO</div>
+
+        <div class="stats">
+            <div class="stat">
+                <small>DISTÂNCIA</small>
+                <strong id="score">0 m</strong>
+            </div>
+            <div class="stat">
+                <small>RECORDE LOCAL</small>
+                <strong id="best">0 m</strong>
+            </div>
+        </div>
+
+        <button class="pause-btn" id="pauseBtn" aria-label="Pausar">Ⅱ</button>
+    </header>
+
+    <section class="stage-wrap">
+        <canvas id="game" width="960" height="540" aria-label="Jogo Corre Berry"></canvas>
+
+        <div class="overlay" id="overlay">
+            <div class="modal">
+                <div class="eyebrow">⚠ ALERTA DE PERSEGUIÇÃO ⚠</div>
+
+                <h2 id="overlayTitle">CORRE, BERRY!</h2>
+
+                <p id="overlayText">
+                    Um cachorro branco está no seu encalço.
+                    Pule os obstáculos e tente não virar lanche!
+                </p>
+
+                <div class="keys">
+                    <span>← → mover</span>
+                    <span>ESPAÇO / ↑ pular</span>
+                </div>
+
+                <button id="startBtn">
+                    COMEÇAR A FUGA <span>➜</span>
+                </button>
+
+                <small class="hint">
+                    Dica: quanto mais tempo você sobreviver, mais rápido fica.
+                </small>
+            </div>
+        </div>
+
+        <div class="toast" id="toast">PAUSADO</div>
     </section>
+
     <footer>
-      <div class="legend"><span class="keycap">←</span><span class="keycap">→</span> MOVER <i></i><span class="keycap">ESPAÇO</span><span class="keycap">↑</span> PULAR</div>
-      <div class="warning">🐶 FUJA DO CACHORRO. NÃO OLHE PRA TRÁS!</div>
+        <div class="legend">
+            <span class="keycap">←</span>
+            <span class="keycap">→</span>
+            MOVER
+            <i></i>
+            <span class="keycap">ESPAÇO</span>
+            <span class="keycap">↑</span>
+            PULAR
+        </div>
+
+        <div class="warning">
+            FUJA DO CACHORRO. NÃO OLHE PRA TRÁS!
+        </div>
     </footer>
-  </main>
-  <script src="game.js"></script>
+
+</main>
+
+<script src="game.js"></script>
 </body>
 </html>

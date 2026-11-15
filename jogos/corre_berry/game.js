@@ -12,20 +12,25 @@ berryImg.src='assets/berry.png';
 const dogImg=new Image();
 dogImg.src='assets/cachorro.png';
 
-let state='ready',last=0,score=0,best=Number(localStorage.getItem('correBerryBest')||0),speed=330,spawn=0,shake=0,world=0;
+let state='ready',last=0,score=0,best=Number(localStorage.getItem('correBerryBest')||0),speed=350,spawn=0,shake=0,world=0;
+
+if(!Number.isFinite(best)||best<0||best>1000000){
+    best=0;
+    localStorage.setItem('correBerryBest','0');
+}
 
 let player={x:520,y:ground-104,w:54,h:104,vy:0,onGround:true,frame:0};
-let dog={x:300,y:ground-126,w:180,h:126,run:0};
+let dog={x:290,y:ground-126,w:180,h:126,run:0};
 
 let obstacles=[],particles=[],stars=Array.from({length:70},()=>({x:Math.random()*W,y:Math.random()*330,r:Math.random()*2+1,a:Math.random()}));
 
-bestEl.textContent=best+' m';
+bestEl.textContent=Math.floor(best)+' m';
 
 const rand=(a,b)=>a+Math.random()*(b-a);
 
 function reset(){
     score=0;
-    speed=330;
+    speed=350;
     spawn=1.1;
     world=0;
     obstacles=[];
@@ -33,6 +38,7 @@ function reset(){
     player={x:520,y:ground-104,w:54,h:104,vy:0,onGround:true,frame:0};
     dog={x:290,y:ground-126,w:180,h:126,run:0};
     scoreEl.textContent='0 m';
+    pauseBtn.textContent='Ⅱ';
 }
 
 function start(){
@@ -44,12 +50,16 @@ function start(){
 }
 
 function gameOver(){
+    if(state!=='playing')return;
+
     state='over';
+
     if(score>best){
-        best=score;
+        best=Math.floor(score);
         localStorage.setItem('correBerryBest',best);
         bestEl.textContent=best+' m';
     }
+
     titleEl.textContent='BERRY FOI DE BASE!';
     textEl.textContent='Os obstáculos pegaram você! Tente novamente.';
     startBtn.textContent='TENTAR DE NOVO ↻';
@@ -60,8 +70,15 @@ function jump(){
     if(state==='playing'&&player.onGround){
         player.vy=-780;
         player.onGround=false;
+
         for(let i=0;i<7;i++){
-            particles.push({x:player.x+40,y:ground-5,vx:rand(-100,80),vy:rand(-180,-40),life:.45});
+            particles.push({
+                x:player.x+40,
+                y:ground-5,
+                vx:rand(-100,80),
+                vy:rand(-180,-40),
+                life:.45
+            });
         }
     }
 }
@@ -89,6 +106,7 @@ pauseBtn.addEventListener('click',togglePause);
 
 window.addEventListener('keydown',e=>{
     if(['ArrowUp',' ','ArrowLeft','ArrowRight'].includes(e.key))e.preventDefault();
+
     if(e.key===' '||e.key==='ArrowUp'||e.key==='w')jump();
     if(e.key==='ArrowLeft'||e.key==='a')move(-1);
     if(e.key==='ArrowRight'||e.key==='d')move(1);
@@ -104,9 +122,12 @@ canvas.addEventListener('touchstart',e=>{
 
 canvas.addEventListener('touchend',e=>{
     if(touchX===null)return;
+
     let dx=e.changedTouches[0].clientX-touchX;
+
     if(Math.abs(dx)>35)move(dx>0?1:-1);
     else jump();
+
     touchX=null;
 },{passive:true});
 
@@ -129,10 +150,8 @@ function drawDog(x,y){
     ctx.save();
     ctx.imageSmoothingEnabled=false;
 
-    // Movimento enquanto corre
     let bob=Math.sin(dog.run*14)*3;
 
-    // Desenha o cachorro maior, sempre atrás do Berry
     ctx.drawImage(
         dogImg,
         x,
@@ -144,6 +163,7 @@ function drawDog(x,y){
     ctx.restore();
 }
 
+// BERRY PNG
 function drawBerry(){
     let x=player.x,y=player.y;
     ctx.save();
@@ -175,6 +195,7 @@ function spawnObstacle(){
     let type=Math.random()<.62?'spikes':'crate';
     let w=type==='spikes'?rand(48,75):rand(42,58);
     let h=type==='spikes'?35:rand(38,55);
+
     obstacles.push({x:W+20,y:ground-h,w,h,type});
 }
 
@@ -182,12 +203,14 @@ function drawObstacle(o){
     if(o.type==='spikes'){
         for(let i=0;i<3;i++){
             let sx=o.x+i*o.w/3;
+
             ctx.fillStyle='#ffb8fa';
             ctx.beginPath();
             ctx.moveTo(sx,o.y+o.h);
             ctx.lineTo(sx+o.w/6,o.y);
             ctx.lineTo(sx+o.w/3,o.y+o.h);
             ctx.fill();
+
             ctx.strokeStyle='#6e1a8d';
             ctx.lineWidth=3;
             ctx.stroke();
@@ -201,9 +224,11 @@ function drawObstacle(o){
 
 function drawBackground(){
     let g=ctx.createLinearGradient(0,0,0,H);
+
     g.addColorStop(0,'#160624');
     g.addColorStop(.65,'#45105f');
     g.addColorStop(1,'#170522');
+
     ctx.fillStyle=g;
     ctx.fillRect(0,0,W,H);
 
@@ -211,6 +236,7 @@ function drawBackground(){
         ctx.globalAlpha=.45+.45*Math.sin(world*2+s.a*8);
         rect(s.x,s.y,s.r,s.r,'#ffd5ff');
     });
+
     ctx.globalAlpha=1;
 
     ctx.fillStyle='#f4a9ff';
@@ -226,6 +252,7 @@ function drawBackground(){
     for(let i=0;i<12;i++){
         let x=((i*110-world*24)%1250+1250)%1250-140;
         let h=90+(i*37)%115;
+
         rect(x,ground-h,55,h,'#260b3c');
 
         for(let wy=0;wy<4;wy++){
@@ -237,6 +264,7 @@ function drawBackground(){
 
     for(let i=0;i<5;i++){
         let x=((i*250-world*42)%1200+1200)%1200-100;
+
         rect(x,300,90,20,'#581477');
         rect(x+20,285,55,20,'#581477');
     }
@@ -252,8 +280,12 @@ function drawBackground(){
 
 function update(dt){
     world+=dt;
+
     score+=dt*speed*.09;
-    speed=Math.min(610,330+score*.42);
+
+    // Velocidade inicial 350 e máxima 640
+    speed=Math.min(640,350+score*.42);
+
     scoreEl.textContent=Math.floor(score)+' m';
 
     player.vy+=1900*dt;
@@ -267,11 +299,12 @@ function update(dt){
 
     player.frame+=dt*12;
 
-    // Cachorro acompanha Berry mantendo distância fixa.
+    // Cachorro permanece atrás do Berry
     dog.run+=dt;
     dog.x=player.x-230;
     dog.y=ground-dog.h;
 
+    // Obstáculos
     spawn-=dt;
 
     if(spawn<=0){
@@ -293,6 +326,7 @@ function update(dt){
             player.y+player.h-4>o.y+7
         ){
             gameOver();
+            break;
         }
     }
 
@@ -322,6 +356,7 @@ function draw(){
     drawBerry();
 
     let vg=ctx.createLinearGradient(0,0,0,100);
+
     vg.addColorStop(0,'#10031dbb');
     vg.addColorStop(1,'#10031d00');
 
