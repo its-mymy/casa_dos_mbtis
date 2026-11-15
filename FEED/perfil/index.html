@@ -657,6 +657,32 @@
 
 </div>
 
+<div id="delete-account-modal" class="delete-modal hidden" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+    <div class="delete-modal-backdrop" data-close-delete-modal></div>
+    <section class="delete-modal-panel">
+        <button class="delete-modal-close" type="button" data-close-delete-modal aria-label="Fechar">×</button>
+        <div class="delete-modal-icon">!</div>
+        <span class="delete-modal-eyebrow">ZONA DE SEGURANÇA</span>
+        <h2 id="delete-modal-title">Excluir sua conta?</h2>
+        <p class="delete-modal-description">Essa ação é permanente. Seu acesso à Casa dos MBTIs será encerrado e não será possível recuperar a conta.</p>
+        <div class="delete-account-identity">
+            <div><span>Nome</span><strong id="delete-modal-name">—</strong></div>
+            <div><span>Nick</span><strong id="delete-modal-username">—</strong></div>
+        </div>
+        <form id="delete-account-form" class="delete-account-form">
+            <label for="delete-confirm-username">Confirme seu nick</label>
+            <input id="delete-confirm-username" type="text" autocomplete="username" placeholder="Digite seu nick" required>
+            <label for="delete-confirm-password">Senha da sua conta</label>
+            <input id="delete-confirm-password" type="password" autocomplete="current-password" placeholder="Digite sua senha atual" required>
+            <p id="delete-modal-error" class="delete-modal-error" role="alert"></p>
+            <div class="delete-modal-actions">
+                <button type="button" class="delete-cancel-button" data-close-delete-modal>Cancelar</button>
+                <button type="submit" id="confirm-delete-account" class="delete-confirm-button">Excluir permanentemente</button>
+            </div>
+        </form>
+    </section>
+</div>
+
 <div id="toast" class="toast"></div>
 
 <script src="perfil.js"></script>
