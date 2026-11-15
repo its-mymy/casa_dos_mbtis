@@ -167,6 +167,14 @@ function configurarEventos() {
         excluirMinhaConta
     );
 
+    document.getElementById("delete-account-form")?.addEventListener("submit", confirmarExclusaoConta);
+    document.querySelectorAll("[data-close-delete-modal]").forEach(button => {
+        button.addEventListener("click", fecharModalExclusao);
+    });
+    document.addEventListener("keydown", event => {
+        if (event.key === "Escape") fecharModalExclusao();
+    });
+
     editProfileButton?.addEventListener(
         "click",
         abrirEdicaoPerfil
@@ -1970,48 +1978,55 @@ function irParaLogin() {
 }
 
 
-async function excluirMinhaConta() {
-    if (!usuarioAtual || !perfilAtual || !deleteAccountButton) return;
-
-    const nome = String(perfilAtual.nome || "Não informado").trim();
+function excluirMinhaConta() {
+    if (!usuarioAtual || !perfilAtual) return;
     const username = String(perfilAtual.username || "").replace(/^@/, "").trim();
+    if (!username) {
+        mostrarToast("Não foi possível carregar o nick da sua conta.");
+        return;
+    }
+    document.getElementById("delete-modal-name").textContent = perfilAtual.nome || "Não informado";
+    document.getElementById("delete-modal-username").textContent = "@" + username;
+    document.getElementById("delete-confirm-username").value = "";
+    document.getElementById("delete-confirm-password").value = "";
+    document.getElementById("delete-modal-error").textContent = "";
+    document.getElementById("delete-account-modal").classList.remove("hidden");
+    document.getElementById("delete-confirm-username").focus();
+}
 
-    if (!username || !usuarioAtual.email) {
-        mostrarToast("Não foi possível validar os dados da conta. Entre novamente.");
+function fecharModalExclusao() {
+    document.getElementById("delete-account-modal")?.classList.add("hidden");
+}
+
+async function confirmarExclusaoConta(event) {
+    event.preventDefault();
+    if (!usuarioAtual || !perfilAtual) return;
+
+    const username = String(perfilAtual.username || "").replace(/^@/, "").trim();
+    const typedUsername = document.getElementById("delete-confirm-username").value.replace(/^@/, "").trim();
+    const password = document.getElementById("delete-confirm-password").value;
+    const errorEl = document.getElementById("delete-modal-error");
+    const submit = document.getElementById("confirm-delete-account");
+
+    if (typedUsername.toLowerCase() !== username.toLowerCase()) {
+        errorEl.textContent = "O nick digitado não corresponde ao seu perfil.";
+        return;
+    }
+    if (!password) {
+        errorEl.textContent = "Digite a senha da sua conta.";
         return;
     }
 
-    const confirmar = window.confirm(
-        `Você está prestes a excluir permanentemente esta conta:\n\nNome: ${nome}\nNick: @${username}\n\nEssa ação não pode ser desfeita. Deseja continuar?`
-    );
-    if (!confirmar) return;
-
-    const digitado = window.prompt(
-        `Digite seu nick para confirmar: @${username}`
-    );
-    if (digitado === null || digitado.replace(/^@/, "").trim().toLowerCase() !== username.toLowerCase()) {
-        mostrarToast("Exclusão cancelada. O nick não corresponde.");
-        return;
-    }
-
-    const senha = window.prompt("Digite a senha da sua própria conta para confirmar a exclusão:");
-    if (senha === null) return;
-    if (!senha.trim()) {
-        mostrarToast("A senha é obrigatória.");
-        return;
-    }
-
-    deleteAccountButton.disabled = true;
-    deleteAccountButton.textContent = "VALIDANDO CREDENCIAIS...";
-    if (deleteAccountMessage) deleteAccountMessage.textContent = "Validando nick, senha e sessão...";
+    submit.disabled = true;
+    submit.textContent = "Validando...";
+    errorEl.textContent = "";
 
     try {
         const { data, error } = await supabaseClient.functions.invoke("delete-account", {
-            body: { confirmation_username: username, password: senha }
+            body: { confirmation_username: username, password }
         });
-
         if (error) {
-            let message = error.message || "Falha ao solicitar exclusão.";
+            let message = error.message || "Não foi possível excluir a conta.";
             try {
                 const body = await error.context?.json();
                 if (body?.error) message = body.error;
@@ -2024,9 +2039,9 @@ async function excluirMinhaConta() {
         window.location.replace("/");
     } catch (error) {
         console.error("Erro ao excluir conta:", error);
-        deleteAccountButton.disabled = false;
-        deleteAccountButton.textContent = "EXCLUIR MINHA CONTA";
-        if (deleteAccountMessage) deleteAccountMessage.textContent = error?.message || "Não foi possível excluir a conta. Confira a senha e tente novamente.";
+        errorEl.textContent = error?.message || "Confira seu nick e sua senha e tente novamente.";
+        submit.disabled = false;
+        submit.textContent = "Excluir permanentemente";
     }
 }
 
