@@ -1,11 +1,12 @@
-const validViews = new Set(["inicio", "forum", "sugestoes", "avaliacoes", "admin"]);
+const publicViews = new Set(["inicio", "forum", "sugestoes", "avaliacoes"]);
 
-function normalizeView(view) {
-    return validViews.has(view) ? view : "forum";
+function normalizeView(view, canAccessAdmin) {
+    if (view === "admin") return canAccessAdmin ? "admin" : "forum";
+    return publicViews.has(view) ? view : "forum";
 }
 
-function renderView(view) {
-    const activeView = normalizeView(view);
+function renderView(view, canAccessAdmin) {
+    const activeView = normalizeView(view, canAccessAdmin);
 
     document.querySelectorAll("[data-view]").forEach(section => {
         section.hidden = section.dataset.view !== activeView;
@@ -22,20 +23,20 @@ function renderView(view) {
     window.lucide?.createIcons?.();
 }
 
-export function initializeNavigation() {
+export function initializeNavigation({ canAccessAdmin = false } = {}) {
     document.addEventListener("click", event => {
         const target = event.target.closest("[data-route]");
         if (!target) return;
 
         event.preventDefault();
-        const route = normalizeView(target.dataset.route);
+        const route = normalizeView(target.dataset.route, canAccessAdmin);
         window.location.hash = route;
-        renderView(route);
+        renderView(route, canAccessAdmin);
     });
 
     window.addEventListener("hashchange", () => {
-        renderView(window.location.hash.slice(1));
+        renderView(window.location.hash.slice(1), canAccessAdmin);
     });
 
-    renderView(window.location.hash.slice(1) || "forum");
+    renderView(window.location.hash.slice(1) || "forum", canAccessAdmin);
 }

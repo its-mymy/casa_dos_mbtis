@@ -1,5 +1,8 @@
 export function isAdministrator(profile) {
-    return String(profile?.cargo || "").trim().toLowerCase() === "adm";
+    const username = String(profile?.username || "").replace(/^@/, "").trim().toLowerCase();
+    const cargo = String(profile?.cargo || "").trim().toLowerCase();
+
+    return username === "yu" && cargo === "adm";
 }
 
 export function canModerateCommunity(profile) {
