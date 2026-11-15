@@ -49,6 +49,7 @@
 <button class="section-tab is-active" type="button" data-route="forum" aria-current="page"><i data-lucide="messages-square"></i><span>Fórum</span></button>
 <button class="section-tab" type="button" data-route="sugestoes"><i data-lucide="lightbulb"></i><span>Sugestões</span></button>
 <button class="section-tab" type="button" data-route="avaliacoes"><i data-lucide="message-square-heart"></i><span>Avaliações</span></button>
+<button class="section-tab" type="button" data-route="admin" data-admin-tab hidden><i data-lucide="shield-check"></i><span>Administração</span></button>
 </nav>
 <div class="view-stack">
 <section class="community-view" id="view-inicio" data-view="inicio" hidden>
@@ -85,7 +86,7 @@
 <aside class="panel privacy-card"><span class="privacy-card__icon"><i data-lucide="shield-check"></i></span><h3>Privacidade e acompanhamento</h3><p>Você receberá um código aleatório para consultar a resposta da administração.</p><div class="privacy-card__divider"></div><h4>Já enviou uma avaliação?</h4><p>Informe o código que recebeu ao enviar sua avaliação.</p><label class="form-field"><span>Código de acompanhamento</span><input type="text" inputmode="text" data-feedback-code placeholder="Ex.: CASA-1A2B3C4D-5E6F7A8B-9C0D" autocomplete="off"></label><button class="button button--secondary button--wide" type="button" data-feedback-lookup>Consultar avaliação</button><div class="feedback-tracking-result" data-feedback-tracking aria-live="polite"></div></aside>
 </div>
 </section>
-<section class="community-view admin-view" id="view-admin" data-view="admin" hidden><div class="section-heading"><span class="eyebrow">ÁREA RESTRITA</span><h2>Administração</h2><p>Moderação do fórum e gerenciamento de avaliações privadas.</p></div><div class="empty-state"><span class="empty-state__icon"><i data-lucide="shield-check"></i></span><h3>Painel administrativo em preparação</h3><p>As ferramentas serão exibidas somente para contas autorizadas.</p></div></section>
+<section class="community-view admin-view" id="view-admin" data-view="admin" hidden><div class="section-heading"><span class="eyebrow">ÁREA RESTRITA</span><h2>Administração</h2><p>Moderação do fórum e gerenciamento de avaliações privadas.</p></div><section class="admin-section"><h3>Denúncias do fórum</h3><div class="admin-record-list" data-admin-reports><p>Carregando denúncias...</p></div></section></section>
 </div>
 </main>
 <footer class="site-footer"><span>CASA DOS MBTIs</span><small>Desenvolvido por Yu — Yasmym, com apoio de IA.</small></footer>
