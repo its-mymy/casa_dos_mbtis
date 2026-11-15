@@ -1,0 +1,1 @@
+// Revisão de denúncias, remoção de conteúdo inadequado e registro de moderação.

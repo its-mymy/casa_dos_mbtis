@@ -1,0 +1,1 @@
+// Filtros por situação e ordenação por data ou quantidade de votos.
