@@ -368,7 +368,7 @@ async function carregarUsuario() {
             perfil || null;
 
             const podeGerenciarRanking =
-    perfilAtual.ranking_admin === true;
+    String(perfilAtual.cargo || '').trim().toLowerCase() === 'adm';
 
      rankingManageButton?.classList.toggle(
     "hidden",
