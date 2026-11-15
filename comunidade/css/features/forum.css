@@ -1,3 +1,23 @@
 .forum-topic-list { display: grid; gap: 12px; }
 .forum-topic { padding: 18px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
 .forum-topic__meta { display: flex; align-items: center; gap: 9px; color: var(--color-muted); font-size: .78rem; }
+.community-composer { display: grid; gap: 14px; margin-bottom: 18px; padding: 20px; }
+.community-composer[hidden] { display: none; }
+.composer-actions, .community-actions, .suggestion-admin { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; }
+.forum-topic { display: grid; gap: 10px; }
+.forum-topic h3, .suggestion-card h3 { margin: 0; font-family: var(--font-heading); font-size: 1.05rem; }
+.forum-topic__body, .suggestion-card > p { margin: 0; color: var(--color-text-soft); line-height: 1.65; white-space: pre-wrap; overflow-wrap: anywhere; }
+.forum-topic__discussion { padding-top: 14px; border-top: 1px solid var(--color-border); }
+.forum-topic__discussion[hidden] { display: none; }
+.forum-comments { display: grid; gap: 10px; margin-bottom: 14px; }
+.forum-comment { padding: 12px; border: 1px solid var(--color-border); border-radius: 12px; background: rgba(14, 11, 19, .55); }
+.forum-comment > p { margin: 8px 0; color: var(--color-text-soft); white-space: pre-wrap; overflow-wrap: anywhere; }
+.comment-composer { display: grid; gap: 9px; margin-top: 12px; }
+.comment-composer textarea { width: 100%; }
+.suggestion-card { display: grid; gap: 12px; }
+.suggestion-admin { padding-top: 12px; border-top: 1px solid var(--color-border); }
+.suggestion-admin select { min-width: 190px; }
+.suggestion-reason { flex: 1 1 180px; min-width: 0; }
+.suggestion-updated { color: var(--color-muted); line-height: 1.5; }
+.is-voted { border-color: rgba(195, 160, 234, .6); color: #D9BAF8; box-shadow: var(--glow-purple); }
+@media (max-width: 640px) { .community-actions .button, .composer-actions .button { flex: 1 1 auto; } .suggestion-admin { align-items: stretch; } .suggestion-admin > * { width: 100%; } }
