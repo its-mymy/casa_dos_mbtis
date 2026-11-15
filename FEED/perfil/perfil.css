@@ -1528,3 +1528,40 @@ a {
         0 0 45px color-mix(in srgb, var(--borda-neon) 20%, transparent),
         0 25px 70px rgba(0,0,0,0.32);
 }
+
+/* Exclusão segura da própria conta */
+.danger-zone {
+    margin-top: 24px;
+    border: 1px solid rgba(224, 96, 132, .28);
+    background: linear-gradient(135deg, rgba(110, 35, 64, .12), rgba(18, 13, 25, .72));
+}
+.danger-zone > p {
+    color: #b8adbf;
+    line-height: 1.6;
+    margin: 10px 0 16px;
+}
+.delete-account-button {
+    border: 1px solid rgba(239, 91, 126, .55);
+    border-radius: 12px;
+    padding: 12px 18px;
+    background: rgba(145, 35, 67, .18);
+    color: #ff9bb3;
+    font: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background .2s ease, box-shadow .2s ease, transform .2s ease;
+}
+.delete-account-button:hover:not(:disabled) {
+    background: rgba(145, 35, 67, .3);
+    box-shadow: 0 0 18px rgba(239, 91, 126, .16);
+    transform: translateY(-1px);
+}
+.delete-account-button:disabled {
+    opacity: .6;
+    cursor: wait;
+}
+.delete-account-message {
+    color: #ff9bb3;
+    font-size: .9rem;
+    margin-top: 10px;
+}
