@@ -1,12 +1,21 @@
 # Migrações do Supabase
 
-As alterações do banco relacionadas à nova Comunidade deverão ser adicionadas aqui em arquivos SQL numerados e versionados.
+## Estado da Comunidade
 
-Antes de qualquer alteração:
-1. Inspecionar tabelas, colunas, funções, triggers e políticas RLS existentes.
-2. Confirmar dependências com o FEED, perfis e administração atuais.
-3. Escrever uma migração incremental.
-4. Revisar privilégios e testar visitante, membro e administrador.
-5. Registrar como reverter a alteração quando isso for viável.
+A fundação da nova Comunidade foi aplicada ao projeto Supabase `lhhoqahzpuohhhnbwgfp` em 15/11/2026.
 
-Nenhuma migração foi executada no Supabase nesta etapa. Não remover campos VIP nem objetos existentes até concluir a auditoria de dependências.
+- 10 tabelas criadas com RLS habilitado.
+- Políticas de leitura pública e escrita autenticada configuradas para fórum e sugestões.
+- Denúncias, avaliações privadas e logs administrativos restritos.
+- Administração identificada por `profiles.cargo = 'adm'`.
+- Envio e consulta de avaliações por código aleatório com hash SHA-256.
+- Status inicial das sugestões criado automaticamente.
+
+## Próximos passos
+
+1. Exportar e revisar o SQL aplicado para manter uma migração reproduzível neste diretório.
+2. Adicionar limitação de tentativas e proteção anti-spam para RPCs públicas de avaliação.
+3. Conectar o fórum e o mural de sugestões ao frontend.
+4. Implementar o painel administrativo e testar os fluxos com visitante, membro e administrador.
+
+Não remover campos VIP nem objetos antigos do banco sem auditoria independente de dependências.
