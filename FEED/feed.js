@@ -353,8 +353,7 @@ async function carregarUsuario() {
                 cargo,
                 vip,
                 avatar_url,
-                avatar_tipo,
-                feed_admin
+                avatar_tipo
             `)
             .eq("id", usuarioAtual.id)
             .maybeSingle();
@@ -884,7 +883,7 @@ function criarPost(post) {
     const podeApagar =
         !!(
             usuarioAtual &&
-            perfilAtual?.feed_admin === true
+            String(perfilAtual?.cargo || '').trim().toLowerCase() === 'adm'
         );
 
     const avatarHtml =
@@ -1117,7 +1116,7 @@ function abrirModalPublicacao() {
 
     if (
         !usuarioAtual ||
-        !perfilAtual?.feed_admin
+        String(perfilAtual?.cargo || '').trim().toLowerCase() !== 'adm'
     ) {
 
         mostrarToast(
