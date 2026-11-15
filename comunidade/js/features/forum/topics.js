@@ -169,8 +169,15 @@ async function loadComments(topic, target) {
             item.append(area);
         }));
         if (getCurrentUser() && (getCurrentUser().id === comment.author_id || isAdmin())) {
+            tools.append(button("Editar", async () => {
+                const body = prompt("Editar comentário:", comment.body);
+                if (body === null) return;
+                const { error } = await supabase.from("community_comments").update({ body: body.trim() }).eq("id", comment.id);
+                if (error) return notify("Não foi possível editar o comentário.");
+                await loadComments(topic, target);
+            }));
             tools.append(button("Excluir", async () => {
-                if (!confirm("Excluir este comentário?")) return;
+                if (!confirm("Excluir este comentário e suas respostas?")) return;
                 const { error } = await supabase.from("community_comments").delete().eq("id", comment.id);
                 if (error) return notify("Não foi possível excluir.");
                 await loadComments(topic, target);
