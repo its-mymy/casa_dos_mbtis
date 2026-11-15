@@ -354,8 +354,7 @@ async function carregarUsuario() {
                 vip,
                 avatar_url,
                 avatar_tipo,
-                feed_admin,
-                ranking_admin
+                feed_admin
             `)
             .eq("id", usuarioAtual.id)
             .maybeSingle();
