@@ -63,12 +63,6 @@ function cropImage(ctx,img,x,y,w,h,filter){
  ctx.save();ctx.beginPath();ctx.rect(x,y,w,h);ctx.clip();ctx.filter=filter;
  ctx.drawImage(img,sx,sy,sw,sh,x,y,w,h);ctx.restore();ctx.filter="none";
 }
-function wrapText(ctx,text,x,y,maxWidth,lineHeight,maxLines){
- const words=text.split(/\s+/);let line="",lines=[];
- for(const word of words){const test=line?line+" "+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word}else line=test}
- if(line)lines.push(line);lines=lines.slice(0,maxLines);
- lines.forEach((part,index)=>ctx.fillText(part,x,y+index*lineHeight));
-}
 async function exportCard(){
  const button=$("downloadBtn");button.disabled=true;button.textContent="Preparando imagem…";
  try{
@@ -96,15 +90,7 @@ async function exportCard(){
    ctx.fillStyle="#f5f3f7";ctx.fillRect(ix,iy,iw,ih);
    if(loaded.has(slot))cropImage(ctx,loaded.get(slot),ix,iy,iw,ih,filter);
    ctx.strokeStyle=lineColor;ctx.lineWidth=lineWidth;ctx.strokeRect(x+lineWidth/2,y+lineWidth/2,w-lineWidth,h-lineWidth);
-   ctx.fillStyle=textColor;ctx.textAlign="center";ctx.textBaseline="middle";
-   const main=slot==="main",strong=["subtype","anime","temperament"].includes(slot);
-   ctx.font=(strong?"800 ":"500 ")+(main?94:strong?42:36)+'px "DM Sans", Arial, sans-serif';
-   const label=labels[slot].split("\n");const lineHeight=main?100:strong?48:42;
-   const labelY=y+h/2-(label.length-1)*lineHeight/2;
-   if(loaded.has(slot)){ctx.fillStyle="rgba(0,0,0,.42)";const boxW=Math.min(iw-12,Math.max(...label.map(t=>ctx.measureText(t).width))+34);ctx.fillRect(W/2+col*cellW+ (w-W/2-col*cellW),0,0,0);ctx.fillStyle="#fff";ctx.shadowColor="#000";ctx.shadowBlur=4}
-   else ctx.shadowBlur=0;
-   label.forEach((line,index)=>ctx.fillText(line,x+w/2,labelY+index*lineHeight,iw-18));
-   ctx.shadowBlur=0;
+
   }
   const blob=await new Promise(resolve=>canvas.toBlob(resolve,"image/png"));
   if(!blob)throw new Error("Não foi possível gerar o PNG. Tente novamente.");
