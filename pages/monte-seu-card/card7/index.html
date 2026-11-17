@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10091c">
+<title>Card 7 | Casa dos MBTIs</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@1,500;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="card7.css">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"><i></i><i></i><i></i><div class="stars">✦　·　✧　　✦　　·　✧　✦　　·　✦　✧</div></div>
+<a class="back-link" href="../">← Voltar aos modelos</a>
+<main class="page">
+<header class="intro">
+  <span class="eyebrow">CASA DOS MBTIs · MODELO 07</span>
+  <h1>Monte seu <em>card</em></h1>
+  <p>Uma pequena coleção de coisas que representam você.</p>
+</header>
+<section class="workspace">
+  <div class="preview-panel">
+    <div class="section-heading"><div><span class="step">01</span><h2>Pré-visualização</h2></div><span class="live">● AO VIVO</span></div>
+    <div class="preview-shell">
+      <article id="cardPreview" class="card-preview">
+        <header class="card-heading"><div><div id="previewName" class="preview-name">Name</div><div class="personal-data"><span id="previewAge">Age</span><b id="previewSubtype">Subtipo</b><b id="previewEnnea">Eneagrama</b></div></div><strong class="watermark">Casa dos mbtis</strong></header>
+        <div class="photo-grid" id="photoGrid">
+          <div class="photo-cell" data-slot="mbti"><img alt=""><span>mbti</span></div>
+          <div class="photo-cell" data-slot="food"><img alt=""><span>food</span></div>
+          <div class="photo-cell" data-slot="character"><img alt=""><span>Character</span></div>
+          <div class="photo-cell" data-slot="color"><img alt=""><span>color</span></div>
+          <div class="photo-cell" data-slot="subtype"><img alt=""><b>Subtipo</b></div>
+          <div class="photo-cell hero-cell" data-slot="main"><img alt=""><b>foto</b></div>
+          <div class="photo-cell" data-slot="anime"><img alt=""><b>Anime</b></div>
+          <div class="photo-cell" data-slot="hobby"><img alt=""><span>hobby</span></div>
+          <div class="photo-cell" data-slot="music"><img alt=""><span>music</span></div>
+          <div class="photo-cell" data-slot="temperament"><img alt=""><b>Temperamento</b></div>
+          <div class="photo-cell" data-slot="flower"><img alt=""><span>flower</span></div>
+          <div class="photo-cell" data-slot="animal"><img alt=""><span>animal</span></div>
+          <div class="photo-cell" data-slot="favorite"><img alt=""><span>fav app<br>or game</span></div>
+        </div>
+      </article>
+    </div>
+    <div class="preview-actions"><button type="button" class="button primary" id="downloadBtn">↓ Salvar imagem PNG</button><button type="button" class="button ghost" id="resetBtn">Restaurar</button></div>
+    <p class="hint">A prévia se adapta à tela. O arquivo é exportado em alta resolução, mantendo a proporção original.</p>
+  </div>
+
+  <aside class="editor">
+    <section class="control-card">
+      <div class="section-heading"><div><span class="step">02</span><h2>Suas informações</h2></div></div>
+      <div class="fields">
+        <label>Nome<input id="nameInput" type="text" maxlength="28" placeholder="Como quer aparecer?"></label>
+        <div class="field-pair"><label>Idade<input id="ageInput" type="text" maxlength="3" inputmode="numeric" placeholder="Idade"></label><label>Subtipo<input id="subtypeInput" type="text" maxlength="18" placeholder="Ex.: sp/sx"></label></div>
+        <label>Eneagrama<input id="enneaInput" type="text" maxlength="18" placeholder="Ex.: 7w6"></label>
+      </div>
+    </section>
+
+    <section class="control-card">
+      <div class="section-heading"><div><span class="step">03</span><h2>Suas 13 fotos</h2></div><span class="counter" id="photoCounter">0/13</span></div>
+      <p class="control-description">Toque em cada espaço para escolher uma imagem. Você pode trocar ou remover quando quiser.</p>
+      <div class="upload-list" id="uploadList">
+        <label class="upload-item"><span class="upload-number">01</span><span class="upload-label">MBTI</span><input type="file" accept="image/*" data-photo="mbti"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">02</span><span class="upload-label">Comida</span><input type="file" accept="image/*" data-photo="food"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">03</span><span class="upload-label">Personagem</span><input type="file" accept="image/*" data-photo="character"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">04</span><span class="upload-label">Cor</span><input type="file" accept="image/*" data-photo="color"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">05</span><span class="upload-label">Subtipo</span><input type="file" accept="image/*" data-photo="subtype"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">06</span><span class="upload-label">Foto principal</span><input type="file" accept="image/*" data-photo="main"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">07</span><span class="upload-label">Anime</span><input type="file" accept="image/*" data-photo="anime"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">08</span><span class="upload-label">Hobby</span><input type="file" accept="image/*" data-photo="hobby"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">09</span><span class="upload-label">Música</span><input type="file" accept="image/*" data-photo="music"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">10</span><span class="upload-label">Temperamento</span><input type="file" accept="image/*" data-photo="temperament"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">11</span><span class="upload-label">Flor</span><input type="file" accept="image/*" data-photo="flower"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">12</span><span class="upload-label">Animal</span><input type="file" accept="image/*" data-photo="animal"><span class="upload-action">Escolher foto</span></label>
+        <label class="upload-item"><span class="upload-number">13</span><span class="upload-label">App ou jogo</span><input type="file" accept="image/*" data-photo="favorite"><span class="upload-action">Escolher foto</span></label>
+      </div>
+    </section>
+
+    <section class="control-card">
+      <div class="section-heading"><div><span class="step">04</span><h2>Aparência</h2></div></div>
+      <div class="color-control"><label for="textColor">Cor de todos os textos</label><div class="color-picker"><input id="textColor" type="color" value="#17131d"><div class="swatches" data-for="textColor"><button type="button" style="--sw:#17131d" data-color="#17131d" aria-label="Preto"></button><button type="button" style="--sw:#ffffff" data-color="#ffffff" aria-label="Branco"></button><button type="button" style="--sw:#8b5cf6" data-color="#8b5cf6" aria-label="Roxo"></button><button type="button" style="--sw:#ec4899" data-color="#ec4899" aria-label="Rosa"></button><button type="button" style="--sw:#60a5fa" data-color="#60a5fa" aria-label="Azul"></button><button type="button" style="--sw:#c084fc" data-color="#c084fc" aria-label="Lilás"></button></div></div></div>
+      <div class="color-control"><label for="lineColor">Cor das linhas e divisórias</label><div class="color-picker"><input id="lineColor" type="color" value="#242029"><div class="swatches" data-for="lineColor"><button type="button" style="--sw:#242029" data-color="#242029" aria-label="Grafite"></button><button type="button" style="--sw:#ffffff" data-color="#ffffff" aria-label="Branco"></button><button type="button" style="--sw:#8b5cf6" data-color="#8b5cf6" aria-label="Roxo"></button><button type="button" style="--sw:#ec4899" data-color="#ec4899" aria-label="Rosa"></button><button type="button" style="--sw:#60a5fa" data-color="#60a5fa" aria-label="Azul"></button></div></div></div>
+      <div class="range-control"><div class="range-title"><label for="lineWidth">Espessura das linhas</label><output id="lineWidthValue">2 px</output></div><input id="lineWidth" type="range" min="1" max="8" value="2"></div>
+      <div class="range-control"><div class="range-title"><label for="spacing">Espaçamento interno</label><output id="spacingValue">0 px</output></div><input id="spacing" type="range" min="0" max="18" value="0"></div>
+      <div class="filter-control"><label for="photoFilter">Filtro das fotos</label><select id="photoFilter"><option value="none">Original</option><option value="grayscale(1)">Preto e branco</option><option value="sepia(.75)">Sépia</option><option value="saturate(1.5)">Vibrante</option><option value="contrast(1.2) saturate(.85)">Contraste</option><option value="brightness(1.12) saturate(.8)">Suave</option><option value="hue-rotate(35deg) saturate(1.2)">Colorido</option></select></div>
+    </section>
+  </aside>
+</section>
+<footer class="footer">✦ Feito com carinho pela Casa dos MBTIs ✦</footer>
+</main>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="card7.js"></script>
+</body>
+</html>
