@@ -1182,3 +1182,26 @@ body {
         font-size: 6px;
     }
 }
+
+/* CARD 07 — MOODBOARD */
+.card7-model{border-color:rgba(176,132,245,.34)}
+.card7-model:hover{border-color:rgba(196,155,255,.7)}
+.card7-badge{background:linear-gradient(120deg,#8052d5,#d16db5)}
+.preview-card7{background:radial-gradient(circle at 50% 50%,rgba(152,112,221,.17),transparent 70%),#100b19}
+.card7-mini{width:205px;padding:12px;background:#fff;color:#17131d;box-shadow:0 18px 45px #0008;transform:rotate(-3deg);font-family:"DM Sans",sans-serif}
+.card7-mini-heading{display:flex;justify-content:space-between;align-items:center;gap:5px}
+.card7-mini-heading strong{font:italic 26px Georgia,serif}
+.card7-mini-heading span{font-size:7px;font-weight:800}
+.card7-mini-meta{display:flex;gap:8px;margin:5px 0 8px;font-size:7px}
+.card7-mini-grid{display:grid;grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(4,35px);gap:2px;background:#242029;padding:2px}
+.card7-mini-grid>*{display:grid;place-items:center;background:#f6f3f8;font-size:7px;font-style:normal;font-weight:500;text-align:center}
+.card7-mini-grid b{font-size:8px;font-weight:800}
+.card7-mini-grid i{grid-area:2/2/4/4;display:grid;place-items:center;background:linear-gradient(135deg,#d9c7f3,#a88bd5);font-size:17px;font-weight:800}
+.card7-mini-grid>*:nth-child(5){grid-area:2/1}
+.card7-mini-grid>*:nth-child(7){grid-area:2/4}
+.card7-mini-grid>*:nth-child(8){grid-area:3/1}
+.card7-mini-grid>*:nth-child(9){grid-area:3/4}
+.card7-mini-grid>*:nth-child(10){grid-area:4/1}
+.card7-mini-grid>*:nth-child(11){grid-area:4/2}
+.card7-mini-grid>*:nth-child(12){grid-area:4/3}
+.card7-mini-grid>*:nth-child(13){grid-area:4/4}
