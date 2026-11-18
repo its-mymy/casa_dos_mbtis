@@ -1,545 +1,487 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Casa dos MBTIs — um espaço dedicado ao estudo das tipologias, funções cognitivas, Eneagrama e autoconhecimento.">
+    <meta name="description" content="Casa dos MBTIs: projeto brasileiro de estudo das tipologias, MBTI, funções cognitivas, Eneagrama, subtipos e comunidade de membros.">
+    <meta name="theme-color" content="#0b0612">
     <link rel="stylesheet" href="css/home.css">
     <link rel="stylesheet" href="menu/menu.css">
     <link rel="icon" type="image/jpeg" href="/comunidade/assets/logo-casa-mbtis.jpg">
     <link rel="apple-touch-icon" href="/comunidade/assets/logo-casa-mbtis.jpg">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#111111">
-    <title>CASA DOS MBTIs</title>
+    <title>Casa dos MBTIs | Tipologia, conhecimento e comunidade</title>
 </head>
 <body>
 
     <div id="menu"></div>
 
-    <div class="clouds">
+    <div class="clouds" aria-hidden="true">
         <div class="cloud cloud-1"></div>
         <div class="cloud cloud-2"></div>
         <div class="cloud cloud-3"></div>
-        <div class="cloud cloud-4"></div>
-        <div class="cloud cloud-5"></div>
     </div>
 
     <main>
+
         <section class="hero-home">
+            <div class="hero-layout">
 
-            <div class="hero-glow glow-one"></div>
-            <div class="hero-glow glow-two"></div>
-
-            <div class="hero-conteudo">
-
-                <div class="hero-texto">
-
-                    <div class="hero-tag">
-                        🏠 BEM-VINDO À CASA
-                    </div>
+                <div class="hero-copy">
+                    <div class="hero-tag"><span></span> CASA DOS MBTIs · PROJETO BRASILEIRO</div>
 
                     <h1>
-                        UM LUGAR PRA
-                        <span>PIRAR EM TIPOLOGIA.</span>
+                        Tipologia para
+                        <span>explorar, entender e compartilhar.</span>
                     </h1>
 
-                   <p class="hero-descricao">
-    Um projeto brasileiro dedicado ao estudo das tipologias humanas.
-    Aqui você pode explorar diferentes sistemas de classificação,
-    conhecer teorias, comparar modelos e aprofundar seus conhecimentos
-    sobre tipologia de forma acessível e colaborativa.
-</p>
+                    <p class="hero-description">
+                        A Casa dos MBTIs é um projeto brasileiro dedicado ao estudo das tipologias humanas, como MBTI, funções cognitivas, Eneagrama, subtipos instintivos e outros sistemas. Aqui você pode conhecer teorias, comparar modelos e aprofundar seus conhecimentos de forma acessível. Acesse o menu para encontrar o assunto que procura — e, além dos conteúdos, participe de uma comunidade com membros, perfis e discussões.
+                    </p>
 
-                    <div class="hero-tags">
-                        <span>🧠 MBTI</span>
-                        <span>⚙️ Funções cognitivas</span>
-                        <span>🌀 Eneagrama</span>
-                        <span>🔬 Outras tipologias</span>
+                    <div class="hero-pills">
+                        <span>MBTI</span>
+                        <span>Funções cognitivas</span>
+                        <span>Eneagrama</span>
+                        <span>Subtipos</span>
+                        <span>Comunidade</span>
                     </div>
 
-                    <a href="/comunidade/" class="hero-botao">
-                        ENTRAR NA CASA
-                        <span>→</span>
+                    <div class="hero-actions">
+                        <a href="#explorar" class="button-primary">EXPLORAR A CASA <span>↘</span></a>
+                        <a href="/comunidade/" class="button-secondary">ENTRAR NA COMUNIDADE <span>↗</span></a>
+                    </div>
+                </div>
+
+                <div class="hero-visual" aria-label="Personagem SP7 da identidade visual da Casa">
+                    <div class="hero-orbit"></div>
+                    <img src="img/sp7.png" alt="Personagem SP7 flutuando" class="hero-sp7" fetchpriority="high">
+                    <div class="hero-profile-chip">
+                        <small>FUNDADORA DA CASA</small>
+                        <strong>YU</strong>
+                        <span>ENTP · SP7 · 7w8</span>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="hero-scroll"><span>↓</span> role para explorar <span>↓</span></div>
+        </section>
+
+
+        <div class="identity-strip" aria-label="Sobre a Casa dos MBTIs">
+            <div class="identity-item">
+                <span class="identity-number">01</span>
+                <div>
+                    <strong>Conhecimento organizado</strong>
+                    <span>Conteúdos e sistemas tipológicos</span>
+                </div>
+            </div>
+            <div class="identity-item">
+                <span class="identity-number">02</span>
+                <div>
+                    <strong>Banco de tipagens</strong>
+                    <span>Personagens e diferentes classificações</span>
+                </div>
+            </div>
+            <div class="identity-item">
+                <span class="identity-number">03</span>
+                <div>
+                    <strong>Comunidade de membros</strong>
+                    <span>Troca, discussão e participação</span>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="explore-section" id="explorar">
+            <div class="section-wrap">
+
+                <div class="section-heading">
+                    <span class="section-kicker">EXPLORE A CASA</span>
+                    <h2>Um espaço para cada <span>parte da tipologia.</span></h2>
+                    <p>
+                        Navegue pelos principais conteúdos da Casa. Você pode estudar os sistemas, comparar interpretações, testar o que aprendeu e conversar com outras pessoas interessadas no assunto.
+                    </p>
+                </div>
+
+                <div class="areas-grid">
+
+                    <a href="pages/mbti.html" class="area-card">
+                        <span class="area-number">01 · SISTEMA</span>
+                        <span class="area-symbol">MB</span>
+                        <h3>MBTI</h3>
+                        <p>Conheça os 16 tipos, suas estruturas, diferenças e fundamentos.</p>
+                        <span class="area-arrow">↗</span>
+                    </a>
+
+                    <a href="pages/funcoes.html" class="area-card pink">
+                        <span class="area-number">02 · PROCESSOS</span>
+                        <span class="area-symbol">FN</span>
+                        <h3>Funções cognitivas</h3>
+                        <p>Explore Ne, Ni, Se, Si, Te, Ti, Fe e Fi e suas aplicações.</p>
+                        <span class="area-arrow">↗</span>
+                    </a>
+
+                    <a href="pages/eneagrama.html" class="area-card">
+                        <span class="area-number">03 · MOTIVAÇÕES</span>
+                        <span class="area-symbol">E9</span>
+                        <h3>Eneagrama</h3>
+                        <p>Tipos, asas, centros, instintos e diferentes leituras do sistema.</p>
+                        <span class="area-arrow">↗</span>
+                    </a>
+
+                    <a href="pages/subtipos/" class="area-card pink">
+                        <span class="area-number">04 · INSTINTOS</span>
+                        <span class="area-symbol">SP</span>
+                        <h3>Subtipos</h3>
+                        <p>Explore os subtipos de autopreservação, social e sexual.</p>
+                        <span class="area-arrow">↗</span>
+                    </a>
+
+                    <a href="tipagens/" class="area-card">
+                        <span class="area-number">05 · PESQUISA</span>
+                        <span class="area-symbol">DB</span>
+                        <h3>Banco de tipagens</h3>
+                        <p>Consulte tipagens de personagens e compare classificações.</p>
+                        <span class="area-arrow">↗</span>
+                    </a>
+
+                    <a href="/comunidade/" class="area-card pink">
+                        <span class="area-number">06 · PESSOAS</span>
+                        <span class="area-symbol">CM</span>
+                        <h3>Comunidade</h3>
+                        <p>Fóruns, sugestões, perfis de membros e conversas sobre tipologia.</p>
+                        <span class="area-arrow">↗</span>
+                    </a>
+
+                    <a href="pages/central quiz/" class="area-card">
+                        <span class="area-number">07 · PRÁTICA</span>
+                        <span class="area-symbol">QZ</span>
+                        <h3>Quizzes</h3>
+                        <p>Teste seus conhecimentos e revise conceitos de forma interativa.</p>
+                        <span class="area-arrow">↗</span>
+                    </a>
+
+                    <a href="pages/psicosofia.html" class="area-card pink">
+                        <span class="area-number">08 · AMPLIAÇÃO</span>
+                        <span class="area-symbol">EX</span>
+                        <h3>Outros estudos</h3>
+                        <p>Conheça outros assuntos e abordagens que ampliam o universo da Casa.</p>
+                        <span class="area-arrow">↗</span>
                     </a>
 
                 </div>
-
-                <div class="hero-personagem">
-
-                    <div class="character-orbit"></div>
-
-                    <div class="character-card">
-
-                        <div class="mini-title">
-                            <span class="online"></span>
-                            YU MBTI
-                        </div>
-
-                        <div class="mini-main">
-                            ENTP
-                        </div>
-
-                        <div class="mini-sub">
-                            7w6 · sp7
-                        </div>
-
-                        <div class="mini-stack">
-                            Ne → Ti → Fe → Si
-                        </div>
-
-                    </div>
-
-                    <img
-                        src="img/YU.png"
-                        alt="Personagem da identidade visual da Casa"
-                        class="character-sp7"
-                    >
-
-                </div>
-
             </div>
-
-            <div class="hero-bottom">
-                <span>↓</span>
-                role para explorar
-                <span>↓</span>
-            </div>
-
         </section>
 
-        <section class="sobre" id="conteudo">
 
-            <div class="section-heading">
+        <section class="database-section">
+            <div class="section-wrap">
+                <div class="database-panel">
 
-                <span class="section-label">
-                    O QUE TEM AQUI?
-                </span>
-
-                <h2>
-                    Uma casa meio caótica.
-                    <span>Do jeito que a gente gosta.</span>
-                </h2>
-
-                <p>
-                    A Casa dos MBTIs reúne conteúdos sobre diferentes
-                    sistemas tipológicos em um só lugar. Nosso objetivo
-                    é facilitar o acesso ao conhecimento, incentivar
-                    o pensamento crítico e oferecer ferramentas que
-                    contribuam para o autoconhecimento.
-                </p>
-
-            </div>
-            <div class="areas-grid">
-
-                <a href="pages/mbti.html" class="area-card">
-
-                    <div class="area-number">01</div>
-                    <div class="area-icon">🧠</div>
-
-                    <div class="area-content">
-                        <h3>MBTI</h3>
-
+                    <div class="database-copy">
+                        <span class="section-kicker">ACERVO DA COMUNIDADE</span>
+                        <h2>Um banco de dados para <span>explorar tipagens.</span></h2>
                         <p>
-                            Os 16 tipos, suas estruturas, diferenças,
-                            semelhanças e os fundamentos do sistema.
+                            A Casa também reúne um banco de tipagens para consultar personagens de diferentes obras, encontrar classificações e comparar MBTI, Eneagrama, tritype, subtipo e outros dados. Acesse a área, pesquise e participe da construção desse acervo.
                         </p>
+                        <a href="/tipagens/" class="database-link">ACESSAR BANCO DE TIPAGENS <span>↗</span></a>
                     </div>
 
-                    <div class="area-arrow">↗</div>
-
-                </a>
-                <a href="#" class="area-card pink">
-
-                    <div class="area-number">02</div>
-                    <div class="area-icon">⚙️</div>
-
-                    <div class="area-content">
-                        <h3>Funções Cognitivas</h3>
-
-                        <p>
-                            Ne, Ni, Se, Si, Te, Ti, Fe e Fi:
-                            conheça as oito funções e suas aplicações
-                            dentro do estudo tipológico.
-                        </p>
-                    </div>
-
-                    <div class="area-arrow">↗</div>
-
-                </a>
-                <a href="pages/eneagrama.html" class="area-card">
-
-                    <div class="area-number">03</div>
-                    <div class="area-icon">🌀</div>
-
-                    <div class="area-content">
-                        <h3>Eneagrama</h3>
-
-                        <p>
-                            Tipos, asas, subtipos instintivos,
-                            tritipos e diferentes interpretações
-                            do sistema.
-                        </p>
-                    </div>
-
-                    <div class="area-arrow">↗</div>
-
-                </a>
-                <a href="pages/central quiz/" class="area-card pink">
-
-                    <div class="area-number">04</div>
-                    <div class="area-icon">🎯</div>
-
-                    <div class="area-content">
-                        <h3>Quizzes</h3>
-
-                        <p>
-                            Teste seus conhecimentos, revise conceitos
-                            e descubra o quanto você conhece sobre
-                            as diferentes tipologias.
-                        </p>
-                    </div>
-
-                    <div class="area-arrow">↗</div>
-
-                </a>
-                <a href="#" class="area-card">
-
-                    <div class="area-number">05</div>
-                    <div class="area-icon">🔬</div>
-
-                    <div class="area-content">
-                        <h3>Outras Tipologias</h3>
-
-                        <p>
-                            Socionics, temperamentos e outros sistemas
-                            de estudo tipológico para ampliar sua
-                            compreensão sobre as diferenças individuais.
-                        </p>
-                    </div>
-
-                    <div class="area-arrow">↗</div>
-
-                </a>
-
-                <a href="/comunidade/" class="area-card pink">
-                    <div class="area-number">06</div>
-                    <div class="area-icon">💬</div>
-                    <div class="area-content">
-                        <h3>Comunidade</h3>
-                        <p>
-                            Um espaço para compartilhar conhecimentos,
-                            discutir teorias, trocar experiências
-                            e conversar sobre tipologia.
-                        </p>
-                    </div>
-
-                    <div class="area-arrow">↗</div>
-
-                </a>
-
-            </div>
-
-        </section>
-
-        <section class="perfil-section">
-
-            <div class="perfil-wrapper">
-
-                <div class="perfil-text">
-
-                    <span class="section-label">
-                        QUEM ESTÁ POR TRÁS DA CASA?
-                    </span>
-
-                    <h2>
-                        YU
-                        <span>YASMYM</span>
-                    </h2>
-
-                    <p>
-                        A Casa dos MBTIs foi idealizada e desenvolvida
-                        por Yasmym, conhecida como Yu. O projeto começou
-                        como uma iniciativa individual, criada a partir
-                        do interesse pelo estudo das tipologias e da
-                        vontade de reunir conhecimento em um só lugar.
-                    </p>
-
-                    <p>
-                        Com o passar do tempo, a Casa deixou de ser
-                        apenas um projeto individual. Novos membros
-                        chegaram, administradores passaram a contribuir
-                        e a comunidade cresceu, construindo um espaço
-                        de troca, aprendizado e discussão.
-                    </p>
-
-                    <p>
-                        A criação e o desenvolvimento inicial do site
-                        foram feitos por uma única pessoa. Hoje, porém,
-                        a Casa representa também as pessoas que chegaram,
-                        participaram e ajudaram a comunidade a crescer.
-                    </p>
-
-                    <div class="profile-quote">
-                        <span>“</span>
-                        Uma ideia individual que encontrou muitas pessoas.
-                        <span>”</span>
-                    </div>
-
-                </div>
-
-
-                <div class="stack-card">
-
-                    <div class="stack-top">
-
-                        <div>
-                            <span class="small-label">FUNDADORA</span>
-                            <h3>Minha tipologia</h3>
-                        </div>
-
-                        <div class="stack-symbol">
-                            ✦
-                        </div>
-
-                    </div>
-
-
-                    <div class="stack-main">
-
-                        <div class="stack-item main-type">
-                            <span>MBTI</span>
+                    <div class="database-art" aria-hidden="true">
+                        <div class="database-orbit"></div>
+                        <div class="typing-stack">
+                            <small>EXEMPLO DE CLASSIFICAÇÃO</small>
                             <strong>ENTP</strong>
-                            <small>Ne · Ti · Fe · Si</small>
+                            <div>
+                                <span>7w8</span>
+                                <span>SP7</span>
+                                <span>739</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <section class="about-section" id="sobre">
+            <div class="section-wrap about-grid">
+
+                <div class="about-copy">
+                    <span class="section-kicker">COMO A CASA COMEÇOU</span>
+                    <h2>Uma ideia individual que <span>cresceu em comunidade.</span></h2>
+
+                    <p>
+                        A Casa dos MBTIs foi idealizada e desenvolvida por YU. O projeto começou como uma iniciativa individual, nascida do interesse pelo estudo das tipologias e da vontade de reunir conhecimento em um só lugar.
+                    </p>
+
+                    <p>
+                        Com o passar do tempo, a Casa deixou de ser apenas um projeto individual. Novos membros chegaram, administradores passaram a contribuir e a comunidade cresceu, construindo um espaço de troca, aprendizado e discussão.
+                    </p>
+
+                    <p>
+                        A criação e o desenvolvimento inicial do site foram realizados por uma única pessoa. Hoje, a Casa também representa as pessoas que chegaram, participaram e ajudaram a comunidade a crescer. É um projeto em evolução, com espaço para novas ideias, colaborações e outros assuntos além das tipologias.
+                    </p>
+
+                    <div class="about-quote">
+                        A estrutura começou com uma pessoa. A comunidade passou a ser construída por muitas.
+                    </div>
+                </div>
+
+                <aside class="founder-card" aria-label="Perfil da fundadora">
+                    <div class="founder-top">
+                        <div>
+                            <small>FUNDADORA</small>
+                            <h3>YU</h3>
+                        </div>
+                        <div class="founder-mark">✦</div>
+                    </div>
+
+                    <div class="founder-type">
+                        <span>MBTI</span>
+                        <strong>ENTP</strong>
+                    </div>
+
+                    <div class="founder-tags">
+                        <span>SP7</span>
+                        <span>7w8</span>
+                    </div>
+                </aside>
+
+            </div>
+        </section>
+
+
+        <section class="app-section" id="aplicativo">
+            <div class="section-wrap app-panel">
+
+                <div class="app-copy">
+                    <span class="section-kicker">A CASA NO CELULAR</span>
+                    <h2>Um aplicativo para levar a comunidade <span>com você.</span></h2>
+
+                    <p>
+                        O aplicativo da Casa dos MBTIs está em desenvolvimento e passa por testes. A proposta é reunir no celular algumas das áreas mais utilizadas da comunidade, mantendo a conexão com o projeto e com os membros.
+                    </p>
+
+                    <span class="test-status">VERSÃO DE TESTE · EM DESENVOLVIMENTO</span>
+
+                    <div class="app-features">
+                        <div class="app-feature">
+                            <strong>Coxinha</strong>
+                            <span>Área interativa do aplicativo</span>
+                        </div>
+                        <div class="app-feature">
+                            <strong>Tipagens</strong>
+                            <span>Consulta ao acervo de classificações</span>
+                        </div>
+                        <div class="app-feature">
+                            <strong>Fóruns</strong>
+                            <span>Discussões e participação da comunidade</span>
+                        </div>
+                        <div class="app-feature">
+                            <strong>Perfis</strong>
+                            <span>Espaço dos membros e suas informações</span>
+                        </div>
+                    </div>
+
+                    <div class="apk-note">
+                        O aplicativo ainda está em fase de testes. O download do APK será liberado nesta página quando o arquivo de distribuição estiver disponível e pronto para ser compartilhado.
+                    </div>
+                </div>
+
+                <div class="app-preview" aria-label="Prévia ilustrativa da interface do aplicativo">
+                    <div class="phone-mockup">
+                        <div class="phone-screen">
+                            <div class="phone-status"><span>CASA</span><span>APP · TESTE</span></div>
+                            <div class="phone-brand">Casa dos MBTIs</div>
+                            <p class="phone-welcome">Sua comunidade, no celular.</p>
+
+                            <div class="phone-card">
+                                <small>ÁREA DE TIPOLOGIAS</small>
+                                <strong>Explore classificações</strong>
+                                <p>MBTI, Eneagrama, subtipos e mais conteúdos para consultar.</p>
+                            </div>
+
+                            <div class="phone-card">
+                                <small>COMUNIDADE</small>
+                                <strong>Fóruns e membros</strong>
+                                <p>Participe das discussões e acesse os perfis da Casa.</p>
+                            </div>
+
+                            <div class="phone-bottom"><span></span><span></span><span></span><span></span></div>
+                        </div>
+                    </div>
+                    <div class="preview-label">
+                        <strong>Prévia ilustrativa</strong>
+                        As capturas reais das telas serão adicionadas nesta área.
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="support-section" id="apoiadores">
+            <div class="section-wrap">
+
+                <div class="support-heading">
+                    <div class="section-heading">
+                        <span class="section-kicker">QUEM APOIA A CASA</span>
+                        <h2>Projetos que <span>crescem junto.</span></h2>
+                        <p>
+                            Apoiadores e parceiros ajudam a fortalecer iniciativas independentes. Por enquanto, Astre Polaris é nosso primeiro apoiador; novos nomes poderão entrar neste espaço conforme a rede crescer.
+                        </p>
+                    </div>
+
+                    <p>
+                        As imagens são clicáveis e levam diretamente aos projetos apoiadores. Este espaço será ampliado com novas parcerias.
+                    </p>
+                </div>
+
+                <div class="support-viewport">
+                    <div class="support-track">
+
+                        <article class="support-card">
+                            <a class="support-image-link" href="https://astrepolaris.com/" target="_blank" rel="noopener noreferrer" aria-label="Visitar o site Astre Polaris">AP</a>
+                            <div class="support-card-copy">
+                                <small>APOIADOR</small>
+                                <strong>Astre Polaris</strong>
+                                <span>Conheça o projeto e acesse seu site.</span>
+                            </div>
+                        </article>
+
+                        <a href="/comunidade/" class="support-card support-invite">
+                            <span class="support-image-link" aria-hidden="true">+</span>
+                            <div class="support-card-copy">
+                                <small>ESPAÇO ABERTO</small>
+                                <strong>Seu projeto aqui</strong>
+                                <span>Novas iniciativas e apoiadores serão apresentados por aqui.</span>
+                            </div>
+                        </a>
+
+                        <article class="support-card support-invite">
+                            <span class="support-image-link" aria-hidden="true">↗</span>
+                            <div class="support-card-copy">
+                                <small>PARCERIAS</small>
+                                <strong>Vamos crescer juntos</strong>
+                                <span>Projetos iniciantes também têm espaço na Casa.</span>
+                            </div>
+                        </article>
+
+                        <div class="support-card" aria-hidden="true">
+                            <a class="support-image-link" href="https://astrepolaris.com/" tabindex="-1">AP</a>
+                            <div class="support-card-copy">
+                                <small>APOIADOR</small>
+                                <strong>Astre Polaris</strong>
+                                <span>Conheça o projeto e acesse seu site.</span>
+                            </div>
                         </div>
 
-                        <div class="stack-item">
-                            <span>ENEAGRAMA</span>
-                            <strong>7w6</strong>
+                        <div class="support-card support-invite" aria-hidden="true">
+                            <span class="support-image-link">+</span>
+                            <div class="support-card-copy">
+                                <small>ESPAÇO ABERTO</small>
+                                <strong>Seu projeto aqui</strong>
+                                <span>Novas iniciativas e apoiadores serão apresentados por aqui.</span>
+                            </div>
                         </div>
 
-                        <div class="stack-item">
-                            <span>SUBTIPO</span>
-                            <strong>sp7</strong>
+                        <div class="support-card support-invite" aria-hidden="true">
+                            <span class="support-image-link">↗</span>
+                            <div class="support-card-copy">
+                                <small>PARCERIAS</small>
+                                <strong>Vamos crescer juntos</strong>
+                                <span>Projetos iniciantes também têm espaço na Casa.</span>
+                            </div>
                         </div>
 
                     </div>
+                </div>
 
-                    <div class="stack-footer">
-                        <span>Ne</span>
-                        <span>Ti</span>
-                        <span>Fe</span>
-                        <span>Si</span>
+                <div class="support-cta">
+                    <div>
+                        <strong>Está começando um projeto?</strong>
+                        <p>Podemos ajudar a divulgar sua iniciativa, aproximar pessoas e criar oportunidades de colaboração.</p>
                     </div>
-
+                    <a href="/comunidade/">CONHECER A COMUNIDADE <span>↗</span></a>
                 </div>
 
             </div>
-
         </section>
 
-        <section class="characters-section">
 
-            <div class="characters-text">
+        <section class="social-section" id="redes">
+            <div class="section-wrap">
 
-                <span class="section-label">
-                    OS HABITANTES
-                </span>
-
-                <h2>
-                    Os personagens
-                    <span>também fazem parte da Casa.</span>
-                </h2>
-
-                <p>
-                    A identidade visual da Casa também é construída
-                    por seus personagens. Eles acompanham o projeto
-                    e dão vida ao universo visual da comunidade.
-                </p>
-
-            </div>
-
-
-            <div class="characters-stage">
-
-                <div class="character-bubble bubble-left">
-                    <span>sp7</span>
-                    energia demais
+                <div class="social-heading">
+                    <span class="section-kicker">A CASA FORA DO SITE</span>
+                    <h2>Continue acompanhando <span>nossas redes.</span></h2>
+                    <p>
+                        Publicações, conteúdos, vídeos e novidades da Casa dos MBTIs também aparecem nas nossas redes sociais.
+                    </p>
                 </div>
 
-                <img
-                    src="img/sp7.png"
-                    alt="Personagem sp7"
-                    class="stage-character stage-sp7"
-                >
+                <div class="social-grid">
 
-                <div class="stage-center">
-                    <div class="house-symbol">
-                        🏠
-                    </div>
+                    <a href="https://www.tiktok.com/@uma_entp" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <span class="social-symbol">♪</span>
+                        <div>
+                            <small>TIKTOK DA CRIADORA</small>
+                            <strong>@uma_entp</strong>
+                            <p>Perfil pessoal da criadora da Casa.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.tiktok.com/@casa.dos.mbtis" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <span class="social-symbol">♪</span>
+                        <div>
+                            <small>TIKTOK OFICIAL</small>
+                            <strong>@casa.dos.mbtis</strong>
+                            <p>Conteúdos e novidades da comunidade.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.instagram.com/casadosmbtis_oficial/" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <span class="social-symbol">◎</span>
+                        <div>
+                            <small>INSTAGRAM OFICIAL</small>
+                            <strong>@casadosmbtis_oficial</strong>
+                            <p>Publicações e atualizações da Casa.</p>
+                        </div>
+                    </a>
+
+                    <a href="https://www.youtube.com/@CASADOSMBTIS" target="_blank" rel="noopener noreferrer" class="social-card">
+                        <span class="social-symbol">▶</span>
+                        <div>
+                            <small>YOUTUBE</small>
+                            <strong>CASADOSMBTIS</strong>
+                            <p>Vídeos e conteúdos em outro formato.</p>
+                        </div>
+                    </a>
+
                 </div>
-
-                <img
-                    src="img/scuei.png"
-                    alt="Personagem SCUEI"
-                    class="stage-character stage-scuai"
-                >
-
-                <div class="character-bubble bubble-right">
-                    <span>SCUEI</span>
-                    e agora?
-                </div>
-
             </div>
-
         </section>
 
-        <section class="final-section">
-
-            <div class="final-cloud cloud-final-one"></div>
-            <div class="final-cloud cloud-final-two"></div>
-
-            <span class="section-label">
-                FICA À VONTADE
-            </span>
-
-            <h2>
-                Pode entrar.
-                <span>A Casa é sua também.</span>
-            </h2>
-
-            <p>
-                Explore os sistemas, leia os conteúdos, faça os quizzes,
-                participe das discussões e descubra novas formas
-                de compreender a si mesmo.
-            </p>
-
-            <a href="#conteudo" class="final-button">
-                EXPLORAR A CASA 🏠
-            </a>
-
-        </section>
-
-        <section class="contatos-section" id="contatos">
-
-            <div class="contatos-heading">
-
-                <span class="section-label">
-                    A CASA FORA DO SITE
-                </span>
-
-                <h2>
-                    Continue acompanhando
-                    <span>a comunidade.</span>
-                </h2>
-
-                <p>
-                    A Casa dos MBTIs também está presente em outras
-                    plataformas. Acompanhe nossas publicações, vídeos,
-                    novidades e conteúdos relacionados ao estudo
-                    das tipologias.
-                </p>
-
-            </div>
-
-            <div class="redes-grid">
-                <a href="https://www.tiktok.com/@uma_entp"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="rede-card">
-
-                    <span class="rede-icon tiktok-icon">♪</span>
-
-                    <div>
-                        <small>TIKTOK DA CRIADORA</small>
-                        <strong>@uma_entp</strong>
-                        <p>Perfil pessoal da criadora da Casa dos MBTIs.</p>
-                    </div>
-
-                    <b>↗</b>
-
-                </a>
-
-                <a href="https://www.tiktok.com/@casa.dos.mbtis"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="rede-card">
-
-                    <span class="rede-icon tiktok-icon">♪</span>
-
-                    <div>
-                        <small>TIKTOK OFICIAL</small>
-                        <strong>@casa.dos.mbtis</strong>
-                        <p>Conteúdos, tipagens e novidades da comunidade.</p>
-                    </div>
-
-                    <b>↗</b>
-
-                </a>
-
-                <a href="https://www.instagram.com/casadosmbtis_oficial/"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="rede-card">
-
-                    <span class="rede-icon">◎</span>
-
-                    <div>
-                        <small>INSTAGRAM OFICIAL</small>
-                        <strong>@casadosmbtis_oficial</strong>
-                        <p>Publicações e novidades da comunidade.</p>
-                    </div>
-
-                    <b>↗</b>
-
-                </a>
-
-                <a href="https://www.youtube.com/@CASADOSMBTIS"
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="rede-card">
-
-                    <span class="rede-icon">▶</span>
-
-                    <div>
-                        <small>YOUTUBE</small>
-                        <strong>CASADOSMBTIS</strong>
-                        <p>Conteúdos em vídeo e presença da Casa.</p>
-                    </div>
-
-                    <b>↗</b>
-
-                </a>
-
-            </div>
-
-        </section>
 
         <footer class="site-footer">
-            <div class="footer-symbol">🏠</div>
-
+            <div class="footer-symbol">C</div>
             <p>
-                <strong>CASA DOS MBTIs</strong>
-                <span>
-                    Um espaço para aprender, explorar e compartilhar.
-                </span>
+                <strong>CASA DOS MBTIs</strong><br>
+                Um espaço para aprender, explorar e compartilhar.
             </p>
-
             <div class="footer-line"></div>
-
-            <small>
-                Criado em <strong>2026</strong> por
-                <strong>Yu (Yasmym)</strong>.
-            </small>
-
+            <small>Criado em 2026 por <strong>YU</strong>.</small>
             <small class="footer-credit">
-                Idealizado e desenvolvido individualmente por Yu,
-                com uma comunidade que cresceu através de seus
-                membros e administradores.
+                Idealizado e desenvolvido inicialmente por YU, com uma comunidade construída por seus membros e administradores.
             </small>
-
         </footer>
 
     </main>
+
     <script src="menu/menu.js"></script>
     <script>
         if ("serviceWorker" in navigator) {
