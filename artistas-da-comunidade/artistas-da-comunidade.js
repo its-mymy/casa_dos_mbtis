@@ -509,78 +509,60 @@ function observarGaleria() {
 
 async function carregarPerfisAutores() {
     const usernames = [
-        ...new Set(
-            PUBLICACOES
-                .map(post =>
-                    normalizarUsername(
-                        post.username
-                    )
-                )
-                .filter(Boolean)
-        )
+        ...new Set(PUBLICACOES
+            .map(post => normalizarUsername(post.username))
+            .filter(Boolean))
+    ];
+    const profileIds = [
+        ...new Set(PUBLICACOES
+            .map(post => post.artistProfileId)
+            .filter(Boolean))
     ];
 
-    if (!usernames.length) {
-        return;
-    }
+    if (!usernames.length && !profileIds.length) return;
 
     try {
-        const {
-            data,
-            error
-        } = await supabaseClient
+        let query = supabaseClient
             .from("profiles")
-            .select(`
-                id,
-                nome,
-                username,
-                cargo,
-                vip,
-                avatar_url,
-                avatar_tipo
-            `)
-            .in(
-                "username",
-                usernames
-            );
+            .select("id,nome,username,cargo,vip,avatar_url,avatar_tipo");
 
-        if (error) {
-            console.error(
-                "Erro ao carregar autores:",
-                error
-            );
+        const filtros = [];
+        if (usernames.length) filtros.push("username.in.(" + usernames.map(v => '"' + v.replace(/"/g, '') + '"').join(",") + ")");
+        if (profileIds.length) filtros.push("id.in.(" + profileIds.join(",") + ")");
 
+        if (filtros.length === 1) {
+            const [campo, valores] = filtros[0].split(".in.(");
+            query = query.in(campo, valores.slice(0, -1).split(",").map(v => v.replace(/^"|"$/g, "")));
+        } else if (filtros.length > 1) {
+            const { data, error } = await query.or(filtros.join(","));
+            if (error) throw error;
+            vincularPerfisAutores(data || []);
+            return;
+        } else {
             return;
         }
 
-        for (const perfil of data || []) {
-            const username =
-                normalizarUsername(
-                    perfil.username
-                );
-
-            PUBLICACOES.forEach(
-                post => {
-                    if (
-                        normalizarUsername(
-                            post.username
-                        ) === username
-                    ) {
-                        post.perfil =
-                            perfil;
-                    }
-                }
-            );
-        }
-
-        renderizarFeed();
-
+        const { data, error } = await query;
+        if (error) throw error;
+        vincularPerfisAutores(data || []);
     } catch (error) {
-        console.error(
-            "Erro nos autores:",
-            error
-        );
+        console.error("Erro nos autores:", error);
     }
+}
+
+function vincularPerfisAutores(perfis) {
+    for (const perfil of perfis) {
+        PUBLICACOES.forEach(post => {
+            if (
+                (post.artistProfileId && post.artistProfileId === perfil.id) ||
+                (normalizarUsername(post.username) &&
+                 normalizarUsername(post.username) === normalizarUsername(perfil.username))
+            ) {
+                post.perfil = perfil;
+            }
+        });
+    }
+    renderizarFeed();
 }
 
 
