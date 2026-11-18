@@ -12,108 +12,7 @@ const supabaseClient = window.supabase.createClient(
    PUBLICAÇÕES
 ========================================================= */
 
-const PUBLICACOES = [
-    {
-        id: "mii-001",
-        autor: "Mii",
-        username: "miizoca",
-        tipo: "arte",
-        titulo: "Criação da Mii",
-        descricao: "Uma das artes compartilhadas pela comunidade.",
-        imagem: "../img/artistas-da-comunidade/mii.jpg",
-        data: "2026-08-20",
-        vencedor: true
-    },
-
-    {
-        id: "emily-001",
-        autor: "Emily Luana",
-        username: "emilyluana",
-        tipo: "arte",
-        titulo: "Criação da Emily Luana",
-        descricao: "Arte da comunidade Casa dos MBTIs.",
-        imagem: "../img/artistas-da-comunidade/EmilyLuana.jpg",
-        data: "2026-08-20",
-        vencedor: true
-    },
-
-    {
-        id: "sam-001",
-        autor: "Sam",
-        username: "sam",
-        tipo: "arte",
-        titulo: "Criação do Sam",
-        descricao: "Uma criação compartilhada no Ateliê.",
-        imagem: "../img/artistas-da-comunidade/Sam.jpg",
-        data: "2026-08-20",
-        vencedor: true
-    },
-
-
-        {
-        id: "jack",
-        autor: "jack",
-        username: "jack",
-        tipo: "arte",
-        titulo: "desgaste",
-        descricao: "Uma criação compartilhada no Ateliê.",
-        imagem: "../img/artistas-da-comunidade/jack-desgaste.jpg",
-        data: "2026-09-30",
-        vencedor: true
-    },
-
-    
-        {
-        id: "Gabriel",
-        autor: "Gabriel",
-        username: "Gabriel",
-        tipo: "arte",
-        titulo: "-",
-        descricao: "Uma criação compartilhada no Ateliê.",
-        imagem: "../img/artistas-da-comunidade/gabriel.jpg",
-        data: "2026-09-30",
-        vencedor: true
-    },
-
-        {
-        id: "Silva",
-        autor: "Silva",
-        username: "Silva",
-        tipo: "arte",
-        titulo: "Nostalgia",
-        descricao: "Uma criação compartilhada no Ateliê.",
-        imagem: "../img/artistas-da-comunidade/silva-nostalgia.jpg",
-        data: "2026-09-30",
-        vencedor: true
-    },
-
-        {
-        id: "Yudi",
-        autor: "Yudi",
-        username: "Yudi",
-        tipo: "poema",
-        titulo: "Procrastinação víciosa",
-        descricao: "Uma criação compartilhada no Ateliê.",
-        imagem: "../img/artistas-da-comunidade/yudi.png",
-        data: "2026-09-30",
-        vencedor: true
-    },
-
-             {
-        id: "David",
-        autor: "David",
-        username: "DavidLgendary",
-        tipo: "poema",
-        titulo: "A tragédia do sexual",
-        descricao: "Uma criação compartilhada no Ateliê.",
-        imagem: "../img/artistas-da-comunidade/david.png",
-        data: "2026-09-30",
-        vencedor: true
-    },
-
-
-   
-];
+let PUBLICACOES = [];
 
 
 /* =========================================================
@@ -538,6 +437,71 @@ function observarAutenticacao() {
     );
 }
 
+
+/* =========================================================
+   PUBLICAÇÕES COMPARTILHADAS
+========================================================= */
+
+async function carregarPublicacoes() {
+    const { data, error } = await supabaseClient
+        .from("community_artworks")
+        .select("id,artist_profile_id,artist_name,artist_username,artwork_type,title,description,image_url,is_winner,created_at")
+        .order("created_at", { ascending: false });
+
+    if (error) {
+        console.error("Erro ao carregar obras:", error);
+        throw error;
+    }
+
+    PUBLICACOES = (data || []).map(item => ({
+        id: item.id,
+        artistProfileId: item.artist_profile_id,
+        autor: item.artist_name,
+        username: item.artist_username || "",
+        tipo: item.artwork_type || "arte",
+        titulo: item.title || "",
+        descricao: item.description || "",
+        imagem: item.image_url,
+        data: item.created_at ? item.created_at.split("T")[0] : "",
+        vencedor: item.is_winner === true
+    }));
+
+    renderizarFeed();
+}
+
+/* =========================================================
+   ATUALIZAÇÃO EM TEMPO REAL
+========================================================= */
+
+let canalGaleria = null;
+
+function observarGaleria() {
+    if (canalGaleria) return;
+
+    canalGaleria = supabaseClient
+        .channel("galeria-artistas-compartilhada")
+        .on("postgres_changes", {
+            event: "*",
+            schema: "public",
+            table: "community_artworks"
+        }, async () => {
+            try {
+                await carregarPublicacoes();
+                await carregarPerfisAutores();
+            } catch (error) {
+                console.error("Erro ao sincronizar a galeria:", error);
+            }
+        })
+        .on("postgres_changes", {
+            event: "*",
+            schema: "public",
+            table: "artistas_curtidas"
+        }, async () => {
+            await carregarCurtidas();
+            renderizarFeed();
+        })
+        .subscribe();
+}
 
 /* =========================================================
    AUTORES
@@ -1823,18 +1787,28 @@ document.addEventListener(
 ========================================================= */
 
 async function iniciarAtelie() {
-    renderizarFeed();
-
     configurarFiltros();
     configurarPoemas();
     configurarZoomImagens();
 
     await carregarSessao();
 
-    await Promise.all([
-        carregarCurtidas(),
-        carregarPerfisAutores()
-    ]);
+    try {
+        await carregarPublicacoes();
+        await Promise.all([
+            carregarCurtidas(),
+            carregarPerfisAutores()
+        ]);
+        observarGaleria();
+    } catch (error) {
+        console.error("Não foi possível iniciar a galeria compartilhada:", error);
+        if (emptyFeed) {
+            emptyFeed.hidden = false;
+            emptyFeed.querySelector("h3")?.replaceChildren(
+                document.createTextNode("Não foi possível carregar a galeria.")
+            );
+        }
+    }
 
     renderizarFeed();
 }
