@@ -7,6 +7,32 @@ const psychosophyTypes = [
 {quadra:"Sexta quadra",types:[["Chekhov","FVEL"],["Duma","FEVL"],["Pascal","LEVF"],["Einstein","LVEF"]]}
 ];
 const aspectNames={F:"Física",V:"Vontade",E:"Emoção",L:"Lógica"};
+const typeDescriptions = {
+  "ELVF": "A combinação parte de uma referência emocional própria e estável. A Lógica criativa permite explorar ideias em diálogo; a Vontade vulnerável torna decisões e autonomia um campo de atenção sensível; a Física inferior recebe menor investimento deliberado.",
+  "EVLF": "A Emoção ocupa a referência mais estável, enquanto a Vontade aparece como espaço flexível de iniciativa e negociação. A Lógica vulnerável pode concentrar preocupação em argumentos e avaliações; a Física inferior tende a ficar em segundo plano.",
+  "FVLE": "A Física estabelece uma referência material própria, e a Vontade criativa permite experimentar caminhos para realizar objetivos. A Lógica vulnerável concentra atenção em coerência e explicações; a Emoção inferior recebe menos investimento consciente.",
+  "FLVE": "A relação com o mundo material tende a seguir uma referência própria, enquanto a Lógica criativa favorece investigação e troca de ideias. A Vontade vulnerável pode tornar escolhas uma área de autocobrança; a Emoção inferior é menos priorizada.",
+  "EFVL": "A Emoção funciona como referência estável e a Física criativa permite responder com flexibilidade a necessidades concretas. A Vontade vulnerável pode sentir pressão em decisões; a Lógica inferior tende a exigir menos atenção.",
+  "EVFL": "A referência emocional própria se combina com uma Vontade criativa, voltada a explorar decisões e objetivos. A Física vulnerável concentra atenção em conforto e recursos; a Lógica inferior recebe menor investimento deliberado.",
+  "LVFE": "A Lógica oferece uma referência estável para ideias e conclusões, enquanto a Vontade criativa explora possibilidades de ação. A Física vulnerável pode gerar preocupação com condições materiais; a Emoção inferior recebe menos atenção.",
+  "LFVE": "A Lógica dominante sustenta critérios próprios, e a Física criativa favorece soluções práticas e flexíveis. A Vontade vulnerável torna autonomia e decisões áreas sensíveis; a Emoção inferior tende a ficar menos presente na atenção deliberada.",
+  "ELFV": "A referência emocional própria se combina com uma Lógica criativa, aberta à exploração de ideias. A Física vulnerável pode concentrar preocupação em conforto e recursos; a Vontade inferior recebe pouco investimento consciente.",
+  "EFLV": "A Emoção dominante preserva uma referência afetiva própria, enquanto a Física criativa permite interação flexível com o ambiente material. A Lógica vulnerável pode gerar autocobrança intelectual; a Vontade inferior tende a não ser prioridade.",
+  "VFLE": "A Vontade estabelece uma direção própria, e a Física criativa permite experimentar maneiras de atender necessidades concretas. A Lógica vulnerável pode sentir pressão diante de questionamentos; a Emoção inferior recebe menor atenção.",
+  "VLFE": "A direção pessoal da Vontade se combina com uma Lógica criativa, aberta a desenvolver e compartilhar ideias. A Física vulnerável concentra atenção em recursos e conforto; a Emoção inferior tende a receber pouco investimento.",
+  "LEFV": "A Lógica forma uma referência própria para conhecimento, enquanto a Emoção criativa favorece expressão e troca afetiva. A Física vulnerável pode gerar preocupação com necessidades materiais; a Vontade inferior recebe menos atenção.",
+  "LFEV": "A referência lógica estável se combina com uma Física criativa e adaptável. A Emoção vulnerável pode tornar expressão e avaliação afetiva áreas sensíveis; a Vontade inferior tende a não exigir investimento constante.",
+  "VFEL": "A Vontade dominante sustenta objetivos próprios e a Física criativa permite buscar soluções materiais flexíveis. A Emoção vulnerável pode concentrar preocupação na expressão afetiva; a Lógica inferior recebe menor investimento.",
+  "VEFL": "A Vontade oferece uma direção pessoal, enquanto a Emoção criativa favorece expressão e interação. A Física vulnerável pode gerar autocobrança sobre conforto e recursos; a Lógica inferior tende a permanecer em segundo plano.",
+  "FLEV": "A Física estabelece uma referência própria para o mundo material, e a Lógica criativa favorece investigação e troca de conhecimentos. A Emoção vulnerável pode tornar manifestações afetivas sensíveis; a Vontade inferior recebe menos atenção.",
+  "FELV": "A referência física estável se combina com uma Emoção criativa, voltada à expressão e à troca de sentimentos. A Lógica vulnerável pode gerar preocupação com argumentos e explicações; a Vontade inferior recebe menor investimento.",
+  "VELF": "A Vontade estabelece uma direção própria e a Emoção criativa favorece a expressão e a interação. A Lógica vulnerável pode tornar opiniões e avaliações sensíveis; a Física inferior tende a receber pouca atenção deliberada.",
+  "VLEF": "A Vontade dominante sustenta decisões e objetivos, enquanto a Lógica criativa permite explorar ideias e compartilhar conclusões. A Emoção vulnerável pode sentir pressão na expressão afetiva; a Física inferior recebe menor investimento.",
+  "FVEL": "A Física dominante estabelece uma referência própria para conforto e recursos, enquanto a Vontade criativa explora caminhos para realizar objetivos. A Emoção vulnerável pode concentrar preocupação em sentimentos; a Lógica inferior recebe pouca atenção.",
+  "FEVL": "A referência material própria se combina com uma Emoção criativa e expressiva. A Vontade vulnerável pode tornar decisões e autonomia áreas sensíveis; a Lógica inferior tende a receber menor investimento consciente.",
+  "LEVF": "A Lógica dominante sustenta critérios próprios, enquanto a Emoção criativa favorece compartilhar experiências. A Vontade vulnerável pode gerar autocobrança em decisões; a Física inferior tende a não ser prioridade.",
+  "LVEF": "A Lógica oferece uma referência própria para conhecimento, e a Vontade criativa permite explorar metas e decisões. A Emoção vulnerável pode tornar expressão afetiva uma área sensível; a Física inferior recebe menor investimento deliberado."
+};
 const positionNames=["Dominante","Criativa","Vulnerável","Inferior"];
 const positionSummaries=[
 "tende a preservar o próprio estado do aspecto com autonomia, tratando-o como algo relativamente natural e estável.",
@@ -48,7 +74,7 @@ function renderTypes(query=""){
    button.append(codeEl,nameEl,arrow);
    const detail=document.createElement("div");detail.className="type-detail";detail.hidden=true;
    const intro=document.createElement("p");
-   intro.textContent=name+" ("+code+") organiza os quatro aspectos nesta sequência. A leitura abaixo descreve a estrutura do código; não é uma descrição fechada de personalidade nem uma avaliação de capacidades.";
+   intro.textContent=typeDescriptions[code] || (name+" ("+code+") organiza os quatro aspectos nesta sequência.");
    const list=document.createElement("div");list.className="type-order";
    [...code].forEach((letter,i)=>{const tag=document.createElement("span");tag.textContent=(i+1)+"ª "+letter+" — "+aspectNames[letter];list.append(tag)});
    const explanation=document.createElement("p");
