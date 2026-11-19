@@ -1,5 +1,20 @@
 :root{color-scheme:dark;--psy-bg:#0c0812;--psy-panel:#15101e;--psy-panel-2:#1b1426;--psy-line:rgba(218,196,255,.13);--psy-text:#f4effb;--psy-muted:#b5a9c4;--psy-purple:#c6a2ff;--psy-pink:#e6a6d8;--psy-width:1160px}
 html{scroll-behavior:smooth;scroll-padding-top:92px}
+
+/* Animação do símbolo FVEL no destaque */
+.hero-art .orbit--one{animation:psy-orbit-spin 18s linear infinite;transform-origin:center}
+.hero-art .orbit--two{animation:psy-orbit-spin-reverse 25s linear infinite;transform-origin:center}
+.hero-art .hero-core{animation:psy-core-float 4.8s ease-in-out infinite;will-change:transform}
+.hero-art .hero-core span{animation:psy-letters-float 3.2s ease-in-out infinite;will-change:transform}
+.hero-art .hero-core span:nth-child(2){animation-delay:-.8s}
+.hero-art .hero-core span:nth-child(3){animation-delay:-1.6s}
+.hero-art .hero-core span:nth-child(4){animation-delay:-2.4s}
+@keyframes psy-orbit-spin{from{transform:rotate(-24deg)}to{transform:rotate(336deg)}}
+@keyframes psy-orbit-spin-reverse{from{transform:rotate(48deg)}to{transform:rotate(-312deg)}}
+@keyframes psy-core-float{0%,100%{transform:translateY(0) rotate(-9deg)}50%{transform:translateY(-12px) rotate(-5deg)}}
+@keyframes psy-letters-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@media(prefers-reduced-motion:reduce){.hero-art .orbit--one,.hero-art .orbit--two,.hero-art .hero-core,.hero-art .hero-core span{animation:none!important}}
+
 body{background:var(--psy-bg);color:var(--psy-text);font-family:"DM Sans",sans-serif}
 .psy-page{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 14% 8%,rgba(116,64,171,.17),transparent 31%),radial-gradient(ellipse at 88% 34%,rgba(183,93,157,.08),transparent 29%),var(--psy-bg);min-height:100vh}
 .psy-page:before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;opacity:.22;background-image:radial-gradient(#d8b9ff 1px,transparent 1px);background-size:76px 76px;mask-image:linear-gradient(to bottom,black,transparent 65%)}
