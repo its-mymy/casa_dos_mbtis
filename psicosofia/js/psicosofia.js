@@ -8,37 +8,37 @@ const psychosophyTypes = [
 ];
 const aspectNames={F:"Física",V:"Vontade",E:"Emoção",L:"Lógica"};
 const typeDescriptions = {
-  "ELVF": "A combinação parte de uma referência emocional própria e estável. A Lógica criativa permite explorar ideias em diálogo; a Vontade vulnerável torna decisões e autonomia um campo de atenção sensível; a Física inferior recebe menor investimento deliberado.",
-  "EVLF": "A Emoção ocupa a referência mais estável, enquanto a Vontade aparece como espaço flexível de iniciativa e negociação. A Lógica vulnerável pode concentrar preocupação em argumentos e avaliações; a Física inferior tende a ficar em segundo plano.",
-  "FVLE": "A Física estabelece uma referência material própria, e a Vontade criativa permite experimentar caminhos para realizar objetivos. A Lógica vulnerável concentra atenção em coerência e explicações; a Emoção inferior recebe menos investimento consciente.",
-  "FLVE": "A relação com o mundo material tende a seguir uma referência própria, enquanto a Lógica criativa favorece investigação e troca de ideias. A Vontade vulnerável pode tornar escolhas uma área de autocobrança; a Emoção inferior é menos priorizada.",
-  "EFVL": "A Emoção funciona como referência estável e a Física criativa permite responder com flexibilidade a necessidades concretas. A Vontade vulnerável pode sentir pressão em decisões; a Lógica inferior tende a exigir menos atenção.",
-  "EVFL": "A referência emocional própria se combina com uma Vontade criativa, voltada a explorar decisões e objetivos. A Física vulnerável concentra atenção em conforto e recursos; a Lógica inferior recebe menor investimento deliberado.",
-  "LVFE": "A Lógica oferece uma referência estável para ideias e conclusões, enquanto a Vontade criativa explora possibilidades de ação. A Física vulnerável pode gerar preocupação com condições materiais; a Emoção inferior recebe menos atenção.",
-  "LFVE": "A Lógica dominante sustenta critérios próprios, e a Física criativa favorece soluções práticas e flexíveis. A Vontade vulnerável torna autonomia e decisões áreas sensíveis; a Emoção inferior tende a ficar menos presente na atenção deliberada.",
-  "ELFV": "A referência emocional própria se combina com uma Lógica criativa, aberta à exploração de ideias. A Física vulnerável pode concentrar preocupação em conforto e recursos; a Vontade inferior recebe pouco investimento consciente.",
-  "EFLV": "A Emoção dominante preserva uma referência afetiva própria, enquanto a Física criativa permite interação flexível com o ambiente material. A Lógica vulnerável pode gerar autocobrança intelectual; a Vontade inferior tende a não ser prioridade.",
-  "VFLE": "A Vontade estabelece uma direção própria, e a Física criativa permite experimentar maneiras de atender necessidades concretas. A Lógica vulnerável pode sentir pressão diante de questionamentos; a Emoção inferior recebe menor atenção.",
-  "VLFE": "A direção pessoal da Vontade se combina com uma Lógica criativa, aberta a desenvolver e compartilhar ideias. A Física vulnerável concentra atenção em recursos e conforto; a Emoção inferior tende a receber pouco investimento.",
-  "LEFV": "A Lógica forma uma referência própria para conhecimento, enquanto a Emoção criativa favorece expressão e troca afetiva. A Física vulnerável pode gerar preocupação com necessidades materiais; a Vontade inferior recebe menos atenção.",
-  "LFEV": "A referência lógica estável se combina com uma Física criativa e adaptável. A Emoção vulnerável pode tornar expressão e avaliação afetiva áreas sensíveis; a Vontade inferior tende a não exigir investimento constante.",
-  "VFEL": "A Vontade dominante sustenta objetivos próprios e a Física criativa permite buscar soluções materiais flexíveis. A Emoção vulnerável pode concentrar preocupação na expressão afetiva; a Lógica inferior recebe menor investimento.",
-  "VEFL": "A Vontade oferece uma direção pessoal, enquanto a Emoção criativa favorece expressão e interação. A Física vulnerável pode gerar autocobrança sobre conforto e recursos; a Lógica inferior tende a permanecer em segundo plano.",
-  "FLEV": "A Física estabelece uma referência própria para o mundo material, e a Lógica criativa favorece investigação e troca de conhecimentos. A Emoção vulnerável pode tornar manifestações afetivas sensíveis; a Vontade inferior recebe menos atenção.",
-  "FELV": "A referência física estável se combina com uma Emoção criativa, voltada à expressão e à troca de sentimentos. A Lógica vulnerável pode gerar preocupação com argumentos e explicações; a Vontade inferior recebe menor investimento.",
-  "VELF": "A Vontade estabelece uma direção própria e a Emoção criativa favorece a expressão e a interação. A Lógica vulnerável pode tornar opiniões e avaliações sensíveis; a Física inferior tende a receber pouca atenção deliberada.",
-  "VLEF": "A Vontade dominante sustenta decisões e objetivos, enquanto a Lógica criativa permite explorar ideias e compartilhar conclusões. A Emoção vulnerável pode sentir pressão na expressão afetiva; a Física inferior recebe menor investimento.",
-  "FVEL": "A Física dominante estabelece uma referência própria para conforto e recursos, enquanto a Vontade criativa explora caminhos para realizar objetivos. A Emoção vulnerável pode concentrar preocupação em sentimentos; a Lógica inferior recebe pouca atenção.",
-  "FEVL": "A referência material própria se combina com uma Emoção criativa e expressiva. A Vontade vulnerável pode tornar decisões e autonomia áreas sensíveis; a Lógica inferior tende a receber menor investimento consciente.",
-  "LEVF": "A Lógica dominante sustenta critérios próprios, enquanto a Emoção criativa favorece compartilhar experiências. A Vontade vulnerável pode gerar autocobrança em decisões; a Física inferior tende a não ser prioridade.",
-  "LVEF": "A Lógica oferece uma referência própria para conhecimento, e a Vontade criativa permite explorar metas e decisões. A Emoção vulnerável pode tornar expressão afetiva uma área sensível; a Física inferior recebe menor investimento deliberado."
+  "ELVF": "A Emoção é uma referência importante e estável. A Lógica criativa ajuda a trocar ideias; a Vontade vulnerável pode trazer insegurança na hora de decidir; e a Física costuma ficar em segundo plano.",
+  "EVLF": "A pessoa tende a confiar na própria forma de sentir e expressar emoções. Usa a Vontade com flexibilidade, mas pode ficar mais sensível quando precisa lidar com argumentos e explicações. A parte física recebe menos atenção.",
+  "FVLE": "A pessoa costuma ter uma relação firme com conforto e assuntos materiais. A Vontade criativa ajuda a encontrar caminhos para alcançar objetivos. Já explicações e demonstrações emocionais podem gerar mais preocupação ou receber menos atenção.",
+  "FLVE": "A Física é uma referência estável, enquanto a Lógica criativa abre espaço para pesquisar e conversar sobre ideias. Decisões podem ser um ponto delicado, e a Emoção tende a ficar menos em foco.",
+  "EFVL": "A pessoa tende a confiar na própria maneira de sentir e se expressar. A Física criativa ajuda a se adaptar ao ambiente; decisões podem gerar insegurança, enquanto a Lógica costuma receber menos atenção.",
+  "EVFL": "A Emoção é uma referência forte, e a Vontade aparece de forma flexível na busca por objetivos. Conforto e recursos podem ser motivo de preocupação, enquanto a Lógica fica mais em segundo plano.",
+  "LVFE": "A pessoa confia bastante na própria maneira de pensar. A Vontade criativa ajuda a experimentar caminhos e tomar iniciativa. Assuntos materiais podem gerar preocupação, e a Emoção recebe menos atenção.",
+  "LFVE": "A Lógica é uma referência estável, e a Física criativa ajuda a encontrar soluções práticas. Decisões e autonomia podem ser pontos sensíveis; a Emoção costuma ficar menos em foco.",
+  "ELFV": "A pessoa tem uma forma própria e estável de lidar com emoções e gosta de explorar ideias. Conforto e recursos podem gerar preocupação, enquanto a Vontade tende a não ser prioridade.",
+  "EFLV": "A Emoção é uma referência forte, e a Física criativa ajuda a lidar com situações práticas de vários jeitos. A pessoa pode se cobrar bastante em assuntos de lógica, enquanto a Vontade fica em segundo plano.",
+  "VFLE": "A pessoa costuma ter objetivos e decisões bem definidos. A Física criativa ajuda a encontrar soluções práticas. Questionamentos podem gerar tensão, e a expressão emocional tende a receber menos atenção.",
+  "VLFE": "A Vontade dá direção aos objetivos, enquanto a Lógica criativa ajuda a explorar e compartilhar ideias. Conforto e recursos podem ser pontos de preocupação; a Emoção costuma ficar menos em foco.",
+  "LEFV": "A pessoa confia na própria maneira de pensar e usa a Emoção com criatividade para se expressar e se conectar. Assuntos materiais podem gerar preocupação, enquanto a Vontade recebe menos atenção.",
+  "LFEV": "A Lógica é uma referência estável, e a Física criativa ajuda a encontrar soluções práticas. A pessoa pode ficar mais sensível a avaliações emocionais; a Vontade tende a não ser prioridade.",
+  "VFEL": "A Vontade dá uma direção firme, e a Física criativa ajuda a encontrar formas de alcançar objetivos. Expressar sentimentos pode ser mais delicado, enquanto a Lógica fica em segundo plano.",
+  "VEFL": "A pessoa costuma saber o que quer e usa a Emoção com flexibilidade para se expressar e interagir. Conforto e recursos podem gerar preocupação; a Lógica recebe menos atenção.",
+  "FLEV": "A Física é uma referência estável, e a Lógica criativa ajuda a pesquisar e trocar conhecimentos. A expressão emocional pode ser um ponto sensível, enquanto a Vontade fica menos em foco.",
+  "FELV": "A pessoa tende a confiar na própria relação com conforto e assuntos materiais. A Emoção criativa ajuda a expressar e compartilhar sentimentos. Debates podem gerar tensão, e a Vontade fica em segundo plano.",
+  "VELF": "A Vontade dá direção aos objetivos, e a Emoção criativa facilita a expressão e a troca com outras pessoas. Opiniões e argumentos podem ser pontos sensíveis; a Física recebe menos atenção.",
+  "VLEF": "A pessoa costuma ter objetivos claros e usa a Lógica com flexibilidade para explorar ideias. Expressar sentimentos pode ser mais delicado, enquanto a Física fica em segundo plano.",
+  "FVEL": "A Física é uma referência estável, e a Vontade criativa ajuda a encontrar caminhos para realizar objetivos. A pessoa pode ficar mais sensível em assuntos emocionais, enquanto a Lógica recebe menos atenção.",
+  "FEVL": "A pessoa confia na própria relação com o mundo material e usa a Emoção com criatividade para se expressar. Decisões podem gerar insegurança, e a Lógica tende a ficar em segundo plano.",
+  "LEVF": "A Lógica é uma referência estável, e a Emoção criativa ajuda a compartilhar experiências e sentimentos. A pessoa pode se cobrar ao tomar decisões, enquanto a Física recebe menos atenção.",
+  "LVEF": "A pessoa confia na própria maneira de pensar e usa a Vontade com criatividade para explorar metas e decisões. Expressar sentimentos pode ser um ponto sensível, e a Física tende a ficar em segundo plano."
 };
 const positionNames=["Dominante","Criativa","Vulnerável","Inferior"];
 const positionSummaries=[
-"tende a preservar o próprio estado do aspecto com autonomia, tratando-o como algo relativamente natural e estável.",
-"costuma explorar o aspecto de forma ativa e flexível, com interesse em interagir e estimular o estado de outras pessoas.",
-"mantém atenção consciente ao aspecto, mas pode sentir tensão diante da influência externa, avaliações ou resultados indesejados.",
-"investe menos atenção deliberada no aspecto e tende a responder às demandas e referências oferecidas pelo ambiente."
+"costuma confiar na própria maneira de lidar com esse assunto e prefere manter as coisas estáveis.",
+"gosta de explorar esse assunto, testar possibilidades e trocar experiências com outras pessoas.",
+"presta bastante atenção nesse assunto, mas pode ficar insegura com críticas, opiniões alheias ou medo de errar.",
+"não costuma gastar tanta energia com esse assunto e muitas vezes prefere lidar com ele de forma simples, conforme a situação pede."
 ];
 const root=document.getElementById("type-groups");
 const search=document.getElementById("type-search");
