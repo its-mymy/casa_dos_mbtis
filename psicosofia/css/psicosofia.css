@@ -59,3 +59,63 @@ body{background:var(--psy-bg);color:var(--psy-text);font-family:"DM Sans",sans-s
 @media(max-width:800px){.psy-hero{grid-template-columns:1fr;min-height:0;padding:70px 0 85px}.psy-hero__copy{max-width:100%}.hero-art{height:280px;max-width:430px;width:100%;margin:12px auto 0}.hero-core{width:150px;height:150px}.hero-core span{font-size:30px}.orbit--one{width:270px;height:180px}.orbit--two{width:220px;height:280px}.hero-note{right:8%}.section-heading{display:block}.section-intro{margin-top:17px;max-width:600px}.prose-grid{grid-template-columns:1fr;gap:25px}.type-explainer{grid-template-columns:1fr}.glossary-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.psy-toc{gap:21px}.content-section{padding:75px 0}}
 @media(max-width:560px){.psy-hero,.content-section,.source-panel,.psy-footer,.psy-toc{width:calc(100% - 32px)}.psy-hero{padding-top:55px}.psy-hero h1{font-size:62px}.hero-lead{font-size:19px}.hero-text{font-size:14px}.hero-index{font-size:7px}.hero-index span:nth-child(2){display:none}.hero-art{height:235px}.psy-toc{top:65px;gap:18px}.psy-toc a{font-size:11px}.content-section{padding:62px 0}.section-heading h2{font-size:34px}.aspect-grid,.type-groups{grid-template-columns:1fr}.aspect-card{padding:21px}.function-card{padding:20px}.function-head{grid-template-columns:40px 1fr}.function-index{font-size:25px}.function-word{grid-column:2}.function-subtitle{font-size:7px}.function-head h3{font-size:17px}.property-row{grid-template-columns:38px 1fr;gap:13px}.property-number{width:32px;height:32px}.property-row h3{font-size:18px}.type-tools{align-items:flex-start;flex-direction:column}.type-search{width:100%}.type-detail{padding-left:16px}.glossary-grid{grid-template-columns:1fr}.source-panel{padding:24px;align-items:flex-start}.source-mark{display:none}.psy-footer{flex-wrap:wrap;font-size:8px}.psy-footer span:nth-child(2){display:none}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important;animation:none!important}}
+
+
+/* FVEL — animação visível do símbolo principal */
+.hero-art .orbit{
+  border-color:rgba(203,165,255,.32);
+  transform-origin:50% 50%;
+}
+.hero-art .orbit--one{
+  animation:fvel-orbit-a 12s linear infinite!important;
+}
+.hero-art .orbit--two{
+  animation:fvel-orbit-b 17s linear infinite!important;
+}
+.hero-art .orbit--one:after,
+.hero-art .orbit--two:after{
+  content:"";
+  position:absolute;
+  width:9px;height:9px;border-radius:50%;
+  top:50%;left:50%;
+  background:#f3c5ff;
+  box-shadow:0 0 9px 3px #d8a7ff,0 0 20px 6px #a66de0;
+  transform:translate(-50%,-50%) translateY(-115px);
+}
+.hero-art .orbit--two:after{
+  width:7px;height:7px;
+  background:#ffd0ed;
+  box-shadow:0 0 9px 3px #e6a6d8,0 0 18px 5px #c77ebc;
+  transform:translate(-50%,-50%) translateY(-145px);
+}
+.hero-art .hero-core{
+  animation:fvel-bubble 4s ease-in-out infinite!important;
+  border-color:#d6b3ff99;
+  box-shadow:0 0 28px #a66de055,0 0 75px #8b5db755,inset 0 0 35px #bd9bff28;
+}
+.hero-art .hero-core:before{
+  z-index:2!important;
+  inset:-5px!important;
+  padding:3px!important;
+  background:conic-gradient(from 0deg,#e6a6d8,#a879e8,#f4d4ff,#8d67d5,#e6a6d8)!important;
+  animation:fvel-ring 5s linear infinite!important;
+  opacity:.95;
+}
+.hero-art .hero-core span{
+  position:relative;
+  z-index:3;
+  display:inline-block;
+  animation:fvel-letters 2.7s ease-in-out infinite!important;
+}
+.hero-art .hero-core span:nth-child(2){animation-delay:-.65s!important}
+.hero-art .hero-core span:nth-child(3){animation-delay:-1.3s!important}
+.hero-art .hero-core span:nth-child(4){animation-delay:-1.95s!important}
+@keyframes fvel-orbit-a{from{transform:rotate(-24deg)}to{transform:rotate(336deg)}}
+@keyframes fvel-orbit-b{from{transform:rotate(48deg)}to{transform:rotate(408deg)}}
+@keyframes fvel-ring{to{transform:rotate(360deg)}}
+@keyframes fvel-bubble{0%,100%{translate:0 0}50%{translate:0 -13px}}
+@keyframes fvel-letters{0%,100%{translate:0 0}50%{translate:0 -7px}}
+@media(prefers-reduced-motion:reduce){
+ .hero-art .orbit--one,.hero-art .orbit--two,.hero-art .hero-core,
+ .hero-art .hero-core:before,.hero-art .hero-core span{animation:none!important}
+}
