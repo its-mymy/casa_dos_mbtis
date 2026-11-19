@@ -147,3 +147,18 @@ body{background:var(--psy-bg);color:var(--psy-text);font-family:"DM Sans",sans-s
   50%{filter:brightness(1.8);box-shadow:0 0 12px 5px #f3c5ff,0 0 28px 9px #a66de0}
 }
 /* Animação solicitada explicitamente: mantém o movimento mesmo com redução de movimento do sistema. */
+
+/* O destaque FVEL continua animado mesmo se o navegador pedir redução de movimento. */
+@media(prefers-reduced-motion:reduce){
+ .hero-art .orbit--one{animation:fvel-orbit-a 9s linear infinite!important}
+ .hero-art .orbit--two{animation:fvel-orbit-b 13s linear infinite!important}
+ .hero-art .orbit--one:after{animation:fvel-dot-glow 1.8s ease-in-out infinite!important}
+ .hero-art .orbit--two:after{animation:fvel-dot-glow 2.2s ease-in-out infinite reverse!important}
+ .hero-art .hero-core{animation:fvel-bubble 3.8s ease-in-out infinite!important}
+ .hero-art .hero-core:before{animation:fvel-ring 5s linear infinite!important}
+ .hero-art .hero-core:after{animation:fvel-shine 5s ease-in-out infinite!important}
+ .hero-art .hero-core span{animation:fvel-letters 2.4s ease-in-out infinite!important}
+ .hero-art .hero-core span:nth-child(2){animation-delay:-.6s!important}
+ .hero-art .hero-core span:nth-child(3){animation-delay:-1.2s!important}
+ .hero-art .hero-core span:nth-child(4){animation-delay:-1.8s!important}
+}
