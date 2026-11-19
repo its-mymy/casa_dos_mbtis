@@ -115,7 +115,35 @@ body{background:var(--psy-bg);color:var(--psy-text);font-family:"DM Sans",sans-s
 @keyframes fvel-ring{to{transform:rotate(360deg)}}
 @keyframes fvel-bubble{0%,100%{translate:0 0}50%{translate:0 -13px}}
 @keyframes fvel-letters{0%,100%{translate:0 0}50%{translate:0 -7px}}
-@media(prefers-reduced-motion:reduce){
- .hero-art .orbit--one,.hero-art .orbit--two,.hero-art .hero-core,
- .hero-art .hero-core:before,.hero-art .hero-core span{animation:none!important}
+
+/* Animação principal FVEL: órbitas, brilho da esfera e letras */
+.hero-art .orbit--one{animation:fvel-orbit-a 9s linear infinite!important}
+.hero-art .orbit--two{animation:fvel-orbit-b 13s linear infinite!important}
+.hero-art .orbit--one:after{animation:fvel-dot-glow 1.8s ease-in-out infinite}
+.hero-art .orbit--two:after{animation:fvel-dot-glow 2.2s ease-in-out infinite reverse}
+.hero-art .hero-core{
+  animation:fvel-bubble 3.8s ease-in-out infinite!important;
+  overflow:visible;
 }
+.hero-art .hero-core:after{
+  content:"";
+  position:absolute;
+  inset:2px;
+  border-radius:50%;
+  pointer-events:none;
+  z-index:1;
+  background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.10) 43%,rgba(220,177,255,.18) 50%,transparent 66%);
+  background-size:230% 230%;
+  animation:fvel-shine 5s ease-in-out infinite;
+}
+.hero-art .hero-core:before{z-index:2!important}
+.hero-art .hero-core span{z-index:3;animation:fvel-letters 2.4s ease-in-out infinite!important}
+@keyframes fvel-shine{
+  0%,100%{background-position:120% 50%;opacity:.35}
+  50%{background-position:-20% 50%;opacity:1}
+}
+@keyframes fvel-dot-glow{
+  0%,100%{filter:brightness(.8);box-shadow:0 0 7px 2px #d8a7ff,0 0 14px 4px #a66de0}
+  50%{filter:brightness(1.8);box-shadow:0 0 12px 5px #f3c5ff,0 0 28px 9px #a66de0}
+}
+/* Animação solicitada explicitamente: mantém o movimento mesmo com redução de movimento do sistema. */
