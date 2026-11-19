@@ -4,16 +4,18 @@ html{scroll-behavior:smooth;scroll-padding-top:92px}
 /* Animação do símbolo FVEL no destaque */
 .hero-art .orbit--one{animation:psy-orbit-spin 18s linear infinite;transform-origin:center}
 .hero-art .orbit--two{animation:psy-orbit-spin-reverse 25s linear infinite;transform-origin:center}
-.hero-art .hero-core{animation:psy-core-float 4.8s ease-in-out infinite;will-change:transform}
+.hero-art .hero-core{position:relative;isolation:isolate;animation:psy-core-float 4.8s ease-in-out infinite;will-change:transform}
+.hero-art .hero-core:before{content:"";position:absolute;inset:-3px;border-radius:50%;padding:2px;background:conic-gradient(from 0deg,transparent 0 58%,#b99ae5 72%,#f0b8df 82%,transparent 94%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:psy-bubble-spin 7s linear infinite;pointer-events:none;z-index:-1}
 .hero-art .hero-core span{animation:psy-letters-float 3.2s ease-in-out infinite;will-change:transform}
 .hero-art .hero-core span:nth-child(2){animation-delay:-.8s}
 .hero-art .hero-core span:nth-child(3){animation-delay:-1.6s}
 .hero-art .hero-core span:nth-child(4){animation-delay:-2.4s}
 @keyframes psy-orbit-spin{from{transform:rotate(-24deg)}to{transform:rotate(336deg)}}
 @keyframes psy-orbit-spin-reverse{from{transform:rotate(48deg)}to{transform:rotate(-312deg)}}
+@keyframes psy-bubble-spin{to{transform:rotate(360deg)}}
 @keyframes psy-core-float{0%,100%{transform:translateY(0) rotate(-9deg)}50%{transform:translateY(-12px) rotate(-5deg)}}
 @keyframes psy-letters-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@media(prefers-reduced-motion:reduce){.hero-art .orbit--one,.hero-art .orbit--two,.hero-art .hero-core,.hero-art .hero-core span{animation:none!important}}
+@media(prefers-reduced-motion:reduce){.hero-art .orbit--one,.hero-art .orbit--two,.hero-art .hero-core,.hero-art .hero-core:before,.hero-art .hero-core span{animation:none!important}}
 
 body{background:var(--psy-bg);color:var(--psy-text);font-family:"DM Sans",sans-serif}
 .psy-page{position:relative;isolation:isolate;overflow:hidden;background:radial-gradient(ellipse at 14% 8%,rgba(116,64,171,.17),transparent 31%),radial-gradient(ellipse at 88% 34%,rgba(183,93,157,.08),transparent 29%),var(--psy-bg);min-height:100vh}
