@@ -13,6 +13,11 @@
 <meta name="theme-color" content="#111111">
 
     <link rel="stylesheet" href="feed.css">
+
+<style>
+.chat-app-only{display:inline-flex;align-items:center;gap:8px;opacity:.78;cursor:default;pointer-events:none}
+.member-menu-navigation .chat-app-only{width:100%;box-sizing:border-box}
+</style>
 </head>
 
 <body>
@@ -45,7 +50,7 @@
   
 <nav class="desktop-nav">
     <a href="./" class="nav-button ativo">📰 Feed</a>
-    <a href="./chat-geral/" class="nav-button">💬 Chat Geral</a>
+    <span class="nav-button chat-app-only" aria-label="Chat Geral disponível somente no aplicativo">🔒 Chat Geral · somente no APK</span>
     <a href="./membros/" class="nav-button">👥 Membros</a>
     <a href="./perfil/" class="nav-button">👤 Meu perfil</a>
 </nav>
@@ -82,7 +87,7 @@
  
 <nav class="mobile-sections">
     <a href="./" class="section-tab ativo">📰 Feed</a>
-    <a href="./chat-geral/" class="section-tab">💬 Chat</a>
+    <span class="section-tab chat-app-only" aria-label="Chat disponível somente no aplicativo">🔒 Chat · somente no APK</span>
     <a href="./membros/" class="section-tab">👥 Membros</a>
     <a href="./perfil/" class="section-tab">👤 Perfil</a>
 </nav>
@@ -280,11 +285,10 @@
         </a>
 
         
-<a href="../FEED/chat-geral/" class="member-menu-link">
-    <span class="menu-link-icon">💬</span>
-    <span>Chat Geral</span>
-    <b>›</b>
-</a>
+<div class="member-menu-link chat-app-only" role="note" aria-label="Chat Geral disponível somente no aplicativo">
+    <span class="menu-link-icon">🔒</span>
+    <span>Chat Geral · somente no APK</span>
+</div>
 
 
         
