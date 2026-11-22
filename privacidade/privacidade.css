@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root { --privacy-bg:#0b0612; --privacy-text:#f8f3fb; --privacy-muted:#bfb1ca; --privacy-purple:#c18aff; --privacy-pink:#f08bdc; --privacy-line:rgba(220,145,255,.16); }
+* { box-sizing:border-box; }
+html { scroll-behavior:smooth; scroll-padding-top:100px; }
+body { margin:0; min-height:100vh; color:var(--privacy-text); background:radial-gradient(circle at 12% 12%,rgba(156,68,220,.16),transparent 28%),radial-gradient(circle at 88% 36%,rgba(239,99,212,.10),transparent 30%),var(--privacy-bg); font-family:"Outfit",sans-serif; }
+.privacy-page { width:min(980px,calc(100% - 40px)); margin:0 auto; padding:72px 0 35px; }
+.privacy-hero { padding:44px 0 38px; border-bottom:1px solid var(--privacy-line); }
+.eyebrow { color:var(--privacy-pink); font-size:11px; font-weight:800; letter-spacing:2.4px; }
+.privacy-hero h1 { margin:18px 0 12px; font-family:"Baloo 2",sans-serif; font-size:clamp(42px,7vw,72px); line-height:1; letter-spacing:-1.5px; }
+.privacy-hero h1 span { color:var(--privacy-purple); }
+.privacy-hero p { max-width:720px; color:var(--privacy-muted); font-size:16px; line-height:1.8; }
+.updated { display:inline-block; margin-top:14px; padding:8px 12px; border:1px solid var(--privacy-line); border-radius:30px; color:#d9cbe3; background:rgba(255,255,255,.035); font-size:12px; }
+.privacy-toc { display:flex; flex-wrap:wrap; gap:9px; padding:25px 0 32px; border-bottom:1px solid var(--privacy-line); }
+.privacy-toc a { padding:8px 12px; border:1px solid rgba(255,255,255,.08); border-radius:30px; color:#d9cbe3; background:rgba(255,255,255,.035); font-size:12px; transition:.2s; }
+.privacy-toc a:hover { border-color:rgba(193,138,255,.5); color:#fff; }
+.privacy-content section { position:relative; padding:36px 0; border-bottom:1px solid var(--privacy-line); scroll-margin-top:95px; }
+.section-number { display:inline-block; margin-bottom:8px; color:var(--privacy-pink); font-size:11px; font-weight:800; letter-spacing:2px; }
+.privacy-content h2 { margin:0 0 15px; font-family:"Baloo 2",sans-serif; font-size:clamp(24px,4vw,32px); line-height:1.15; }
+.privacy-content p,.privacy-content li { color:var(--privacy-muted); font-size:15px; line-height:1.85; }
+.privacy-content p + p { margin-top:12px; }
+.privacy-content ul { display:grid; gap:10px; padding-left:22px; }
+.privacy-content li::marker { color:var(--privacy-pink); }
+.privacy-content strong { color:#f4eafa; font-weight:600; }
+.privacy-content a { color:#ddaaff; text-decoration:underline; text-decoration-color:rgba(221,170,255,.4); text-underline-offset:3px; }
+.privacy-content a:hover { color:#ffc0ec; }
+.privacy-contact { margin-top:8px; padding:30px!important; border:1px solid rgba(193,138,255,.25)!important; border-radius:20px; background:linear-gradient(120deg,rgba(125,55,175,.15),rgba(239,99,212,.07)); }
+.contact-email { display:inline-flex; margin-top:8px; font-weight:700; }
+.privacy-footer { display:flex; justify-content:space-between; gap:15px; padding:28px 0 12px; color:#887991; font-size:11px; letter-spacing:1px; }
+.privacy-footer a { color:#dca5f3; }
+@media(max-width:600px) { .privacy-page { width:calc(100% - 32px); padding-top:36px; } .privacy-hero { padding-top:28px; } .privacy-content section { padding:29px 0; } .privacy-content p,.privacy-content li { font-size:14px; } .privacy-contact { padding:22px!important; } .privacy-footer { flex-direction:column; } }
