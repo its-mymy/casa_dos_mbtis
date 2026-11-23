@@ -546,15 +546,6 @@ function criarCardMembro(membro) {
         "member-card";
         
 
-    const primary =
-        membro.cor_principal ||
-        "#8B5CF6";
-
-    article.style.setProperty(
-        "--primary",
-        primary
-    );
-
     const isAdm =
         String(
             membro.cargo || ""
