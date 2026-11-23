@@ -775,9 +775,6 @@ async function carregarPerfil() {
             avatar_tipo,
             banner_url,
             cor_principal,
-            cor_secundaria,
-            cor_destaque,
-            borda_neon,
             created_at
         `)
         .eq(
