@@ -63,13 +63,7 @@ const vipCharacter = document.getElementById("vip-character");
 const aestheticsSection = document.querySelector(".aesthetics-section");
 
 const showPrimary = document.getElementById("show-primary");
-const showSecondary = document.getElementById("show-secondary");
-const showAccent = document.getElementById("show-accent");
-
 const colorPrimary = document.getElementById("color-primary");
-const colorSecondary = document.getElementById("color-secondary");
-const colorAccent = document.getElementById("color-accent");
-
 const editProfileButton = document.getElementById("edit-profile");
 const viewProfileButton = document.getElementById("view-profile-button");
 const logoutButton = document.getElementById("logout-button");
@@ -118,20 +112,10 @@ const editBannerInput = document.getElementById("edit-banner-input");
 const editBackground = document.getElementById("edit-background");
 
 const editPrimary = document.getElementById("edit-primary");
-const editSecondary = document.getElementById("edit-secondary");
-const editAccent = document.getElementById("edit-accent");
-
-const editNeonBorder =
-    document.getElementById("edit-neon-border");
-
-const neonBorderOptions =
-    document.querySelectorAll(".neon-border-option");
-
 const colorWheelCanvas = document.getElementById("color-wheel");
 const colorPickerDot = document.getElementById("color-picker-dot");
 const selectedColorHex = document.getElementById("selected-color-hex");
 const selectedColorPreview = document.getElementById("selected-color-preview");
-const colorModeButtons = document.querySelectorAll(".color-mode");
 
 const miniProfile = document.getElementById("mini-profile");
 const miniAvatar = document.getElementById("mini-avatar");
@@ -239,29 +223,6 @@ function configurarEventos() {
     editBannerInput?.addEventListener(
         "change",
         selecionarBanner
-    );
-
-    colorModeButtons.forEach(
-        button => {
-            button.addEventListener(
-                "click",
-                () => {
-                    corSelecionada =
-                        button.dataset.color || "primary";
-
-                    colorModeButtons.forEach(
-                        item => {
-                            item.classList.toggle(
-                                "active",
-                                item === button
-                            );
-                        }
-                    );
-
-                    atualizarCorSelecionadaPreview();
-                }
-            );
-        }
     );
 
     colorWheelCanvas?.addEventListener(
@@ -1034,16 +995,6 @@ function preencherFormulario(perfil) {
 
     corSelecionada =
         "primary";
-
-    colorModeButtons.forEach(
-        button => {
-            button.classList.toggle(
-                "active",
-                button.dataset.color ===
-                "primary"
-            );
-        }
-    );
 
     atualizarCorSelecionadaPreview();
 }
