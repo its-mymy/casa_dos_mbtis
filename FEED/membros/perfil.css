@@ -1264,3 +1264,7 @@ a {
         border-radius: 18px;
     }
 }
+
+.public-avatar.avatar-neon-personalizado {
+    box-shadow: 0 0 0 3px var(--avatar-neon), 0 0 14px var(--avatar-neon), 0 0 26px color-mix(in srgb, var(--avatar-neon) 55%, transparent);
+}
