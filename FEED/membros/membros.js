@@ -449,10 +449,7 @@ async function carregarMembros() {
             subtipo,
             avatar_url,
             avatar_tipo,
-            cor_principal,
-            cor_secundaria,
-            cor_destaque,
-            borda_neon
+            cor_principal
         `)
         .order(
             "nome",
@@ -553,27 +550,9 @@ function criarCardMembro(membro) {
         membro.cor_principal ||
         "#8B5CF6";
 
-    const secondary =
-        membro.cor_secundaria ||
-        "#C084FC";
-
-    const accent =
-        membro.cor_destaque ||
-        "#60A5FA";
-
     article.style.setProperty(
         "--primary",
         primary
-    );
-
-    article.style.setProperty(
-        "--secondary",
-        secondary
-    );
-
-    article.style.setProperty(
-        "--accent",
-        accent
     );
 
     const isAdm =
@@ -585,22 +564,6 @@ function criarCardMembro(membro) {
 
     const isVip =
         membro.vip === true;
-
-    const bordaNeon =
-    (isAdm || isVip)
-        ? membro.borda_neon || ""
-        : "";
-
-if (bordaNeon) {
-    article.style.setProperty(
-        "--borda-neon",
-        bordaNeon
-    );
-
-    article.classList.add(
-        "borda-neon-personalizada"
-    );
-}
 
     const isFundadora =
         normalizarUsername(
@@ -664,6 +627,10 @@ if (bordaNeon) {
             </button>
         </div>
     `;
+
+    const avatarFrame = article.querySelector(".member-avatar");
+    const profileColor = (isAdm || isVip) ? (membro.cor_principal || "#8B5CF6") : "";
+    if (avatarFrame && profileColor) avatarFrame.style.setProperty("--avatar-neon", profileColor);
 
     const button =
         article.querySelector(
