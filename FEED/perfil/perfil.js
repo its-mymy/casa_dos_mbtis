@@ -685,20 +685,7 @@ function aplicarVisualPerfil(perfil) {
     }
 
 
-    document.documentElement.style.setProperty(
-        "--primary",
-        primary
-    );
-
-    document.documentElement.style.setProperty(
-        "--secondary",
-        secondary
-    );
-
-    document.documentElement.style.setProperty(
-        "--accent",
-        accent
-    );
+    document.documentElement.style.setProperty("--primary", "#8B5CF6");
 
     document.documentElement.style.setProperty(
         "--profile-background",
