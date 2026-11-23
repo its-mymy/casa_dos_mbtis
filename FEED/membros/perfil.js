@@ -93,20 +93,8 @@ const aestheticSection =
 const showPrimary =
     document.getElementById("show-primary");
 
-const showSecondary =
-    document.getElementById("show-secondary");
-
-const showAccent =
-    document.getElementById("show-accent");
-
 const colorPrimary =
     document.getElementById("color-primary");
-
-const colorSecondary =
-    document.getElementById("color-secondary");
-
-const colorAccent =
-    document.getElementById("color-accent");
 
 const followersCount =
     document.getElementById("followers-count");
