@@ -1308,3 +1308,8 @@ a {
         opacity: 1;
     }
 }
+
+/* A cor escolhida por VIP/ADM contorna a foto na lista de membros */
+.member-avatar[style*="--avatar-neon"] {
+    box-shadow: 0 0 0 3px var(--avatar-neon), 0 0 13px var(--avatar-neon), 0 0 24px color-mix(in srgb, var(--avatar-neon) 55%, transparent);
+}
