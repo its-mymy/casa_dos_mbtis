@@ -236,85 +236,19 @@ function aplicarCores(perfil, temRecursosVip) {
             ? perfil.cor_principal || "#8B5CF6"
             : "#8B5CF6";
 
-    const secondary =
-        temRecursosVip
-            ? perfil.cor_secundaria || "#C084FC"
-            : "#C084FC";
-
-    const accent =
-        temRecursosVip
-            ? perfil.cor_destaque || "#60A5FA"
-            : "#60A5FA";
-
     document.documentElement.style.setProperty(
         "--primary",
         primary
     );
-
-    document.documentElement.style.setProperty(
-        "--secondary",
-        secondary
-    );
-
-    document.documentElement.style.setProperty(
-        "--accent",
-        accent
-    );
-
-    const bordaNeon =
-    temRecursosVip
-        ? perfil.borda_neon || ""
-        : "";
-
-if (profileCard) {
-    if (bordaNeon) {
-        profileCard.style.setProperty(
-            "--borda-neon",
-            bordaNeon
-        );
-
-        profileCard.classList.add(
-            "borda-neon-personalizada"
-        );
-    } else {
-        profileCard.style.removeProperty(
-            "--borda-neon"
-        );
-
-        profileCard.classList.remove(
-            "borda-neon-personalizada"
-        );
-    }
-}
 
     if (showPrimary) {
         showPrimary.textContent =
             primary.toUpperCase();
     }
 
-    if (showSecondary) {
-        showSecondary.textContent =
-            secondary.toUpperCase();
-    }
-
-    if (showAccent) {
-        showAccent.textContent =
-            accent.toUpperCase();
-    }
-
     if (colorPrimary) {
         colorPrimary.style.background =
             primary;
-    }
-
-    if (colorSecondary) {
-        colorSecondary.style.background =
-            secondary;
-    }
-
-    if (colorAccent) {
-        colorAccent.style.background =
-            accent;
     }
 
     if (aestheticSection) {
@@ -329,6 +263,10 @@ function mostrarAvatar(perfil) {
     if (!avatarElement) {
         return;
     }
+
+    const isPrivileged = String(perfil.cargo || "").toLowerCase().trim() === "adm" || perfil.vip === true;
+    avatarElement.style.setProperty("--avatar-neon", isPrivileged ? (perfil.cor_principal || "#8B5CF6") : "transparent");
+    avatarElement.classList.toggle("avatar-neon-personalizado", isPrivileged);
 
     if (perfil.avatar_url) {
         avatarElement.innerHTML = `
