@@ -264,46 +264,6 @@ function configurarEventos() {
         }
     );
 
-    neonBorderOptions.forEach(
-    button => {
-        button.addEventListener(
-            "click",
-            () => {
-                if (!isPrivilegiado) {
-                    return;
-                }
-
-                const cor =
-                    button.dataset.neon || "";
-
-                if (editNeonBorder) {
-                    editNeonBorder.value =
-                        cor;
-                }
-                if (profileCard) {
-    profileCard.style.setProperty(
-        "--borda-neon",
-        cor
-    );
-
-    profileCard.classList.add(
-        "borda-neon-personalizada"
-    );
-}
-
-                neonBorderOptions.forEach(
-                    item => {
-                        item.classList.toggle(
-                            "active",
-                            item === button
-                        );
-                    }
-                );
-            }
-        );
-    }
-);
-
     colorWheelCanvas?.addEventListener(
         "pointerdown",
         event => {
@@ -755,41 +715,14 @@ function aplicarVisualPerfil(perfil) {
             ? perfil.cor_principal || "#8B5CF6"
             : "#8B5CF6";
 
-    const secondary =
-        isPrivilegiado
-            ? perfil.cor_secundaria || "#C084FC"
-            : "#C084FC";
+    const secondary = "#C084FC";
+    const accent = "#60A5FA";
 
-    const accent =
-        isPrivilegiado
-            ? perfil.cor_destaque || "#60A5FA"
-            : "#60A5FA";
-
-            const bordaNeon =
-    isPrivilegiado
-        ? perfil.borda_neon || ""
-        : "";
-
-if (profileCard) {
-    if (bordaNeon) {
-        profileCard.style.setProperty(
-            "--borda-neon",
-            bordaNeon
-        );
-
-        profileCard.classList.add(
-            "borda-neon-personalizada"
-        );
-    } else {
-        profileCard.style.removeProperty(
-            "--borda-neon"
-        );
-
-        profileCard.classList.remove(
-            "borda-neon-personalizada"
-        );
+    if (avatar) {
+        avatar.style.setProperty("--avatar-neon", isPrivilegiado ? primary : "transparent");
+        avatar.classList.toggle("avatar-neon-personalizado", isPrivilegiado);
     }
-}
+
 
     document.documentElement.style.setProperty(
         "--primary",
@@ -818,29 +751,9 @@ if (profileCard) {
             primary.toUpperCase();
     }
 
-    if (showSecondary) {
-        showSecondary.textContent =
-            secondary.toUpperCase();
-    }
-
-    if (showAccent) {
-        showAccent.textContent =
-            accent.toUpperCase();
-    }
-
     if (colorPrimary) {
         colorPrimary.style.background =
             primary;
-    }
-
-    if (colorSecondary) {
-        colorSecondary.style.background =
-            secondary;
-    }
-
-    if (colorAccent) {
-        colorAccent.style.background =
-            accent;
     }
 
     if (
@@ -1085,35 +998,6 @@ function preencherFormulario(perfil) {
             perfil.cor_principal ||
             "#8B5CF6";
     }
-
-    if (editSecondary) {
-        editSecondary.value =
-            perfil.cor_secundaria ||
-            "#C084FC";
-    }
-
-    if (editAccent) {
-        editAccent.value =
-            perfil.cor_destaque ||
-            "#60A5FA";
-    }
-
-    if (editNeonBorder) {
-    editNeonBorder.value =
-        isPrivilegiado
-            ? perfil.borda_neon || ""
-            : "";
-}
-
-neonBorderOptions.forEach(
-    button => {
-        button.classList.toggle(
-            "active",
-            button.dataset.neon ===
-            editNeonBorder?.value
-        );
-    }
-);
 
     avatarSelecionado =
         null;
@@ -1491,17 +1375,6 @@ async function salvarPerfil(event) {
                 editPrimary?.value ||
                 "#8B5CF6";
 
-            dadosAtualizacao.cor_secundaria =
-                editSecondary?.value ||
-                "#C084FC";
-
-            dadosAtualizacao.cor_destaque =
-                editAccent?.value ||
-                "#60A5FA";
-
-                dadosAtualizacao.borda_neon =
-    editNeonBorder?.value ||
-    null;
         }
 
         if (
@@ -2331,22 +2204,7 @@ function selecionarCorDaRoda(event) {
             rgb.b
         );
 
-    if (
-        corSelecionada ===
-        "primary"
-    ) {
-        editPrimary.value =
-            hex;
-    } else if (
-        corSelecionada ===
-        "secondary"
-    ) {
-        editSecondary.value =
-            hex;
-    } else {
-        editAccent.value =
-            hex;
-    }
+    editPrimary.value = hex;
 
     atualizarCorSelecionadaPreview(
         x,
@@ -2360,17 +2218,7 @@ function atualizarCorSelecionadaPreview(
     y = null,
     hex = null
 ) {
-    const valor =
-        hex ||
-        (
-            corSelecionada ===
-            "primary"
-                ? editPrimary?.value
-                : corSelecionada ===
-                    "secondary"
-                    ? editSecondary?.value
-                    : editAccent?.value
-        );
+    const valor = hex || editPrimary?.value;
 
     if (!valor) {
         return;
