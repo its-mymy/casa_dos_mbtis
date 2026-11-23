@@ -1698,3 +1698,11 @@ a {
     .delete-account-identity { grid-template-columns: 1fr; }
     .delete-modal-actions { flex-direction: column-reverse; }
 }
+
+
+/* Brilho público da identidade VIP/ADM */
+.public-avatar.avatar-neon-personalizado {
+    box-shadow: 0 0 0 3px var(--avatar-neon), 0 0 13px var(--avatar-neon), 0 0 25px color-mix(in srgb, var(--avatar-neon) 55%, transparent);
+}
+.color-picker-description { color: #C8BED2; font-size: 12px; line-height: 1.5; margin: 0 0 10px; }
+.color-card { grid-template-columns: 1fr auto auto; align-items: center; }
