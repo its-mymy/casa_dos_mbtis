@@ -236,10 +236,7 @@ function aplicarCores(perfil, temRecursosVip) {
             ? perfil.cor_principal || "#8B5CF6"
             : "#8B5CF6";
 
-    document.documentElement.style.setProperty(
-        "--primary",
-        primary
-    );
+    document.documentElement.style.setProperty("--primary", "#8B5CF6");
 
     if (showPrimary) {
         showPrimary.textContent =
